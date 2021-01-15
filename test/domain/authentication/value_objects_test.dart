@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+
 import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/domain/core/failures.dart';
 
