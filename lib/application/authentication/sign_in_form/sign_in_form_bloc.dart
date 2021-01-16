@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:highlights/application/authentication/sign_in_form/behavior_subject_bloc.dart';
 
 import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
@@ -13,7 +14,8 @@ part 'sign_in_form_state.dart';
 
 part 'sign_in_form_bloc.freezed.dart';
 
-class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
+class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState>
+    with BehaviorSubjectBloc {
   final IAuthFacade _authFacade;
 
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial());
