@@ -16,14 +16,74 @@ part 'sign_in_form_bloc.freezed.dart';
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
 
-  SignInFormBloc(SignInFormState initialState, this._authFacade)
-      : super(initialState);
-
-  // TODO: determine if it's required
-  //SignInFormState get initialState => SignInFormState.initial();
+  SignInFormBloc(this._authFacade) : super(SignInFormState.initial());
 
   @override
   Stream<SignInFormState> mapEventToState(SignInFormEvent event) async* {
-    throw UnimplementedError();
+    yield* event.map(
+      emailChanged: (event) async* {
+        yield state.copyWith(
+          emailAddress: EmailAddress(event.emailString),
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      passwordChanged: (event) async* {
+        yield state.copyWith(
+          password: Password(event.passwordString),
+          authFailureOrSuccessOption: none(),
+        );
+      },
+      registerWithEmailAndPasswordPessed: (event) async* {
+        yield* _performActionOnAuthFacadeWithEmailAndPassword(
+          _authFacade.registerWithEmailAndPassword,
+        );
+      },
+      sigInWithEmailAndPasswordPessed: (event) async* {
+        yield* _performActionOnAuthFacadeWithEmailAndPassword(
+          _authFacade.signInWithEmailAndPassword,
+        );
+      },
+      sigInWithGooglePessed: (event) async* {
+        yield state.copyWith(
+          isSubmitting: true,
+          authFailureOrSuccessOption: none(),
+        );
+        final result = await _authFacade.signInWithGoogle();
+        yield state.copyWith(
+          isSubmitting: false,
+          authFailureOrSuccessOption: some(result),
+        );
+      },
+    );
+  }
+
+  Stream<SignInFormState> _performActionOnAuthFacadeWithEmailAndPassword(
+    Future<Either<AuthFailure, Unit>> Function({
+      @required EmailAddress emailAddress,
+      @required Password password,
+    })
+        forwardedCall,
+  ) async* {
+    final isEmailValid = state.emailAddress.isValid();
+    final isPasswordValid = state.password.isValid();
+
+    Either<AuthFailure, Unit> result;
+
+    if (isEmailValid && isPasswordValid) {
+      yield state.copyWith(
+        isSubmitting: true,
+        authFailureOrSuccessOption: none(),
+      );
+      result = await forwardedCall(
+        emailAddress: state.emailAddress,
+        password: state.password,
+      );
+    }
+
+    yield state.copyWith(
+      isSubmitting: false,
+      showErrorMessages: true,
+      authFailureOrSuccessOption: optionOf(result),
+    );
   }
 }
