@@ -11,11 +11,11 @@ void main() {
         const validEmailAddress = "test@test.test";
         final emailAddressValueObject = EmailAddress(validEmailAddress).value;
 
-        expect(true, emailAddressValueObject.isRight());
+        expect(emailAddressValueObject.isRight(), isTrue);
         emailAddressValueObject.fold(
           (_) {},
           (value) {
-            expect(validEmailAddress, value);
+            expect(value, validEmailAddress);
           },
         );
       },
@@ -35,7 +35,7 @@ void main() {
         ];
         void matcher(String address) {
           final emailAddressValueObject = EmailAddress(address).value;
-          expect(true, emailAddressValueObject.isLeft());
+          expect(emailAddressValueObject.isLeft(), isTrue);
           emailAddressValueObject.fold(
             (failure) {
               expect(failure, isA<InvalidEmail>());
@@ -53,11 +53,11 @@ void main() {
         const validPassword = "123456";
         final passwordValueObject = Password(validPassword).value;
 
-        expect(true, passwordValueObject.isRight());
+        expect(passwordValueObject.isRight(), isTrue);
         passwordValueObject.fold(
           (_) {},
           (value) {
-            expect(validPassword, value);
+            expect(value, validPassword);
           },
         );
       },
@@ -68,7 +68,7 @@ void main() {
         const invalidPassword = "123";
         final passwordValueObject = Password(invalidPassword).value;
 
-        expect(true, passwordValueObject.isLeft());
+        expect(passwordValueObject.isLeft(), isTrue);
         passwordValueObject.fold(
           (failure) {
             expect(failure, isA<ShortPassword>());
