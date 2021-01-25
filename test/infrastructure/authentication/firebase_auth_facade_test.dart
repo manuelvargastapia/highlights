@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:highlights/domain/authentication/auth_failure.dart';
-import 'package:highlights/infrastructure/authentication/core/auth_provider_manager.dart';
 import 'package:mockito/mockito.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 
+import 'package:highlights/infrastructure/authentication/auth_provider_manager.dart';
+import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/infrastructure/authentication/firebase_auth_facade.dart';
 import 'package:highlights/domain/core/errors.dart';
