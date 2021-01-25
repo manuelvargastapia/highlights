@@ -4,14 +4,19 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
-import 'package:highlights/infrastructure/authentication/core/auth_provider_manager.dart';
+import 'package:highlights/infrastructure/authentication/auth_provider_manager.dart';
 
 /// IAuthFacade implementation class for handling [FirebaseAuth] and
 /// [GoogleSignIn] authentication methods
+///
+/// It needs to be annotated in behalf of IAuthFacade to be registered
+/// as dependency, as its concrete implementation
+@LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
