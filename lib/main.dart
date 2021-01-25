@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:highlights/injection.dart';
+
 void main() {
+  configureInjection();
   runApp(MyApp());
 }
 
