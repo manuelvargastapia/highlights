@@ -296,6 +296,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.6"
   glob:
     dependency: transitive
     description:
@@ -352,6 +359,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+  injectable:
+    dependency: "direct main"
+    description:
+      name: injectable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
+  injectable_generator:
+    dependency: "direct dev"
+    description:
+      name: injectable_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   intl:
     dependency: transitive
     description:
@@ -381,7 +402,7 @@ packages:
     source: hosted
     version: "3.1.1"
   lint:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: lint
       url: "https://pub.dartlang.org"
