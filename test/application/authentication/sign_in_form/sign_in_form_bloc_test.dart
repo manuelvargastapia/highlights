@@ -25,7 +25,6 @@ void main() {
       build: () => SignInFormBloc(mockAuthFacade),
       act: (bloc) => bloc.add(const SignInFormEvent.emailChanged(emailAddress)),
       expect: [
-        signInFormStateInitial,
         signInFormStateInitial.copyWith(
           emailAddress: EmailAddress(emailAddress),
           authFailureOrSuccessOption: none(),
@@ -40,7 +39,6 @@ void main() {
       build: () => SignInFormBloc(mockAuthFacade),
       act: (bloc) => bloc.add(const SignInFormEvent.passwordChanged(password)),
       expect: [
-        signInFormStateInitial,
         signInFormStateInitial.copyWith(
           password: Password(password),
           authFailureOrSuccessOption: none(),
@@ -85,7 +83,7 @@ void main() {
           authFailureOrSuccessOption: optionOf(mockAuthFacadeResult),
         ),
       ],
-      skip: 3,
+      skip: 2,
       verify: (_) {
         verify(mockAuthFacade.registerWithEmailAndPassword(
           emailAddress: anyNamed("emailAddress"),
@@ -118,7 +116,7 @@ void main() {
           authFailureOrSuccessOption: optionOf(mockAuthFacadeResult),
         ),
       ],
-      skip: 3,
+      skip: 2,
       verify: (_) {
         verifyNever(mockAuthFacade.registerWithEmailAndPassword(
           emailAddress: anyNamed("emailAddress"),
@@ -164,7 +162,7 @@ void main() {
           authFailureOrSuccessOption: optionOf(mockAuthFacadeResult),
         ),
       ],
-      skip: 3,
+      skip: 2,
       verify: (_) {
         verify(mockAuthFacade.signInWithEmailAndPassword(
           emailAddress: anyNamed("emailAddress"),
@@ -197,7 +195,7 @@ void main() {
           authFailureOrSuccessOption: optionOf(mockAuthFacadeResult),
         ),
       ],
-      skip: 3,
+      skip: 2,
       verify: (_) {
         verifyNever(mockAuthFacade.signInWithEmailAndPassword(
           emailAddress: anyNamed("emailAddress"),
@@ -218,7 +216,6 @@ void main() {
       },
       act: (bloc) => bloc.add(const SignInFormEvent.sigInWithGooglePessed()),
       expect: [
-        signInFormStateInitial,
         signInFormStateInitial.copyWith(
           isSubmitting: true,
           authFailureOrSuccessOption: none(),
@@ -261,7 +258,7 @@ void main() {
           authFailureOrSuccessOption: some(mockAuthFacadeResult),
         ),
       ],
-      skip: 3,
+      skip: 2,
       verify: (_) {
         verify(mockAuthFacade.signInWithGoogle()).called(1);
       },
