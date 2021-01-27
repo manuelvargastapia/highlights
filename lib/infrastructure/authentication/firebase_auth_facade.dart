@@ -10,6 +10,8 @@ import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/infrastructure/authentication/auth_provider_manager.dart';
+import 'package:highlights/domain/core/value_objects.dart';
+import 'package:highlights/domain/authentication/user.dart' as app;
 
 /// IAuthFacade implementation class for handling [FirebaseAuth] and
 /// [GoogleSignIn] authentication methods
@@ -35,6 +37,16 @@ class FirebaseAuthFacade implements IAuthFacade {
     this._googleSignIn, [
     this._authProviderManager = const AuthProviderManager(),
   ]);
+
+  @override
+  Option<app.User> getSignedInUser() => some(
+        app.User(
+          id: UniqueId.fromUniqueString(
+            // TODO: use authStateChanges()
+            _firebaseAuth.currentUser.uid,
+          ),
+        ),
+      );
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -102,4 +114,10 @@ class FirebaseAuthFacade implements IAuthFacade {
       return left(const AuthFailure.serverError());
     }
   }
+
+  @override
+  Future<void> signOut() => Future.wait([
+        _googleSignIn.signOut(),
+        _firebaseAuth.signOut(),
+      ]);
 }
