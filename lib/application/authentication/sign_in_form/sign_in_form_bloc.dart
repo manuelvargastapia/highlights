@@ -69,23 +69,21 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     final isEmailValid = state.emailAddress.isValid();
     final isPasswordValid = state.password.isValid();
 
-    Either<AuthFailure, Unit> result;
-
+    // Don't change state if any field is invalid. Let the form handle
+    // error messages
     if (isEmailValid && isPasswordValid) {
       yield state.copyWith(
         isSubmitting: true,
         authFailureOrSuccessOption: none(),
       );
-      result = await forwardedCall(
+      final result = await forwardedCall(
         emailAddress: state.emailAddress,
         password: state.password,
       );
+      yield state.copyWith(
+        isSubmitting: false,
+        authFailureOrSuccessOption: optionOf(result),
+      );
     }
-
-    yield state.copyWith(
-      isSubmitting: false,
-      showErrorMessages: true,
-      authFailureOrSuccessOption: optionOf(result),
-    );
   }
 }
