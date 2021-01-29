@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,8 +10,8 @@ import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/infrastructure/authentication/auth_provider_manager.dart';
-import 'package:highlights/domain/core/value_objects.dart';
-import 'package:highlights/domain/authentication/user.dart' as app;
+import 'package:highlights/domain/authentication/user.dart';
+import 'package:highlights/infrastructure/authentication/firebase_user_mapper.dart';
 
 /// IAuthFacade implementation class for handling [FirebaseAuth] and
 /// [GoogleSignIn] authentication methods
@@ -38,15 +38,15 @@ class FirebaseAuthFacade implements IAuthFacade {
     this._authProviderManager = const AuthProviderManager(),
   ]);
 
+  /// Get currently signed in User.
+  ///
+  /// This method returns an `Option` holding a [User] from domain layer.
+  /// The class [FirebaseUserUserDomainX] provides the [toDomainUser] method
+  /// to create a domain User from FirebaseAuth User. In case the latter
+  /// is `null` [getSignedInUser] return an `Option` holding `None`.
   @override
-  Option<app.User> getSignedInUser() => some(
-        app.User(
-          id: UniqueId.fromUniqueString(
-            // TODO: use authStateChanges()
-            _firebaseAuth.currentUser.uid,
-          ),
-        ),
-      );
+  Option<User> getSignedInUser() =>
+      optionOf(_firebaseAuth.currentUser?.toDomainUser());
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
