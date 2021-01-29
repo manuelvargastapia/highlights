@@ -68,7 +68,7 @@ void main() {
     const invalidEmailString = "testtest.test";
     const invalidPasswordString = "123";
     test(
-      'Given valid email and password When registering Then return Right(unit)',
+      '\nGiven valid email and password\nWhen registering\nThen return Right(unit)',
       () async {
         when(mockFirebaseAuth.createUserWithEmailAndPassword(
           email: validEmailString,
@@ -96,7 +96,7 @@ void main() {
     );
 
     test(
-      'Given invalid email and password When registering Then throw UnexpectedValueError',
+      '\nGiven invalid email and password\nWhen registering\nThen throw UnexpectedValueError',
       () async {
         expect(
           () => firebaseAuthFacade.registerWithEmailAndPassword(
@@ -115,7 +115,7 @@ void main() {
 
     group('FirebaseAuthException cases', () {
       test(
-        'Given email already in use When registering Then return EmailAlreadyInUse',
+        '\nGiven email already in use\nWhen registering\nThen return EmailAlreadyInUse',
         () async {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
             email: anyNamed("email"),
@@ -143,7 +143,7 @@ void main() {
       );
 
       test(
-        'Given email and password not enabled When registering Then return OperationNotAllowed',
+        '\nGiven email and password not enabled\nWhen registering\nThen return OperationNotAllowed',
         () async {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
             email: anyNamed("email"),
@@ -171,7 +171,7 @@ void main() {
       );
 
       test(
-        'Given any other error When registering Then return ServerError',
+        '\nGiven any other error\nWhen registering\nThen return ServerError',
         () async {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
             email: anyNamed("email"),
@@ -206,7 +206,7 @@ void main() {
     const invalidEmailString = "testtest.test";
     const invalidPasswordString = "123";
     test(
-      'Given valid email and password When sign in Then return Right(unit)',
+      '\nGiven valid email and password\nWhen sign in\nThen return Right(unit)',
       () async {
         when(mockFirebaseAuth.signInWithEmailAndPassword(
           email: validEmailString,
@@ -234,7 +234,7 @@ void main() {
     );
 
     test(
-      'Given invalid email and password When sign in Then throw UnexpectedValueError',
+      '\nGiven invalid email and password\nWhen sign in\nThen throw UnexpectedValueError',
       () async {
         expect(
           () => firebaseAuthFacade.signInWithEmailAndPassword(
@@ -253,7 +253,7 @@ void main() {
 
     group('FirebaseAuthException cases', () {
       test(
-        'Given user not found When sign in Then return InvalidEmailAndPasswordCombination',
+        '\nGiven user not found\nWhen sign in\nThen return InvalidEmailAndPasswordCombination',
         () async {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
             email: anyNamed("email"),
@@ -281,7 +281,7 @@ void main() {
       );
 
       test(
-        'Given wrong password When sign in Then return InvalidEmailAndPasswordCombination',
+        '\nGiven wrong password\nWhen sign in\nThen return InvalidEmailAndPasswordCombination',
         () async {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
             email: anyNamed("email"),
@@ -309,7 +309,7 @@ void main() {
       );
 
       test(
-        'Given any other error When sign in Then return ServerError',
+        '\nGiven any other error\nWhen sign in\nThen return ServerError',
         () async {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
             email: anyNamed("email"),
@@ -340,7 +340,7 @@ void main() {
 
   group('Sign in with Google', () {
     test(
-      'Given succesful sign in When process completes Then return Right(Unit)',
+      '\nGiven succesful sign in\nWhen process completes\nThen return Right(Unit)',
       () async {
         when(mockGoogleSignIn.signIn())
             .thenAnswer((_) async => mockGoogleSignInAccount);
@@ -367,7 +367,7 @@ void main() {
     );
 
     test(
-      'Given succesful sign in When user abort process Then return CancelledByUser',
+      '\nGiven succesful sign in\nWhen user abort process\nThen return CancelledByUser',
       () async {
         when(mockGoogleSignIn.signIn()).thenAnswer((_) async => null);
 
@@ -389,7 +389,7 @@ void main() {
     );
 
     test(
-      'Given unsuccesful sign in When FirebaseAuth.signInWithCredential() throws an exception Then return ServerError',
+      '\nGiven unsuccesful sign in\nWhen FirebaseAuth.signInWithCredential() throws an exception\nThen return ServerError',
       () async {
         when(mockGoogleSignIn.signIn())
             .thenAnswer((_) async => mockGoogleSignInAccount);

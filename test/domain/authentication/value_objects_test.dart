@@ -6,7 +6,7 @@ import 'package:highlights/domain/core/failures.dart';
 void main() {
   group("Authentication Value Objects", () {
     test(
-      'Given a valid email address When it is inputed Then return Right with the same input',
+      '\nGiven a valid email address\nWhen it is inputed\nThen return Right with the same input',
       () async {
         const validEmailAddress = "test@test.test";
         final emailAddressValueObject = EmailAddress(validEmailAddress).value;
@@ -21,7 +21,7 @@ void main() {
       },
     );
     test(
-      'Given a list of invalid email addresses When they are inputed Then return Left with an InvalidEmail',
+      '\nGiven a list of invalid email addresses\nWhen they are inputed\nThen return Left with an InvalidEmail',
       () async {
         const invalidEmailAddresses = [
           "testtest.test",
@@ -48,7 +48,7 @@ void main() {
       },
     );
     test(
-      'Given a valid password When it is inputed Then return Right with the same input',
+      '\nGiven a valid password\nWhen it is inputed\nThen return Right with the same input',
       () async {
         const validPassword = "123456";
         final passwordValueObject = Password(validPassword).value;
@@ -63,7 +63,7 @@ void main() {
       },
     );
     test(
-      'Given an invalid password When it is inputed Then return Left with an InvalidPassword',
+      '\nGiven an invalid password\nWhen it is inputed\nThen return Left with an InvalidPassword',
       () async {
         const invalidPassword = "123";
         final passwordValueObject = Password(invalidPassword).value;
