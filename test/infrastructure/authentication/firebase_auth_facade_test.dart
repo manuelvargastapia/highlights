@@ -2,20 +2,29 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as f;
 import 'package:dartz/dartz.dart';
 
+import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/infrastructure/authentication/auth_provider_manager.dart';
+import 'package:highlights/domain/authentication/user.dart';
 import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/infrastructure/authentication/firebase_auth_facade.dart';
 import 'package:highlights/domain/core/errors.dart';
 
-class MockFirebaseAuth extends Mock implements FirebaseAuth {}
+class MockFirebaseAuth extends Mock implements f.FirebaseAuth {}
 
 class MockGoogleSignIn extends Mock implements GoogleSignIn {}
 
-class MockUserCredential extends Mock implements UserCredential {}
+class MockUserCredential extends Mock implements f.UserCredential {}
+
+class MockUser extends Mock implements f.User {
+  @override
+  String get uid {
+    return "mock-uid";
+  }
+}
 
 // ignore: avoid_implementing_value_types
 class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {}
@@ -23,7 +32,7 @@ class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {}
 class MockGoogleSignInAuthentication extends Mock
     implements GoogleSignInAuthentication {}
 
-class MockOAuthCredential extends Mock implements OAuthCredential {}
+class MockOAuthCredential extends Mock implements f.OAuthCredential {}
 
 class MockAuthProviderManager extends Mock implements AuthProviderManager {}
 
@@ -31,6 +40,7 @@ void main() {
   MockFirebaseAuth mockFirebaseAuth;
   MockGoogleSignIn mockGoogleSignIn;
   MockUserCredential mockUserCredential;
+  MockUser mockUser;
   MockGoogleSignInAccount mockGoogleSignInAccount;
   MockGoogleSignInAuthentication mockGoogleSignInAuthentication;
   MockOAuthCredential mockOAuthCredential;
@@ -40,6 +50,7 @@ void main() {
     mockFirebaseAuth = MockFirebaseAuth();
     mockGoogleSignIn = MockGoogleSignIn();
     mockUserCredential = MockUserCredential();
+    mockUser = MockUser();
     mockGoogleSignInAccount = MockGoogleSignInAccount();
     mockGoogleSignInAuthentication = MockGoogleSignInAuthentication();
     mockOAuthCredential = MockOAuthCredential();
@@ -404,6 +415,43 @@ void main() {
         verify(mockAuthProviderManager.getGoogleOAuthCredential(any)).called(1);
         verify(mockFirebaseAuth.signInWithCredential(mockOAuthCredential))
             .called(1);
+      },
+    );
+  });
+
+  group('Get signed in User', () {
+    test(
+      '\nGiven authenticated User\nWhen fetching User\nThen return Some with User with Firebase User UID',
+      () async {
+        when(mockFirebaseAuth.currentUser).thenReturn(mockUser);
+
+        final userOption = firebaseAuthFacade.getSignedInUser();
+
+        expect(userOption.isSome(), isTrue);
+        userOption.fold(
+          () => {},
+          (user) => expect(
+            user,
+            User(
+              id: UniqueId.fromUniqueString("mock-uid"),
+            ),
+          ),
+        );
+
+        verify(mockFirebaseAuth.currentUser).called(1);
+      },
+    );
+
+    test(
+      '\nGiven unauthenticated User\nWhen fetching User\nThen return None',
+      () async {
+        when(mockFirebaseAuth.currentUser).thenReturn(null);
+
+        final userOption = firebaseAuthFacade.getSignedInUser();
+
+        expect(userOption.isNone(), isTrue);
+
+        verify(mockFirebaseAuth.currentUser).called(1);
       },
     );
   });
