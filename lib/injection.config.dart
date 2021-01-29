@@ -9,6 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'application/authentication/auth_bloc.dart';
 import 'infrastructure/authentication/auth_provider_manager.dart';
 import 'infrastructure/authentication/firebase_auth_facade.dart';
 import 'infrastructure/core/firebase_injectable_module.dart';
@@ -34,6 +35,7 @@ GetIt $initGetIt(
         get<AuthProviderManager>(),
       ));
   gh.factory<SignInFormBloc>(() => SignInFormBloc(get<IAuthFacade>()));
+  gh.factory<AuthBloc>(() => AuthBloc(get<IAuthFacade>()));
   return get;
 }
 
