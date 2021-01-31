@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -120,7 +119,10 @@ void main() {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
             email: anyNamed("email"),
             password: anyNamed("password"),
-          )).thenThrow(PlatformException(code: "email-already-in-use"));
+          )).thenThrow(f.FirebaseAuthException(
+            code: "email-already-in-use",
+            message: "",
+          ));
 
           final result = await firebaseAuthFacade.registerWithEmailAndPassword(
             emailAddress: EmailAddress(validEmailString),
@@ -148,7 +150,10 @@ void main() {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
             email: anyNamed("email"),
             password: anyNamed("password"),
-          )).thenThrow(PlatformException(code: "operation-not-allowed"));
+          )).thenThrow(f.FirebaseAuthException(
+            code: "operation-not-allowed",
+            message: "",
+          ));
 
           final result = await firebaseAuthFacade.registerWithEmailAndPassword(
             emailAddress: EmailAddress(validEmailString),
@@ -176,7 +181,10 @@ void main() {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
             email: anyNamed("email"),
             password: anyNamed("password"),
-          )).thenThrow(PlatformException(code: "other code"));
+          )).thenThrow(f.FirebaseAuthException(
+            code: "other code",
+            message: "",
+          ));
 
           final result = await firebaseAuthFacade.registerWithEmailAndPassword(
             emailAddress: EmailAddress(validEmailString),
@@ -258,7 +266,10 @@ void main() {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
             email: anyNamed("email"),
             password: anyNamed("password"),
-          )).thenThrow(PlatformException(code: "user-not-found"));
+          )).thenThrow(f.FirebaseAuthException(
+            code: "user-not-found",
+            message: "",
+          ));
 
           final result = await firebaseAuthFacade.signInWithEmailAndPassword(
             emailAddress: EmailAddress(validEmailString),
@@ -286,7 +297,10 @@ void main() {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
             email: anyNamed("email"),
             password: anyNamed("password"),
-          )).thenThrow(PlatformException(code: "wrong-password"));
+          )).thenThrow(f.FirebaseAuthException(
+            code: "wrong-password",
+            message: "",
+          ));
 
           final result = await firebaseAuthFacade.signInWithEmailAndPassword(
             emailAddress: EmailAddress(validEmailString),
@@ -314,7 +328,10 @@ void main() {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
             email: anyNamed("email"),
             password: anyNamed("password"),
-          )).thenThrow(PlatformException(code: "other code"));
+          )).thenThrow(f.FirebaseAuthException(
+            code: "other code",
+            message: "",
+          ));
 
           final result = await firebaseAuthFacade.signInWithEmailAndPassword(
             emailAddress: EmailAddress(validEmailString),
@@ -398,7 +415,7 @@ void main() {
         when(mockAuthProviderManager.getGoogleOAuthCredential(any))
             .thenReturn(mockOAuthCredential);
         when(mockFirebaseAuth.signInWithCredential(mockOAuthCredential))
-            .thenThrow(PlatformException(code: "any code"));
+            .thenThrow(f.FirebaseAuthException(code: "any code", message: ""));
 
         final result = await firebaseAuthFacade.signInWithGoogle();
 

@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -61,7 +60,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordString,
       );
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left(const AuthFailure.emailAlreadyInUse());
       } else if (e.code == "operation-not-allowed") {
@@ -85,7 +84,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         password: passwordString,
       );
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == "wrong-password") {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
       } else {
@@ -110,7 +109,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       return _firebaseAuth
           .signInWithCredential(authCredential)
           .then((_) => right(unit));
-    } on PlatformException catch (_) {
+    } on FirebaseAuthException catch (_) {
       return left(const AuthFailure.serverError());
     }
   }
