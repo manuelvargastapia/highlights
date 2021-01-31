@@ -6,7 +6,10 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:highlights/application/authentication/sign_in_form/sign_in_form_bloc.dart';
 
 class SignInForm extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
+  /// This property must be `static` to avoid build loop
+  ///
+  /// See https://github.com/flutter/flutter/issues/20042
+  static final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
