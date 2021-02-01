@@ -1,14 +1,17 @@
 include: package:lint/analysis_options.yaml
 
-# linter:
-#   rules:
-#     [rule]: [true/false]
+linter:
+  rules:
+    # [rule]: [true/false]
+    prefer_single_quotes: true
 
 analyzer:
   errors:
-#   [rule]: [warning/ignore/info/error]
+    #   [rule]: [warning/ignore/info/error]
     parameter_assignments: error
     missing_required_param: error
     must_be_immutable: error
     missing_return: error
-    
+  exclude:
+    - "**.freezed.dart"
+    - "**.config.dart"

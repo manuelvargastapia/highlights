@@ -22,7 +22,9 @@ void main() {
 
   group('AuthCheckRequested', () {
     blocTest(
-      "\nGiven user authenticated\nWhen AuthCheckRequested ocurrs\nThen Authenticated is emitted",
+      '\nGiven user authenticated'
+      '\nWhen AuthCheckRequested ocurrs'
+      '\nThen Authenticated is emitted',
       build: () {
         when(mockAuthFacade.getSignedInUser()).thenReturn(Some(mockUser));
         return AuthBloc(mockAuthFacade);
@@ -35,7 +37,9 @@ void main() {
     );
 
     blocTest(
-      "\nGiven user unauthenticated\nWhen AuthCheckRequested ocurrs\nThen Unauthenticated is emitted",
+      '\nGiven user unauthenticated'
+      '\nWhen AuthCheckRequested ocurrs'
+      '\nThen Unauthenticated is emitted',
       build: () {
         when(mockAuthFacade.getSignedInUser()).thenReturn(const None());
         return AuthBloc(mockAuthFacade);
@@ -49,7 +53,9 @@ void main() {
   });
   group('SignedOut', () {
     blocTest(
-      "\nGiven user authenticated\nWhen SignedOut ocurrs\nThen Unauthenticated is emitted",
+      '\nGiven user authenticated'
+      '\nWhen SignedOut ocurrs'
+      '\nThen Unauthenticated is emitted',
       build: () => AuthBloc(mockAuthFacade),
       act: (bloc) => bloc.add(const AuthEvent.signedOut()),
       expect: [const Unauthenticated()],

@@ -19,9 +19,11 @@ void main() {
   });
 
   group('EmailChanged', () {
-    const emailAddress = "test@test.test";
+    const emailAddress = 'test@test.test';
     blocTest(
-      "\nGiven a change in emailAddress\nWhen event EmailChanged ocurrs\nThen emitts [signInFormStateInitial, SignInFormState(emailAddress: EmailAddress(emailAddress), authFailureOrSuccessOption: none())]",
+      '\nGiven a change in emailAddress'
+      '\nWhen event EmailChanged ocurrs'
+      '\nThen emitts [signInFormStateInitial, SignInFormState(emailAddress: EmailAddress(emailAddress), authFailureOrSuccessOption: none())]',
       build: () => SignInFormBloc(mockAuthFacade),
       act: (bloc) => bloc.add(const SignInFormEvent.emailChanged(emailAddress)),
       expect: [
@@ -33,9 +35,11 @@ void main() {
     );
   });
   group('PasswordChanged', () {
-    const password = "123456";
+    const password = '123456';
     blocTest(
-      "\nGiven a change in password\nWhen event PasswordChanged ocurrs\nThen emitts [signInFormStateInitial, SignInFormState(password: Password(password), authFailureOrSuccessOption: none())]",
+      '\nGiven a change in password'
+      '\nWhen event PasswordChanged ocurrs'
+      '\nThen emitts [signInFormStateInitial, SignInFormState(password: Password(password), authFailureOrSuccessOption: none())]',
       build: () => SignInFormBloc(mockAuthFacade),
       act: (bloc) => bloc.add(const SignInFormEvent.passwordChanged(password)),
       expect: [
@@ -48,17 +52,19 @@ void main() {
   });
   group('RegisterWithEmailAndPasswordPessed', () {
     Either<AuthFailure, Unit> mockAuthFacadeResult;
-    const validEmailAddress = "test@test.test";
-    const validPassword = "123456";
-    const invalidEmailAddress = "testtest.test";
-    const invalidPassword = "123";
+    const validEmailAddress = 'test@test.test';
+    const validPassword = '123456';
+    const invalidEmailAddress = 'testtest.test';
+    const invalidPassword = '123';
 
     blocTest(
-      '\nGiven valid emailAddress and password\nWhen RegisterWithEmailAndPasswordPessed ocurrs\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
+      '\nGiven valid emailAddress and password'
+      '\nWhen RegisterWithEmailAndPasswordPessed ocurrs'
+      '\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
       build: () {
         when(mockAuthFacade.registerWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         )).thenAnswer((_) async => mockAuthFacadeResult);
         return SignInFormBloc(mockAuthFacade);
       },
@@ -85,18 +91,20 @@ void main() {
       skip: 2,
       verify: (_) {
         verify(mockAuthFacade.registerWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         )).called(1);
       },
     );
 
     blocTest(
-      '\nGiven invalid emailAddress and password\nWhen RegisterWithEmailAndPasswordPessed ocurrs\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
+      '\nGiven invalid emailAddress and password'
+      '\nWhen RegisterWithEmailAndPasswordPessed ocurrs'
+      '\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
       build: () {
         when(mockAuthFacade.registerWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         )).thenAnswer((_) async => mockAuthFacadeResult);
         return SignInFormBloc(mockAuthFacade);
       },
@@ -110,25 +118,27 @@ void main() {
       skip: 2,
       verify: (_) {
         verifyNever(mockAuthFacade.registerWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         ));
       },
     );
   });
   group('SigInWithEmailAndPasswordPessed', () {
     Either<AuthFailure, Unit> mockAuthFacadeResult;
-    const validEmailAddress = "test@test.test";
-    const validPassword = "123456";
-    const invalidEmailAddress = "testtest.test";
-    const invalidPassword = "123";
+    const validEmailAddress = 'test@test.test';
+    const validPassword = '123456';
+    const invalidEmailAddress = 'testtest.test';
+    const invalidPassword = '123';
 
     blocTest(
-      '\nGiven valid emailAddress and password\nWhen SigInWithEmailAndPasswordPessed ocurrs\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
+      '\nGiven valid emailAddress and password'
+      '\nWhen SigInWithEmailAndPasswordPessed ocurrs'
+      '\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
       build: () {
         when(mockAuthFacade.signInWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         )).thenAnswer((_) async => mockAuthFacadeResult);
         return SignInFormBloc(mockAuthFacade);
       },
@@ -155,18 +165,20 @@ void main() {
       skip: 2,
       verify: (_) {
         verify(mockAuthFacade.signInWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         )).called(1);
       },
     );
 
     blocTest(
-      '\nGiven invalid emailAddress and password\nWhen SigInWithEmailAndPasswordPessed ocurrs\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
+      '\nGiven invalid emailAddress and password'
+      '\nWhen SigInWithEmailAndPasswordPessed ocurrs'
+      '\nThen emitts [SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(validEmailAddress), password: Password(validPassword), isSubmitting: false, authFailureOrSuccessOption: optionOf(mockAuthFacadeResult))]',
       build: () {
         when(mockAuthFacade.signInWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         )).thenAnswer((_) async => mockAuthFacadeResult);
         return SignInFormBloc(mockAuthFacade);
       },
@@ -180,8 +192,8 @@ void main() {
       skip: 2,
       verify: (_) {
         verifyNever(mockAuthFacade.signInWithEmailAndPassword(
-          emailAddress: anyNamed("emailAddress"),
-          password: anyNamed("password"),
+          emailAddress: anyNamed('emailAddress'),
+          password: anyNamed('password'),
         ));
       },
     );
@@ -190,7 +202,9 @@ void main() {
     Either<AuthFailure, Unit> mockAuthFacadeResult;
 
     blocTest(
-      '\nGiven initial state\nWhen SigInWithGooglePessed ocurrs\nThen emitts [signInFormStateInitial, SignInFormState(isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(isSubmitting: false, authFailureOrSuccessOption: some(result))]',
+      '\nGiven initial state'
+      '\nWhen SigInWithGooglePessed ocurrs'
+      '\nThen emitts [signInFormStateInitial, SignInFormState(isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(isSubmitting: false, authFailureOrSuccessOption: some(result))]',
       build: () {
         when(mockAuthFacade.signInWithGoogle())
             .thenAnswer((_) async => mockAuthFacadeResult);
@@ -212,11 +226,13 @@ void main() {
       },
     );
 
-    const emailAddress = "test@test.test";
-    const password = "123456";
+    const emailAddress = 'test@test.test';
+    const password = '123456';
 
     blocTest(
-      '\nGiven a non-initial state\nWhen SigInWithGooglePessed ocurrs\nThen emitts [SignInFormState(emailAddress: EmailAddress(emailAddress), password: Password(password), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(emailAddress), password: Password(password), isSubmitting: false, authFailureOrSuccessOption: some(result))]',
+      '\nGiven a non-initial state'
+      '\nWhen SigInWithGooglePessed ocurrs'
+      '\nThen emitts [SignInFormState(emailAddress: EmailAddress(emailAddress), password: Password(password), isSubmitting: true, authFailureOrSuccessOption: none()), SignInFormState(emailAddress: EmailAddress(emailAddress), password: Password(password), isSubmitting: false, authFailureOrSuccessOption: some(result))]',
       build: () {
         when(mockAuthFacade.signInWithGoogle())
             .thenAnswer((_) async => mockAuthFacadeResult);
