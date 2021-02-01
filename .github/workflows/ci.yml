@@ -38,7 +38,7 @@ jobs:
       - run: flutter pub run build_runner build --delete-conflicting-outputs
       - name: Decode google-services.json
         env:
-          FIREBASE_SECRET: ${{ secret. FIREBASE_SECRET}}
+          FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET}}
         run: echo $FIREBASE_SECRET > android/app/google-services.json
       - run: flutter clean
       - run: flutter build appbundle
