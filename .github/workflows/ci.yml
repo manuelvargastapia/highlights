@@ -36,7 +36,7 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: fluter clean
+      - run: flutter clean
       - run: flutter build ios --no-codesign
 
   build_appbundle:
@@ -53,5 +53,5 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter pub run build_runner build --delete-conflicting-outputs
-      - run: fluter clean
+      - run: flutter clean
       - run: flutter build appbundle
