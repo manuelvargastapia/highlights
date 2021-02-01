@@ -49,6 +49,7 @@ class SignInForm extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               TextFormField(
+                key: const Key("email_field"),
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   labelText: "Email",
@@ -80,6 +81,7 @@ class SignInForm extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               TextFormField(
+                key: const Key("password_field"),
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.lock),
                   labelText: "Password",
@@ -108,6 +110,7 @@ class SignInForm extends StatelessWidget {
                 children: [
                   Expanded(
                     child: FlatButton(
+                      key: const Key("sign_in_button"),
                       onPressed: () {
                         // Trigger validation to display possible error messages
                         _formKey.currentState.validate();
@@ -120,6 +123,7 @@ class SignInForm extends StatelessWidget {
                   ),
                   Expanded(
                     child: FlatButton(
+                      key: const Key("register_button"),
                       onPressed: () {
                         _formKey.currentState.validate();
                         context.read<SignInFormBloc>().add(const SignInFormEvent
