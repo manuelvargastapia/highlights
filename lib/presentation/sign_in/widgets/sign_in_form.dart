@@ -42,6 +42,7 @@ class SignInForm extends StatelessWidget {
         return Form(
           key: _formKey,
           child: ListView(
+            padding: const EdgeInsets.all(8),
             children: [
               const Icon(
                 Icons.format_quote,
@@ -149,6 +150,10 @@ class SignInForm extends StatelessWidget {
                   ),
                 ),
               ),
+              if (state.isSubmitting) ...[
+                const SizedBox(height: 8),
+                const LinearProgressIndicator(),
+              ]
             ],
           ),
         );
