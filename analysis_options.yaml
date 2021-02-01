@@ -12,3 +12,6 @@ analyzer:
     missing_required_param: error
     must_be_immutable: error
     missing_return: error
+  exclude:
+    - "**.freezed.dart"
+    - "**.config.dart"
