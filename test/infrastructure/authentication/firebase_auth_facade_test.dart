@@ -21,7 +21,7 @@ class MockUserCredential extends Mock implements f.UserCredential {}
 class MockUser extends Mock implements f.User {
   @override
   String get uid {
-    return "mock-uid";
+    return 'mock-uid';
   }
 }
 
@@ -62,12 +62,14 @@ void main() {
   });
 
   group('Register with email and password', () {
-    const validEmailString = "test@test.test";
-    const validPasswordString = "123456";
-    const invalidEmailString = "testtest.test";
-    const invalidPasswordString = "123";
+    const validEmailString = 'test@test.test';
+    const validPasswordString = '123456';
+    const invalidEmailString = 'testtest.test';
+    const invalidPasswordString = '123';
     test(
-      '\nGiven valid email and password\nWhen registering\nThen return Right(unit)',
+      '\nGiven valid email and password'
+      '\nWhen registering'
+      '\nThen return Right(unit)',
       () async {
         when(mockFirebaseAuth.createUserWithEmailAndPassword(
           email: validEmailString,
@@ -88,14 +90,16 @@ void main() {
         );
 
         verify(mockFirebaseAuth.createUserWithEmailAndPassword(
-          email: anyNamed("email"),
-          password: anyNamed("password"),
+          email: anyNamed('email'),
+          password: anyNamed('password'),
         )).called(1);
       },
     );
 
     test(
-      '\nGiven invalid email and password\nWhen registering\nThen throw UnexpectedValueError',
+      '\nGiven invalid email and password'
+      '\nWhen registering'
+      '\nThen throw UnexpectedValueError',
       () async {
         expect(
           () => firebaseAuthFacade.registerWithEmailAndPassword(
@@ -106,22 +110,24 @@ void main() {
         );
 
         verifyNever(mockFirebaseAuth.createUserWithEmailAndPassword(
-          email: anyNamed("email"),
-          password: anyNamed("password"),
+          email: anyNamed('email'),
+          password: anyNamed('password'),
         ));
       },
     );
 
     group('FirebaseAuthException cases', () {
       test(
-        '\nGiven email already in use\nWhen registering\nThen return EmailAlreadyInUse',
+        '\nGiven email already in use'
+        '\nWhen registering'
+        '\nThen return EmailAlreadyInUse',
         () async {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).thenThrow(f.FirebaseAuthException(
-            code: "email-already-in-use",
-            message: "",
+            code: 'email-already-in-use',
+            message: '',
           ));
 
           final result = await firebaseAuthFacade.registerWithEmailAndPassword(
@@ -138,21 +144,23 @@ void main() {
           );
 
           verify(mockFirebaseAuth.createUserWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).called(1);
         },
       );
 
       test(
-        '\nGiven email and password not enabled\nWhen registering\nThen return OperationNotAllowed',
+        '\nGiven email and password not enabled'
+        '\nWhen registering'
+        '\nThen return OperationNotAllowed',
         () async {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).thenThrow(f.FirebaseAuthException(
-            code: "operation-not-allowed",
-            message: "",
+            code: 'operation-not-allowed',
+            message: '',
           ));
 
           final result = await firebaseAuthFacade.registerWithEmailAndPassword(
@@ -169,21 +177,23 @@ void main() {
           );
 
           verify(mockFirebaseAuth.createUserWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).called(1);
         },
       );
 
       test(
-        '\nGiven any other error\nWhen registering\nThen return ServerError',
+        '\nGiven any other error'
+        '\nWhen registering'
+        '\nThen return ServerError',
         () async {
           when(mockFirebaseAuth.createUserWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).thenThrow(f.FirebaseAuthException(
-            code: "other code",
-            message: "",
+            code: 'other code',
+            message: '',
           ));
 
           final result = await firebaseAuthFacade.registerWithEmailAndPassword(
@@ -200,8 +210,8 @@ void main() {
           );
 
           verify(mockFirebaseAuth.createUserWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).called(1);
         },
       );
@@ -209,12 +219,14 @@ void main() {
   });
 
   group('Sign in with email and password', () {
-    const validEmailString = "test@test.test";
-    const validPasswordString = "123456";
-    const invalidEmailString = "testtest.test";
-    const invalidPasswordString = "123";
+    const validEmailString = 'test@test.test';
+    const validPasswordString = '123456';
+    const invalidEmailString = 'testtest.test';
+    const invalidPasswordString = '123';
     test(
-      '\nGiven valid email and password\nWhen sign in\nThen return Right(unit)',
+      '\nGiven valid email and password'
+      '\nWhen sign in'
+      '\nThen return Right(unit)',
       () async {
         when(mockFirebaseAuth.signInWithEmailAndPassword(
           email: validEmailString,
@@ -235,14 +247,16 @@ void main() {
         );
 
         verify(mockFirebaseAuth.signInWithEmailAndPassword(
-          email: anyNamed("email"),
-          password: anyNamed("password"),
+          email: anyNamed('email'),
+          password: anyNamed('password'),
         )).called(1);
       },
     );
 
     test(
-      '\nGiven invalid email and password\nWhen sign in\nThen throw UnexpectedValueError',
+      '\nGiven invalid email and password'
+      '\nWhen sign in'
+      '\nThen throw UnexpectedValueError',
       () async {
         expect(
           () => firebaseAuthFacade.signInWithEmailAndPassword(
@@ -253,22 +267,24 @@ void main() {
         );
 
         verifyNever(mockFirebaseAuth.signInWithEmailAndPassword(
-          email: anyNamed("email"),
-          password: anyNamed("password"),
+          email: anyNamed('email'),
+          password: anyNamed('password'),
         ));
       },
     );
 
     group('FirebaseAuthException cases', () {
       test(
-        '\nGiven user not found\nWhen sign in\nThen return InvalidEmailAndPasswordCombination',
+        '\nGiven user not found'
+        '\nWhen sign in'
+        '\nThen return InvalidEmailAndPasswordCombination',
         () async {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).thenThrow(f.FirebaseAuthException(
-            code: "user-not-found",
-            message: "",
+            code: 'user-not-found',
+            message: '',
           ));
 
           final result = await firebaseAuthFacade.signInWithEmailAndPassword(
@@ -285,21 +301,23 @@ void main() {
           );
 
           verify(mockFirebaseAuth.signInWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).called(1);
         },
       );
 
       test(
-        '\nGiven wrong password\nWhen sign in\nThen return InvalidEmailAndPasswordCombination',
+        '\nGiven wrong password'
+        '\nWhen sign in'
+        '\nThen return InvalidEmailAndPasswordCombination',
         () async {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).thenThrow(f.FirebaseAuthException(
-            code: "wrong-password",
-            message: "",
+            code: 'wrong-password',
+            message: '',
           ));
 
           final result = await firebaseAuthFacade.signInWithEmailAndPassword(
@@ -316,21 +334,23 @@ void main() {
           );
 
           verify(mockFirebaseAuth.signInWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).called(1);
         },
       );
 
       test(
-        '\nGiven any other error\nWhen sign in\nThen return ServerError',
+        '\nGiven any other error'
+        '\nWhen sign in'
+        '\nThen return ServerError',
         () async {
           when(mockFirebaseAuth.signInWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).thenThrow(f.FirebaseAuthException(
-            code: "other code",
-            message: "",
+            code: 'other code',
+            message: '',
           ));
 
           final result = await firebaseAuthFacade.signInWithEmailAndPassword(
@@ -347,8 +367,8 @@ void main() {
           );
 
           verify(mockFirebaseAuth.signInWithEmailAndPassword(
-            email: anyNamed("email"),
-            password: anyNamed("password"),
+            email: anyNamed('email'),
+            password: anyNamed('password'),
           )).called(1);
         },
       );
@@ -357,7 +377,9 @@ void main() {
 
   group('Sign in with Google', () {
     test(
-      '\nGiven succesful sign in\nWhen process completes\nThen return Right(Unit)',
+      '\nGiven succesful sign in'
+      '\nWhen process completes'
+      '\nThen return Right(Unit)',
       () async {
         when(mockGoogleSignIn.signIn())
             .thenAnswer((_) async => mockGoogleSignInAccount);
@@ -384,7 +406,9 @@ void main() {
     );
 
     test(
-      '\nGiven succesful sign in\nWhen user abort process\nThen return CancelledByUser',
+      '\nGiven succesful sign in'
+      '\nWhen user abort process'
+      '\nThen return CancelledByUser',
       () async {
         when(mockGoogleSignIn.signIn()).thenAnswer((_) async => null);
 
@@ -406,7 +430,9 @@ void main() {
     );
 
     test(
-      '\nGiven unsuccesful sign in\nWhen FirebaseAuth.signInWithCredential() throws an exception\nThen return ServerError',
+      '\nGiven unsuccesful sign in'
+      '\nWhen FirebaseAuth.signInWithCredential() throws an exception'
+      '\nThen return ServerError',
       () async {
         when(mockGoogleSignIn.signIn())
             .thenAnswer((_) async => mockGoogleSignInAccount);
@@ -415,7 +441,7 @@ void main() {
         when(mockAuthProviderManager.getGoogleOAuthCredential(any))
             .thenReturn(mockOAuthCredential);
         when(mockFirebaseAuth.signInWithCredential(mockOAuthCredential))
-            .thenThrow(f.FirebaseAuthException(code: "any code", message: ""));
+            .thenThrow(f.FirebaseAuthException(code: 'any code', message: ''));
 
         final result = await firebaseAuthFacade.signInWithGoogle();
 
@@ -438,7 +464,9 @@ void main() {
 
   group('Get signed in User', () {
     test(
-      '\nGiven authenticated User\nWhen fetching User\nThen return Some with User with Firebase User UID',
+      '\nGiven authenticated User'
+      '\nWhen fetching User'
+      '\nThen return Some with User with Firebase User UID',
       () async {
         when(mockFirebaseAuth.currentUser).thenReturn(mockUser);
 
@@ -450,7 +478,7 @@ void main() {
           (user) => expect(
             user,
             User(
-              id: UniqueId.fromUniqueString("mock-uid"),
+              id: UniqueId.fromUniqueString('mock-uid'),
             ),
           ),
         );
@@ -460,7 +488,9 @@ void main() {
     );
 
     test(
-      '\nGiven unauthenticated User\nWhen fetching User\nThen return None',
+      '\nGiven unauthenticated User'
+      '\nWhen fetching User'
+      '\nThen return None',
       () async {
         when(mockFirebaseAuth.currentUser).thenReturn(null);
 

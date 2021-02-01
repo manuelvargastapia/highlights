@@ -23,14 +23,14 @@ class SignInForm extends StatelessWidget {
             (failure) {
               FlushbarHelper.createError(
                 message: failure.map(
-                  cancelledByUser: (_) => "Cancelled",
-                  serverError: (_) => "Server Error",
+                  cancelledByUser: (_) => 'Cancelled',
+                  serverError: (_) => 'Server Error',
                   invalidEmailAndPasswordCombination: (_) =>
-                      "Invalid email and password combination",
-                  emailAlreadyInUse: (_) => "Email already in use",
+                      'Invalid email and password combination',
+                  emailAlreadyInUse: (_) => 'Email already in use',
 
-                  // TODO: remove this handler and treat it as "server error"
-                  operationNotAllowed: (_) => "User blocked",
+                  // TODO: remove this handler and treat it as 'server error'
+                  operationNotAllowed: (_) => 'User blocked',
                 ),
               ).show(context);
             },
@@ -49,10 +49,10 @@ class SignInForm extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               TextFormField(
-                key: const Key("email_field"),
+                key: const Key('email_field'),
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email),
-                  labelText: "Email",
+                  labelText: 'Email',
                 ),
                 autocorrect: false,
                 onChanged: (value) {
@@ -71,7 +71,7 @@ class SignInForm extends StatelessWidget {
                     .value
                     .fold(
                       (failure) => failure.maybeMap(
-                        invalidEmail: (_) => "Invalid Email",
+                        invalidEmail: (_) => 'Invalid Email',
                         orElse: () => null,
                       ),
                       (_) => null,
@@ -81,10 +81,10 @@ class SignInForm extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               TextFormField(
-                key: const Key("password_field"),
+                key: const Key('password_field'),
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.lock),
-                  labelText: "Password",
+                  labelText: 'Password',
                 ),
                 autocorrect: false,
                 obscureText: true,
@@ -100,7 +100,7 @@ class SignInForm extends StatelessWidget {
                     .value
                     .fold(
                         (failure) => failure.maybeMap(
-                            shortPassword: (_) => "Short Password",
+                            shortPassword: (_) => 'Short Password',
                             orElse: () => null),
                         (_) => null),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -110,7 +110,7 @@ class SignInForm extends StatelessWidget {
                 children: [
                   Expanded(
                     child: FlatButton(
-                      key: const Key("sign_in_button"),
+                      key: const Key('sign_in_button'),
                       onPressed: () {
                         // Trigger validation to display possible error messages
                         _formKey.currentState.validate();
@@ -118,18 +118,18 @@ class SignInForm extends StatelessWidget {
                         context.read<SignInFormBloc>().add(const SignInFormEvent
                             .sigInWithEmailAndPasswordPessed());
                       },
-                      child: const Text("SIGN IN"),
+                      child: const Text('SIGN IN'),
                     ),
                   ),
                   Expanded(
                     child: FlatButton(
-                      key: const Key("register_button"),
+                      key: const Key('register_button'),
                       onPressed: () {
                         _formKey.currentState.validate();
                         context.read<SignInFormBloc>().add(const SignInFormEvent
                             .registerWithEmailAndPasswordPessed());
                       },
-                      child: const Text("REGISTER"),
+                      child: const Text('REGISTER'),
                     ),
                   ),
                 ],
@@ -142,7 +142,7 @@ class SignInForm extends StatelessWidget {
                 },
                 color: Colors.lightBlue,
                 child: const Text(
-                  "SIGN IN WITH GOOGLE",
+                  'SIGN IN WITH GOOGLE',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

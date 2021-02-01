@@ -20,7 +20,7 @@ class AppWidget extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: "Highlights",
+        title: 'Highlights',
         builder: ExtendedNavigator.builder<Router>(router: Router()),
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(

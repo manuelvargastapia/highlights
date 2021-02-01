@@ -16,7 +16,7 @@ class SplashPage extends StatelessWidget {
           initial: (_) {},
           authenticated: (_) {
             // TODO: remove print and navigate to notes page
-            print("AUTHENTICATED");
+            print('AUTHENTICATED');
           },
           unauthenticated: (_) =>
               ExtendedNavigator.of(context).replace(Routes.signInPage),

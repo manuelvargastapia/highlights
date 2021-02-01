@@ -30,15 +30,15 @@ void main() {
           ),
         );
 
-        final title = find.widgetWithText(AppBar, "Sign In");
+        final title = find.widgetWithText(AppBar, 'Sign In');
         final logo = find.byIcon(Icons.format_quote);
-        final emailField = find.widgetWithText(TextFormField, "Email");
-        final passwordField = find.widgetWithText(TextFormField, "Password");
-        final signInButton = find.widgetWithText(FlatButton, "SIGN IN");
-        final registerButton = find.widgetWithText(FlatButton, "REGISTER");
+        final emailField = find.widgetWithText(TextFormField, 'Email');
+        final passwordField = find.widgetWithText(TextFormField, 'Password');
+        final signInButton = find.widgetWithText(FlatButton, 'SIGN IN');
+        final registerButton = find.widgetWithText(FlatButton, 'REGISTER');
         final signInWithGoogleButton = find.widgetWithText(
           RaisedButton,
-          "SIGN IN WITH GOOGLE",
+          'SIGN IN WITH GOOGLE',
         );
         expect(title, findsOneWidget);
         expect(logo, findsOneWidget);

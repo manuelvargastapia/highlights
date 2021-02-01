@@ -42,7 +42,7 @@ void main() {
       '\nWhen invalid email is inputted'
       '\nThen show corresponding error message',
       (tester) async {
-        const invalidEmail = "invalid_email";
+        const invalidEmail = 'invalid_email';
         whenListen(
           mockSignInFormBloc,
           Stream.fromIterable([
@@ -53,13 +53,13 @@ void main() {
           ]),
         );
         await tester.pumpWidget(renderWidget());
-        expect(find.text("Invalid Email"), findsNothing);
-        expect(find.text("Short Password"), findsNothing);
-        final emailField = find.widgetWithText(TextFormField, "Email");
+        expect(find.text('Invalid Email'), findsNothing);
+        expect(find.text('Short Password'), findsNothing);
+        final emailField = find.widgetWithText(TextFormField, 'Email');
         await tester.enterText(emailField, invalidEmail);
         await tester.pump();
         expect(find.text('Invalid Email'), findsOneWidget);
-        expect(find.text("Short Password"), findsNothing);
+        expect(find.text('Short Password'), findsNothing);
       },
     );
     testWidgets(
@@ -67,7 +67,7 @@ void main() {
       '\nWhen short password is inputted'
       '\nThen show corresponding error message',
       (tester) async {
-        const shortPassword = "1234";
+        const shortPassword = '1234';
         whenListen(
           mockSignInFormBloc,
           Stream.fromIterable([
@@ -78,12 +78,12 @@ void main() {
           ]),
         );
         await tester.pumpWidget(renderWidget());
-        expect(find.text("Invalid Email"), findsNothing);
-        expect(find.text("Short Password"), findsNothing);
-        final passwordField = find.widgetWithText(TextFormField, "Password");
+        expect(find.text('Invalid Email'), findsNothing);
+        expect(find.text('Short Password'), findsNothing);
+        final passwordField = find.widgetWithText(TextFormField, 'Password');
         await tester.enterText(passwordField, shortPassword);
         await tester.pump();
-        expect(find.text("Short Password"), findsOneWidget);
+        expect(find.text('Short Password'), findsOneWidget);
         expect(find.text('Invalid Email'), findsNothing);
       },
     );
@@ -97,13 +97,13 @@ void main() {
           Stream.fromIterable([SignInFormState.initial()]),
         );
         await tester.pumpWidget(renderWidget());
-        expect(find.text("Invalid Email"), findsNothing);
-        expect(find.text("Short Password"), findsNothing);
-        final signInButton = find.widgetWithText(FlatButton, "SIGN IN");
+        expect(find.text('Invalid Email'), findsNothing);
+        expect(find.text('Short Password'), findsNothing);
+        final signInButton = find.widgetWithText(FlatButton, 'SIGN IN');
         await tester.tap(signInButton);
         await tester.pump();
         expect(find.text('Invalid Email'), findsOneWidget);
-        expect(find.text("Short Password"), findsOneWidget);
+        expect(find.text('Short Password'), findsOneWidget);
       },
     );
     testWidgets(
@@ -116,21 +116,21 @@ void main() {
           Stream.fromIterable([SignInFormState.initial()]),
         );
         await tester.pumpWidget(renderWidget());
-        expect(find.text("Invalid Email"), findsNothing);
-        expect(find.text("Short Password"), findsNothing);
-        final registerButton = find.widgetWithText(FlatButton, "REGISTER");
+        expect(find.text('Invalid Email'), findsNothing);
+        expect(find.text('Short Password'), findsNothing);
+        final registerButton = find.widgetWithText(FlatButton, 'REGISTER');
         await tester.tap(registerButton);
         await tester.pump();
         expect(find.text('Invalid Email'), findsOneWidget);
-        expect(find.text("Short Password"), findsOneWidget);
+        expect(find.text('Short Password'), findsOneWidget);
       },
     );
 
     // TODO: test SIGN IN WITH GOOGLE cases
     // testWidgets(
     //   '\nGiven unauthenticated user'
-    //   '\nWhen "SIGN IN WITH GOOGLE" button is pressed'
-    //   '\nThen "Choose and account" dialog is shown',
+    //   '\nWhen 'SIGN IN WITH GOOGLE' button is pressed'
+    //   '\nThen 'Choose and account' dialog is shown',
     //   (tester) async {
     //     final firstState = SignInFormState.initial().copyWith(
     //       isSubmitting: true,
@@ -148,16 +148,16 @@ void main() {
     //     await tester.pumpWidget(renderWidget());
     //     final signInWithGoogleButton = find.widgetWithText(
     //       RaisedButton,
-    //       "SIGN IN WITH GOOGLE",
+    //       'SIGN IN WITH GOOGLE',
     //     );
     //     await tester.tap(signInWithGoogleButton);
     //     await tester.pump();
-    //     expect(find.text("Choose an account"), findsOneWidget);
+    //     expect(find.text('Choose an account'), findsOneWidget);
     //   },
     // );
 
-    // TODO: test navigation ("SIGN IN" and "SIGN IN WITH GOOGLE" buttons)
-    // TODO: test register UI feedback ("REGISTER" button)
+    // TODO: test navigation ('SIGN IN' and 'SIGN IN WITH GOOGLE' buttons)
+    // TODO: test register UI feedback ('REGISTER' button)
     // TODO: test Snackbar messages on failures
   });
 }
