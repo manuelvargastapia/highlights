@@ -4,6 +4,7 @@ import 'dart:ui' hide decodeImageFromList;
 
 import 'package:flutter/painting.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:dartz/dartz.dart';
 
 import 'package:highlights/domain/core/failures.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
@@ -233,7 +234,7 @@ void main() {
     test(
       '\nGiven a valid Image'
       '\nWhen it is inputed'
-      '\nThen return Right with the same input',
+      '\nThen return Right with some() holding the same input)',
       () async {
         final file = File('test/fixtures/sample_image.png');
         final Uint8List fileAsBytes = await file.readAsBytes();
@@ -244,7 +245,23 @@ void main() {
         fileValueObject.fold(
           (_) {},
           (value) {
-            expect(value, validImage);
+            expect(value, some(validImage));
+          },
+        );
+      },
+    );
+    test(
+      '\nGiven no Image'
+      '\nWhen HighlightImage is created'
+      '\nThen return Right with none()',
+      () async {
+        final fileValueObject = HighlightImage().value;
+
+        expect(fileValueObject.isRight(), isTrue);
+        fileValueObject.fold(
+          (_) {},
+          (value) {
+            expect(value, none());
           },
         );
       },

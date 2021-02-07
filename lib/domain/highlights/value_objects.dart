@@ -83,14 +83,12 @@ class QuotePage extends ValueObject<int> {
 }
 
 // TODO: validate file size
-class HighlightImage extends ValueObject<Image> {
+class HighlightImage extends ValueObject<Option<Image>> {
   @override
-  final Either<ValueFailure<Image>, Image> value;
+  final Either<ValueFailure<Option<Image>>, Option<Image>> value;
 
-  factory HighlightImage(Image input) {
-    assert(input != null);
-
-    return HighlightImage._(right(input));
+  factory HighlightImage([Image input]) {
+    return HighlightImage._(right(optionOf(input)));
   }
 
   const HighlightImage._(this.value);
