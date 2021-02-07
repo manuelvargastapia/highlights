@@ -11,7 +11,16 @@ abstract class ValueObject<T> {
   const ValueObject();
 
   Either<ValueFailure<T>, T> get value;
+
   bool isValid() => value.isRight();
+
+  /// Get only failure independently of type.
+  ///
+  /// This helper is used by entities when failure is needed but
+  /// its concrete type doesn't matter
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold((l) => left(l), (_) => right(unit));
+  }
 
   /// Folds the [ValueObject] to return it or throws [UnexpectedValueError]
   /// containing the [ValueFailure]
