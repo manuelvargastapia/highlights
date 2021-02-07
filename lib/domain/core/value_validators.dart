@@ -20,3 +20,41 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return left(ValueFailure.shortPassword(failedValue: input));
   }
 }
+
+Either<ValueFailure<T>, T> validateMaxLength<T>(
+  T input,
+  int maxLength,
+) {
+  if (input.toString().length <= maxLength) {
+    return right(input);
+  } else {
+    return left(ValueFailure.exceedingLength(
+      failedValue: input,
+      max: maxLength,
+    ));
+  }
+}
+
+Either<ValueFailure<T>, T> validateNotEmpty<T>(T input) {
+  if (input.toString().isNotEmpty) {
+    return right(input);
+  } else {
+    return left(ValueFailure.empty(failedValue: input));
+  }
+}
+
+Either<ValueFailure<T>, T> validateSingleLine<T>(T input) {
+  if (!input.toString().contains('\n')) {
+    return right(input);
+  } else {
+    return left(ValueFailure.multiline(failedValue: input));
+  }
+}
+
+Either<ValueFailure<int>, int> validateNumberIsPositive(int input) {
+  if (input >= 0) {
+    return right(input);
+  } else {
+    return left(ValueFailure.negativeNumber(failedValue: input));
+  }
+}
