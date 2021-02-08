@@ -12,7 +12,9 @@ analyzer:
     missing_required_param: error
     must_be_immutable: error
     missing_return: error
+    avoid_unused_constructor_parameters: error
     sort_unnamed_constructors_first: ignore
   exclude:
     - "**.freezed.dart"
     - "**.config.dart"
+    - "**.g.dart"
