@@ -18,13 +18,13 @@ class _$HighlightTearOff {
       {@required UniqueId id,
       @required HighlightQuote quote,
       @required HighlightColor color,
-      @required HighlightImage image,
+      @required ImageUrl imageUrl,
       @required QuoteInfo info}) {
     return _Highlights(
       id: id,
       quote: quote,
       color: color,
-      image: image,
+      imageUrl: imageUrl,
       info: info,
     );
   }
@@ -39,7 +39,7 @@ mixin _$Highlight {
   UniqueId get id;
   HighlightQuote get quote;
   HighlightColor get color;
-  HighlightImage get image;
+  ImageUrl get imageUrl;
   QuoteInfo get info;
 
   @JsonKey(ignore: true)
@@ -54,7 +54,7 @@ abstract class $HighlightCopyWith<$Res> {
       {UniqueId id,
       HighlightQuote quote,
       HighlightColor color,
-      HighlightImage image,
+      ImageUrl imageUrl,
       QuoteInfo info});
 
   $QuoteInfoCopyWith<$Res> get info;
@@ -73,14 +73,14 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
     Object id = freezed,
     Object quote = freezed,
     Object color = freezed,
-    Object image = freezed,
+    Object imageUrl = freezed,
     Object info = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
-      image: image == freezed ? _value.image : image as HighlightImage,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
       info: info == freezed ? _value.info : info as QuoteInfo,
     ));
   }
@@ -106,7 +106,7 @@ abstract class _$HighlightsCopyWith<$Res> implements $HighlightCopyWith<$Res> {
       {UniqueId id,
       HighlightQuote quote,
       HighlightColor color,
-      HighlightImage image,
+      ImageUrl imageUrl,
       QuoteInfo info});
 
   @override
@@ -128,14 +128,14 @@ class __$HighlightsCopyWithImpl<$Res> extends _$HighlightCopyWithImpl<$Res>
     Object id = freezed,
     Object quote = freezed,
     Object color = freezed,
-    Object image = freezed,
+    Object imageUrl = freezed,
     Object info = freezed,
   }) {
     return _then(_Highlights(
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
-      image: image == freezed ? _value.image : image as HighlightImage,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
       info: info == freezed ? _value.info : info as QuoteInfo,
     ));
   }
@@ -147,12 +147,12 @@ class _$_Highlights extends _Highlights {
       {@required this.id,
       @required this.quote,
       @required this.color,
-      @required this.image,
+      @required this.imageUrl,
       @required this.info})
       : assert(id != null),
         assert(quote != null),
         assert(color != null),
-        assert(image != null),
+        assert(imageUrl != null),
         assert(info != null),
         super._();
 
@@ -163,13 +163,13 @@ class _$_Highlights extends _Highlights {
   @override
   final HighlightColor color;
   @override
-  final HighlightImage image;
+  final ImageUrl imageUrl;
   @override
   final QuoteInfo info;
 
   @override
   String toString() {
-    return 'Highlight(id: $id, quote: $quote, color: $color, image: $image, info: $info)';
+    return 'Highlight(id: $id, quote: $quote, color: $color, imageUrl: $imageUrl, info: $info)';
   }
 
   @override
@@ -182,8 +182,9 @@ class _$_Highlights extends _Highlights {
                 const DeepCollectionEquality().equals(other.quote, quote)) &&
             (identical(other.color, color) ||
                 const DeepCollectionEquality().equals(other.color, color)) &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
             (identical(other.info, info) ||
                 const DeepCollectionEquality().equals(other.info, info)));
   }
@@ -194,7 +195,7 @@ class _$_Highlights extends _Highlights {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(quote) ^
       const DeepCollectionEquality().hash(color) ^
-      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(info);
 
   @JsonKey(ignore: true)
@@ -209,7 +210,7 @@ abstract class _Highlights extends Highlight {
       {@required UniqueId id,
       @required HighlightQuote quote,
       @required HighlightColor color,
-      @required HighlightImage image,
+      @required ImageUrl imageUrl,
       @required QuoteInfo info}) = _$_Highlights;
 
   @override
@@ -219,7 +220,7 @@ abstract class _Highlights extends Highlight {
   @override
   HighlightColor get color;
   @override
-  HighlightImage get image;
+  ImageUrl get imageUrl;
   @override
   QuoteInfo get info;
   @override

@@ -27,7 +27,7 @@ abstract class Highlight implements _$Highlight {
     @required UniqueId id,
     @required HighlightQuote quote,
     @required HighlightColor color,
-    @required HighlightImage image,
+    @required ImageUrl imageUrl,
     @required QuoteInfo info,
   }) = _Highlights;
 
@@ -35,7 +35,7 @@ abstract class Highlight implements _$Highlight {
         id: UniqueId(),
         quote: HighlightQuote(''),
         color: HighlightColor(HighlightColor.predefinedColors[0]),
-        image: HighlightImage(),
+        imageUrl: ImageUrl(''),
         info: QuoteInfo.empty(),
       );
 
