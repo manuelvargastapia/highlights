@@ -21,6 +21,17 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
   }
 }
 
+Either<ValueFailure<String>, String> validateUrl(String input) {
+  const urlRegex =
+      r'''[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)''';
+
+  if (RegExp(urlRegex).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(ValueFailure.invalidUrl(failedValue: input));
+  }
+}
+
 Either<ValueFailure<T>, T> validateMaxLength<T>(
   T input,
   int maxLength,
