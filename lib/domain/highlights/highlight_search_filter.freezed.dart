@@ -14,7 +14,7 @@ class _$HighlighSearchFilterTearOff {
   const _$HighlighSearchFilterTearOff();
 
 // ignore: unused_element
-  _ByBookTitle byBookTitle({@required String bookTitle}) {
+  _ByBookTitle byBookTitle({@required BookTitleFilter bookTitle}) {
     return _ByBookTitle(
       bookTitle: bookTitle,
     );
@@ -27,15 +27,15 @@ const $HighlighSearchFilter = _$HighlighSearchFilterTearOff();
 
 /// @nodoc
 mixin _$HighlighSearchFilter {
-  String get bookTitle;
+  BookTitleFilter get bookTitle;
 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult byBookTitle(String bookTitle),
+    @required TResult byBookTitle(BookTitleFilter bookTitle),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult byBookTitle(String bookTitle),
+    TResult byBookTitle(BookTitleFilter bookTitle),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -57,7 +57,7 @@ abstract class $HighlighSearchFilterCopyWith<$Res> {
   factory $HighlighSearchFilterCopyWith(HighlighSearchFilter value,
           $Res Function(HighlighSearchFilter) then) =
       _$HighlighSearchFilterCopyWithImpl<$Res>;
-  $Res call({String bookTitle});
+  $Res call({BookTitleFilter bookTitle});
 }
 
 /// @nodoc
@@ -74,7 +74,9 @@ class _$HighlighSearchFilterCopyWithImpl<$Res>
     Object bookTitle = freezed,
   }) {
     return _then(_value.copyWith(
-      bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
+      bookTitle: bookTitle == freezed
+          ? _value.bookTitle
+          : bookTitle as BookTitleFilter,
     ));
   }
 }
@@ -86,7 +88,7 @@ abstract class _$ByBookTitleCopyWith<$Res>
           _ByBookTitle value, $Res Function(_ByBookTitle) then) =
       __$ByBookTitleCopyWithImpl<$Res>;
   @override
-  $Res call({String bookTitle});
+  $Res call({BookTitleFilter bookTitle});
 }
 
 /// @nodoc
@@ -105,7 +107,9 @@ class __$ByBookTitleCopyWithImpl<$Res>
     Object bookTitle = freezed,
   }) {
     return _then(_ByBookTitle(
-      bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
+      bookTitle: bookTitle == freezed
+          ? _value.bookTitle
+          : bookTitle as BookTitleFilter,
     ));
   }
 }
@@ -115,7 +119,7 @@ class _$_ByBookTitle implements _ByBookTitle {
   const _$_ByBookTitle({@required this.bookTitle}) : assert(bookTitle != null);
 
   @override
-  final String bookTitle;
+  final BookTitleFilter bookTitle;
 
   @override
   String toString() {
@@ -143,7 +147,7 @@ class _$_ByBookTitle implements _ByBookTitle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult byBookTitle(String bookTitle),
+    @required TResult byBookTitle(BookTitleFilter bookTitle),
   }) {
     assert(byBookTitle != null);
     return byBookTitle(bookTitle);
@@ -152,7 +156,7 @@ class _$_ByBookTitle implements _ByBookTitle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult byBookTitle(String bookTitle),
+    TResult byBookTitle(BookTitleFilter bookTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -186,10 +190,11 @@ class _$_ByBookTitle implements _ByBookTitle {
 }
 
 abstract class _ByBookTitle implements HighlighSearchFilter {
-  const factory _ByBookTitle({@required String bookTitle}) = _$_ByBookTitle;
+  const factory _ByBookTitle({@required BookTitleFilter bookTitle}) =
+      _$_ByBookTitle;
 
   @override
-  String get bookTitle;
+  BookTitleFilter get bookTitle;
   @override
   @JsonKey(ignore: true)
   _$ByBookTitleCopyWith<_ByBookTitle> get copyWith;
