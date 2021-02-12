@@ -28,6 +28,13 @@ class _$ValueFailureTearOff {
   }
 
 // ignore: unused_element
+  InvalidUrl<T> invalidUrl<T>({@required T failedValue}) {
+    return InvalidUrl<T>(
+      failedValue: failedValue,
+    );
+  }
+
+// ignore: unused_element
   ExceedingLength<T> exceedingLength<T>(
       {@required T failedValue, @required int max}) {
     return ExceedingLength<T>(
@@ -70,6 +77,7 @@ mixin _$ValueFailure<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
     @required TResult exceedingLength(T failedValue, int max),
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
@@ -79,6 +87,7 @@ mixin _$ValueFailure<T> {
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
     TResult exceedingLength(T failedValue, int max),
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
@@ -89,6 +98,7 @@ mixin _$ValueFailure<T> {
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
     @required TResult exceedingLength(ExceedingLength<T> value),
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
@@ -98,6 +108,7 @@ mixin _$ValueFailure<T> {
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
     TResult exceedingLength(ExceedingLength<T> value),
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
@@ -205,6 +216,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
     @required TResult exceedingLength(T failedValue, int max),
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
@@ -212,6 +224,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -224,6 +237,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
     TResult exceedingLength(T failedValue, int max),
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
@@ -242,6 +256,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
     @required TResult exceedingLength(ExceedingLength<T> value),
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
@@ -249,6 +264,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -261,6 +277,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
     TResult exceedingLength(ExceedingLength<T> value),
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
@@ -353,6 +370,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
     @required TResult exceedingLength(T failedValue, int max),
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
@@ -360,6 +378,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -372,6 +391,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
     TResult exceedingLength(T failedValue, int max),
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
@@ -390,6 +410,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
     @required TResult exceedingLength(ExceedingLength<T> value),
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
@@ -397,6 +418,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -409,6 +431,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
     TResult exceedingLength(ExceedingLength<T> value),
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
@@ -431,6 +454,160 @@ abstract class ShortPassword<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $InvalidUrlCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidUrlCopyWith(
+          InvalidUrl<T> value, $Res Function(InvalidUrl<T>) then) =
+      _$InvalidUrlCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$InvalidUrlCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidUrlCopyWith<T, $Res> {
+  _$InvalidUrlCopyWithImpl(
+      InvalidUrl<T> _value, $Res Function(InvalidUrl<T>) _then)
+      : super(_value, (v) => _then(v as InvalidUrl<T>));
+
+  @override
+  InvalidUrl<T> get _value => super._value as InvalidUrl<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(InvalidUrl<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+/// @nodoc
+class _$InvalidUrl<T> implements InvalidUrl<T> {
+  const _$InvalidUrl({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.invalidUrl(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidUrl<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidUrlCopyWith<T, InvalidUrl<T>> get copyWith =>
+      _$InvalidUrlCopyWithImpl<T, InvalidUrl<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult invalidEmail(T failedValue),
+    @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
+    @required TResult exceedingLength(T failedValue, int max),
+    @required TResult empty(T failedValue),
+    @required TResult multiline(T failedValue),
+    @required TResult negativeNumber(T failedValue),
+  }) {
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(invalidUrl != null);
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(negativeNumber != null);
+    return invalidUrl(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidEmail(T failedValue),
+    TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
+    TResult exceedingLength(T failedValue, int max),
+    TResult empty(T failedValue),
+    TResult multiline(T failedValue),
+    TResult negativeNumber(T failedValue),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidUrl != null) {
+      return invalidUrl(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult invalidEmail(InvalidEmail<T> value),
+    @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
+    @required TResult exceedingLength(ExceedingLength<T> value),
+    @required TResult empty(Empty<T> value),
+    @required TResult multiline(Multiline<T> value),
+    @required TResult negativeNumber(NegativeNumber<T> value),
+  }) {
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(invalidUrl != null);
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(negativeNumber != null);
+    return invalidUrl(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidEmail(InvalidEmail<T> value),
+    TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
+    TResult exceedingLength(ExceedingLength<T> value),
+    TResult empty(Empty<T> value),
+    TResult multiline(Multiline<T> value),
+    TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidUrl != null) {
+      return invalidUrl(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidUrl<T> implements ValueFailure<T> {
+  const factory InvalidUrl({@required T failedValue}) = _$InvalidUrl<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidUrlCopyWith<T, InvalidUrl<T>> get copyWith;
 }
 
 /// @nodoc
@@ -510,6 +687,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
     @required TResult exceedingLength(T failedValue, int max),
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
@@ -517,6 +695,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -529,6 +708,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
     TResult exceedingLength(T failedValue, int max),
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
@@ -547,6 +727,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
     @required TResult exceedingLength(ExceedingLength<T> value),
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
@@ -554,6 +735,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -566,6 +748,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
     TResult exceedingLength(ExceedingLength<T> value),
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
@@ -656,6 +839,7 @@ class _$Empty<T> implements Empty<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
     @required TResult exceedingLength(T failedValue, int max),
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
@@ -663,6 +847,7 @@ class _$Empty<T> implements Empty<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -675,6 +860,7 @@ class _$Empty<T> implements Empty<T> {
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
     TResult exceedingLength(T failedValue, int max),
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
@@ -693,6 +879,7 @@ class _$Empty<T> implements Empty<T> {
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
     @required TResult exceedingLength(ExceedingLength<T> value),
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
@@ -700,6 +887,7 @@ class _$Empty<T> implements Empty<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -712,6 +900,7 @@ class _$Empty<T> implements Empty<T> {
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
     TResult exceedingLength(ExceedingLength<T> value),
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
@@ -803,6 +992,7 @@ class _$Multiline<T> implements Multiline<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
     @required TResult exceedingLength(T failedValue, int max),
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
@@ -810,6 +1000,7 @@ class _$Multiline<T> implements Multiline<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -822,6 +1013,7 @@ class _$Multiline<T> implements Multiline<T> {
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
     TResult exceedingLength(T failedValue, int max),
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
@@ -840,6 +1032,7 @@ class _$Multiline<T> implements Multiline<T> {
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
     @required TResult exceedingLength(ExceedingLength<T> value),
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
@@ -847,6 +1040,7 @@ class _$Multiline<T> implements Multiline<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -859,6 +1053,7 @@ class _$Multiline<T> implements Multiline<T> {
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
     TResult exceedingLength(ExceedingLength<T> value),
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
@@ -951,6 +1146,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
     @required TResult exceedingLength(T failedValue, int max),
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
@@ -958,6 +1154,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -970,6 +1167,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
     TResult exceedingLength(T failedValue, int max),
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
@@ -988,6 +1186,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
     @required TResult exceedingLength(ExceedingLength<T> value),
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
@@ -995,6 +1194,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
+    assert(invalidUrl != null);
     assert(exceedingLength != null);
     assert(empty != null);
     assert(multiline != null);
@@ -1007,6 +1207,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
     TResult exceedingLength(ExceedingLength<T> value),
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
