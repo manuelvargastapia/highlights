@@ -1,6 +1,4 @@
-import 'dart:ui' show Image;
-
-import 'package:flutter/material.dart' hide Image;
+import 'package:flutter/material.dart';
 
 import 'package:dartz/dartz.dart';
 
@@ -82,14 +80,33 @@ class QuotePage extends ValueObject<int> {
   const QuotePage._(this.value);
 }
 
-// TODO: validate file size
-class HighlightImage extends ValueObject<Option<Image>> {
+class ImageUrl extends ValueObject<String> {
   @override
-  final Either<ValueFailure<Option<Image>>, Option<Image>> value;
+  final Either<ValueFailure<String>, String> value;
 
-  factory HighlightImage([Image input]) {
-    return HighlightImage._(right(optionOf(input)));
+  factory ImageUrl(String input) {
+    assert(input != null);
+
+    return ImageUrl._(validateUrl(input));
   }
 
-  const HighlightImage._(this.value);
+  const ImageUrl._(this.value);
+}
+
+class BookTitleFilter extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  static const _maxLength = 50;
+
+  factory BookTitleFilter(String input) {
+    assert(input != null);
+    return BookTitleFilter._(
+      validateMaxLength(input, _maxLength)
+          .flatMap(validateNotEmpty)
+          .flatMap(validateSingleLine),
+    );
+  }
+
+  const BookTitleFilter._(this.value);
 }
