@@ -230,39 +230,130 @@ void main() {
       },
     );
   });
-  group('HighlightImageFile', () {
+  group('ImageUrl', () {
     test(
-      '\nGiven a valid Image'
+      '\nGiven a valid URL'
       '\nWhen it is inputed'
-      '\nThen return Right with some() holding the same input)',
+      '\nThen return Right with the same input',
       () async {
-        final file = File('test/fixtures/sample_image.png');
-        final Uint8List fileAsBytes = await file.readAsBytes();
-        final validImage = await decodeImageFromList(fileAsBytes);
-        final fileValueObject = HighlightImage(validImage).value;
+        const validUrls = [
+          'test.com',
+          'www.test.com',
+          'http://test.com',
+          'https://test.com',
+          'http://www.test.com',
+          'https://www.test.com',
+        ];
+        void matcher(int index, String url) {
+          final imageUrlValueObject = ImageUrl(url).value;
 
-        expect(fileValueObject.isRight(), isTrue);
-        fileValueObject.fold(
+          expect(imageUrlValueObject.isRight(), isTrue);
+          imageUrlValueObject.fold(
+            (_) {},
+            (value) {
+              expect(value, validUrls[index]);
+            },
+          );
+        }
+
+        validUrls.asMap().forEach(matcher);
+      },
+    );
+    test(
+      '\nGiven a list of invalid URLs'
+      '\nWhen they are inputed'
+      '\nThen return Left with an InvalidUrl',
+      () async {
+        const invalidUrls = [
+          '',
+          'http:',
+          'fake/url',
+          'fake',
+        ];
+        void matcher(String address) {
+          final imageUrlValueObject = ImageUrl(address).value;
+
+          expect(imageUrlValueObject.isLeft(), isTrue);
+          imageUrlValueObject.fold(
+            (failure) {
+              expect(failure, isA<InvalidUrl>());
+            },
+            (_) {},
+          );
+        }
+
+        invalidUrls.forEach(matcher);
+      },
+    );
+  });
+  group('BookTitleFilter', () {
+    test(
+      '\nGiven a valid title'
+      '\nWhen it is inputed'
+      '\nThen return Right with the same input',
+      () async {
+        const validTitle = 'This is a valid title';
+        final titleValueObject = BookTitleFilter(validTitle).value;
+
+        expect(titleValueObject.isRight(), isTrue);
+        titleValueObject.fold(
           (_) {},
           (value) {
-            expect(value, some(validImage));
+            expect(value, validTitle);
           },
         );
       },
     );
     test(
-      '\nGiven no Image'
-      '\nWhen HighlightImage is created'
-      '\nThen return Right with none()',
+      '\nGiven an empty title'
+      '\nWhen it is inputed'
+      '\nThen return Left with an Empty failure',
       () async {
-        final fileValueObject = HighlightImage().value;
+        const emptyTitle = '';
+        final titleValueObject = BookTitleFilter(emptyTitle).value;
 
-        expect(fileValueObject.isRight(), isTrue);
-        fileValueObject.fold(
-          (_) {},
-          (value) {
-            expect(value, none());
+        expect(titleValueObject.isLeft(), isTrue);
+        titleValueObject.fold(
+          (failure) {
+            expect(failure, isA<Empty<String>>());
           },
+          (_) {},
+        );
+      },
+    );
+    test(
+      '\nGiven a title larger than 50 characters'
+      '\nWhen it is inputed'
+      '\nThen return Left with ExceedingLength failure holding the same input',
+      () async {
+        final largeTitle = 'a' * 51;
+        final titleValueObject = BookTitleFilter(largeTitle).value;
+
+        expect(titleValueObject.isLeft(), isTrue);
+        titleValueObject.fold(
+          (failure) {
+            expect(failure, isA<ExceedingLength<String>>());
+            expect(failure.failedValue, largeTitle);
+          },
+          (_) {},
+        );
+      },
+    );
+    test(
+      '\nGiven a multiline title'
+      '\nWhen it is inputed'
+      '\nThen return Left with Multiline failure holding the same input',
+      () async {
+        const multilineTitle = 'This is a \n multiline title';
+        final titleValueObject = BookTitleFilter(multilineTitle).value;
+
+        expect(titleValueObject.isLeft(), isTrue);
+        titleValueObject.fold(
+          (failure) {
+            expect(failure, isA<Multiline<String>>());
+            expect(failure.failedValue, multilineTitle);
+          },
+          (_) {},
         );
       },
     );
