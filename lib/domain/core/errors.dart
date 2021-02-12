@@ -1,5 +1,8 @@
 import 'package:highlights/domain/core/failures.dart';
 
+// TODO: log any relevant unexpected error instance
+
+/// Class to define unexpected errors coming from value objects operations.
 class UnexpectedValueError extends Error {
   final ValueFailure valueFailure;
 
@@ -13,4 +16,5 @@ class UnexpectedValueError extends Error {
   }
 }
 
+/// Class to define unexpected errors coming from Firebase users checking.
 class NotAuthenticatedError extends Error {}
