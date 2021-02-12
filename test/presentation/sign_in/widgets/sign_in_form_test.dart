@@ -1,10 +1,11 @@
-import 'package:dartz/dartz.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:dartz/dartz.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:mockito/mockito.dart';
 
 import 'package:highlights/application/authentication/sign_in_form/sign_in_form_bloc.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
@@ -52,6 +53,7 @@ void main() {
             )
           ]),
         );
+        when(mockSignInFormBloc.state).thenReturn(SignInFormState.initial());
         await tester.pumpWidget(renderWidget());
         expect(find.text('Invalid Email'), findsNothing);
         expect(find.text('Short Password'), findsNothing);
