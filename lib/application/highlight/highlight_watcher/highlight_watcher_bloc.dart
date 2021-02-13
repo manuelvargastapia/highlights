@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:highlights/domain/highlights/highlight_search_filter.dart';
-import 'package:highlights/domain/highlights/i_highlight_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/collection.dart';
 
+import 'package:highlights/domain/highlights/i_highlight_repository.dart';
+import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 

@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
-import 'package:injectable/injectable.dart';
 
 part 'highlight_actor_event.dart';
 part 'highlight_actor_state.dart';

@@ -11,7 +11,6 @@ import 'package:highlights/domain/authentication/value_objects.dart';
 
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
-
 part 'sign_in_form_bloc.freezed.dart';
 
 @injectable

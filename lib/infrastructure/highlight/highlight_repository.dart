@@ -1,11 +1,12 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
-import 'package:highlights/infrastructure/highlight/highlight_dtos.dart';
+
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'package:highlights/infrastructure/highlight/highlight_dtos.dart';
 import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/highlight.dart';

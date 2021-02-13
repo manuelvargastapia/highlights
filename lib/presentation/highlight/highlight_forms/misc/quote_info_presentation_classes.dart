@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/quote_info.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';

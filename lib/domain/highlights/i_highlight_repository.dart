@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 import 'package:kt_dart/collection.dart';
 
+import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 
