@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flushbar/flushbar_helper.dart';
+import 'package:auto_route/auto_route.dart';
 
+import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/application/authentication/sign_in_form/sign_in_form_bloc.dart';
+import 'package:highlights/presentation/routes/router.gr.dart';
 
 class SignInForm extends StatelessWidget {
   /// This property must be `static` to avoid build loop
@@ -18,6 +21,8 @@ class SignInForm extends StatelessWidget {
         // Fold Option keeping possible failures and show notification in
         // case one is encountered
         state.authFailureOrSuccessOption.fold(
+          // Do nothing when authFailureOrSuccessOption is none(), becuase
+          // that means that nothing has happened yet
           () {},
           (either) => either.fold(
             (failure) {
@@ -34,7 +39,14 @@ class SignInForm extends StatelessWidget {
                 ),
               ).show(context);
             },
-            (_) {},
+            (_) {
+              ExtendedNavigator.of(context)
+                  .replace(Routes.highlightOverviewPage);
+
+              context
+                  .read<AuthBloc>()
+                  .add(const AuthEvent.authCheckRequested());
+            },
           ),
         );
       },
