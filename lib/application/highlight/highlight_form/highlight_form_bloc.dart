@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
-import 'package:highlights/infrastructure/highlight/highlight_repository.dart';
+import 'package:highlights/domain/highlights/i_highlight_repository.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/misc/quote_info_presentation_classes.dart';
 
 part 'highlight_form_event.dart';
@@ -20,7 +20,7 @@ part 'highlight_form_bloc.freezed.dart';
 
 @injectable
 class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
-  final HighlightRepository _highlightRepository;
+  final IHighlightRepository _highlightRepository;
 
   HighlightFormBloc(this._highlightRepository)
       : super(HighlightFormState.initial());
