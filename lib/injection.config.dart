@@ -34,9 +34,8 @@ GetIt $initGetIt(
   final firebaseInjectableModule = _$FirebaseInjectableModule();
   gh.lazySingleton<AuthProviderManager>(() => AuthProviderManager());
   gh.lazySingleton<FirebaseAuth>(() => firebaseInjectableModule.firebaseAuth);
+  gh.lazySingleton<FirebaseFirestore>(() => firebaseInjectableModule.firestore);
   gh.lazySingleton<GoogleSignIn>(() => firebaseInjectableModule.googleSignIn);
-  gh.factory<HighlightFormBloc>(
-      () => HighlightFormBloc(get<HighlightRepository>()));
   gh.lazySingleton<IAuthFacade>(() => FirebaseAuthFacade(
         get<FirebaseAuth>(),
         get<GoogleSignIn>(),
@@ -48,6 +47,8 @@ GetIt $initGetIt(
   gh.factory<AuthBloc>(() => AuthBloc(get<IAuthFacade>()));
   gh.factory<HighlightActorBloc>(
       () => HighlightActorBloc(get<IHighlightRepository>()));
+  gh.factory<HighlightFormBloc>(
+      () => HighlightFormBloc(get<IHighlightRepository>()));
   gh.factory<HighlightWatcherBloc>(
       () => HighlightWatcherBloc(get<IHighlightRepository>()));
   return get;
