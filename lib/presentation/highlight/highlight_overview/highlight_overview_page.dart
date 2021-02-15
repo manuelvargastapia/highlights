@@ -6,6 +6,7 @@ import 'package:flushbar/flushbar_helper.dart';
 
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/highlight_overview_body.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/injection.dart';
@@ -75,6 +76,7 @@ class HighlightOverviewPage extends StatelessWidget {
                 ),
               ],
             ),
+            body: HighlightOverviewBody(),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 // TODO: navigate to Highlight form page
