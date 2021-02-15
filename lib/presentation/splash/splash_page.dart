@@ -15,10 +15,11 @@ class SplashPage extends StatelessWidget {
         state.map(
           initial: (_) {},
           authenticated: (_) {
-            // TODO: navigate to notes page
+            ExtendedNavigator.of(context).replace(Routes.highlightOverviewPage);
           },
-          unauthenticated: (_) =>
-              ExtendedNavigator.of(context).replace(Routes.signInPage),
+          unauthenticated: (_) {
+            ExtendedNavigator.of(context).replace(Routes.signInPage);
+          },
         );
       },
       child: const Scaffold(
