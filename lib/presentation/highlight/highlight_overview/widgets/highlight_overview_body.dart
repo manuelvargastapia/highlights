@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/critical_failure_display.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/error_highlight_card.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/highlight_card.dart';
 
 class HighlightOverviewBody extends StatelessWidget {
   @override
@@ -18,27 +23,15 @@ class HighlightOverviewBody extends StatelessWidget {
               itemBuilder: (context, index) {
                 final highlight = state.highlights[index];
                 if (highlight.failureOption.isSome()) {
-                  return Container(
-                    color: Colors.red,
-                    width: 100,
-                    height: 100,
-                  );
+                  return ErrorHighlightCard(highlight: highlight);
                 } else {
-                  return Container(
-                    color: Colors.green,
-                    width: 100,
-                    height: 100,
-                  );
+                  return HighlightCard(highlight: highlight);
                 }
               },
             );
           },
           loadFailure: (state) {
-            return Container(
-              color: Colors.yellow,
-              width: 200,
-              height: 200,
-            );
+            return CriticalFailureDisplay(failure: state.failure);
           },
         );
       },
