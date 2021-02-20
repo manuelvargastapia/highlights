@@ -7,9 +7,12 @@ abstract class HighlightFormEvent with _$HighlightFormEvent {
   ) = _Initialized;
   const factory HighlightFormEvent.quoteChange(String quote) = _QuoteChange;
   const factory HighlightFormEvent.colorChange(Color color) = _ColorChange;
-  const factory HighlightFormEvent.quoteInfoChanged(
-    QuoteInfoPrimitive info,
-  ) = _QuoteInfoChanged;
+  const factory HighlightFormEvent.bookTitleChanged(
+    String bookTitle,
+  ) = _BookTitleChanged;
+  const factory HighlightFormEvent.pageNumberChanged(
+    int pageNumber,
+  ) = _PageNumberChanged;
   const factory HighlightFormEvent.imageUrlChanged(
     String imageUrl,
   ) = _ImageUrlChanged;
