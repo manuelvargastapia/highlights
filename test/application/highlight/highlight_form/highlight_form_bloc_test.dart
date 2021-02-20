@@ -8,9 +8,7 @@ import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
-import 'package:highlights/domain/highlights/quote_info.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
-import 'package:highlights/presentation/highlight/highlight_forms/misc/quote_info_presentation_classes.dart';
 
 class MockIHighlightRepository extends Mock implements IHighlightRepository {}
 
