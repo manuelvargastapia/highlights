@@ -28,7 +28,8 @@ abstract class Highlight implements _$Highlight {
     @required HighlightQuote quote,
     @required HighlightColor color,
     @required ImageUrl imageUrl,
-    @required QuoteInfo info,
+    @required BookTitle bookTitle,
+    @required QuotePage pageNumber,
   }) = _Highlights;
 
   factory Highlight.empty() => Highlight(
@@ -36,21 +37,15 @@ abstract class Highlight implements _$Highlight {
         quote: HighlightQuote(''),
         color: HighlightColor(HighlightColor.predefinedColors[0]),
         imageUrl: ImageUrl(''),
-        info: QuoteInfo.empty(),
+        bookTitle: BookTitle(''),
+        pageNumber: QuotePage(0),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
     return quote.failureOrUnit
-        .andThen(info.failureOption.fold(
-          // Getting the failureOption from the QuoteInfo ENTITY,
-          // NOT a failureOrUnit from a VALUE OBJECT.
-          //
-          // "right(unit)" simulates the Right of failureOrUnit, while
-          // "left(f)" represents the actual failure folded in the
-          // next operation
-          () => right(unit),
-          (f) => left(f),
-        ))
+        .andThen(imageUrl.failureOrUnit)
+        .andThen(bookTitle.failureOrUnit)
+        .andThen(pageNumber.failureOrUnit)
         .fold((f) => some(f), (_) => none());
   }
 }

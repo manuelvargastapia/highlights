@@ -19,13 +19,15 @@ class _$HighlightTearOff {
       @required HighlightQuote quote,
       @required HighlightColor color,
       @required ImageUrl imageUrl,
-      @required QuoteInfo info}) {
+      @required BookTitle bookTitle,
+      @required QuotePage pageNumber}) {
     return _Highlights(
       id: id,
       quote: quote,
       color: color,
       imageUrl: imageUrl,
-      info: info,
+      bookTitle: bookTitle,
+      pageNumber: pageNumber,
     );
   }
 }
@@ -40,7 +42,8 @@ mixin _$Highlight {
   HighlightQuote get quote;
   HighlightColor get color;
   ImageUrl get imageUrl;
-  QuoteInfo get info;
+  BookTitle get bookTitle;
+  QuotePage get pageNumber;
 
   @JsonKey(ignore: true)
   $HighlightCopyWith<Highlight> get copyWith;
@@ -55,9 +58,8 @@ abstract class $HighlightCopyWith<$Res> {
       HighlightQuote quote,
       HighlightColor color,
       ImageUrl imageUrl,
-      QuoteInfo info});
-
-  $QuoteInfoCopyWith<$Res> get info;
+      BookTitle bookTitle,
+      QuotePage pageNumber});
 }
 
 /// @nodoc
@@ -74,25 +76,19 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
     Object quote = freezed,
     Object color = freezed,
     Object imageUrl = freezed,
-    Object info = freezed,
+    Object bookTitle = freezed,
+    Object pageNumber = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
-      info: info == freezed ? _value.info : info as QuoteInfo,
+      bookTitle:
+          bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
+      pageNumber:
+          pageNumber == freezed ? _value.pageNumber : pageNumber as QuotePage,
     ));
-  }
-
-  @override
-  $QuoteInfoCopyWith<$Res> get info {
-    if (_value.info == null) {
-      return null;
-    }
-    return $QuoteInfoCopyWith<$Res>(_value.info, (value) {
-      return _then(_value.copyWith(info: value));
-    });
   }
 }
 
@@ -107,10 +103,8 @@ abstract class _$HighlightsCopyWith<$Res> implements $HighlightCopyWith<$Res> {
       HighlightQuote quote,
       HighlightColor color,
       ImageUrl imageUrl,
-      QuoteInfo info});
-
-  @override
-  $QuoteInfoCopyWith<$Res> get info;
+      BookTitle bookTitle,
+      QuotePage pageNumber});
 }
 
 /// @nodoc
@@ -129,14 +123,18 @@ class __$HighlightsCopyWithImpl<$Res> extends _$HighlightCopyWithImpl<$Res>
     Object quote = freezed,
     Object color = freezed,
     Object imageUrl = freezed,
-    Object info = freezed,
+    Object bookTitle = freezed,
+    Object pageNumber = freezed,
   }) {
     return _then(_Highlights(
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
-      info: info == freezed ? _value.info : info as QuoteInfo,
+      bookTitle:
+          bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
+      pageNumber:
+          pageNumber == freezed ? _value.pageNumber : pageNumber as QuotePage,
     ));
   }
 }
@@ -148,12 +146,14 @@ class _$_Highlights extends _Highlights {
       @required this.quote,
       @required this.color,
       @required this.imageUrl,
-      @required this.info})
+      @required this.bookTitle,
+      @required this.pageNumber})
       : assert(id != null),
         assert(quote != null),
         assert(color != null),
         assert(imageUrl != null),
-        assert(info != null),
+        assert(bookTitle != null),
+        assert(pageNumber != null),
         super._();
 
   @override
@@ -165,11 +165,13 @@ class _$_Highlights extends _Highlights {
   @override
   final ImageUrl imageUrl;
   @override
-  final QuoteInfo info;
+  final BookTitle bookTitle;
+  @override
+  final QuotePage pageNumber;
 
   @override
   String toString() {
-    return 'Highlight(id: $id, quote: $quote, color: $color, imageUrl: $imageUrl, info: $info)';
+    return 'Highlight(id: $id, quote: $quote, color: $color, imageUrl: $imageUrl, bookTitle: $bookTitle, pageNumber: $pageNumber)';
   }
 
   @override
@@ -185,8 +187,12 @@ class _$_Highlights extends _Highlights {
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)));
+            (identical(other.bookTitle, bookTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.bookTitle, bookTitle)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)));
   }
 
   @override
@@ -196,7 +202,8 @@ class _$_Highlights extends _Highlights {
       const DeepCollectionEquality().hash(quote) ^
       const DeepCollectionEquality().hash(color) ^
       const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(info);
+      const DeepCollectionEquality().hash(bookTitle) ^
+      const DeepCollectionEquality().hash(pageNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -211,7 +218,8 @@ abstract class _Highlights extends Highlight {
       @required HighlightQuote quote,
       @required HighlightColor color,
       @required ImageUrl imageUrl,
-      @required QuoteInfo info}) = _$_Highlights;
+      @required BookTitle bookTitle,
+      @required QuotePage pageNumber}) = _$_Highlights;
 
   @override
   UniqueId get id;
@@ -222,7 +230,9 @@ abstract class _Highlights extends Highlight {
   @override
   ImageUrl get imageUrl;
   @override
-  QuoteInfo get info;
+  BookTitle get bookTitle;
+  @override
+  QuotePage get pageNumber;
   @override
   @JsonKey(ignore: true)
   _$HighlightsCopyWith<_Highlights> get copyWith;
