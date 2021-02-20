@@ -31,7 +31,8 @@ abstract class HighlightDto implements _$HighlightDto {
     @required String quote,
     @required int color,
     @required String imageUrl,
-    @required QuoteInfoDto info,
+    @required String bookTitle,
+    @required int pageNumber,
     @required @ServerTimestampConverter() FieldValue serverTimestamp,
   }) = _HighlightDto;
 
@@ -41,7 +42,8 @@ abstract class HighlightDto implements _$HighlightDto {
       quote: highlight.quote.getOrCrash(),
       color: highlight.color.getOrCrash().value,
       imageUrl: highlight.imageUrl.getOrCrash(),
-      info: QuoteInfoDto.fromDomain(highlight.info),
+      bookTitle: highlight.bookTitle.getOrCrash(),
+      pageNumber: highlight.pageNumber.getOrCrash(),
       serverTimestamp: FieldValue.serverTimestamp(),
     );
   }
@@ -52,7 +54,8 @@ abstract class HighlightDto implements _$HighlightDto {
       quote: HighlightQuote(quote),
       color: HighlightColor(Color(color)),
       imageUrl: ImageUrl(imageUrl),
-      info: info.toDomain(),
+      bookTitle: BookTitle(bookTitle),
+      pageNumber: QuotePage(pageNumber),
     );
   }
 
@@ -66,34 +69,4 @@ abstract class HighlightDto implements _$HighlightDto {
   factory HighlightDto.fromFirestore(DocumentSnapshot document) {
     return HighlightDto.fromJson(document.data()).copyWith(id: document.id);
   }
-}
-
-@freezed
-abstract class QuoteInfoDto implements _$QuoteInfoDto {
-  const QuoteInfoDto._();
-
-  const factory QuoteInfoDto({
-    @required String id,
-    @required String bookTitle,
-    @required int pageNumber,
-  }) = _QuoteInfoDto;
-
-  factory QuoteInfoDto.fromDomain(QuoteInfo quote) {
-    return QuoteInfoDto(
-      id: quote.id.getOrCrash(),
-      bookTitle: quote.bookTitle.getOrCrash(),
-      pageNumber: quote.pageNumber.getOrCrash(),
-    );
-  }
-
-  QuoteInfo toDomain() {
-    return QuoteInfo(
-      id: UniqueId.fromUniqueString(id),
-      bookTitle: BookTitle(bookTitle),
-      pageNumber: QuotePage(pageNumber),
-    );
-  }
-
-  factory QuoteInfoDto.fromJson(Map<String, dynamic> json) =>
-      _$QuoteInfoDtoFromJson(json);
 }

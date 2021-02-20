@@ -22,14 +22,16 @@ class _$HighlightDtoTearOff {
       @required String quote,
       @required int color,
       @required String imageUrl,
-      @required QuoteInfoDto info,
+      @required String bookTitle,
+      @required int pageNumber,
       @required @ServerTimestampConverter() FieldValue serverTimestamp}) {
     return _HighlightDto(
       id: id,
       quote: quote,
       color: color,
       imageUrl: imageUrl,
-      info: info,
+      bookTitle: bookTitle,
+      pageNumber: pageNumber,
       serverTimestamp: serverTimestamp,
     );
   }
@@ -51,7 +53,8 @@ mixin _$HighlightDto {
   String get quote;
   int get color;
   String get imageUrl;
-  QuoteInfoDto get info;
+  String get bookTitle;
+  int get pageNumber;
   @ServerTimestampConverter()
   FieldValue get serverTimestamp;
 
@@ -70,10 +73,9 @@ abstract class $HighlightDtoCopyWith<$Res> {
       String quote,
       int color,
       String imageUrl,
-      QuoteInfoDto info,
+      String bookTitle,
+      int pageNumber,
       @ServerTimestampConverter() FieldValue serverTimestamp});
-
-  $QuoteInfoDtoCopyWith<$Res> get info;
 }
 
 /// @nodoc
@@ -90,7 +92,8 @@ class _$HighlightDtoCopyWithImpl<$Res> implements $HighlightDtoCopyWith<$Res> {
     Object quote = freezed,
     Object color = freezed,
     Object imageUrl = freezed,
-    Object info = freezed,
+    Object bookTitle = freezed,
+    Object pageNumber = freezed,
     Object serverTimestamp = freezed,
   }) {
     return _then(_value.copyWith(
@@ -98,21 +101,12 @@ class _$HighlightDtoCopyWithImpl<$Res> implements $HighlightDtoCopyWith<$Res> {
       quote: quote == freezed ? _value.quote : quote as String,
       color: color == freezed ? _value.color : color as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      info: info == freezed ? _value.info : info as QuoteInfoDto,
+      bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
+      pageNumber: pageNumber == freezed ? _value.pageNumber : pageNumber as int,
       serverTimestamp: serverTimestamp == freezed
           ? _value.serverTimestamp
           : serverTimestamp as FieldValue,
     ));
-  }
-
-  @override
-  $QuoteInfoDtoCopyWith<$Res> get info {
-    if (_value.info == null) {
-      return null;
-    }
-    return $QuoteInfoDtoCopyWith<$Res>(_value.info, (value) {
-      return _then(_value.copyWith(info: value));
-    });
   }
 }
 
@@ -128,11 +122,9 @@ abstract class _$HighlightDtoCopyWith<$Res>
       String quote,
       int color,
       String imageUrl,
-      QuoteInfoDto info,
+      String bookTitle,
+      int pageNumber,
       @ServerTimestampConverter() FieldValue serverTimestamp});
-
-  @override
-  $QuoteInfoDtoCopyWith<$Res> get info;
 }
 
 /// @nodoc
@@ -151,7 +143,8 @@ class __$HighlightDtoCopyWithImpl<$Res> extends _$HighlightDtoCopyWithImpl<$Res>
     Object quote = freezed,
     Object color = freezed,
     Object imageUrl = freezed,
-    Object info = freezed,
+    Object bookTitle = freezed,
+    Object pageNumber = freezed,
     Object serverTimestamp = freezed,
   }) {
     return _then(_HighlightDto(
@@ -159,7 +152,8 @@ class __$HighlightDtoCopyWithImpl<$Res> extends _$HighlightDtoCopyWithImpl<$Res>
       quote: quote == freezed ? _value.quote : quote as String,
       color: color == freezed ? _value.color : color as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      info: info == freezed ? _value.info : info as QuoteInfoDto,
+      bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
+      pageNumber: pageNumber == freezed ? _value.pageNumber : pageNumber as int,
       serverTimestamp: serverTimestamp == freezed
           ? _value.serverTimestamp
           : serverTimestamp as FieldValue,
@@ -176,12 +170,14 @@ class _$_HighlightDto extends _HighlightDto {
       @required this.quote,
       @required this.color,
       @required this.imageUrl,
-      @required this.info,
+      @required this.bookTitle,
+      @required this.pageNumber,
       @required @ServerTimestampConverter() this.serverTimestamp})
       : assert(quote != null),
         assert(color != null),
         assert(imageUrl != null),
-        assert(info != null),
+        assert(bookTitle != null),
+        assert(pageNumber != null),
         assert(serverTimestamp != null),
         super._();
 
@@ -198,14 +194,16 @@ class _$_HighlightDto extends _HighlightDto {
   @override
   final String imageUrl;
   @override
-  final QuoteInfoDto info;
+  final String bookTitle;
+  @override
+  final int pageNumber;
   @override
   @ServerTimestampConverter()
   final FieldValue serverTimestamp;
 
   @override
   String toString() {
-    return 'HighlightDto(id: $id, quote: $quote, color: $color, imageUrl: $imageUrl, info: $info, serverTimestamp: $serverTimestamp)';
+    return 'HighlightDto(id: $id, quote: $quote, color: $color, imageUrl: $imageUrl, bookTitle: $bookTitle, pageNumber: $pageNumber, serverTimestamp: $serverTimestamp)';
   }
 
   @override
@@ -221,8 +219,12 @@ class _$_HighlightDto extends _HighlightDto {
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)) &&
+            (identical(other.bookTitle, bookTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.bookTitle, bookTitle)) &&
+            (identical(other.pageNumber, pageNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.pageNumber, pageNumber)) &&
             (identical(other.serverTimestamp, serverTimestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.serverTimestamp, serverTimestamp)));
@@ -235,7 +237,8 @@ class _$_HighlightDto extends _HighlightDto {
       const DeepCollectionEquality().hash(quote) ^
       const DeepCollectionEquality().hash(color) ^
       const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(info) ^
+      const DeepCollectionEquality().hash(bookTitle) ^
+      const DeepCollectionEquality().hash(pageNumber) ^
       const DeepCollectionEquality().hash(serverTimestamp);
 
   @JsonKey(ignore: true)
@@ -256,7 +259,8 @@ abstract class _HighlightDto extends HighlightDto {
           @required String quote,
           @required int color,
           @required String imageUrl,
-          @required QuoteInfoDto info,
+          @required String bookTitle,
+          @required int pageNumber,
           @required @ServerTimestampConverter() FieldValue serverTimestamp}) =
       _$_HighlightDto;
 
@@ -273,195 +277,13 @@ abstract class _HighlightDto extends HighlightDto {
   @override
   String get imageUrl;
   @override
-  QuoteInfoDto get info;
+  String get bookTitle;
+  @override
+  int get pageNumber;
   @override
   @ServerTimestampConverter()
   FieldValue get serverTimestamp;
   @override
   @JsonKey(ignore: true)
   _$HighlightDtoCopyWith<_HighlightDto> get copyWith;
-}
-
-QuoteInfoDto _$QuoteInfoDtoFromJson(Map<String, dynamic> json) {
-  return _QuoteInfoDto.fromJson(json);
-}
-
-/// @nodoc
-class _$QuoteInfoDtoTearOff {
-  const _$QuoteInfoDtoTearOff();
-
-// ignore: unused_element
-  _QuoteInfoDto call(
-      {@required String id,
-      @required String bookTitle,
-      @required int pageNumber}) {
-    return _QuoteInfoDto(
-      id: id,
-      bookTitle: bookTitle,
-      pageNumber: pageNumber,
-    );
-  }
-
-// ignore: unused_element
-  QuoteInfoDto fromJson(Map<String, Object> json) {
-    return QuoteInfoDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $QuoteInfoDto = _$QuoteInfoDtoTearOff();
-
-/// @nodoc
-mixin _$QuoteInfoDto {
-  String get id;
-  String get bookTitle;
-  int get pageNumber;
-
-  Map<String, dynamic> toJson();
-  @JsonKey(ignore: true)
-  $QuoteInfoDtoCopyWith<QuoteInfoDto> get copyWith;
-}
-
-/// @nodoc
-abstract class $QuoteInfoDtoCopyWith<$Res> {
-  factory $QuoteInfoDtoCopyWith(
-          QuoteInfoDto value, $Res Function(QuoteInfoDto) then) =
-      _$QuoteInfoDtoCopyWithImpl<$Res>;
-  $Res call({String id, String bookTitle, int pageNumber});
-}
-
-/// @nodoc
-class _$QuoteInfoDtoCopyWithImpl<$Res> implements $QuoteInfoDtoCopyWith<$Res> {
-  _$QuoteInfoDtoCopyWithImpl(this._value, this._then);
-
-  final QuoteInfoDto _value;
-  // ignore: unused_field
-  final $Res Function(QuoteInfoDto) _then;
-
-  @override
-  $Res call({
-    Object id = freezed,
-    Object bookTitle = freezed,
-    Object pageNumber = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
-      pageNumber: pageNumber == freezed ? _value.pageNumber : pageNumber as int,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$QuoteInfoDtoCopyWith<$Res>
-    implements $QuoteInfoDtoCopyWith<$Res> {
-  factory _$QuoteInfoDtoCopyWith(
-          _QuoteInfoDto value, $Res Function(_QuoteInfoDto) then) =
-      __$QuoteInfoDtoCopyWithImpl<$Res>;
-  @override
-  $Res call({String id, String bookTitle, int pageNumber});
-}
-
-/// @nodoc
-class __$QuoteInfoDtoCopyWithImpl<$Res> extends _$QuoteInfoDtoCopyWithImpl<$Res>
-    implements _$QuoteInfoDtoCopyWith<$Res> {
-  __$QuoteInfoDtoCopyWithImpl(
-      _QuoteInfoDto _value, $Res Function(_QuoteInfoDto) _then)
-      : super(_value, (v) => _then(v as _QuoteInfoDto));
-
-  @override
-  _QuoteInfoDto get _value => super._value as _QuoteInfoDto;
-
-  @override
-  $Res call({
-    Object id = freezed,
-    Object bookTitle = freezed,
-    Object pageNumber = freezed,
-  }) {
-    return _then(_QuoteInfoDto(
-      id: id == freezed ? _value.id : id as String,
-      bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
-      pageNumber: pageNumber == freezed ? _value.pageNumber : pageNumber as int,
-    ));
-  }
-}
-
-@JsonSerializable()
-
-/// @nodoc
-class _$_QuoteInfoDto extends _QuoteInfoDto {
-  const _$_QuoteInfoDto(
-      {@required this.id, @required this.bookTitle, @required this.pageNumber})
-      : assert(id != null),
-        assert(bookTitle != null),
-        assert(pageNumber != null),
-        super._();
-
-  factory _$_QuoteInfoDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_QuoteInfoDtoFromJson(json);
-
-  @override
-  final String id;
-  @override
-  final String bookTitle;
-  @override
-  final int pageNumber;
-
-  @override
-  String toString() {
-    return 'QuoteInfoDto(id: $id, bookTitle: $bookTitle, pageNumber: $pageNumber)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _QuoteInfoDto &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.bookTitle, bookTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.bookTitle, bookTitle)) &&
-            (identical(other.pageNumber, pageNumber) ||
-                const DeepCollectionEquality()
-                    .equals(other.pageNumber, pageNumber)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(bookTitle) ^
-      const DeepCollectionEquality().hash(pageNumber);
-
-  @JsonKey(ignore: true)
-  @override
-  _$QuoteInfoDtoCopyWith<_QuoteInfoDto> get copyWith =>
-      __$QuoteInfoDtoCopyWithImpl<_QuoteInfoDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_QuoteInfoDtoToJson(this);
-  }
-}
-
-abstract class _QuoteInfoDto extends QuoteInfoDto {
-  const _QuoteInfoDto._() : super._();
-  const factory _QuoteInfoDto(
-      {@required String id,
-      @required String bookTitle,
-      @required int pageNumber}) = _$_QuoteInfoDto;
-
-  factory _QuoteInfoDto.fromJson(Map<String, dynamic> json) =
-      _$_QuoteInfoDto.fromJson;
-
-  @override
-  String get id;
-  @override
-  String get bookTitle;
-  @override
-  int get pageNumber;
-  @override
-  @JsonKey(ignore: true)
-  _$QuoteInfoDtoCopyWith<_QuoteInfoDto> get copyWith;
 }
