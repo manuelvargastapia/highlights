@@ -12,7 +12,6 @@ import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
-import 'package:highlights/presentation/highlight/highlight_forms/misc/quote_info_presentation_classes.dart';
 
 part 'highlight_form_event.dart';
 part 'highlight_form_state.dart';
@@ -55,10 +54,18 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
-      quoteInfoChanged: (event) async* {
+      bookTitleChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
-            info: event.info.toDomain(),
+            bookTitle: BookTitle(event.bookTitle),
+          ),
+          saveFailureOrSuccessOption: none(),
+        );
+      },
+      pageNumberChanged: (event) async* {
+        yield state.copyWith(
+          highlight: state.highlight.copyWith(
+            pageNumber: QuotePage(event.pageNumber),
           ),
           saveFailureOrSuccessOption: none(),
         );
