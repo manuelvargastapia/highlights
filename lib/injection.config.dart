@@ -42,7 +42,7 @@ GetIt $initGetIt(
         get<AuthProviderManager>(),
       ));
   gh.lazySingleton<IHighlightRepository>(
-      () => HighlightRepository(get<FirebaseFirestore>()));
+      () => HighlightRepository(get<FirebaseFirestore>(), get<IAuthFacade>()));
   gh.factory<SignInFormBloc>(() => SignInFormBloc(get<IAuthFacade>()));
   gh.factory<AuthBloc>(() => AuthBloc(get<IAuthFacade>()));
   gh.factory<HighlightActorBloc>(
