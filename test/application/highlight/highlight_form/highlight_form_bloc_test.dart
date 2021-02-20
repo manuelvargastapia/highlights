@@ -98,25 +98,43 @@ void main() {
     );
   });
 
-  group('_QuoteInfoChanged', () {
-    final newQuoteInfo = QuoteInfoPrimitive(
-      id: UniqueId(),
-      bookTitle: 'title',
-      pageNumber: 300,
-    );
+  group('_BookTitleChanged', () {
+    const newBookTitle = 'title';
     blocTest(
       '\nGiven any state'
-      '\nWhen _QuoteInfoChanged ocurrs'
-      '\nThen emit prev state with changed info and saveFailureOrSuccessOption: none()',
+      '\nWhen _BookTitleChanged ocurrs'
+      '\nThen emit prev state with changed bookTitle and saveFailureOrSuccessOption: none()',
       build: () => HighlightFormBloc(mockIHighlightRepository),
       act: (bloc) {
-        bloc.add(HighlightFormEvent.quoteInfoChanged(newQuoteInfo));
+        bloc.add(const HighlightFormEvent.bookTitleChanged(newBookTitle));
       },
       seed: initialState,
       expect: [
         initialState.copyWith(
           highlight: initialState.highlight.copyWith(
-            info: newQuoteInfo.toDomain(),
+            bookTitle: BookTitle(newBookTitle),
+          ),
+          saveFailureOrSuccessOption: none(),
+        ),
+      ],
+    );
+  });
+
+  group('_PageNumberChanged', () {
+    const newPageNumber = 666;
+    blocTest(
+      '\nGiven any state'
+      '\nWhen _BookTitleChanged ocurrs'
+      '\nThen emit prev state with changed pageNumber and saveFailureOrSuccessOption: none()',
+      build: () => HighlightFormBloc(mockIHighlightRepository),
+      act: (bloc) {
+        bloc.add(const HighlightFormEvent.pageNumberChanged(newPageNumber));
+      },
+      seed: initialState,
+      expect: [
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(
+            pageNumber: QuotePage(newPageNumber),
           ),
           saveFailureOrSuccessOption: none(),
         ),
@@ -152,11 +170,8 @@ void main() {
       quote: HighlightQuote('This is a valid quote'),
       color: HighlightColor(HighlightColor.predefinedColors[0]),
       imageUrl: ImageUrl('http://validurl.test'),
-      info: QuoteInfo(
-        id: UniqueId(),
-        bookTitle: BookTitle('title'),
-        pageNumber: QuotePage(333),
-      ),
+      bookTitle: BookTitle('title'),
+      pageNumber: QuotePage(333),
     );
 
     final seedState = initialState.copyWith(highlight: validHighlight);
