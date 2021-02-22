@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/infrastructure/highlight/highlight_dtos.dart';
 import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
@@ -16,12 +17,13 @@ import 'package:highlights/infrastructure/core/firestore_helpers.dart';
 @LazySingleton(as: IHighlightRepository)
 class HighlightRepository implements IHighlightRepository {
   final FirebaseFirestore _firestore;
+  final IAuthFacade _authFacade;
 
-  HighlightRepository(this._firestore);
+  HighlightRepository(this._firestore, this._authFacade);
 
   @override
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchAll() async* {
-    final userDocument = await _firestore.userDocument();
+    final userDocument = await _firestore.userDocument(_authFacade);
     yield* userDocument.highlightCollection
         .orderBy('serverTimestamp', descending: true)
         .snapshots()
@@ -34,7 +36,10 @@ class HighlightRepository implements IHighlightRepository {
         )
         .onErrorReturnWith((e) {
       // Extension method from RxDart library to handle errors in Streams
+      // TODO: consider replacing it with native error handling to remove rxdart
+      // as is being used only here
       if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+        // TODO: test
         return left(const HighlightFailure.insufficientPermission());
       } else {
         // TODO: log e
@@ -43,13 +48,14 @@ class HighlightRepository implements IHighlightRepository {
     });
   }
 
+  // TODO: implement Algolia or Elasticsearch for better UX
   @override
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchFiltered(
     HighlighSearchFilter filter,
   ) async* {
-    final userDocument = await _firestore.userDocument();
+    final userDocument = await _firestore.userDocument(_authFacade);
     yield* userDocument.highlightCollection
-        .where('info.bookTitle', arrayContains: filter.bookTitle)
+        .where('bookTitle', isEqualTo: filter.bookTitle.getOrCrash())
         .orderBy('serverTimestamp', descending: true)
         .snapshots()
         .map(
@@ -61,6 +67,7 @@ class HighlightRepository implements IHighlightRepository {
         )
         .onErrorReturnWith((e) {
       if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+        // TODO: test
         return left(const HighlightFailure.insufficientPermission());
       } else {
         // TODO: log e
@@ -72,7 +79,7 @@ class HighlightRepository implements IHighlightRepository {
   @override
   Future<Either<HighlightFailure, Unit>> create(Highlight highlight) async {
     try {
-      final userDocument = await _firestore.userDocument();
+      final userDocument = await _firestore.userDocument(_authFacade);
       final highlightDto = HighlightDto.fromDomain(highlight);
       await userDocument.highlightCollection
           .doc(highlightDto.id)
@@ -80,8 +87,10 @@ class HighlightRepository implements IHighlightRepository {
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
+        // TODO: test
         return left(const HighlightFailure.insufficientPermission());
       } else {
+        // TODO: test
         return left(const HighlightFailure.unexpected());
       }
     }
@@ -90,7 +99,7 @@ class HighlightRepository implements IHighlightRepository {
   @override
   Future<Either<HighlightFailure, Unit>> update(Highlight highlight) async {
     try {
-      final userDocument = await _firestore.userDocument();
+      final userDocument = await _firestore.userDocument(_authFacade);
       final highlightDto = HighlightDto.fromDomain(highlight);
       await userDocument.highlightCollection
           .doc(highlightDto.id)
@@ -98,10 +107,12 @@ class HighlightRepository implements IHighlightRepository {
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
+        // TODO: test
         return left(const HighlightFailure.insufficientPermission());
       } else if (e.message.contains('NOT_FOUND')) {
         return left(const HighlightFailure.unableToUpdate());
       } else {
+        // TODO: test
         return left(const HighlightFailure.unexpected());
       }
     }
@@ -110,12 +121,13 @@ class HighlightRepository implements IHighlightRepository {
   @override
   Future<Either<HighlightFailure, Unit>> delete(Highlight highlight) async {
     try {
-      final userDocument = await _firestore.userDocument();
+      final userDocument = await _firestore.userDocument(_authFacade);
       final highlightId = highlight.id.getOrCrash();
       await userDocument.highlightCollection.doc(highlightId).delete();
       return right(unit);
     } on PlatformException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
+        // TODO: test
         return left(const HighlightFailure.insufficientPermission());
       } else if (e.message.contains('NOT_FOUND')) {
         return left(const HighlightFailure.unableToUpdate());
