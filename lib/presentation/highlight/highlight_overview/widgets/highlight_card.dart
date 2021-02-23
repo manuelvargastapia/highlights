@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
-import 'package:highlights/domain/highlights/quote_info.dart';
+import 'package:highlights/domain/highlights/value_objects.dart';
 
 class HighlightCard extends StatelessWidget {
   final Highlight highlight;
@@ -26,7 +26,7 @@ class HighlightCard extends StatelessWidget {
           // BlocProvider.of(context, listen: false) is needed --instead of
           // context.watch()-- to avoid the following error: "Tried to listen
           // to a value exposed with provider, from outside of the widget tree"
-          final actorBloc = BlocProvider.of<HighlightActorBloc>(context);
+          final actorBloc = context.read<HighlightActorBloc>();
           _showDeletionDialog(context, actorBloc);
         },
         child: Padding(
@@ -40,7 +40,10 @@ class HighlightCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 8),
-              _InfoDisplay(info: highlight.info),
+              _InfoDisplay(
+                bookTitle: highlight.bookTitle,
+                pageNumber: highlight.pageNumber,
+              ),
             ],
           ),
         ),
@@ -86,11 +89,13 @@ class HighlightCard extends StatelessWidget {
 // TODO: consider putting some metadata (ex: color) into entities
 // IDEA: use Chips as tags to filter or cathegorize highlights
 class _InfoDisplay extends StatelessWidget {
-  final QuoteInfo info;
+  final BookTitle bookTitle;
+  final QuotePage pageNumber;
 
   const _InfoDisplay({
     Key key,
-    @required this.info,
+    @required this.bookTitle,
+    @required this.pageNumber,
   }) : super(key: key);
 
   @override
@@ -109,7 +114,7 @@ class _InfoDisplay extends StatelessWidget {
             const SizedBox(width: 4),
             Chip(
               label: Text(
-                info.bookTitle.getOrCrash(),
+                bookTitle.getOrCrash(),
                 style: const TextStyle(fontSize: 14),
               ),
               backgroundColor: Colors.yellow,
@@ -126,7 +131,7 @@ class _InfoDisplay extends StatelessWidget {
             const SizedBox(width: 4),
             Chip(
               label: Text(
-                info.pageNumber.getOrCrash().toString(),
+                pageNumber.getOrCrash().toString(),
                 style: const TextStyle(fontSize: 14),
               ),
               backgroundColor: Colors.lightGreen,
