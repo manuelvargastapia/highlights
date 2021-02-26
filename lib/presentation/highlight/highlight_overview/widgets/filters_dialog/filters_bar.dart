@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:highlights/application/highlight/highlight_filterer/highlight_filterer_bloc.dart';
 import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
-import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/has_image_switcher.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/has_image_chip.dart';
 
 class FiltersBar extends StatelessWidget {
   @override
