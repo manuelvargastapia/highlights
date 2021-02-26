@@ -15,6 +15,7 @@ import 'infrastructure/authentication/auth_provider_manager.dart';
 import 'infrastructure/authentication/firebase_auth_facade.dart';
 import 'infrastructure/core/firebase_injectable_module.dart';
 import 'application/highlight/highlight_actor/highlight_actor_bloc.dart';
+import 'application/highlight/highlight_filterer/highlight_filterer_bloc.dart';
 import 'application/highlight/highlight_form/highlight_form_bloc.dart';
 import 'infrastructure/highlight/highlight_repository.dart';
 import 'application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
@@ -36,6 +37,7 @@ GetIt $initGetIt(
   gh.lazySingleton<FirebaseAuth>(() => firebaseInjectableModule.firebaseAuth);
   gh.lazySingleton<FirebaseFirestore>(() => firebaseInjectableModule.firestore);
   gh.lazySingleton<GoogleSignIn>(() => firebaseInjectableModule.googleSignIn);
+  gh.factory<HighlightFiltererBloc>(() => HighlightFiltererBloc());
   gh.lazySingleton<IAuthFacade>(() => FirebaseAuthFacade(
         get<FirebaseAuth>(),
         get<GoogleSignIn>(),
