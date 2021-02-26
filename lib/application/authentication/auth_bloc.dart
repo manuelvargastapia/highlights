@@ -10,6 +10,9 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 part 'auth_bloc.freezed.dart';
 
+// TODO: NO NEW DOCUMENTS CREATED IN FIRESTORE FOR NEW USERS
+// TODO: USERS CAN VIEW DOCS FROM OTHERS
+
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthFacade _authFacade;
