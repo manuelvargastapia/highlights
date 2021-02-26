@@ -1,10 +1,7 @@
-import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui' hide decodeImageFromList;
 
 import 'package:flutter/painting.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dartz/dartz.dart';
 
 import 'package:highlights/domain/core/failures.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
