@@ -10,192 +10,127 @@ part of 'highlight_search_filter.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-class _$HighlighSearchFilterTearOff {
-  const _$HighlighSearchFilterTearOff();
+class _$HighlightSearchFilterTearOff {
+  const _$HighlightSearchFilterTearOff();
 
 // ignore: unused_element
-  _ByBookTitle byBookTitle({@required BookTitleFilter bookTitle}) {
-    return _ByBookTitle(
-      bookTitle: bookTitle,
+  _HighlightSearchFilter call({@required bool hasImage}) {
+    return _HighlightSearchFilter(
+      hasImage: hasImage,
     );
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $HighlighSearchFilter = _$HighlighSearchFilterTearOff();
+const $HighlightSearchFilter = _$HighlightSearchFilterTearOff();
 
 /// @nodoc
-mixin _$HighlighSearchFilter {
-  BookTitleFilter get bookTitle;
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult byBookTitle(BookTitleFilter bookTitle),
-  });
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult byBookTitle(BookTitleFilter bookTitle),
-    @required TResult orElse(),
-  });
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult byBookTitle(_ByBookTitle value),
-  });
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult byBookTitle(_ByBookTitle value),
-    @required TResult orElse(),
-  });
+mixin _$HighlightSearchFilter {
+  bool get hasImage;
 
   @JsonKey(ignore: true)
-  $HighlighSearchFilterCopyWith<HighlighSearchFilter> get copyWith;
+  $HighlightSearchFilterCopyWith<HighlightSearchFilter> get copyWith;
 }
 
 /// @nodoc
-abstract class $HighlighSearchFilterCopyWith<$Res> {
-  factory $HighlighSearchFilterCopyWith(HighlighSearchFilter value,
-          $Res Function(HighlighSearchFilter) then) =
-      _$HighlighSearchFilterCopyWithImpl<$Res>;
-  $Res call({BookTitleFilter bookTitle});
+abstract class $HighlightSearchFilterCopyWith<$Res> {
+  factory $HighlightSearchFilterCopyWith(HighlightSearchFilter value,
+          $Res Function(HighlightSearchFilter) then) =
+      _$HighlightSearchFilterCopyWithImpl<$Res>;
+  $Res call({bool hasImage});
 }
 
 /// @nodoc
-class _$HighlighSearchFilterCopyWithImpl<$Res>
-    implements $HighlighSearchFilterCopyWith<$Res> {
-  _$HighlighSearchFilterCopyWithImpl(this._value, this._then);
+class _$HighlightSearchFilterCopyWithImpl<$Res>
+    implements $HighlightSearchFilterCopyWith<$Res> {
+  _$HighlightSearchFilterCopyWithImpl(this._value, this._then);
 
-  final HighlighSearchFilter _value;
+  final HighlightSearchFilter _value;
   // ignore: unused_field
-  final $Res Function(HighlighSearchFilter) _then;
+  final $Res Function(HighlightSearchFilter) _then;
 
   @override
   $Res call({
-    Object bookTitle = freezed,
+    Object hasImage = freezed,
   }) {
     return _then(_value.copyWith(
-      bookTitle: bookTitle == freezed
-          ? _value.bookTitle
-          : bookTitle as BookTitleFilter,
+      hasImage: hasImage == freezed ? _value.hasImage : hasImage as bool,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$ByBookTitleCopyWith<$Res>
-    implements $HighlighSearchFilterCopyWith<$Res> {
-  factory _$ByBookTitleCopyWith(
-          _ByBookTitle value, $Res Function(_ByBookTitle) then) =
-      __$ByBookTitleCopyWithImpl<$Res>;
+abstract class _$HighlightSearchFilterCopyWith<$Res>
+    implements $HighlightSearchFilterCopyWith<$Res> {
+  factory _$HighlightSearchFilterCopyWith(_HighlightSearchFilter value,
+          $Res Function(_HighlightSearchFilter) then) =
+      __$HighlightSearchFilterCopyWithImpl<$Res>;
   @override
-  $Res call({BookTitleFilter bookTitle});
+  $Res call({bool hasImage});
 }
 
 /// @nodoc
-class __$ByBookTitleCopyWithImpl<$Res>
-    extends _$HighlighSearchFilterCopyWithImpl<$Res>
-    implements _$ByBookTitleCopyWith<$Res> {
-  __$ByBookTitleCopyWithImpl(
-      _ByBookTitle _value, $Res Function(_ByBookTitle) _then)
-      : super(_value, (v) => _then(v as _ByBookTitle));
+class __$HighlightSearchFilterCopyWithImpl<$Res>
+    extends _$HighlightSearchFilterCopyWithImpl<$Res>
+    implements _$HighlightSearchFilterCopyWith<$Res> {
+  __$HighlightSearchFilterCopyWithImpl(_HighlightSearchFilter _value,
+      $Res Function(_HighlightSearchFilter) _then)
+      : super(_value, (v) => _then(v as _HighlightSearchFilter));
 
   @override
-  _ByBookTitle get _value => super._value as _ByBookTitle;
+  _HighlightSearchFilter get _value => super._value as _HighlightSearchFilter;
 
   @override
   $Res call({
-    Object bookTitle = freezed,
+    Object hasImage = freezed,
   }) {
-    return _then(_ByBookTitle(
-      bookTitle: bookTitle == freezed
-          ? _value.bookTitle
-          : bookTitle as BookTitleFilter,
+    return _then(_HighlightSearchFilter(
+      hasImage: hasImage == freezed ? _value.hasImage : hasImage as bool,
     ));
   }
 }
 
 /// @nodoc
-class _$_ByBookTitle implements _ByBookTitle {
-  const _$_ByBookTitle({@required this.bookTitle}) : assert(bookTitle != null);
+class _$_HighlightSearchFilter implements _HighlightSearchFilter {
+  const _$_HighlightSearchFilter({@required this.hasImage})
+      : assert(hasImage != null);
 
   @override
-  final BookTitleFilter bookTitle;
+  final bool hasImage;
 
   @override
   String toString() {
-    return 'HighlighSearchFilter.byBookTitle(bookTitle: $bookTitle)';
+    return 'HighlightSearchFilter(hasImage: $hasImage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ByBookTitle &&
-            (identical(other.bookTitle, bookTitle) ||
+        (other is _HighlightSearchFilter &&
+            (identical(other.hasImage, hasImage) ||
                 const DeepCollectionEquality()
-                    .equals(other.bookTitle, bookTitle)));
+                    .equals(other.hasImage, hasImage)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(bookTitle);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(hasImage);
 
   @JsonKey(ignore: true)
   @override
-  _$ByBookTitleCopyWith<_ByBookTitle> get copyWith =>
-      __$ByBookTitleCopyWithImpl<_ByBookTitle>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult byBookTitle(BookTitleFilter bookTitle),
-  }) {
-    assert(byBookTitle != null);
-    return byBookTitle(bookTitle);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult byBookTitle(BookTitleFilter bookTitle),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (byBookTitle != null) {
-      return byBookTitle(bookTitle);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult byBookTitle(_ByBookTitle value),
-  }) {
-    assert(byBookTitle != null);
-    return byBookTitle(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult byBookTitle(_ByBookTitle value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (byBookTitle != null) {
-      return byBookTitle(this);
-    }
-    return orElse();
-  }
+  _$HighlightSearchFilterCopyWith<_HighlightSearchFilter> get copyWith =>
+      __$HighlightSearchFilterCopyWithImpl<_HighlightSearchFilter>(
+          this, _$identity);
 }
 
-abstract class _ByBookTitle implements HighlighSearchFilter {
-  const factory _ByBookTitle({@required BookTitleFilter bookTitle}) =
-      _$_ByBookTitle;
+abstract class _HighlightSearchFilter implements HighlightSearchFilter {
+  const factory _HighlightSearchFilter({@required bool hasImage}) =
+      _$_HighlightSearchFilter;
 
   @override
-  BookTitleFilter get bookTitle;
+  bool get hasImage;
   @override
   @JsonKey(ignore: true)
-  _$ByBookTitleCopyWith<_ByBookTitle> get copyWith;
+  _$HighlightSearchFilterCopyWith<_HighlightSearchFilter> get copyWith;
 }

@@ -19,7 +19,7 @@ class _$HighlightWatcherEventTearOff {
   }
 
 // ignore: unused_element
-  _WatchFilteredStarted watchFilteredStarted(HighlighSearchFilter filter) {
+  _WatchFilteredStarted watchFilteredStarted(HighlightSearchFilter filter) {
     return _WatchFilteredStarted(
       filter,
     );
@@ -43,7 +43,7 @@ mixin _$HighlightWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult watchAllStarted(),
-    @required TResult watchFilteredStarted(HighlighSearchFilter filter),
+    @required TResult watchFilteredStarted(HighlightSearchFilter filter),
     @required
         TResult highlighReceived(
             Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
@@ -51,7 +51,7 @@ mixin _$HighlightWatcherEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult watchAllStarted(),
-    TResult watchFilteredStarted(HighlighSearchFilter filter),
+    TResult watchFilteredStarted(HighlightSearchFilter filter),
     TResult highlighReceived(
         Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
     @required TResult orElse(),
@@ -128,7 +128,7 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult watchAllStarted(),
-    @required TResult watchFilteredStarted(HighlighSearchFilter filter),
+    @required TResult watchFilteredStarted(HighlightSearchFilter filter),
     @required
         TResult highlighReceived(
             Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
@@ -143,7 +143,7 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult watchAllStarted(),
-    TResult watchFilteredStarted(HighlighSearchFilter filter),
+    TResult watchFilteredStarted(HighlightSearchFilter filter),
     TResult highlighReceived(
         Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
     @required TResult orElse(),
@@ -193,9 +193,9 @@ abstract class _$WatchFilteredStartedCopyWith<$Res> {
   factory _$WatchFilteredStartedCopyWith(_WatchFilteredStarted value,
           $Res Function(_WatchFilteredStarted) then) =
       __$WatchFilteredStartedCopyWithImpl<$Res>;
-  $Res call({HighlighSearchFilter filter});
+  $Res call({HighlightSearchFilter filter});
 
-  $HighlighSearchFilterCopyWith<$Res> get filter;
+  $HighlightSearchFilterCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -214,16 +214,16 @@ class __$WatchFilteredStartedCopyWithImpl<$Res>
     Object filter = freezed,
   }) {
     return _then(_WatchFilteredStarted(
-      filter == freezed ? _value.filter : filter as HighlighSearchFilter,
+      filter == freezed ? _value.filter : filter as HighlightSearchFilter,
     ));
   }
 
   @override
-  $HighlighSearchFilterCopyWith<$Res> get filter {
+  $HighlightSearchFilterCopyWith<$Res> get filter {
     if (_value.filter == null) {
       return null;
     }
-    return $HighlighSearchFilterCopyWith<$Res>(_value.filter, (value) {
+    return $HighlightSearchFilterCopyWith<$Res>(_value.filter, (value) {
       return _then(_value.copyWith(filter: value));
     });
   }
@@ -234,7 +234,7 @@ class _$_WatchFilteredStarted implements _WatchFilteredStarted {
   const _$_WatchFilteredStarted(this.filter) : assert(filter != null);
 
   @override
-  final HighlighSearchFilter filter;
+  final HighlightSearchFilter filter;
 
   @override
   String toString() {
@@ -263,7 +263,7 @@ class _$_WatchFilteredStarted implements _WatchFilteredStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult watchAllStarted(),
-    @required TResult watchFilteredStarted(HighlighSearchFilter filter),
+    @required TResult watchFilteredStarted(HighlightSearchFilter filter),
     @required
         TResult highlighReceived(
             Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
@@ -278,7 +278,7 @@ class _$_WatchFilteredStarted implements _WatchFilteredStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult watchAllStarted(),
-    TResult watchFilteredStarted(HighlighSearchFilter filter),
+    TResult watchFilteredStarted(HighlightSearchFilter filter),
     TResult highlighReceived(
         Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
     @required TResult orElse(),
@@ -320,10 +320,10 @@ class _$_WatchFilteredStarted implements _WatchFilteredStarted {
 }
 
 abstract class _WatchFilteredStarted implements HighlightWatcherEvent {
-  const factory _WatchFilteredStarted(HighlighSearchFilter filter) =
+  const factory _WatchFilteredStarted(HighlightSearchFilter filter) =
       _$_WatchFilteredStarted;
 
-  HighlighSearchFilter get filter;
+  HighlightSearchFilter get filter;
   @JsonKey(ignore: true)
   _$WatchFilteredStartedCopyWith<_WatchFilteredStarted> get copyWith;
 }
@@ -395,7 +395,7 @@ class _$_HighlighReceived implements _HighlighReceived {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult watchAllStarted(),
-    @required TResult watchFilteredStarted(HighlighSearchFilter filter),
+    @required TResult watchFilteredStarted(HighlightSearchFilter filter),
     @required
         TResult highlighReceived(
             Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
@@ -410,7 +410,7 @@ class _$_HighlighReceived implements _HighlighReceived {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult watchAllStarted(),
-    TResult watchFilteredStarted(HighlighSearchFilter filter),
+    TResult watchFilteredStarted(HighlightSearchFilter filter),
     TResult highlighReceived(
         Either<HighlightFailure, KtList<Highlight>> failureOrHighlights),
     @required TResult orElse(),

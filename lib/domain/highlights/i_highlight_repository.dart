@@ -8,7 +8,7 @@ import 'package:highlights/domain/highlights/highlight_failure.dart';
 abstract class IHighlightRepository {
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchAll();
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchFiltered(
-    HighlighSearchFilter filter,
+    HighlightSearchFilter filter,
   );
   Future<Either<HighlightFailure, Unit>> create(Highlight highlight);
   Future<Either<HighlightFailure, Unit>> update(Highlight highlight);
