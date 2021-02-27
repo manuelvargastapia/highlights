@@ -239,8 +239,7 @@ void main() {
         await deleteDB();
 
         subscription = highlightRepository
-            .watchFiltered(HighlighSearchFilter.byBookTitle(
-                bookTitle: BookTitleFilter('title')))
+            .watchFiltered(HighlightSearchFilter.initial())
             .listen(
           expectAsync1(
             (failureOrHighlights) {
@@ -270,14 +269,13 @@ void main() {
 
     test(
       '\nGiven unauthenticated user'
-      '\nWhen watchAll() is called'
+      '\nWhen watchFiltered() is called'
       '\nThen throw NotAuthenticatedError',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(none());
 
         subscription = highlightRepository
-            .watchFiltered(HighlighSearchFilter.byBookTitle(
-                bookTitle: BookTitleFilter('title')))
+            .watchFiltered(HighlightSearchFilter.initial())
             .listen(
           expectAsync1((_) {}, count: 0),
           onError: (e) {
@@ -292,7 +290,7 @@ void main() {
 
     test(
       '\nGiven multiple highlights in DB'
-      '\nWhen stream is listened with valid filter'
+      '\nWhen stream is filtered with showOnlyIfHasImage'
       '\nThen emitt a Stream with Right with a KtList holding the correct Highlight',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
@@ -309,7 +307,7 @@ void main() {
           {
             'id': 'new-id',
             'color': 4294892630,
-            'imageUrl': 'https://test-url.test',
+            'imageUrl': '',
             'quote': 'Test quote 2',
             'bookTitle': 'new book',
             'pageNumber': 666,
@@ -317,9 +315,10 @@ void main() {
           },
         );
 
+        // TODO: problem with Firestore mock? Error: Unsopported
         subscription = highlightRepository
-            .watchFiltered(HighlighSearchFilter.byBookTitle(
-                bookTitle: BookTitleFilter('Test title')))
+            .watchFiltered(HighlightSearchFilter.initial()
+                .copyWith(showOnlyIfHasImage: true))
             .listen(
           expectAsync1(
             (failureOrHighlights) {
@@ -352,8 +351,8 @@ void main() {
 
     test(
       '\nGiven multiple highlights in DB'
-      '\nWhen stream is listened with invalid filter'
-      '\nThen emitt a Stream with Right with an empty KtList',
+      '\nWhen stream is filtered without showOnlyIfHasImage'
+      '\nThen emitt a Stream with Right with a KtList holding all the items',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
           some(
@@ -369,7 +368,7 @@ void main() {
           {
             'id': 'new-id',
             'color': 4294892630,
-            'imageUrl': 'https://test-url.test',
+            'imageUrl': '',
             'quote': 'Test quote 2',
             'bookTitle': 'new book',
             'pageNumber': 666,
@@ -378,8 +377,7 @@ void main() {
         );
 
         subscription = highlightRepository
-            .watchFiltered(HighlighSearchFilter.byBookTitle(
-                bookTitle: BookTitleFilter('inexistent title')))
+            .watchFiltered(HighlightSearchFilter.initial())
             .listen(
           expectAsync1(
             (failureOrHighlights) {
@@ -393,8 +391,8 @@ void main() {
                 (highlights) {
                   expect(
                     highlights.size,
-                    isZero,
-                    reason: 'highlights.size is not 0',
+                    equals(2),
+                    reason: 'highlights.size is not 2',
                   );
                 },
               );
@@ -425,8 +423,7 @@ void main() {
             .add({'invalidField': 'invalidValue', 'bookTitle': 'title'});
 
         subscription = highlightRepository
-            .watchFiltered(HighlighSearchFilter.byBookTitle(
-                bookTitle: BookTitleFilter('title')))
+            .watchFiltered(HighlightSearchFilter.initial())
             .listen(
           expectAsync1(
             (failureOrHighlights) {
