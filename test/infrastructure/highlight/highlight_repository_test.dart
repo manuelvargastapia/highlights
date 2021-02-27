@@ -184,6 +184,68 @@ void main() {
     );
 
     test(
+      '\nGiven 1 failed highlight in DB'
+      '\nWhen stream is listened'
+      '\nThen emitt a Stream with Right with a KtList holding the failed Highlight with its failure',
+      () async {
+        when(mockIAuthFacade.getSignedInUser()).thenReturn(
+          some(
+            User(id: UniqueId.fromUniqueString(mockUid)),
+          ),
+        );
+
+        mockFirestore
+            .collection(usersPath)
+            .doc(mockUid)
+            .collection(highlightsPath)
+            .add(
+          {
+            'id': 'new-id',
+            'color': 4294892630,
+            'imageUrl': '',
+            'quote': '',
+            'bookTitle': '',
+            'pageNumber': -1,
+            'serverTimestamp': 1613512300,
+          },
+        );
+
+        subscription = highlightRepository.watchAll().listen(
+          expectAsync1(
+            (failureOrHighlights) {
+              expect(
+                failureOrHighlights.isRight(),
+                isTrue,
+                reason: 'failureOrHighlights is Left',
+              );
+              failureOrHighlights.fold(
+                (_) {},
+                (highlights) {
+                  expect(
+                    highlights.size,
+                    equals(2),
+                    reason: 'highlights.size is not 2',
+                  );
+                  final failedHighlights = highlights.filter((highlight) {
+                    return highlight.failureOption.isSome();
+                  });
+                  expect(
+                    failedHighlights.size,
+                    equals(1),
+                    reason: 'no Highlight with failures',
+                  );
+                },
+              );
+            },
+          ),
+        );
+
+        // TODO: why is not recognizing the call?
+        // verify(mockIAuthFacade.getSignedInUser()).called(1);
+      },
+    );
+
+    test(
       '\nGiven unexpected error'
       '\nWhen stream is listened'
       '\nThen emitt a Stream with Left holding HighlightFailure.unexpected()',
