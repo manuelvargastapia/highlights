@@ -11,12 +11,12 @@ class HighlightQuote extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  static const _maxLength = 1000;
+  static const maxLength = 1000;
 
   factory HighlightQuote(String input) {
     assert(input != null);
     return HighlightQuote._(
-      validateMaxLength(input, _maxLength).flatMap(validateNotEmpty),
+      validateMaxLength(input, maxLength).flatMap(validateNotEmpty),
     );
   }
 
@@ -96,22 +96,4 @@ class ImageUrl extends ValueObject<String> {
   }
 
   const ImageUrl._(this.value);
-}
-
-class BookTitleFilter extends ValueObject<String> {
-  @override
-  final Either<ValueFailure<String>, String> value;
-
-  static const _maxLength = 50;
-
-  factory BookTitleFilter(String input) {
-    assert(input != null);
-    return BookTitleFilter._(
-      validateMaxLength(input, _maxLength)
-          .flatMap(validateNotEmpty)
-          .flatMap(validateSingleLine),
-    );
-  }
-
-  const BookTitleFilter._(this.value);
 }
