@@ -24,7 +24,7 @@ class SignInForm extends StatelessWidget {
           // Do nothing when authFailureOrSuccessOption is none(), becuase
           // that means that nothing has happened yet
           () {},
-          (either) => either.fold(
+          (failureOrUnit) => failureOrUnit.fold(
             (failure) {
               FlushbarHelper.createError(
                 message: failure.map(
@@ -87,6 +87,8 @@ class SignInForm extends StatelessWidget {
                         invalidEmail: (_) => 'Invalid Email',
                         orElse: () => null,
                       ),
+                      // If validator returns null, then any feedback is
+                      // provided to user because everithing is right
                       (_) => null,
                     ),
 
