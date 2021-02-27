@@ -90,6 +90,11 @@ class ImageUrl extends ValueObject<String> {
     return ImageUrl._(validateUrl(input));
   }
 
+  /// Allow creating a non-available ImageUrl by using a (valid) empty String.
+  factory ImageUrl.notAvailable() {
+    return ImageUrl._(right(''));
+  }
+
   const ImageUrl._(this.value);
 }
 

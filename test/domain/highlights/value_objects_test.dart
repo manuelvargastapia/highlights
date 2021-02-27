@@ -256,6 +256,22 @@ void main() {
         validUrls.asMap().forEach(matcher);
       },
     );
+
+    test(
+      '\nGiven no URL to provide'
+      '\nWhen ImageUrl is created with notAvailable() constructor'
+      '\nThen return Right with an empty String',
+      () async {
+        final imageUrlValueObject = ImageUrl.notAvailable().value;
+        expect(imageUrlValueObject.isRight(), isTrue);
+        imageUrlValueObject.fold(
+          (_) {},
+          (value) {
+            expect(value, '');
+          },
+        );
+      },
+    );
     test(
       '\nGiven a list of invalid URLs'
       '\nWhen they are inputed'
