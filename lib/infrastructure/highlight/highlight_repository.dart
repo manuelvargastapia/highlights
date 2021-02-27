@@ -51,12 +51,19 @@ class HighlightRepository implements IHighlightRepository {
   // TODO: implement Algolia or Elasticsearch for better UX
   @override
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchFiltered(
-    HighlighSearchFilter filter,
+    HighlightSearchFilter filter,
   ) async* {
     final userDocument = await _firestore.userDocument(_authFacade);
-    yield* userDocument.highlightCollection
-        .where('bookTitle', isEqualTo: filter.bookTitle.getOrCrash())
-        .orderBy('serverTimestamp', descending: true)
+
+    final collecitonRef = userDocument.highlightCollection;
+
+    Query query = collecitonRef.orderBy('serverTimestamp', descending: true);
+
+    if (filter.showOnlyIfHasImage) {
+      query = collecitonRef.where('imageUrl', isNotEqualTo: '');
+    }
+
+    yield* query
         .snapshots()
         .map(
           (snapshot) => right<HighlightFailure, KtList<Highlight>>(

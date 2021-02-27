@@ -4,10 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flushbar/flushbar_helper.dart';
 
-import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
-import 'package:highlights/presentation/highlight/highlight_overview/widgets/highlight_overview_body.dart';
-import 'package:highlights/presentation/routes/router.gr.dart';
+import 'package:highlights/injection.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
+import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
+import 'package:highlights/application/highlight/highlight_filterer/highlight_filterer_bloc.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/filters_bar.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/highlight_overview_body.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/search_bar.dart';
+import 'package:highlights/presentation/routes/router.gr.dart';
 
 class HighlightOverviewPage extends StatelessWidget {
   @override
@@ -54,16 +58,17 @@ class HighlightOverviewPage extends StatelessWidget {
             },
             icon: const Icon(Icons.exit_to_app),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                // TODO: implement filtering
-              },
-              icon: const Icon(Icons.search),
+          actions: [SearchBar()],
+        ),
+        body: Column(
+          children: [
+            BlocProvider(
+              create: (context) => getIt<HighlightFiltererBloc>(),
+              child: FiltersBar(),
             ),
+            Expanded(child: HighlightOverviewBody()),
           ],
         ),
-        body: HighlightOverviewBody(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // TODO: navigate to Highlight form page
