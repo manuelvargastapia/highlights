@@ -81,9 +81,7 @@ void main() {
   });
 
   group('_WatchFilteredStarted', () {
-    final filter = HighlighSearchFilter.byBookTitle(
-      bookTitle: BookTitleFilter('title'),
-    );
+    final filter = HighlightSearchFilter.initial();
     blocTest(
       '\nGiven successful filtered Highlight watching'
       '\nWhen _WatchFilteredStarted ocurrs'
