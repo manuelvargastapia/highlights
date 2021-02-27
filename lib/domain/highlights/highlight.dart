@@ -35,7 +35,7 @@ abstract class Highlight implements _$Highlight {
         id: UniqueId(),
         quote: HighlightQuote(''),
         color: HighlightColor(HighlightColor.predefinedColors[0]),
-        imageUrl: ImageUrl(''),
+        imageUrl: ImageUrl.notAvailable(),
         bookTitle: BookTitle(''),
         pageNumber: QuotePage(0),
       );

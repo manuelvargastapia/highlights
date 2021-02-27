@@ -52,7 +52,7 @@ abstract class HighlightDto implements _$HighlightDto {
       id: UniqueId.fromUniqueString(id),
       quote: HighlightQuote(quote),
       color: HighlightColor(Color(color)),
-      imageUrl: ImageUrl(imageUrl),
+      imageUrl: imageUrl.isEmpty ? ImageUrl.notAvailable() : ImageUrl(imageUrl),
       bookTitle: BookTitle(bookTitle),
       pageNumber: QuotePage(pageNumber),
     );
