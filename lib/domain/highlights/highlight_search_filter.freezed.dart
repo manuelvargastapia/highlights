@@ -14,9 +14,9 @@ class _$HighlightSearchFilterTearOff {
   const _$HighlightSearchFilterTearOff();
 
 // ignore: unused_element
-  _HighlightSearchFilter call({@required bool hasImage}) {
+  _HighlightSearchFilter call({@required bool showOnlyIfHasImage}) {
     return _HighlightSearchFilter(
-      hasImage: hasImage,
+      showOnlyIfHasImage: showOnlyIfHasImage,
     );
   }
 }
@@ -27,7 +27,7 @@ const $HighlightSearchFilter = _$HighlightSearchFilterTearOff();
 
 /// @nodoc
 mixin _$HighlightSearchFilter {
-  bool get hasImage;
+  bool get showOnlyIfHasImage;
 
   @JsonKey(ignore: true)
   $HighlightSearchFilterCopyWith<HighlightSearchFilter> get copyWith;
@@ -38,7 +38,7 @@ abstract class $HighlightSearchFilterCopyWith<$Res> {
   factory $HighlightSearchFilterCopyWith(HighlightSearchFilter value,
           $Res Function(HighlightSearchFilter) then) =
       _$HighlightSearchFilterCopyWithImpl<$Res>;
-  $Res call({bool hasImage});
+  $Res call({bool showOnlyIfHasImage});
 }
 
 /// @nodoc
@@ -52,10 +52,12 @@ class _$HighlightSearchFilterCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object hasImage = freezed,
+    Object showOnlyIfHasImage = freezed,
   }) {
     return _then(_value.copyWith(
-      hasImage: hasImage == freezed ? _value.hasImage : hasImage as bool,
+      showOnlyIfHasImage: showOnlyIfHasImage == freezed
+          ? _value.showOnlyIfHasImage
+          : showOnlyIfHasImage as bool,
     ));
   }
 }
@@ -67,7 +69,7 @@ abstract class _$HighlightSearchFilterCopyWith<$Res>
           $Res Function(_HighlightSearchFilter) then) =
       __$HighlightSearchFilterCopyWithImpl<$Res>;
   @override
-  $Res call({bool hasImage});
+  $Res call({bool showOnlyIfHasImage});
 }
 
 /// @nodoc
@@ -83,39 +85,42 @@ class __$HighlightSearchFilterCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object hasImage = freezed,
+    Object showOnlyIfHasImage = freezed,
   }) {
     return _then(_HighlightSearchFilter(
-      hasImage: hasImage == freezed ? _value.hasImage : hasImage as bool,
+      showOnlyIfHasImage: showOnlyIfHasImage == freezed
+          ? _value.showOnlyIfHasImage
+          : showOnlyIfHasImage as bool,
     ));
   }
 }
 
 /// @nodoc
 class _$_HighlightSearchFilter implements _HighlightSearchFilter {
-  const _$_HighlightSearchFilter({@required this.hasImage})
-      : assert(hasImage != null);
+  const _$_HighlightSearchFilter({@required this.showOnlyIfHasImage})
+      : assert(showOnlyIfHasImage != null);
 
   @override
-  final bool hasImage;
+  final bool showOnlyIfHasImage;
 
   @override
   String toString() {
-    return 'HighlightSearchFilter(hasImage: $hasImage)';
+    return 'HighlightSearchFilter(showOnlyIfHasImage: $showOnlyIfHasImage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _HighlightSearchFilter &&
-            (identical(other.hasImage, hasImage) ||
+            (identical(other.showOnlyIfHasImage, showOnlyIfHasImage) ||
                 const DeepCollectionEquality()
-                    .equals(other.hasImage, hasImage)));
+                    .equals(other.showOnlyIfHasImage, showOnlyIfHasImage)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(hasImage);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(showOnlyIfHasImage);
 
   @JsonKey(ignore: true)
   @override
@@ -125,11 +130,11 @@ class _$_HighlightSearchFilter implements _HighlightSearchFilter {
 }
 
 abstract class _HighlightSearchFilter implements HighlightSearchFilter {
-  const factory _HighlightSearchFilter({@required bool hasImage}) =
+  const factory _HighlightSearchFilter({@required bool showOnlyIfHasImage}) =
       _$_HighlightSearchFilter;
 
   @override
-  bool get hasImage;
+  bool get showOnlyIfHasImage;
   @override
   @JsonKey(ignore: true)
   _$HighlightSearchFilterCopyWith<_HighlightSearchFilter> get copyWith;

@@ -14,8 +14,8 @@ class _$HighlightFiltererEventTearOff {
   const _$HighlightFiltererEventTearOff();
 
 // ignore: unused_element
-  _HasImageToggled hasImageToggled() {
-    return const _HasImageToggled();
+  _ShowOnlyIfHasImageToggled showOnlyIfHasImageToggled() {
+    return const _ShowOnlyIfHasImageToggled();
   }
 }
 
@@ -27,20 +27,21 @@ const $HighlightFiltererEvent = _$HighlightFiltererEventTearOff();
 mixin _$HighlightFiltererEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult hasImageToggled(),
+    @required TResult showOnlyIfHasImageToggled(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult hasImageToggled(),
+    TResult showOnlyIfHasImageToggled(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult hasImageToggled(_HasImageToggled value),
+    @required
+        TResult showOnlyIfHasImageToggled(_ShowOnlyIfHasImageToggled value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult hasImageToggled(_HasImageToggled value),
+    TResult showOnlyIfHasImageToggled(_ShowOnlyIfHasImageToggled value),
     @required TResult orElse(),
   });
 }
@@ -63,36 +64,37 @@ class _$HighlightFiltererEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$HasImageToggledCopyWith<$Res> {
-  factory _$HasImageToggledCopyWith(
-          _HasImageToggled value, $Res Function(_HasImageToggled) then) =
-      __$HasImageToggledCopyWithImpl<$Res>;
+abstract class _$ShowOnlyIfHasImageToggledCopyWith<$Res> {
+  factory _$ShowOnlyIfHasImageToggledCopyWith(_ShowOnlyIfHasImageToggled value,
+          $Res Function(_ShowOnlyIfHasImageToggled) then) =
+      __$ShowOnlyIfHasImageToggledCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$HasImageToggledCopyWithImpl<$Res>
+class __$ShowOnlyIfHasImageToggledCopyWithImpl<$Res>
     extends _$HighlightFiltererEventCopyWithImpl<$Res>
-    implements _$HasImageToggledCopyWith<$Res> {
-  __$HasImageToggledCopyWithImpl(
-      _HasImageToggled _value, $Res Function(_HasImageToggled) _then)
-      : super(_value, (v) => _then(v as _HasImageToggled));
+    implements _$ShowOnlyIfHasImageToggledCopyWith<$Res> {
+  __$ShowOnlyIfHasImageToggledCopyWithImpl(_ShowOnlyIfHasImageToggled _value,
+      $Res Function(_ShowOnlyIfHasImageToggled) _then)
+      : super(_value, (v) => _then(v as _ShowOnlyIfHasImageToggled));
 
   @override
-  _HasImageToggled get _value => super._value as _HasImageToggled;
+  _ShowOnlyIfHasImageToggled get _value =>
+      super._value as _ShowOnlyIfHasImageToggled;
 }
 
 /// @nodoc
-class _$_HasImageToggled implements _HasImageToggled {
-  const _$_HasImageToggled();
+class _$_ShowOnlyIfHasImageToggled implements _ShowOnlyIfHasImageToggled {
+  const _$_ShowOnlyIfHasImageToggled();
 
   @override
   String toString() {
-    return 'HighlightFiltererEvent.hasImageToggled()';
+    return 'HighlightFiltererEvent.showOnlyIfHasImageToggled()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _HasImageToggled);
+    return identical(this, other) || (other is _ShowOnlyIfHasImageToggled);
   }
 
   @override
@@ -101,21 +103,21 @@ class _$_HasImageToggled implements _HasImageToggled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult hasImageToggled(),
+    @required TResult showOnlyIfHasImageToggled(),
   }) {
-    assert(hasImageToggled != null);
-    return hasImageToggled();
+    assert(showOnlyIfHasImageToggled != null);
+    return showOnlyIfHasImageToggled();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult hasImageToggled(),
+    TResult showOnlyIfHasImageToggled(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (hasImageToggled != null) {
-      return hasImageToggled();
+    if (showOnlyIfHasImageToggled != null) {
+      return showOnlyIfHasImageToggled();
     }
     return orElse();
   }
@@ -123,28 +125,29 @@ class _$_HasImageToggled implements _HasImageToggled {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult hasImageToggled(_HasImageToggled value),
+    @required
+        TResult showOnlyIfHasImageToggled(_ShowOnlyIfHasImageToggled value),
   }) {
-    assert(hasImageToggled != null);
-    return hasImageToggled(this);
+    assert(showOnlyIfHasImageToggled != null);
+    return showOnlyIfHasImageToggled(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult hasImageToggled(_HasImageToggled value),
+    TResult showOnlyIfHasImageToggled(_ShowOnlyIfHasImageToggled value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (hasImageToggled != null) {
-      return hasImageToggled(this);
+    if (showOnlyIfHasImageToggled != null) {
+      return showOnlyIfHasImageToggled(this);
     }
     return orElse();
   }
 }
 
-abstract class _HasImageToggled implements HighlightFiltererEvent {
-  const factory _HasImageToggled() = _$_HasImageToggled;
+abstract class _ShowOnlyIfHasImageToggled implements HighlightFiltererEvent {
+  const factory _ShowOnlyIfHasImageToggled() = _$_ShowOnlyIfHasImageToggled;
 }
 
 /// @nodoc

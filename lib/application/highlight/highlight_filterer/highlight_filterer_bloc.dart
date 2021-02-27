@@ -20,10 +20,10 @@ class HighlightFiltererBloc
     HighlightFiltererEvent event,
   ) async* {
     yield* event.map(
-      hasImageToggled: (event) async* {
+      showOnlyIfHasImageToggled: (event) async* {
         yield state.copyWith(
           filters: state.filters.copyWith(
-            hasImage: !state.filters.hasImage,
+            showOnlyIfHasImage: !state.filters.showOnlyIfHasImage,
           ),
         );
       },
