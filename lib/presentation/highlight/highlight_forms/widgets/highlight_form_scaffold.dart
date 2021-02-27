@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/widgets/color_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/quote_field.dart';
 
 class HighlightFormScaffold extends StatelessWidget {
@@ -44,8 +45,9 @@ class HighlightFormScaffold extends StatelessWidget {
             key: _formKey,
             child: SingleChildScrollView(
               child: Column(
-                children: [
-                  const QuoteField(),
+                children: const [
+                  QuoteField(),
+                  ColorField(),
                 ],
               ),
             ),
