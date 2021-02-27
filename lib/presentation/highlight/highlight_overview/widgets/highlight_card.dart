@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auto_route/auto_route.dart';
 
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
+import 'package:highlights/presentation/routes/router.gr.dart';
 
 class HighlightCard extends StatelessWidget {
   final Highlight highlight;
@@ -20,7 +22,9 @@ class HighlightCard extends StatelessWidget {
       color: highlight.color.getOrCrash(),
       child: InkWell(
         onTap: () {
-          // TODO: navigate to HighlightForm passing highlight.imageUrl
+          ExtendedNavigator.of(context).pushHighlightFormPage(
+            editedHighlight: highlight,
+          );
         },
         onLongPress: () {
           // BlocProvider.of(context, listen: false) is needed --instead of

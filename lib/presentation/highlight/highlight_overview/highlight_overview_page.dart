@@ -71,7 +71,7 @@ class HighlightOverviewPage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // TODO: navigate to Highlight form page
+            ExtendedNavigator.of(context).pushHighlightFormPage();
           },
           child: const Icon(Icons.add),
         ),
