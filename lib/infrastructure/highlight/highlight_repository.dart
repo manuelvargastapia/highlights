@@ -1,5 +1,3 @@
-import 'package:flutter/services.dart';
-
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -38,7 +36,7 @@ class HighlightRepository implements IHighlightRepository {
       // Extension method from RxDart library to handle errors in Streams
       // TODO: consider replacing it with native error handling to remove rxdart
       // as is being used only here
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
         return left(const HighlightFailure.insufficientPermission());
       } else {
@@ -73,7 +71,7 @@ class HighlightRepository implements IHighlightRepository {
           ),
         )
         .onErrorReturnWith((e) {
-      if (e is PlatformException && e.message.contains('PERMISSION_DENIED')) {
+      if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
         return left(const HighlightFailure.insufficientPermission());
       } else {
@@ -92,7 +90,7 @@ class HighlightRepository implements IHighlightRepository {
           .doc(highlightDto.id)
           .set(highlightDto.toJson());
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
         return left(const HighlightFailure.insufficientPermission());
@@ -112,11 +110,11 @@ class HighlightRepository implements IHighlightRepository {
           .doc(highlightDto.id)
           .update(highlightDto.toJson());
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
         return left(const HighlightFailure.insufficientPermission());
-      } else if (e.message.contains('NOT_FOUND')) {
+      } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
       } else {
         // TODO: test
@@ -132,11 +130,11 @@ class HighlightRepository implements IHighlightRepository {
       final highlightId = highlight.id.getOrCrash();
       await userDocument.highlightCollection.doc(highlightId).delete();
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
         return left(const HighlightFailure.insufficientPermission());
-      } else if (e.message.contains('NOT_FOUND')) {
+      } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
       } else {
         return left(const HighlightFailure.unexpected());
