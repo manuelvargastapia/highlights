@@ -119,7 +119,7 @@ void main() {
   });
 
   group('_PageNumberChanged', () {
-    const newPageNumber = 666;
+    const newPageNumber = '666';
     blocTest(
       '\nGiven any state'
       '\nWhen _BookTitleChanged ocurrs'
@@ -169,7 +169,7 @@ void main() {
       color: HighlightColor(HighlightColor.predefinedColors[0]),
       imageUrl: ImageUrl('http://validurl.test'),
       bookTitle: BookTitle('title'),
-      pageNumber: QuotePage(333),
+      pageNumber: QuotePage('333'),
     );
 
     final seedState = initialState.copyWith(highlight: validHighlight);

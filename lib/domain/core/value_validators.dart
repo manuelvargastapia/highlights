@@ -62,10 +62,19 @@ Either<ValueFailure<T>, T> validateSingleLine<T>(T input) {
   }
 }
 
-Either<ValueFailure<int>, int> validateNumberIsPositive(int input) {
-  if (input >= 0) {
+Either<ValueFailure<String>, String> validateIsPositive(String input) {
+  if (!(int.parse(input)).isNegative) {
     return right(input);
   } else {
     return left(ValueFailure.negativeNumber(failedValue: input));
+  }
+}
+
+Either<ValueFailure<String>, String> validateIsInt(String input) {
+  final output = int.tryParse(input);
+  if (output != null) {
+    return right(input);
+  } else {
+    return left(ValueFailure.notAnInt(failedValue: input));
   }
 }

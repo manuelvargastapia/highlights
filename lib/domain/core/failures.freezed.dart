@@ -63,6 +63,13 @@ class _$ValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+// ignore: unused_element
+  NotAnInt<T> notAnInt<T>({@required T failedValue}) {
+    return NotAnInt<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -82,6 +89,7 @@ mixin _$ValueFailure<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -92,6 +100,7 @@ mixin _$ValueFailure<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -103,6 +112,7 @@ mixin _$ValueFailure<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -113,6 +123,7 @@ mixin _$ValueFailure<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   });
 
@@ -221,6 +232,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -229,6 +241,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return invalidEmail(failedValue);
   }
 
@@ -242,6 +255,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -261,6 +275,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -269,6 +284,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return invalidEmail(this);
   }
 
@@ -282,6 +298,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -375,6 +392,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -383,6 +401,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return shortPassword(failedValue);
   }
 
@@ -396,6 +415,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -415,6 +435,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -423,6 +444,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return shortPassword(this);
   }
 
@@ -436,6 +458,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -529,6 +552,7 @@ class _$InvalidUrl<T> implements InvalidUrl<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -537,6 +561,7 @@ class _$InvalidUrl<T> implements InvalidUrl<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return invalidUrl(failedValue);
   }
 
@@ -550,6 +575,7 @@ class _$InvalidUrl<T> implements InvalidUrl<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -569,6 +595,7 @@ class _$InvalidUrl<T> implements InvalidUrl<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -577,6 +604,7 @@ class _$InvalidUrl<T> implements InvalidUrl<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return invalidUrl(this);
   }
 
@@ -590,6 +618,7 @@ class _$InvalidUrl<T> implements InvalidUrl<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -692,6 +721,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -700,6 +730,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return exceedingLength(failedValue, max);
   }
 
@@ -713,6 +744,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -732,6 +764,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -740,6 +773,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return exceedingLength(this);
   }
 
@@ -753,6 +787,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -844,6 +879,7 @@ class _$Empty<T> implements Empty<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -852,6 +888,7 @@ class _$Empty<T> implements Empty<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return empty(failedValue);
   }
 
@@ -865,6 +902,7 @@ class _$Empty<T> implements Empty<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -884,6 +922,7 @@ class _$Empty<T> implements Empty<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -892,6 +931,7 @@ class _$Empty<T> implements Empty<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return empty(this);
   }
 
@@ -905,6 +945,7 @@ class _$Empty<T> implements Empty<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -997,6 +1038,7 @@ class _$Multiline<T> implements Multiline<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -1005,6 +1047,7 @@ class _$Multiline<T> implements Multiline<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return multiline(failedValue);
   }
 
@@ -1018,6 +1061,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1037,6 +1081,7 @@ class _$Multiline<T> implements Multiline<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -1045,6 +1090,7 @@ class _$Multiline<T> implements Multiline<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return multiline(this);
   }
 
@@ -1058,6 +1104,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1151,6 +1198,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
     @required TResult empty(T failedValue),
     @required TResult multiline(T failedValue),
     @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -1159,6 +1207,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return negativeNumber(failedValue);
   }
 
@@ -1172,6 +1221,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
     TResult empty(T failedValue),
     TResult multiline(T failedValue),
     TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1191,6 +1241,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
     @required TResult empty(Empty<T> value),
     @required TResult multiline(Multiline<T> value),
     @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
   }) {
     assert(invalidEmail != null);
     assert(shortPassword != null);
@@ -1199,6 +1250,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
     assert(empty != null);
     assert(multiline != null);
     assert(negativeNumber != null);
+    assert(notAnInt != null);
     return negativeNumber(this);
   }
 
@@ -1212,6 +1264,7 @@ class _$NegativeNumber<T> implements NegativeNumber<T> {
     TResult empty(Empty<T> value),
     TResult multiline(Multiline<T> value),
     TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1230,4 +1283,162 @@ abstract class NegativeNumber<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $NegativeNumberCopyWith<T, NegativeNumber<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $NotAnIntCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $NotAnIntCopyWith(
+          NotAnInt<T> value, $Res Function(NotAnInt<T>) then) =
+      _$NotAnIntCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$NotAnIntCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $NotAnIntCopyWith<T, $Res> {
+  _$NotAnIntCopyWithImpl(NotAnInt<T> _value, $Res Function(NotAnInt<T>) _then)
+      : super(_value, (v) => _then(v as NotAnInt<T>));
+
+  @override
+  NotAnInt<T> get _value => super._value as NotAnInt<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(NotAnInt<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+/// @nodoc
+class _$NotAnInt<T> implements NotAnInt<T> {
+  const _$NotAnInt({@required this.failedValue}) : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.notAnInt(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is NotAnInt<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $NotAnIntCopyWith<T, NotAnInt<T>> get copyWith =>
+      _$NotAnIntCopyWithImpl<T, NotAnInt<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult invalidEmail(T failedValue),
+    @required TResult shortPassword(T failedValue),
+    @required TResult invalidUrl(T failedValue),
+    @required TResult exceedingLength(T failedValue, int max),
+    @required TResult empty(T failedValue),
+    @required TResult multiline(T failedValue),
+    @required TResult negativeNumber(T failedValue),
+    @required TResult notAnInt(T failedValue),
+  }) {
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(invalidUrl != null);
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(negativeNumber != null);
+    assert(notAnInt != null);
+    return notAnInt(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidEmail(T failedValue),
+    TResult shortPassword(T failedValue),
+    TResult invalidUrl(T failedValue),
+    TResult exceedingLength(T failedValue, int max),
+    TResult empty(T failedValue),
+    TResult multiline(T failedValue),
+    TResult negativeNumber(T failedValue),
+    TResult notAnInt(T failedValue),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (notAnInt != null) {
+      return notAnInt(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult invalidEmail(InvalidEmail<T> value),
+    @required TResult shortPassword(ShortPassword<T> value),
+    @required TResult invalidUrl(InvalidUrl<T> value),
+    @required TResult exceedingLength(ExceedingLength<T> value),
+    @required TResult empty(Empty<T> value),
+    @required TResult multiline(Multiline<T> value),
+    @required TResult negativeNumber(NegativeNumber<T> value),
+    @required TResult notAnInt(NotAnInt<T> value),
+  }) {
+    assert(invalidEmail != null);
+    assert(shortPassword != null);
+    assert(invalidUrl != null);
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(negativeNumber != null);
+    assert(notAnInt != null);
+    return notAnInt(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidEmail(InvalidEmail<T> value),
+    TResult shortPassword(ShortPassword<T> value),
+    TResult invalidUrl(InvalidUrl<T> value),
+    TResult exceedingLength(ExceedingLength<T> value),
+    TResult empty(Empty<T> value),
+    TResult multiline(Multiline<T> value),
+    TResult negativeNumber(NegativeNumber<T> value),
+    TResult notAnInt(NotAnInt<T> value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (notAnInt != null) {
+      return notAnInt(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotAnInt<T> implements ValueFailure<T> {
+  const factory NotAnInt({@required T failedValue}) = _$NotAnInt<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  $NotAnIntCopyWith<T, NotAnInt<T>> get copyWith;
 }

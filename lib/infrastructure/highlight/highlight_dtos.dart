@@ -31,7 +31,7 @@ abstract class HighlightDto implements _$HighlightDto {
     @required int color,
     @required String imageUrl,
     @required String bookTitle,
-    @required int pageNumber,
+    @required String pageNumber,
     @required @ServerTimestampConverter() FieldValue serverTimestamp,
   }) = _HighlightDto;
 

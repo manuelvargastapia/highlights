@@ -135,7 +135,7 @@ class _InfoDisplay extends StatelessWidget {
             const SizedBox(width: 4),
             Chip(
               label: Text(
-                pageNumber.getOrCrash().toString(),
+                pageNumber.getOrCrash(),
                 style: const TextStyle(fontSize: 14),
               ),
               backgroundColor: Colors.lightGreen,

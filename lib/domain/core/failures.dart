@@ -31,4 +31,7 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.negativeNumber({
     @required T failedValue,
   }) = NegativeNumber<T>;
+  const factory ValueFailure.notAnInt({
+    @required T failedValue,
+  }) = NotAnInt<T>;
 }

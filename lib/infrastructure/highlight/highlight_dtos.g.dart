@@ -12,7 +12,7 @@ _$_HighlightDto _$_$_HighlightDtoFromJson(Map<String, dynamic> json) {
     color: json['color'] as int,
     imageUrl: json['imageUrl'] as String,
     bookTitle: json['bookTitle'] as String,
-    pageNumber: json['pageNumber'] as int,
+    pageNumber: json['pageNumber'] as String,
     serverTimestamp:
         const ServerTimestampConverter().fromJson(json['serverTimestamp']),
   );

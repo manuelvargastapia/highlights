@@ -23,7 +23,7 @@ class _$HighlightDtoTearOff {
       @required int color,
       @required String imageUrl,
       @required String bookTitle,
-      @required int pageNumber,
+      @required String pageNumber,
       @required @ServerTimestampConverter() FieldValue serverTimestamp}) {
     return _HighlightDto(
       id: id,
@@ -54,7 +54,7 @@ mixin _$HighlightDto {
   int get color;
   String get imageUrl;
   String get bookTitle;
-  int get pageNumber;
+  String get pageNumber;
   @ServerTimestampConverter()
   FieldValue get serverTimestamp;
 
@@ -74,7 +74,7 @@ abstract class $HighlightDtoCopyWith<$Res> {
       int color,
       String imageUrl,
       String bookTitle,
-      int pageNumber,
+      String pageNumber,
       @ServerTimestampConverter() FieldValue serverTimestamp});
 }
 
@@ -102,7 +102,8 @@ class _$HighlightDtoCopyWithImpl<$Res> implements $HighlightDtoCopyWith<$Res> {
       color: color == freezed ? _value.color : color as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
-      pageNumber: pageNumber == freezed ? _value.pageNumber : pageNumber as int,
+      pageNumber:
+          pageNumber == freezed ? _value.pageNumber : pageNumber as String,
       serverTimestamp: serverTimestamp == freezed
           ? _value.serverTimestamp
           : serverTimestamp as FieldValue,
@@ -123,7 +124,7 @@ abstract class _$HighlightDtoCopyWith<$Res>
       int color,
       String imageUrl,
       String bookTitle,
-      int pageNumber,
+      String pageNumber,
       @ServerTimestampConverter() FieldValue serverTimestamp});
 }
 
@@ -153,7 +154,8 @@ class __$HighlightDtoCopyWithImpl<$Res> extends _$HighlightDtoCopyWithImpl<$Res>
       color: color == freezed ? _value.color : color as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
-      pageNumber: pageNumber == freezed ? _value.pageNumber : pageNumber as int,
+      pageNumber:
+          pageNumber == freezed ? _value.pageNumber : pageNumber as String,
       serverTimestamp: serverTimestamp == freezed
           ? _value.serverTimestamp
           : serverTimestamp as FieldValue,
@@ -196,7 +198,7 @@ class _$_HighlightDto extends _HighlightDto {
   @override
   final String bookTitle;
   @override
-  final int pageNumber;
+  final String pageNumber;
   @override
   @ServerTimestampConverter()
   final FieldValue serverTimestamp;
@@ -260,7 +262,7 @@ abstract class _HighlightDto extends HighlightDto {
           @required int color,
           @required String imageUrl,
           @required String bookTitle,
-          @required int pageNumber,
+          @required String pageNumber,
           @required @ServerTimestampConverter() FieldValue serverTimestamp}) =
       _$_HighlightDto;
 
@@ -279,7 +281,7 @@ abstract class _HighlightDto extends HighlightDto {
   @override
   String get bookTitle;
   @override
-  int get pageNumber;
+  String get pageNumber;
   @override
   @ServerTimestampConverter()
   FieldValue get serverTimestamp;

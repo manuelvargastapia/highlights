@@ -42,7 +42,7 @@ class _$HighlightFormEventTearOff {
   }
 
 // ignore: unused_element
-  _PageNumberChanged pageNumberChanged(int pageNumber) {
+  _PageNumberChanged pageNumberChanged(String pageNumber) {
     return _PageNumberChanged(
       pageNumber,
     );
@@ -73,7 +73,7 @@ mixin _$HighlightFormEvent {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   });
@@ -83,7 +83,7 @@ mixin _$HighlightFormEvent {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),
@@ -198,7 +198,7 @@ class _$_Initialized implements _Initialized {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   }) {
@@ -219,7 +219,7 @@ class _$_Initialized implements _Initialized {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),
@@ -346,7 +346,7 @@ class _$_QuoteChange implements _QuoteChange {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   }) {
@@ -367,7 +367,7 @@ class _$_QuoteChange implements _QuoteChange {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),
@@ -493,7 +493,7 @@ class _$_ColorChange implements _ColorChange {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   }) {
@@ -514,7 +514,7 @@ class _$_ColorChange implements _ColorChange {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),
@@ -641,7 +641,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   }) {
@@ -662,7 +662,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),
@@ -728,7 +728,7 @@ abstract class _$PageNumberChangedCopyWith<$Res> {
   factory _$PageNumberChangedCopyWith(
           _PageNumberChanged value, $Res Function(_PageNumberChanged) then) =
       __$PageNumberChangedCopyWithImpl<$Res>;
-  $Res call({int pageNumber});
+  $Res call({String pageNumber});
 }
 
 /// @nodoc
@@ -747,7 +747,7 @@ class __$PageNumberChangedCopyWithImpl<$Res>
     Object pageNumber = freezed,
   }) {
     return _then(_PageNumberChanged(
-      pageNumber == freezed ? _value.pageNumber : pageNumber as int,
+      pageNumber == freezed ? _value.pageNumber : pageNumber as String,
     ));
   }
 }
@@ -757,7 +757,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
   const _$_PageNumberChanged(this.pageNumber) : assert(pageNumber != null);
 
   @override
-  final int pageNumber;
+  final String pageNumber;
 
   @override
   String toString() {
@@ -789,7 +789,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   }) {
@@ -810,7 +810,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),
@@ -864,9 +864,9 @@ class _$_PageNumberChanged implements _PageNumberChanged {
 }
 
 abstract class _PageNumberChanged implements HighlightFormEvent {
-  const factory _PageNumberChanged(int pageNumber) = _$_PageNumberChanged;
+  const factory _PageNumberChanged(String pageNumber) = _$_PageNumberChanged;
 
-  int get pageNumber;
+  String get pageNumber;
   @JsonKey(ignore: true)
   _$PageNumberChangedCopyWith<_PageNumberChanged> get copyWith;
 }
@@ -937,7 +937,7 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   }) {
@@ -958,7 +958,7 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),
@@ -1059,7 +1059,7 @@ class _$_Saved implements _Saved {
     @required TResult quoteChange(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
-    @required TResult pageNumberChanged(int pageNumber),
+    @required TResult pageNumberChanged(String pageNumber),
     @required TResult imageUrlChanged(String imageUrl),
     @required TResult saved(),
   }) {
@@ -1080,7 +1080,7 @@ class _$_Saved implements _Saved {
     TResult quoteChange(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
-    TResult pageNumberChanged(int pageNumber),
+    TResult pageNumberChanged(String pageNumber),
     TResult imageUrlChanged(String imageUrl),
     TResult saved(),
     @required TResult orElse(),

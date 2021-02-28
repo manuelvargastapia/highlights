@@ -178,7 +178,7 @@ void main() {
       '\nWhen it is inputed'
       '\nThen return Right with the same input',
       () async {
-        const validPage = 665;
+        const validPage = '665';
         final pageValueObject = QuotePage(validPage).value;
 
         expect(pageValueObject.isRight(), isTrue);
@@ -195,13 +195,13 @@ void main() {
       '\nWhen it is inputed'
       '\nThen return Left with ExceedingLength failure holding the same input',
       () async {
-        const largePage = 1234567;
+        const largePage = '1234567';
         final pageValueObject = QuotePage(largePage).value;
 
         expect(pageValueObject.isLeft(), isTrue);
         pageValueObject.fold(
           (failure) {
-            expect(failure, isA<ExceedingLength<int>>());
+            expect(failure, isA<ExceedingLength<String>>());
             expect(failure.failedValue, largePage);
           },
           (_) {},
@@ -213,14 +213,50 @@ void main() {
       '\nWhen it is inputed'
       '\nThen return Left with NegativeNumber failure holding the same input',
       () async {
-        const negativePage = -10;
+        const negativePage = '-10';
         final pageValueObject = QuotePage(negativePage).value;
 
         expect(pageValueObject.isLeft(), isTrue);
         pageValueObject.fold(
           (failure) {
-            expect(failure, isA<NegativeNumber<int>>());
+            expect(failure, isA<NegativeNumber<String>>());
             expect(failure.failedValue, negativePage);
+          },
+          (_) {},
+        );
+      },
+    );
+
+    test(
+      '\nGiven an empty page number'
+      '\nWhen it is inputed'
+      '\nThen return Left with an Empty failure',
+      () async {
+        const emptyPage = '';
+        final pageValueObject = QuotePage(emptyPage).value;
+
+        expect(pageValueObject.isLeft(), isTrue);
+        pageValueObject.fold(
+          (failure) {
+            expect(failure, isA<Empty<String>>());
+          },
+          (_) {},
+        );
+      },
+    );
+
+    test(
+      '\nGiven a non-int String'
+      '\nWhen it is inputed'
+      '\nThen return Left with an NotAnInt failure',
+      () async {
+        const notInt = 'nine';
+        final pageValueObject = QuotePage(notInt).value;
+
+        expect(pageValueObject.isLeft(), isTrue);
+        pageValueObject.fold(
+          (failure) {
+            expect(failure, isA<NotAnInt<String>>());
           },
           (_) {},
         );

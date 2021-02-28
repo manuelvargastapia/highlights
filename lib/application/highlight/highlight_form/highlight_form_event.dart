@@ -11,7 +11,7 @@ abstract class HighlightFormEvent with _$HighlightFormEvent {
     String bookTitle,
   ) = _BookTitleChanged;
   const factory HighlightFormEvent.pageNumberChanged(
-    int pageNumber,
+    String pageNumber,
   ) = _PageNumberChanged;
   const factory HighlightFormEvent.imageUrlChanged(
     String imageUrl,

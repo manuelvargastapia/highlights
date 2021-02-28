@@ -37,7 +37,7 @@ abstract class Highlight implements _$Highlight {
         color: HighlightColor(HighlightColor.predefinedColors[0]),
         imageUrl: ImageUrl.notAvailable(),
         bookTitle: BookTitle(''),
-        pageNumber: QuotePage(0),
+        pageNumber: QuotePage(''),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
