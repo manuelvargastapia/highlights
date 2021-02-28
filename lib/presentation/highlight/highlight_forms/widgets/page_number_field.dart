@@ -29,7 +29,7 @@ class PageNumberField extends HookWidget {
             labelText: 'Page number',
             counterText: '', // Don't show counter text
           ),
-          maxLength: QuotePage.maxLength,
+          maxLength: PageNumber.maxLength,
           onChanged: (value) {
             context
                 .read<HighlightFormBloc>()

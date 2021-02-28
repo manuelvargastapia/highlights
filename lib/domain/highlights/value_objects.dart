@@ -64,15 +64,15 @@ class BookTitle extends ValueObject<String> {
   const BookTitle._(this.value);
 }
 
-class QuotePage extends ValueObject<String> {
+class PageNumber extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
   static const maxLength = 6;
 
-  factory QuotePage(String input) {
+  factory PageNumber(String input) {
     assert(input != null);
-    return QuotePage._(
+    return PageNumber._(
       validateMaxLength(input, maxLength)
           .flatMap(validateNotEmpty)
           .flatMap(validateIsInt)
@@ -80,7 +80,7 @@ class QuotePage extends ValueObject<String> {
     );
   }
 
-  const QuotePage._(this.value);
+  const PageNumber._(this.value);
 }
 
 class ImageUrl extends ValueObject<String> {

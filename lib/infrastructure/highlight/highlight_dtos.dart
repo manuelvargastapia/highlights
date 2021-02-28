@@ -54,7 +54,7 @@ abstract class HighlightDto implements _$HighlightDto {
       color: HighlightColor(Color(color)),
       imageUrl: imageUrl.isEmpty ? ImageUrl.notAvailable() : ImageUrl(imageUrl),
       bookTitle: BookTitle(bookTitle),
-      pageNumber: QuotePage(pageNumber),
+      pageNumber: PageNumber(pageNumber),
     );
   }
 

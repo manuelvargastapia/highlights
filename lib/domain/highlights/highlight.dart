@@ -28,7 +28,7 @@ abstract class Highlight implements _$Highlight {
     @required HighlightColor color,
     @required ImageUrl imageUrl,
     @required BookTitle bookTitle,
-    @required QuotePage pageNumber,
+    @required PageNumber pageNumber,
   }) = _Highlights;
 
   factory Highlight.empty() => Highlight(
@@ -37,7 +37,7 @@ abstract class Highlight implements _$Highlight {
         color: HighlightColor(HighlightColor.predefinedColors[0]),
         imageUrl: ImageUrl.notAvailable(),
         bookTitle: BookTitle(''),
-        pageNumber: QuotePage(''),
+        pageNumber: PageNumber(''),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {

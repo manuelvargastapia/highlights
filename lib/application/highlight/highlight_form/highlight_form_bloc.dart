@@ -65,7 +65,7 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
       pageNumberChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
-            pageNumber: QuotePage(event.pageNumber),
+            pageNumber: PageNumber(event.pageNumber),
           ),
           saveFailureOrSuccessOption: none(),
         );

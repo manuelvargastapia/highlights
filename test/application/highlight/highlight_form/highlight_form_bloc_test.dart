@@ -132,7 +132,7 @@ void main() {
       expect: [
         initialState.copyWith(
           highlight: initialState.highlight.copyWith(
-            pageNumber: QuotePage(newPageNumber),
+            pageNumber: PageNumber(newPageNumber),
           ),
           saveFailureOrSuccessOption: none(),
         ),
@@ -169,7 +169,7 @@ void main() {
       color: HighlightColor(HighlightColor.predefinedColors[0]),
       imageUrl: ImageUrl('http://validurl.test'),
       bookTitle: BookTitle('title'),
-      pageNumber: QuotePage('333'),
+      pageNumber: PageNumber('333'),
     );
 
     final seedState = initialState.copyWith(highlight: validHighlight);

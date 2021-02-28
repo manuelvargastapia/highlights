@@ -94,7 +94,7 @@ class HighlightCard extends StatelessWidget {
 // IDEA: use Chips as tags to filter or cathegorize highlights
 class _InfoDisplay extends StatelessWidget {
   final BookTitle bookTitle;
-  final QuotePage pageNumber;
+  final PageNumber pageNumber;
 
   const _InfoDisplay({
     Key key,

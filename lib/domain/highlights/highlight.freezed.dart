@@ -20,7 +20,7 @@ class _$HighlightTearOff {
       @required HighlightColor color,
       @required ImageUrl imageUrl,
       @required BookTitle bookTitle,
-      @required QuotePage pageNumber}) {
+      @required PageNumber pageNumber}) {
     return _Highlights(
       id: id,
       quote: quote,
@@ -43,7 +43,7 @@ mixin _$Highlight {
   HighlightColor get color;
   ImageUrl get imageUrl;
   BookTitle get bookTitle;
-  QuotePage get pageNumber;
+  PageNumber get pageNumber;
 
   @JsonKey(ignore: true)
   $HighlightCopyWith<Highlight> get copyWith;
@@ -59,7 +59,7 @@ abstract class $HighlightCopyWith<$Res> {
       HighlightColor color,
       ImageUrl imageUrl,
       BookTitle bookTitle,
-      QuotePage pageNumber});
+      PageNumber pageNumber});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
       bookTitle:
           bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
       pageNumber:
-          pageNumber == freezed ? _value.pageNumber : pageNumber as QuotePage,
+          pageNumber == freezed ? _value.pageNumber : pageNumber as PageNumber,
     ));
   }
 }
@@ -104,7 +104,7 @@ abstract class _$HighlightsCopyWith<$Res> implements $HighlightCopyWith<$Res> {
       HighlightColor color,
       ImageUrl imageUrl,
       BookTitle bookTitle,
-      QuotePage pageNumber});
+      PageNumber pageNumber});
 }
 
 /// @nodoc
@@ -134,7 +134,7 @@ class __$HighlightsCopyWithImpl<$Res> extends _$HighlightCopyWithImpl<$Res>
       bookTitle:
           bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
       pageNumber:
-          pageNumber == freezed ? _value.pageNumber : pageNumber as QuotePage,
+          pageNumber == freezed ? _value.pageNumber : pageNumber as PageNumber,
     ));
   }
 }
@@ -167,7 +167,7 @@ class _$_Highlights extends _Highlights {
   @override
   final BookTitle bookTitle;
   @override
-  final QuotePage pageNumber;
+  final PageNumber pageNumber;
 
   @override
   String toString() {
@@ -219,7 +219,7 @@ abstract class _Highlights extends Highlight {
       @required HighlightColor color,
       @required ImageUrl imageUrl,
       @required BookTitle bookTitle,
-      @required QuotePage pageNumber}) = _$_Highlights;
+      @required PageNumber pageNumber}) = _$_Highlights;
 
   @override
   UniqueId get id;
@@ -232,7 +232,7 @@ abstract class _Highlights extends Highlight {
   @override
   BookTitle get bookTitle;
   @override
-  QuotePage get pageNumber;
+  PageNumber get pageNumber;
   @override
   @JsonKey(ignore: true)
   _$HighlightsCopyWith<_Highlights> get copyWith;

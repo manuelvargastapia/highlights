@@ -32,7 +32,7 @@ final mockHighlight = Highlight(
   quote: HighlightQuote('Test quote'),
   imageUrl: ImageUrl('https://test-url.test'),
   bookTitle: BookTitle('Test title'),
-  pageNumber: QuotePage('666'),
+  pageNumber: PageNumber('666'),
 );
 
 class MockIAuthFacade extends Mock implements IAuthFacade {}
@@ -517,7 +517,7 @@ void main() {
       quote: HighlightQuote('New inspirational quote'),
       imageUrl: ImageUrl('https://new-test-url.test'),
       bookTitle: BookTitle('Brand new book title'),
-      pageNumber: QuotePage('999'),
+      pageNumber: PageNumber('999'),
     );
 
     test(
@@ -640,7 +640,7 @@ void main() {
       quote: HighlightQuote('Test quote updated'),
       imageUrl: ImageUrl('https://test-url-updated.test'),
       bookTitle: BookTitle('Test title updated'),
-      pageNumber: QuotePage('777'),
+      pageNumber: PageNumber('777'),
     );
 
     test(

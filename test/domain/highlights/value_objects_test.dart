@@ -172,14 +172,14 @@ void main() {
       },
     );
   });
-  group('QuotePage', () {
+  group('PageNumber', () {
     test(
       '\nGiven a valid page number'
       '\nWhen it is inputed'
       '\nThen return Right with the same input',
       () async {
         const validPage = '665';
-        final pageValueObject = QuotePage(validPage).value;
+        final pageValueObject = PageNumber(validPage).value;
 
         expect(pageValueObject.isRight(), isTrue);
         pageValueObject.fold(
@@ -196,7 +196,7 @@ void main() {
       '\nThen return Left with ExceedingLength failure holding the same input',
       () async {
         const largePage = '1234567';
-        final pageValueObject = QuotePage(largePage).value;
+        final pageValueObject = PageNumber(largePage).value;
 
         expect(pageValueObject.isLeft(), isTrue);
         pageValueObject.fold(
@@ -214,7 +214,7 @@ void main() {
       '\nThen return Left with NegativeNumber failure holding the same input',
       () async {
         const negativePage = '-10';
-        final pageValueObject = QuotePage(negativePage).value;
+        final pageValueObject = PageNumber(negativePage).value;
 
         expect(pageValueObject.isLeft(), isTrue);
         pageValueObject.fold(
@@ -233,7 +233,7 @@ void main() {
       '\nThen return Left with an Empty failure',
       () async {
         const emptyPage = '';
-        final pageValueObject = QuotePage(emptyPage).value;
+        final pageValueObject = PageNumber(emptyPage).value;
 
         expect(pageValueObject.isLeft(), isTrue);
         pageValueObject.fold(
@@ -251,7 +251,7 @@ void main() {
       '\nThen return Left with an NotAnInt failure',
       () async {
         const notInt = 'nine';
-        final pageValueObject = QuotePage(notInt).value;
+        final pageValueObject = PageNumber(notInt).value;
 
         expect(pageValueObject.isLeft(), isTrue);
         pageValueObject.fold(
