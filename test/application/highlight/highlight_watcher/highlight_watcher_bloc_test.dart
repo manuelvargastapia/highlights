@@ -9,7 +9,6 @@ import 'package:highlights/application/highlight/highlight_watcher/highlight_wat
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/highlight_search_filter.dart';
-import 'package:highlights/domain/highlights/value_objects.dart';
 
 class MockHighlightRepository extends Mock implements IHighlightRepository {}
 
