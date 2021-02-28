@@ -2,12 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:injectable/injectable.dart';
+
+import 'package:highlights/domain/authentication/i_auth_facade.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 part 'auth_bloc.freezed.dart';
+
+// TODO: NO NEW DOCUMENTS CREATED IN FIRESTORE FOR NEW USERS
+// TODO: USERS CAN VIEW DOCS FROM OTHERS
 
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {

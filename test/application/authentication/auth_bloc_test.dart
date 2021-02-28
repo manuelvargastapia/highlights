@@ -30,7 +30,7 @@ void main() {
         return AuthBloc(mockAuthFacade);
       },
       act: (bloc) => bloc.add(const AuthEvent.authCheckRequested()),
-      expect: [const Authenticated()],
+      expect: [const AuthState.authenticated()],
       verify: (_) {
         verify(mockAuthFacade.getSignedInUser()).called(1);
       },
@@ -45,7 +45,7 @@ void main() {
         return AuthBloc(mockAuthFacade);
       },
       act: (bloc) => bloc.add(const AuthEvent.authCheckRequested()),
-      expect: [const Unauthenticated()],
+      expect: [const AuthState.unauthenticated()],
       verify: (_) {
         verify(mockAuthFacade.getSignedInUser()).called(1);
       },
@@ -58,7 +58,7 @@ void main() {
       '\nThen Unauthenticated is emitted',
       build: () => AuthBloc(mockAuthFacade),
       act: (bloc) => bloc.add(const AuthEvent.signedOut()),
-      expect: [const Unauthenticated()],
+      expect: [const AuthState.unauthenticated()],
       verify: (_) {
         verify(mockAuthFacade.signOut()).called(1);
       },

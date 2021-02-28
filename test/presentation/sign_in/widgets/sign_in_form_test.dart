@@ -1,13 +1,15 @@
-import 'package:dartz/dartz.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:dartz/dartz.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:mockito/mockito.dart';
 
 import 'package:highlights/application/authentication/sign_in_form/sign_in_form_bloc.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
+import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/injection.dart';
 import 'package:highlights/presentation/sign_in/widgets/sign_in_form.dart';
 
@@ -52,6 +54,7 @@ void main() {
             )
           ]),
         );
+        when(mockSignInFormBloc.state).thenReturn(SignInFormState.initial());
         await tester.pumpWidget(renderWidget());
         expect(find.text('Invalid Email'), findsNothing);
         expect(find.text('Short Password'), findsNothing);
@@ -68,6 +71,9 @@ void main() {
       '\nThen show corresponding error message',
       (tester) async {
         const shortPassword = '1234';
+        when(mockSignInFormBloc.state).thenReturn(
+          SignInFormState.initial(),
+        );
         whenListen(
           mockSignInFormBloc,
           Stream.fromIterable([
@@ -92,6 +98,9 @@ void main() {
       '\nWhen "SIGN IN" button is pressed'
       '\nThen show both error messages',
       (tester) async {
+        when(mockSignInFormBloc.state).thenReturn(
+          SignInFormState.initial(),
+        );
         whenListen(
           mockSignInFormBloc,
           Stream.fromIterable([SignInFormState.initial()]),
@@ -111,6 +120,9 @@ void main() {
       '\nWhen "REGISTER" button is pressed'
       '\nThen show both form error messages',
       (tester) async {
+        when(mockSignInFormBloc.state).thenReturn(
+          SignInFormState.initial(),
+        );
         whenListen(
           mockSignInFormBloc,
           Stream.fromIterable([SignInFormState.initial()]),
@@ -123,6 +135,182 @@ void main() {
         await tester.pump();
         expect(find.text('Invalid Email'), findsOneWidget);
         expect(find.text('Short Password'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      '\nGiven sign in with Google dialog open'
+      '\nWhen _CancelledByUser error ocurrs'
+      '\nThen show corresponding message',
+      (tester) async {
+        await tester.runAsync(() async {
+          whenListen(
+            mockSignInFormBloc,
+            Stream.fromIterable([
+              SignInFormState.initial().copyWith(
+                isSubmitting: false,
+                authFailureOrSuccessOption: some(
+                  const Left(AuthFailure.cancelledByUser()),
+                ),
+              ),
+            ]),
+          );
+
+          await tester.pumpWidget(renderWidget());
+          await tester.pump();
+
+          final errorMessage = find.text('Cancelled');
+
+          expect(errorMessage, findsOneWidget);
+        });
+      },
+    );
+
+    testWidgets(
+      '\nGiven any auth method is in progress'
+      '\nWhen _ServerError error ocurrs'
+      '\nThen show corresponding message',
+      (tester) async {
+        await tester.runAsync(() async {
+          when(mockSignInFormBloc.state).thenReturn(SignInFormState.initial());
+          whenListen(
+            mockSignInFormBloc,
+            Stream.fromIterable([
+              SignInFormState.initial().copyWith(
+                isSubmitting: false,
+                authFailureOrSuccessOption: some(
+                  const Left(AuthFailure.serverError()),
+                ),
+              ),
+            ]),
+          );
+
+          await tester.pumpWidget(renderWidget());
+          await tester.pump();
+
+          final errorMessage = find.text('Server Error');
+
+          expect(errorMessage, findsOneWidget);
+        });
+      },
+    );
+
+    testWidgets(
+      '\nGiven sign in with email and password'
+      '\nWhen _InvalidEmailAndPasswordCombination error ocurrs'
+      '\nThen show corresponding message',
+      (tester) async {
+        await tester.runAsync(() async {
+          when(mockSignInFormBloc.state).thenReturn(SignInFormState.initial());
+          whenListen(
+            mockSignInFormBloc,
+            Stream.fromIterable([
+              SignInFormState.initial().copyWith(
+                isSubmitting: false,
+                authFailureOrSuccessOption: some(
+                  const Left(AuthFailure.invalidEmailAndPasswordCombination()),
+                ),
+              ),
+            ]),
+          );
+
+          await tester.pumpWidget(renderWidget());
+          await tester.pump();
+
+          final errorMessage = find.text(
+            'Invalid email and password combination',
+          );
+
+          expect(errorMessage, findsOneWidget);
+        });
+      },
+    );
+
+    testWidgets(
+      '\nGiven registering with email and password'
+      '\nWhen _EmailAlreadyInUse error ocurrs'
+      '\nThen show corresponding message',
+      (tester) async {
+        await tester.runAsync(() async {
+          when(mockSignInFormBloc.state).thenReturn(SignInFormState.initial());
+          whenListen(
+            mockSignInFormBloc,
+            Stream.fromIterable([
+              SignInFormState.initial().copyWith(
+                isSubmitting: false,
+                authFailureOrSuccessOption: some(
+                  const Left(AuthFailure.emailAlreadyInUse()),
+                ),
+              ),
+            ]),
+          );
+
+          await tester.pumpWidget(renderWidget());
+          await tester.pump();
+
+          final errorMessage = find.text('Email already in use');
+
+          expect(errorMessage, findsOneWidget);
+        });
+      },
+    );
+
+    testWidgets(
+      '\nGiven sign in with any method'
+      '\nWhen _OperationNotAllowed error ocurrs'
+      '\nThen show corresponding message',
+      (tester) async {
+        await tester.runAsync(() async {
+          when(mockSignInFormBloc.state).thenReturn(SignInFormState.initial());
+          whenListen(
+            mockSignInFormBloc,
+            Stream.fromIterable([
+              SignInFormState.initial().copyWith(
+                isSubmitting: false,
+                authFailureOrSuccessOption: some(
+                  const Left(AuthFailure.operationNotAllowed()),
+                ),
+              ),
+            ]),
+          );
+
+          await tester.pumpWidget(renderWidget());
+          await tester.pump();
+
+          final errorMessage = find.text('User blocked');
+
+          expect(errorMessage, findsOneWidget);
+        });
+      },
+    );
+
+    testWidgets(
+      '\nGiven any auth method in progress'
+      '\nWhen isSubmitting is true'
+      '\nThen find LinearProgressIndicator',
+      (tester) async {
+        when(mockSignInFormBloc.state).thenReturn(
+          SignInFormState.initial().copyWith(isSubmitting: true),
+        );
+
+        await tester.pumpWidget(renderWidget());
+
+        expect(find.byType(LinearProgressIndicator), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      '\nGiven any auth method in progress'
+      '\nWhen isSubmitting is false'
+      '\nThen no LinearProgressIndicator is found',
+      (tester) async {
+        when(mockSignInFormBloc.state).thenReturn(
+          SignInFormState.initial().copyWith(isSubmitting: false),
+        );
+
+        await tester.pumpWidget(renderWidget());
+
+        expect(find.byType(LinearProgressIndicator), findsNothing);
       },
     );
 
@@ -157,7 +345,5 @@ void main() {
     // );
 
     // TODO: test navigation ('SIGN IN' and 'SIGN IN WITH GOOGLE' buttons)
-    // TODO: test register UI feedback ('REGISTER' button)
-    // TODO: test Snackbar messages on failures
   });
 }
