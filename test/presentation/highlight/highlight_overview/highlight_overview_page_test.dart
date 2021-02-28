@@ -5,19 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
-import 'package:mockito/mockito.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:highlights/injection.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
-import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
 
 import '../../../firebase_setup_mock.dart';
-
-class MockHighlightWatcherBloc extends MockBloc<HighlightWatcherState>
-    implements HighlightWatcherBloc {}
 
 class MockHighlightActorBloc extends MockBloc<HighlightActorState>
     implements HighlightActorBloc {}
@@ -32,12 +27,10 @@ void main() {
     await Firebase.initializeApp();
   });
 
-  MockHighlightWatcherBloc mockHighlightWatcherBloc;
   MockHighlightActorBloc mockHighlightActorBloc;
   MockAuthBloc mockAuthBloc;
 
   setUp(() {
-    mockHighlightWatcherBloc = MockHighlightWatcherBloc();
     mockHighlightActorBloc = MockHighlightActorBloc();
     mockAuthBloc = MockAuthBloc();
   });
@@ -48,9 +41,6 @@ void main() {
         providers: [
           BlocProvider<AuthBloc>.value(
             value: mockAuthBloc,
-          ),
-          BlocProvider<HighlightWatcherBloc>.value(
-            value: mockHighlightWatcherBloc,
           ),
           BlocProvider<HighlightActorBloc>.value(
             value: mockHighlightActorBloc,
@@ -67,42 +57,11 @@ void main() {
 
     testWidgets(
       '\nGiven authenticated user'
-      '\nWhen enters to HighlightOverviewPage'
-      '\nThen everything renders correctly',
-      (tester) async {
-        when(
-          mockHighlightWatcherBloc.state,
-        ).thenReturn(
-          const HighlightWatcherState.loadInProgress(),
-        );
-
-        await tester.pumpWidget(renderWidget());
-
-        final titleText = find.widgetWithText(AppBar, 'Highlights');
-        final exitIcon = find.widgetWithIcon(AppBar, Icons.exit_to_app);
-        final searchIcon = find.widgetWithIcon(AppBar, Icons.search);
-        final addFAB = find.widgetWithIcon(FloatingActionButton, Icons.add);
-
-        expect(titleText, findsOneWidget);
-        expect(exitIcon, findsOneWidget);
-        expect(searchIcon, findsOneWidget);
-        expect(addFAB, findsOneWidget);
-      },
-    );
-
-    testWidgets(
-      '\nGiven authenticated user'
       '\nWhen _Unexpected error ocurrs'
       '\nThen show corresponding message',
       (tester) async {
         // runAsync is required to properly expect for FlushBar message
         await tester.runAsync(() async {
-          when(
-            mockHighlightWatcherBloc.state,
-          ).thenReturn(
-            const HighlightWatcherState.loadInProgress(),
-          );
-
           whenListen(
             mockHighlightActorBloc,
             Stream.fromIterable([
@@ -132,12 +91,6 @@ void main() {
       '\nThen show corresponding message',
       (tester) async {
         await tester.runAsync(() async {
-          when(
-            mockHighlightWatcherBloc.state,
-          ).thenReturn(
-            const HighlightWatcherState.loadInProgress(),
-          );
-
           whenListen(
             mockHighlightActorBloc,
             Stream.fromIterable([
@@ -165,12 +118,6 @@ void main() {
       '\nThen show corresponding message',
       (tester) async {
         await tester.runAsync(() async {
-          when(
-            mockHighlightWatcherBloc.state,
-          ).thenReturn(
-            const HighlightWatcherState.loadInProgress(),
-          );
-
           whenListen(
             mockHighlightActorBloc,
             Stream.fromIterable([

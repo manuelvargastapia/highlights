@@ -5,7 +5,6 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:highlights/injection.dart';
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
-import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 
@@ -23,10 +22,6 @@ class AppWidget extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<HighlightActorBloc>(),
         ),
-        BlocProvider(
-          create: (context) => getIt<HighlightWatcherBloc>()
-            ..add(const HighlightWatcherEvent.watchAllStarted()),
-        )
       ],
       child: MaterialApp(
         title: 'Highlights',
