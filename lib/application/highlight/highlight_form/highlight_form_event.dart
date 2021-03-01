@@ -13,8 +13,6 @@ abstract class HighlightFormEvent with _$HighlightFormEvent {
   const factory HighlightFormEvent.pageNumberChanged(
     String pageNumber,
   ) = _PageNumberChanged;
-  const factory HighlightFormEvent.imageUrlChanged(
-    String imageUrl,
-  ) = _ImageUrlChanged;
+  const factory HighlightFormEvent.imageChanged(Image image) = _ImageChanged;
   const factory HighlightFormEvent.saved() = _Saved;
 }

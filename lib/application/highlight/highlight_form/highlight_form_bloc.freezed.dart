@@ -49,9 +49,9 @@ class _$HighlightFormEventTearOff {
   }
 
 // ignore: unused_element
-  _ImageUrlChanged imageUrlChanged(String imageUrl) {
-    return _ImageUrlChanged(
-      imageUrl,
+  _ImageChanged imageChanged(Image image) {
+    return _ImageChanged(
+      image,
     );
   }
 
@@ -74,7 +74,7 @@ mixin _$HighlightFormEvent {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   });
   @optionalTypeArgs
@@ -84,7 +84,7 @@ mixin _$HighlightFormEvent {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   });
@@ -95,7 +95,7 @@ mixin _$HighlightFormEvent {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   });
   @optionalTypeArgs
@@ -105,7 +105,7 @@ mixin _$HighlightFormEvent {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   });
@@ -199,7 +199,7 @@ class _$_Initialized implements _Initialized {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   }) {
     assert(initialized != null);
@@ -207,7 +207,7 @@ class _$_Initialized implements _Initialized {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return initialized(initialHighlighOption);
   }
@@ -220,7 +220,7 @@ class _$_Initialized implements _Initialized {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   }) {
@@ -239,7 +239,7 @@ class _$_Initialized implements _Initialized {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   }) {
     assert(initialized != null);
@@ -247,7 +247,7 @@ class _$_Initialized implements _Initialized {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return initialized(this);
   }
@@ -260,7 +260,7 @@ class _$_Initialized implements _Initialized {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   }) {
@@ -347,7 +347,7 @@ class _$_QuoteChange implements _QuoteChange {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   }) {
     assert(initialized != null);
@@ -355,7 +355,7 @@ class _$_QuoteChange implements _QuoteChange {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return quoteChange(quote);
   }
@@ -368,7 +368,7 @@ class _$_QuoteChange implements _QuoteChange {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   }) {
@@ -387,7 +387,7 @@ class _$_QuoteChange implements _QuoteChange {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   }) {
     assert(initialized != null);
@@ -395,7 +395,7 @@ class _$_QuoteChange implements _QuoteChange {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return quoteChange(this);
   }
@@ -408,7 +408,7 @@ class _$_QuoteChange implements _QuoteChange {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   }) {
@@ -494,7 +494,7 @@ class _$_ColorChange implements _ColorChange {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   }) {
     assert(initialized != null);
@@ -502,7 +502,7 @@ class _$_ColorChange implements _ColorChange {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return colorChange(color);
   }
@@ -515,7 +515,7 @@ class _$_ColorChange implements _ColorChange {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   }) {
@@ -534,7 +534,7 @@ class _$_ColorChange implements _ColorChange {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   }) {
     assert(initialized != null);
@@ -542,7 +542,7 @@ class _$_ColorChange implements _ColorChange {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return colorChange(this);
   }
@@ -555,7 +555,7 @@ class _$_ColorChange implements _ColorChange {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   }) {
@@ -642,7 +642,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   }) {
     assert(initialized != null);
@@ -650,7 +650,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return bookTitleChanged(bookTitle);
   }
@@ -663,7 +663,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   }) {
@@ -682,7 +682,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   }) {
     assert(initialized != null);
@@ -690,7 +690,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return bookTitleChanged(this);
   }
@@ -703,7 +703,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   }) {
@@ -790,7 +790,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   }) {
     assert(initialized != null);
@@ -798,7 +798,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return pageNumberChanged(pageNumber);
   }
@@ -811,7 +811,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   }) {
@@ -830,7 +830,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   }) {
     assert(initialized != null);
@@ -838,7 +838,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return pageNumberChanged(this);
   }
@@ -851,7 +851,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   }) {
@@ -872,63 +872,74 @@ abstract class _PageNumberChanged implements HighlightFormEvent {
 }
 
 /// @nodoc
-abstract class _$ImageUrlChangedCopyWith<$Res> {
-  factory _$ImageUrlChangedCopyWith(
-          _ImageUrlChanged value, $Res Function(_ImageUrlChanged) then) =
-      __$ImageUrlChangedCopyWithImpl<$Res>;
-  $Res call({String imageUrl});
+abstract class _$ImageChangedCopyWith<$Res> {
+  factory _$ImageChangedCopyWith(
+          _ImageChanged value, $Res Function(_ImageChanged) then) =
+      __$ImageChangedCopyWithImpl<$Res>;
+  $Res call({Image image});
+
+  $ImageCopyWith<$Res> get image;
 }
 
 /// @nodoc
-class __$ImageUrlChangedCopyWithImpl<$Res>
+class __$ImageChangedCopyWithImpl<$Res>
     extends _$HighlightFormEventCopyWithImpl<$Res>
-    implements _$ImageUrlChangedCopyWith<$Res> {
-  __$ImageUrlChangedCopyWithImpl(
-      _ImageUrlChanged _value, $Res Function(_ImageUrlChanged) _then)
-      : super(_value, (v) => _then(v as _ImageUrlChanged));
+    implements _$ImageChangedCopyWith<$Res> {
+  __$ImageChangedCopyWithImpl(
+      _ImageChanged _value, $Res Function(_ImageChanged) _then)
+      : super(_value, (v) => _then(v as _ImageChanged));
 
   @override
-  _ImageUrlChanged get _value => super._value as _ImageUrlChanged;
+  _ImageChanged get _value => super._value as _ImageChanged;
 
   @override
   $Res call({
-    Object imageUrl = freezed,
+    Object image = freezed,
   }) {
-    return _then(_ImageUrlChanged(
-      imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+    return _then(_ImageChanged(
+      image == freezed ? _value.image : image as Image,
     ));
+  }
+
+  @override
+  $ImageCopyWith<$Res> get image {
+    if (_value.image == null) {
+      return null;
+    }
+    return $ImageCopyWith<$Res>(_value.image, (value) {
+      return _then(_value.copyWith(image: value));
+    });
   }
 }
 
 /// @nodoc
-class _$_ImageUrlChanged implements _ImageUrlChanged {
-  const _$_ImageUrlChanged(this.imageUrl) : assert(imageUrl != null);
+class _$_ImageChanged implements _ImageChanged {
+  const _$_ImageChanged(this.image) : assert(image != null);
 
   @override
-  final String imageUrl;
+  final Image image;
 
   @override
   String toString() {
-    return 'HighlightFormEvent.imageUrlChanged(imageUrl: $imageUrl)';
+    return 'HighlightFormEvent.imageChanged(image: $image)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ImageUrlChanged &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)));
+        (other is _ImageChanged &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(imageUrl);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(image);
 
   @JsonKey(ignore: true)
   @override
-  _$ImageUrlChangedCopyWith<_ImageUrlChanged> get copyWith =>
-      __$ImageUrlChangedCopyWithImpl<_ImageUrlChanged>(this, _$identity);
+  _$ImageChangedCopyWith<_ImageChanged> get copyWith =>
+      __$ImageChangedCopyWithImpl<_ImageChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -938,7 +949,7 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   }) {
     assert(initialized != null);
@@ -946,9 +957,9 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
-    return imageUrlChanged(imageUrl);
+    return imageChanged(image);
   }
 
   @override
@@ -959,13 +970,13 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (imageUrlChanged != null) {
-      return imageUrlChanged(imageUrl);
+    if (imageChanged != null) {
+      return imageChanged(image);
     }
     return orElse();
   }
@@ -978,7 +989,7 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   }) {
     assert(initialized != null);
@@ -986,9 +997,9 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
-    return imageUrlChanged(this);
+    return imageChanged(this);
   }
 
   @override
@@ -999,24 +1010,24 @@ class _$_ImageUrlChanged implements _ImageUrlChanged {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (imageUrlChanged != null) {
-      return imageUrlChanged(this);
+    if (imageChanged != null) {
+      return imageChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class _ImageUrlChanged implements HighlightFormEvent {
-  const factory _ImageUrlChanged(String imageUrl) = _$_ImageUrlChanged;
+abstract class _ImageChanged implements HighlightFormEvent {
+  const factory _ImageChanged(Image image) = _$_ImageChanged;
 
-  String get imageUrl;
+  Image get image;
   @JsonKey(ignore: true)
-  _$ImageUrlChangedCopyWith<_ImageUrlChanged> get copyWith;
+  _$ImageChangedCopyWith<_ImageChanged> get copyWith;
 }
 
 /// @nodoc
@@ -1060,7 +1071,7 @@ class _$_Saved implements _Saved {
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
-    @required TResult imageUrlChanged(String imageUrl),
+    @required TResult imageChanged(Image image),
     @required TResult saved(),
   }) {
     assert(initialized != null);
@@ -1068,7 +1079,7 @@ class _$_Saved implements _Saved {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return saved();
   }
@@ -1081,7 +1092,7 @@ class _$_Saved implements _Saved {
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
-    TResult imageUrlChanged(String imageUrl),
+    TResult imageChanged(Image image),
     TResult saved(),
     @required TResult orElse(),
   }) {
@@ -1100,7 +1111,7 @@ class _$_Saved implements _Saved {
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
-    @required TResult imageUrlChanged(_ImageUrlChanged value),
+    @required TResult imageChanged(_ImageChanged value),
     @required TResult saved(_Saved value),
   }) {
     assert(initialized != null);
@@ -1108,7 +1119,7 @@ class _$_Saved implements _Saved {
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
-    assert(imageUrlChanged != null);
+    assert(imageChanged != null);
     assert(saved != null);
     return saved(this);
   }
@@ -1121,7 +1132,7 @@ class _$_Saved implements _Saved {
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
-    TResult imageUrlChanged(_ImageUrlChanged value),
+    TResult imageChanged(_ImageChanged value),
     TResult saved(_Saved value),
     @required TResult orElse(),
   }) {

@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:flutter/widgets.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:highlights/domain/highlights/highlight.dart';
@@ -70,10 +69,10 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
-      imageUrlChanged: (event) async* {
+      imageChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
-            imageUrl: ImageUrl(event.imageUrl),
+            image: event.image,
           ),
           saveFailureOrSuccessOption: none(),
         );
