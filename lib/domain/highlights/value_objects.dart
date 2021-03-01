@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:dartz/dartz.dart';
@@ -99,4 +101,22 @@ class ImageUrl extends ValueObject<String> {
   }
 
   const ImageUrl._(this.value);
+}
+
+// TODO: test
+class ImageFile extends ValueObject<File> {
+  @override
+  final Either<ValueFailure<File>, File> value;
+
+  factory ImageFile(File input) {
+    assert(input != null);
+
+    return ImageFile._(right(input));
+  }
+
+  factory ImageFile.notAvailable() {
+    return ImageFile._(right(File('')));
+  }
+
+  const ImageFile._(this.value);
 }

@@ -18,14 +18,14 @@ class _$HighlightTearOff {
       {@required UniqueId id,
       @required HighlightQuote quote,
       @required HighlightColor color,
-      @required ImageUrl imageUrl,
+      @required Image image,
       @required BookTitle bookTitle,
       @required PageNumber pageNumber}) {
     return _Highlights(
       id: id,
       quote: quote,
       color: color,
-      imageUrl: imageUrl,
+      image: image,
       bookTitle: bookTitle,
       pageNumber: pageNumber,
     );
@@ -41,7 +41,7 @@ mixin _$Highlight {
   UniqueId get id;
   HighlightQuote get quote;
   HighlightColor get color;
-  ImageUrl get imageUrl;
+  Image get image;
   BookTitle get bookTitle;
   PageNumber get pageNumber;
 
@@ -57,9 +57,11 @@ abstract class $HighlightCopyWith<$Res> {
       {UniqueId id,
       HighlightQuote quote,
       HighlightColor color,
-      ImageUrl imageUrl,
+      Image image,
       BookTitle bookTitle,
       PageNumber pageNumber});
+
+  $ImageCopyWith<$Res> get image;
 }
 
 /// @nodoc
@@ -75,7 +77,7 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
     Object id = freezed,
     Object quote = freezed,
     Object color = freezed,
-    Object imageUrl = freezed,
+    Object image = freezed,
     Object bookTitle = freezed,
     Object pageNumber = freezed,
   }) {
@@ -83,12 +85,22 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
+      image: image == freezed ? _value.image : image as Image,
       bookTitle:
           bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
       pageNumber:
           pageNumber == freezed ? _value.pageNumber : pageNumber as PageNumber,
     ));
+  }
+
+  @override
+  $ImageCopyWith<$Res> get image {
+    if (_value.image == null) {
+      return null;
+    }
+    return $ImageCopyWith<$Res>(_value.image, (value) {
+      return _then(_value.copyWith(image: value));
+    });
   }
 }
 
@@ -102,9 +114,12 @@ abstract class _$HighlightsCopyWith<$Res> implements $HighlightCopyWith<$Res> {
       {UniqueId id,
       HighlightQuote quote,
       HighlightColor color,
-      ImageUrl imageUrl,
+      Image image,
       BookTitle bookTitle,
       PageNumber pageNumber});
+
+  @override
+  $ImageCopyWith<$Res> get image;
 }
 
 /// @nodoc
@@ -122,7 +137,7 @@ class __$HighlightsCopyWithImpl<$Res> extends _$HighlightCopyWithImpl<$Res>
     Object id = freezed,
     Object quote = freezed,
     Object color = freezed,
-    Object imageUrl = freezed,
+    Object image = freezed,
     Object bookTitle = freezed,
     Object pageNumber = freezed,
   }) {
@@ -130,7 +145,7 @@ class __$HighlightsCopyWithImpl<$Res> extends _$HighlightCopyWithImpl<$Res>
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
+      image: image == freezed ? _value.image : image as Image,
       bookTitle:
           bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
       pageNumber:
@@ -145,13 +160,13 @@ class _$_Highlights extends _Highlights {
       {@required this.id,
       @required this.quote,
       @required this.color,
-      @required this.imageUrl,
+      @required this.image,
       @required this.bookTitle,
       @required this.pageNumber})
       : assert(id != null),
         assert(quote != null),
         assert(color != null),
-        assert(imageUrl != null),
+        assert(image != null),
         assert(bookTitle != null),
         assert(pageNumber != null),
         super._();
@@ -163,7 +178,7 @@ class _$_Highlights extends _Highlights {
   @override
   final HighlightColor color;
   @override
-  final ImageUrl imageUrl;
+  final Image image;
   @override
   final BookTitle bookTitle;
   @override
@@ -171,7 +186,7 @@ class _$_Highlights extends _Highlights {
 
   @override
   String toString() {
-    return 'Highlight(id: $id, quote: $quote, color: $color, imageUrl: $imageUrl, bookTitle: $bookTitle, pageNumber: $pageNumber)';
+    return 'Highlight(id: $id, quote: $quote, color: $color, image: $image, bookTitle: $bookTitle, pageNumber: $pageNumber)';
   }
 
   @override
@@ -184,9 +199,8 @@ class _$_Highlights extends _Highlights {
                 const DeepCollectionEquality().equals(other.quote, quote)) &&
             (identical(other.color, color) ||
                 const DeepCollectionEquality().equals(other.color, color)) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
             (identical(other.bookTitle, bookTitle) ||
                 const DeepCollectionEquality()
                     .equals(other.bookTitle, bookTitle)) &&
@@ -201,7 +215,7 @@ class _$_Highlights extends _Highlights {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(quote) ^
       const DeepCollectionEquality().hash(color) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(image) ^
       const DeepCollectionEquality().hash(bookTitle) ^
       const DeepCollectionEquality().hash(pageNumber);
 
@@ -217,7 +231,7 @@ abstract class _Highlights extends Highlight {
       {@required UniqueId id,
       @required HighlightQuote quote,
       @required HighlightColor color,
-      @required ImageUrl imageUrl,
+      @required Image image,
       @required BookTitle bookTitle,
       @required PageNumber pageNumber}) = _$_Highlights;
 
@@ -228,7 +242,7 @@ abstract class _Highlights extends Highlight {
   @override
   HighlightColor get color;
   @override
-  ImageUrl get imageUrl;
+  Image get image;
   @override
   BookTitle get bookTitle;
   @override

@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:highlights/domain/core/failures.dart';
 import 'package:highlights/domain/core/value_objects.dart';
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 
 part 'highlight.freezed.dart';
@@ -26,7 +27,7 @@ abstract class Highlight implements _$Highlight {
     @required UniqueId id,
     @required HighlightQuote quote,
     @required HighlightColor color,
-    @required ImageUrl imageUrl,
+    @required Image image,
     @required BookTitle bookTitle,
     @required PageNumber pageNumber,
   }) = _Highlights;
@@ -35,14 +36,17 @@ abstract class Highlight implements _$Highlight {
         id: UniqueId(),
         quote: HighlightQuote(''),
         color: HighlightColor(HighlightColor.predefinedColors[0]),
-        imageUrl: ImageUrl.notAvailable(),
+        image: Image.notAvailable(),
         bookTitle: BookTitle(''),
         pageNumber: PageNumber(''),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
     return quote.failureOrUnit
-        .andThen(imageUrl.failureOrUnit)
+        .andThen(image.failureOption.fold(
+          () => right(unit),
+          (f) => left(f),
+        ))
         .andThen(bookTitle.failureOrUnit)
         .andThen(pageNumber.failureOrUnit)
         .fold((f) => some(f), (_) => none());
