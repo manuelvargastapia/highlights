@@ -5,10 +5,14 @@
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
+
+    <!-- android:requestLegacyExternalStorage="true" is required in
+         Android 29+ to work with image_picker -->
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="highlights"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
