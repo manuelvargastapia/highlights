@@ -1,9 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'package:highlights/domain/highlights/value_objects.dart';
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/infrastructure/highlight/highlight_dtos.dart';
 import 'package:highlights/domain/highlights/highlight_search_filter.dart';
@@ -15,9 +18,14 @@ import 'package:highlights/infrastructure/core/firestore_helpers.dart';
 @LazySingleton(as: IHighlightRepository)
 class HighlightRepository implements IHighlightRepository {
   final FirebaseFirestore _firestore;
+  final FirebaseStorage _storage;
   final IAuthFacade _authFacade;
 
-  HighlightRepository(this._firestore, this._authFacade);
+  HighlightRepository(
+    this._firestore,
+    this._storage,
+    this._authFacade,
+  );
 
   @override
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchAll() async* {
@@ -136,6 +144,25 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.insufficientPermission());
       } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
+      } else {
+        return left(const HighlightFailure.unexpected());
+      }
+    }
+  }
+
+  // TODO: test
+  @override
+  Future<Either<HighlightFailure, Image>> uploadImage(Image image) async {
+    try {
+      final file = image.imageFile.getOrCrash();
+      final storageReference = _storage.ref('highlights/${file.path}');
+      final uploadTask = storageReference.putFile(file);
+      await uploadTask;
+      final downloadUrl = await storageReference.getDownloadURL();
+      return right(image.copyWith(imageUrl: ImageUrl(downloadUrl)));
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        return left(const HighlightFailure.insufficientPermission());
       } else {
         return left(const HighlightFailure.unexpected());
       }
