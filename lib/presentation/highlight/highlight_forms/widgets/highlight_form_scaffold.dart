@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/book_title_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/color_field.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/widgets/image_url_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/page_number_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/quote_field.dart';
 
@@ -48,6 +49,7 @@ class HighlightFormScaffold extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: const [
+                  ImageUrlField(),
                   QuoteField(),
                   ColorField(),
                   BookTitleField(),
