@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/infrastructure/highlight/server_timestamp_converter.dart';
 
@@ -40,7 +41,7 @@ abstract class HighlightDto implements _$HighlightDto {
       id: highlight.id.getOrCrash(),
       quote: highlight.quote.getOrCrash(),
       color: highlight.color.getOrCrash().value,
-      imageUrl: highlight.imageUrl.getOrCrash(),
+      imageUrl: highlight.image.imageUrl.getOrCrash(),
       bookTitle: highlight.bookTitle.getOrCrash(),
       pageNumber: highlight.pageNumber.getOrCrash(),
       serverTimestamp: FieldValue.serverTimestamp(),
@@ -52,7 +53,10 @@ abstract class HighlightDto implements _$HighlightDto {
       id: UniqueId.fromUniqueString(id),
       quote: HighlightQuote(quote),
       color: HighlightColor(Color(color)),
-      imageUrl: imageUrl.isEmpty ? ImageUrl.notAvailable() : ImageUrl(imageUrl),
+      image: Image(
+        imageFile: ImageFile.notAvailable(),
+        imageUrl: ImageUrl(imageUrl),
+      ),
       bookTitle: BookTitle(bookTitle),
       pageNumber: PageNumber(pageNumber),
     );
