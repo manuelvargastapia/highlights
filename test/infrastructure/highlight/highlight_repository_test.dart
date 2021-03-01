@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,6 +12,7 @@ import 'package:highlights/domain/core/errors.dart';
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
@@ -30,15 +32,22 @@ final mockHighlight = Highlight(
   id: UniqueId.fromUniqueString(mockUid),
   color: HighlightColor(HighlightColor.predefinedColors[2]),
   quote: HighlightQuote('Test quote'),
-  imageUrl: ImageUrl('https://test-url.test'),
+  image: Image(
+    imageUrl: ImageUrl('https://test-url.test'),
+    imageFile: ImageFile.notAvailable(),
+  ),
   bookTitle: BookTitle('Test title'),
   pageNumber: PageNumber('666'),
 );
 
 class MockIAuthFacade extends Mock implements IAuthFacade {}
 
+// ignore: avoid_implementing_value_types
+class MockFirebaseStorage extends Mock implements FirebaseStorage {}
+
 void main() {
   MockFirestoreInstance mockFirestore;
+  MockFirebaseStorage mockFirebaseStorage;
   MockIAuthFacade mockIAuthFacade;
   HighlightRepository highlightRepository;
   StreamSubscription<Either<HighlightFailure, KtList<Highlight>>> subscription;
@@ -51,8 +60,13 @@ void main() {
         .collection(highlightsPath)
         .doc(mockUid)
         .set(mockData);
+    mockFirebaseStorage = MockFirebaseStorage();
     mockIAuthFacade = MockIAuthFacade();
-    highlightRepository = HighlightRepository(mockFirestore, mockIAuthFacade);
+    highlightRepository = HighlightRepository(
+      mockFirestore,
+      mockFirebaseStorage,
+      mockIAuthFacade,
+    );
   });
 
   tearDown(() async {
@@ -164,14 +178,13 @@ void main() {
                     equals(1),
                     reason: 'highlights.size is not 1',
                   );
-                  highlights.map((highlight) {
-                    expect(
-                      highlight,
-                      equals(mockHighlight),
-                      reason:
-                          'exceptec highlight is not equal to mockHighlight',
-                    );
-                  });
+                  // Test Strings because equals() doesn't seems to compare
+                  // value equality with nested objects
+                  expect(
+                    highlights[0].toString(),
+                    equals(mockHighlight.toString()),
+                    reason: 'exceptec highlight is not equal to mockHighlight',
+                  );
                 },
               );
             },
@@ -515,7 +528,10 @@ void main() {
       id: UniqueId.fromUniqueString('new-uid'),
       color: HighlightColor(HighlightColor.predefinedColors[4]),
       quote: HighlightQuote('New inspirational quote'),
-      imageUrl: ImageUrl('https://new-test-url.test'),
+      image: Image(
+        imageUrl: ImageUrl('https://new-test-url.test'),
+        imageFile: ImageFile.notAvailable(),
+      ),
       bookTitle: BookTitle('Brand new book title'),
       pageNumber: PageNumber('999'),
     );
@@ -638,7 +654,10 @@ void main() {
     final updatedHighlight = mockHighlight.copyWith(
       color: HighlightColor(HighlightColor.predefinedColors[3]),
       quote: HighlightQuote('Test quote updated'),
-      imageUrl: ImageUrl('https://test-url-updated.test'),
+      image: Image(
+        imageUrl: ImageUrl('https://test-url-updated.test'),
+        imageFile: ImageFile.notAvailable(),
+      ),
       bookTitle: BookTitle('Test title updated'),
       pageNumber: PageNumber('777'),
     );

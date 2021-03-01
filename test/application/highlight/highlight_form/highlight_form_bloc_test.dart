@@ -6,6 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
@@ -141,20 +142,24 @@ void main() {
   });
 
   group('_ImageUrlChanged', () {
-    const newImageUrl = 'http://newimageurl.test';
+    final newImage = Image(
+      imageUrl: ImageUrl('http://newimageurl.test'),
+      imageFile: ImageFile.notAvailable(),
+    );
+
     blocTest(
       '\nGiven any state'
       '\nWhen _ImageUrlChanged ocurrs'
       '\nThen emit prev state with changed url and saveFailureOrSuccessOption: none()',
       build: () => HighlightFormBloc(mockIHighlightRepository),
       act: (bloc) {
-        bloc.add(const HighlightFormEvent.imageUrlChanged(newImageUrl));
+        bloc.add(HighlightFormEvent.imageChanged(newImage));
       },
       seed: initialState,
       expect: [
         initialState.copyWith(
           highlight: initialState.highlight.copyWith(
-            imageUrl: ImageUrl(newImageUrl),
+            image: newImage,
           ),
           saveFailureOrSuccessOption: none(),
         ),
@@ -167,7 +172,10 @@ void main() {
       id: UniqueId(),
       quote: HighlightQuote('This is a valid quote'),
       color: HighlightColor(HighlightColor.predefinedColors[0]),
-      imageUrl: ImageUrl('http://validurl.test'),
+      image: Image(
+        imageUrl: ImageUrl('http://validurl.test'),
+        imageFile: ImageFile.notAvailable(),
+      ),
       bookTitle: BookTitle('title'),
       pageNumber: PageNumber('333'),
     );

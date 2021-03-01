@@ -77,7 +77,7 @@ void main() {
           await tester.pump();
 
           final errorMessage = find.text(
-            'Unexpected error occurred while deleting. Please contact support.',
+            'Unexpected error occurred. Please contact support.',
           );
 
           expect(errorMessage, findsOneWidget);
@@ -133,7 +133,7 @@ void main() {
           await tester.pump();
 
           final errorMessage = find.text(
-            'Unexpected error occurred while deleting. Please contact support.',
+            'Unexpected error occurred. Please contact support.',
           );
 
           expect(errorMessage, findsOneWidget);
