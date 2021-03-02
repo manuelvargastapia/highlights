@@ -29,7 +29,6 @@ class HighlightColor extends ValueObject<Color> {
   @override
   final Either<ValueFailure<Color>, Color> value;
 
-  // TODO: consider a better approach (local BD, for ex)
   static const List<Color> predefinedColors = [
     Color(0xfffafafa), // canvas
     Color(0xfffa8072), // salmon
@@ -98,7 +97,6 @@ class ImageUrl extends ValueObject<String> {
   const ImageUrl._(this.value);
 }
 
-// TODO: test
 class ImageFile extends ValueObject<File> {
   @override
   final Either<ValueFailure<File>, File> value;
