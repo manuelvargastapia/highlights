@@ -5,7 +5,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:highlights/domain/core/errors.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
@@ -15,6 +14,7 @@ import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
 import 'package:highlights/infrastructure/core/firestore_helpers.dart';
+import 'package:highlights/infrastructure/core/storage_helpers.dart';
 
 @LazySingleton(as: IHighlightRepository)
 class HighlightRepository implements IHighlightRepository {
@@ -67,7 +67,7 @@ class HighlightRepository implements IHighlightRepository {
     Query query = collecitonRef.orderBy('serverTimestamp', descending: true);
 
     if (filter.showOnlyIfHasImage) {
-      query = collecitonRef.where('imageUrl', isNotEqualTo: '');
+      query = collecitonRef.where('image.url', isNotEqualTo: '');
     }
 
     yield* query
@@ -99,17 +99,22 @@ class HighlightRepository implements IHighlightRepository {
       await highlight.image.fold(
         () {},
         (prevImage) async {
-          final failureOrString = await _uploadImage(highlight, userDocument);
-          failureOrString.fold(
-            (failure) {
-              return left(failure);
-            },
-            (downloadUrl) {
-              image = prevImage.copyWith(
-                imageUrl: some(ImageUrl(downloadUrl)),
-              );
-            },
-          );
+          if (prevImage.isUploaded) {
+            image = prevImage;
+          } else {
+            final failureOrString =
+                await _storage.uploadImage(highlight, userDocument);
+            failureOrString.fold(
+              (failure) {
+                return left(failure);
+              },
+              (downloadUrl) {
+                image = prevImage.copyWith(
+                  imageUrl: some(ImageUrl(downloadUrl)),
+                );
+              },
+            );
+          }
         },
       );
       final highlightDto = HighlightDto.fromDomain(
@@ -139,17 +144,22 @@ class HighlightRepository implements IHighlightRepository {
       await highlight.image.fold(
         () {},
         (prevImage) async {
-          final failureOrString = await _uploadImage(highlight, userDocument);
-          failureOrString.fold(
-            (failure) {
-              return left(failure);
-            },
-            (downloadUrl) {
-              image = prevImage.copyWith(
-                imageUrl: some(ImageUrl(downloadUrl)),
-              );
-            },
-          );
+          if (prevImage.isUploaded) {
+            image = prevImage;
+          } else {
+            final failureOrString =
+                await _storage.uploadImage(highlight, userDocument);
+            failureOrString.fold(
+              (failure) {
+                return left(failure);
+              },
+              (downloadUrl) {
+                image = prevImage.copyWith(
+                  imageUrl: some(ImageUrl(downloadUrl)),
+                );
+              },
+            );
+          }
         },
       );
       final highlightDto = HighlightDto.fromDomain(
@@ -185,36 +195,6 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.insufficientPermission());
       } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
-      } else {
-        return left(const HighlightFailure.unexpected());
-      }
-    }
-  }
-
-  // TODO: test
-  // TODO: refactor
-  Future<Either<HighlightFailure, String>> _uploadImage(
-    Highlight highlight,
-    DocumentReference userDocument,
-  ) async {
-    try {
-      final image = highlight.image.getOrElse(() => throw NotImageProvided());
-      final userId = userDocument.id;
-      final highlightId = highlight.id.getOrCrash();
-      final path = '$userId/$highlightId';
-      final storageReference = _storage.ref().child(path);
-      await storageReference.putFile(
-        image.imageFile
-            .getOrElse(
-              () => throw NotImageProvided(),
-            )
-            .getOrCrash(),
-      );
-      final downloadUrl = await storageReference.getDownloadURL();
-      return right(downloadUrl);
-    } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        return left(const HighlightFailure.insufficientPermission());
       } else {
         return left(const HighlightFailure.unexpected());
       }
