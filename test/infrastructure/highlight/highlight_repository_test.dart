@@ -581,7 +581,7 @@ void main() {
       quote: HighlightQuote('New inspirational quote'),
       image: some(
         Image(
-          imageUrl: some(ImageUrl('https://new-test-url.test')),
+          imageUrl: none(),
           imageFile: some(ImageFile(File('new/path/to/file'))),
         ),
       ),
@@ -648,7 +648,7 @@ void main() {
                     "quote": "New inspirational quote",
                     "color": 4294747063,
                     "image": {
-                      "url": "https://new-test-url.test",
+                      "url": "$fakeDownloadUrl",
                       "path": "new/path/to/file"
                     },
                     "bookTitle": "Brand new book title",
@@ -707,6 +707,7 @@ void main() {
         // current data as Snapshots
         expect(dataMapList.length, 1);
         expect(dataMapList[0]['quote'], 'New inspirational quote');
+        expect(dataMapList[0]['image']['url'], fakeDownloadUrl);
 
         verify(mockIAuthFacade.getSignedInUser()).called(1);
       },
