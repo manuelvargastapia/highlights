@@ -36,7 +36,7 @@ class ImageUrlField extends StatelessWidget {
                 child: image.fold(
                   () => const Center(child: Text('NO IMAGE')),
                   (image) => image.failureOption.fold(
-                    () => image.uploaded
+                    () => image.isUploaded
                         ? Image.network(
                             image.imageUrl
                                 .getOrElse(() => throw UnexpectedUIError())

@@ -39,7 +39,6 @@ abstract class ImagePrimitive with _$ImagePrimitive {
 
 extension ImagePrimitiveX on ImagePrimitive {
   Image toDomain() => Image(
-        uploaded: imageUrl.isNotEmpty,
         imageUrl: imageUrl.isEmpty ? none() : some(ImageUrl(imageUrl)),
         imageFile: imageFile.path.isEmpty ? none() : some(ImageFile(imageFile)),
       );

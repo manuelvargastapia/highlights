@@ -33,7 +33,6 @@ abstract class ImageDto implements _$ImageDto {
 
   Image toDomain() {
     return Image(
-      uploaded: imageUrl.isNotEmpty,
       imageUrl: imageUrl.isEmpty ? none() : some(ImageUrl(imageUrl)),
       imageFile: imageFile.isEmpty ? none() : some(ImageFile(File(imageFile))),
     );

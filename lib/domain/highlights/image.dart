@@ -11,7 +11,6 @@ abstract class Image implements _$Image {
   const Image._();
 
   const factory Image({
-    @required bool uploaded, // TODO: make it private
     @required Option<ImageUrl> imageUrl,
     @required Option<ImageFile> imageFile,
   }) = _Image;
@@ -25,4 +24,9 @@ abstract class Image implements _$Image {
       ),
     );
   }
+
+  bool get isUploaded => imageUrl.fold(
+        () => false,
+        (imageUrl) => imageUrl.isValid(),
+      );
 }

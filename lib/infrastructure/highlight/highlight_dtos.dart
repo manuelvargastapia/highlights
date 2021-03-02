@@ -64,7 +64,6 @@ abstract class HighlightDto implements _$HighlightDto {
           ? none()
           : some(
               Image(
-                uploaded: true,
                 imageUrl: some(ImageUrl(imageUrl)),
                 imageFile: none(),
               ),
