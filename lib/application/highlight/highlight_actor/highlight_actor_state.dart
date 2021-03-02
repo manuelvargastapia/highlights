@@ -8,10 +8,4 @@ abstract class HighlightActorState with _$HighlightActorState {
     HighlightFailure failure,
   ) = _DeleteFailure;
   const factory HighlightActorState.deleteSuccess() = _DeleteSuccess;
-  const factory HighlightActorState.uploadImageFailure(
-    HighlightFailure failure,
-  ) = _UploadImageFailure;
-  const factory HighlightActorState.uploadImageSuccess(
-    Image image,
-  ) = _UploadImageSuccess;
 }

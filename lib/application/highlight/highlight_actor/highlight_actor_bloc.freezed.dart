@@ -19,13 +19,6 @@ class _$HighlightActorEventTearOff {
       highlight,
     );
   }
-
-// ignore: unused_element
-  _ImageUploaded imageUploaded(ImagePrimitive image) {
-    return _ImageUploaded(
-      image,
-    );
-  }
 }
 
 /// @nodoc
@@ -34,28 +27,29 @@ const $HighlightActorEvent = _$HighlightActorEventTearOff();
 
 /// @nodoc
 mixin _$HighlightActorEvent {
+  Highlight get highlight;
+
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult deleted(Highlight highlight),
-    @required TResult imageUploaded(ImagePrimitive image),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult deleted(Highlight highlight),
-    TResult imageUploaded(ImagePrimitive image),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult deleted(_Deleted value),
-    @required TResult imageUploaded(_ImageUploaded value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult deleted(_Deleted value),
-    TResult imageUploaded(_ImageUploaded value),
     @required TResult orElse(),
   });
+
+  @JsonKey(ignore: true)
+  $HighlightActorEventCopyWith<HighlightActorEvent> get copyWith;
 }
 
 /// @nodoc
@@ -63,6 +57,9 @@ abstract class $HighlightActorEventCopyWith<$Res> {
   factory $HighlightActorEventCopyWith(
           HighlightActorEvent value, $Res Function(HighlightActorEvent) then) =
       _$HighlightActorEventCopyWithImpl<$Res>;
+  $Res call({Highlight highlight});
+
+  $HighlightCopyWith<$Res> get highlight;
 }
 
 /// @nodoc
@@ -73,14 +70,37 @@ class _$HighlightActorEventCopyWithImpl<$Res>
   final HighlightActorEvent _value;
   // ignore: unused_field
   final $Res Function(HighlightActorEvent) _then;
+
+  @override
+  $Res call({
+    Object highlight = freezed,
+  }) {
+    return _then(_value.copyWith(
+      highlight:
+          highlight == freezed ? _value.highlight : highlight as Highlight,
+    ));
+  }
+
+  @override
+  $HighlightCopyWith<$Res> get highlight {
+    if (_value.highlight == null) {
+      return null;
+    }
+    return $HighlightCopyWith<$Res>(_value.highlight, (value) {
+      return _then(_value.copyWith(highlight: value));
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$DeletedCopyWith<$Res> {
+abstract class _$DeletedCopyWith<$Res>
+    implements $HighlightActorEventCopyWith<$Res> {
   factory _$DeletedCopyWith(_Deleted value, $Res Function(_Deleted) then) =
       __$DeletedCopyWithImpl<$Res>;
+  @override
   $Res call({Highlight highlight});
 
+  @override
   $HighlightCopyWith<$Res> get highlight;
 }
 
@@ -101,16 +121,6 @@ class __$DeletedCopyWithImpl<$Res>
     return _then(_Deleted(
       highlight == freezed ? _value.highlight : highlight as Highlight,
     ));
-  }
-
-  @override
-  $HighlightCopyWith<$Res> get highlight {
-    if (_value.highlight == null) {
-      return null;
-    }
-    return $HighlightCopyWith<$Res>(_value.highlight, (value) {
-      return _then(_value.copyWith(highlight: value));
-    });
   }
 }
 
@@ -148,10 +158,8 @@ class _$_Deleted implements _Deleted {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult deleted(Highlight highlight),
-    @required TResult imageUploaded(ImagePrimitive image),
   }) {
     assert(deleted != null);
-    assert(imageUploaded != null);
     return deleted(highlight);
   }
 
@@ -159,7 +167,6 @@ class _$_Deleted implements _Deleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult deleted(Highlight highlight),
-    TResult imageUploaded(ImagePrimitive image),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -173,10 +180,8 @@ class _$_Deleted implements _Deleted {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult deleted(_Deleted value),
-    @required TResult imageUploaded(_ImageUploaded value),
   }) {
     assert(deleted != null);
-    assert(imageUploaded != null);
     return deleted(this);
   }
 
@@ -184,7 +189,6 @@ class _$_Deleted implements _Deleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult deleted(_Deleted value),
-    TResult imageUploaded(_ImageUploaded value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -198,138 +202,11 @@ class _$_Deleted implements _Deleted {
 abstract class _Deleted implements HighlightActorEvent {
   const factory _Deleted(Highlight highlight) = _$_Deleted;
 
+  @override
   Highlight get highlight;
+  @override
   @JsonKey(ignore: true)
   _$DeletedCopyWith<_Deleted> get copyWith;
-}
-
-/// @nodoc
-abstract class _$ImageUploadedCopyWith<$Res> {
-  factory _$ImageUploadedCopyWith(
-          _ImageUploaded value, $Res Function(_ImageUploaded) then) =
-      __$ImageUploadedCopyWithImpl<$Res>;
-  $Res call({ImagePrimitive image});
-
-  $ImagePrimitiveCopyWith<$Res> get image;
-}
-
-/// @nodoc
-class __$ImageUploadedCopyWithImpl<$Res>
-    extends _$HighlightActorEventCopyWithImpl<$Res>
-    implements _$ImageUploadedCopyWith<$Res> {
-  __$ImageUploadedCopyWithImpl(
-      _ImageUploaded _value, $Res Function(_ImageUploaded) _then)
-      : super(_value, (v) => _then(v as _ImageUploaded));
-
-  @override
-  _ImageUploaded get _value => super._value as _ImageUploaded;
-
-  @override
-  $Res call({
-    Object image = freezed,
-  }) {
-    return _then(_ImageUploaded(
-      image == freezed ? _value.image : image as ImagePrimitive,
-    ));
-  }
-
-  @override
-  $ImagePrimitiveCopyWith<$Res> get image {
-    if (_value.image == null) {
-      return null;
-    }
-    return $ImagePrimitiveCopyWith<$Res>(_value.image, (value) {
-      return _then(_value.copyWith(image: value));
-    });
-  }
-}
-
-/// @nodoc
-class _$_ImageUploaded implements _ImageUploaded {
-  const _$_ImageUploaded(this.image) : assert(image != null);
-
-  @override
-  final ImagePrimitive image;
-
-  @override
-  String toString() {
-    return 'HighlightActorEvent.imageUploaded(image: $image)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _ImageUploaded &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(image);
-
-  @JsonKey(ignore: true)
-  @override
-  _$ImageUploadedCopyWith<_ImageUploaded> get copyWith =>
-      __$ImageUploadedCopyWithImpl<_ImageUploaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult deleted(Highlight highlight),
-    @required TResult imageUploaded(ImagePrimitive image),
-  }) {
-    assert(deleted != null);
-    assert(imageUploaded != null);
-    return imageUploaded(image);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult deleted(Highlight highlight),
-    TResult imageUploaded(ImagePrimitive image),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (imageUploaded != null) {
-      return imageUploaded(image);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult deleted(_Deleted value),
-    @required TResult imageUploaded(_ImageUploaded value),
-  }) {
-    assert(deleted != null);
-    assert(imageUploaded != null);
-    return imageUploaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult deleted(_Deleted value),
-    TResult imageUploaded(_ImageUploaded value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (imageUploaded != null) {
-      return imageUploaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ImageUploaded implements HighlightActorEvent {
-  const factory _ImageUploaded(ImagePrimitive image) = _$_ImageUploaded;
-
-  ImagePrimitive get image;
-  @JsonKey(ignore: true)
-  _$ImageUploadedCopyWith<_ImageUploaded> get copyWith;
 }
 
 /// @nodoc
@@ -357,20 +234,6 @@ class _$HighlightActorStateTearOff {
   _DeleteSuccess deleteSuccess() {
     return const _DeleteSuccess();
   }
-
-// ignore: unused_element
-  _UploadImageFailure uploadImageFailure(HighlightFailure failure) {
-    return _UploadImageFailure(
-      failure,
-    );
-  }
-
-// ignore: unused_element
-  _UploadImageSuccess uploadImageSuccess(Image image) {
-    return _UploadImageSuccess(
-      image,
-    );
-  }
 }
 
 /// @nodoc
@@ -385,8 +248,6 @@ mixin _$HighlightActorState {
     @required TResult actionInProgress(),
     @required TResult deleteFailure(HighlightFailure failure),
     @required TResult deleteSuccess(),
-    @required TResult uploadImageFailure(HighlightFailure failure),
-    @required TResult uploadImageSuccess(Image image),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -394,8 +255,6 @@ mixin _$HighlightActorState {
     TResult actionInProgress(),
     TResult deleteFailure(HighlightFailure failure),
     TResult deleteSuccess(),
-    TResult uploadImageFailure(HighlightFailure failure),
-    TResult uploadImageSuccess(Image image),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -404,8 +263,6 @@ mixin _$HighlightActorState {
     @required TResult actionInProgress(_ActionInProgress value),
     @required TResult deleteFailure(_DeleteFailure value),
     @required TResult deleteSuccess(_DeleteSuccess value),
-    @required TResult uploadImageFailure(_UploadImageFailure value),
-    @required TResult uploadImageSuccess(_UploadImageSuccess value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -413,8 +270,6 @@ mixin _$HighlightActorState {
     TResult actionInProgress(_ActionInProgress value),
     TResult deleteFailure(_DeleteFailure value),
     TResult deleteSuccess(_DeleteSuccess value),
-    TResult uploadImageFailure(_UploadImageFailure value),
-    TResult uploadImageSuccess(_UploadImageSuccess value),
     @required TResult orElse(),
   });
 }
@@ -477,15 +332,11 @@ class _$_Initial implements _Initial {
     @required TResult actionInProgress(),
     @required TResult deleteFailure(HighlightFailure failure),
     @required TResult deleteSuccess(),
-    @required TResult uploadImageFailure(HighlightFailure failure),
-    @required TResult uploadImageSuccess(Image image),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return initial();
   }
 
@@ -496,8 +347,6 @@ class _$_Initial implements _Initial {
     TResult actionInProgress(),
     TResult deleteFailure(HighlightFailure failure),
     TResult deleteSuccess(),
-    TResult uploadImageFailure(HighlightFailure failure),
-    TResult uploadImageSuccess(Image image),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -514,15 +363,11 @@ class _$_Initial implements _Initial {
     @required TResult actionInProgress(_ActionInProgress value),
     @required TResult deleteFailure(_DeleteFailure value),
     @required TResult deleteSuccess(_DeleteSuccess value),
-    @required TResult uploadImageFailure(_UploadImageFailure value),
-    @required TResult uploadImageSuccess(_UploadImageSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return initial(this);
   }
 
@@ -533,8 +378,6 @@ class _$_Initial implements _Initial {
     TResult actionInProgress(_ActionInProgress value),
     TResult deleteFailure(_DeleteFailure value),
     TResult deleteSuccess(_DeleteSuccess value),
-    TResult uploadImageFailure(_UploadImageFailure value),
-    TResult uploadImageSuccess(_UploadImageSuccess value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -592,15 +435,11 @@ class _$_ActionInProgress implements _ActionInProgress {
     @required TResult actionInProgress(),
     @required TResult deleteFailure(HighlightFailure failure),
     @required TResult deleteSuccess(),
-    @required TResult uploadImageFailure(HighlightFailure failure),
-    @required TResult uploadImageSuccess(Image image),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return actionInProgress();
   }
 
@@ -611,8 +450,6 @@ class _$_ActionInProgress implements _ActionInProgress {
     TResult actionInProgress(),
     TResult deleteFailure(HighlightFailure failure),
     TResult deleteSuccess(),
-    TResult uploadImageFailure(HighlightFailure failure),
-    TResult uploadImageSuccess(Image image),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -629,15 +466,11 @@ class _$_ActionInProgress implements _ActionInProgress {
     @required TResult actionInProgress(_ActionInProgress value),
     @required TResult deleteFailure(_DeleteFailure value),
     @required TResult deleteSuccess(_DeleteSuccess value),
-    @required TResult uploadImageFailure(_UploadImageFailure value),
-    @required TResult uploadImageSuccess(_UploadImageSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return actionInProgress(this);
   }
 
@@ -648,8 +481,6 @@ class _$_ActionInProgress implements _ActionInProgress {
     TResult actionInProgress(_ActionInProgress value),
     TResult deleteFailure(_DeleteFailure value),
     TResult deleteSuccess(_DeleteSuccess value),
-    TResult uploadImageFailure(_UploadImageFailure value),
-    TResult uploadImageSuccess(_UploadImageSuccess value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -741,15 +572,11 @@ class _$_DeleteFailure implements _DeleteFailure {
     @required TResult actionInProgress(),
     @required TResult deleteFailure(HighlightFailure failure),
     @required TResult deleteSuccess(),
-    @required TResult uploadImageFailure(HighlightFailure failure),
-    @required TResult uploadImageSuccess(Image image),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return deleteFailure(failure);
   }
 
@@ -760,8 +587,6 @@ class _$_DeleteFailure implements _DeleteFailure {
     TResult actionInProgress(),
     TResult deleteFailure(HighlightFailure failure),
     TResult deleteSuccess(),
-    TResult uploadImageFailure(HighlightFailure failure),
-    TResult uploadImageSuccess(Image image),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -778,15 +603,11 @@ class _$_DeleteFailure implements _DeleteFailure {
     @required TResult actionInProgress(_ActionInProgress value),
     @required TResult deleteFailure(_DeleteFailure value),
     @required TResult deleteSuccess(_DeleteSuccess value),
-    @required TResult uploadImageFailure(_UploadImageFailure value),
-    @required TResult uploadImageSuccess(_UploadImageSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return deleteFailure(this);
   }
 
@@ -797,8 +618,6 @@ class _$_DeleteFailure implements _DeleteFailure {
     TResult actionInProgress(_ActionInProgress value),
     TResult deleteFailure(_DeleteFailure value),
     TResult deleteSuccess(_DeleteSuccess value),
-    TResult uploadImageFailure(_UploadImageFailure value),
-    TResult uploadImageSuccess(_UploadImageSuccess value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -860,15 +679,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     @required TResult actionInProgress(),
     @required TResult deleteFailure(HighlightFailure failure),
     @required TResult deleteSuccess(),
-    @required TResult uploadImageFailure(HighlightFailure failure),
-    @required TResult uploadImageSuccess(Image image),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return deleteSuccess();
   }
 
@@ -879,8 +694,6 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult actionInProgress(),
     TResult deleteFailure(HighlightFailure failure),
     TResult deleteSuccess(),
-    TResult uploadImageFailure(HighlightFailure failure),
-    TResult uploadImageSuccess(Image image),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -897,15 +710,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     @required TResult actionInProgress(_ActionInProgress value),
     @required TResult deleteFailure(_DeleteFailure value),
     @required TResult deleteSuccess(_DeleteSuccess value),
-    @required TResult uploadImageFailure(_UploadImageFailure value),
-    @required TResult uploadImageSuccess(_UploadImageSuccess value),
   }) {
     assert(initial != null);
     assert(actionInProgress != null);
     assert(deleteFailure != null);
     assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
     return deleteSuccess(this);
   }
 
@@ -916,8 +725,6 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult actionInProgress(_ActionInProgress value),
     TResult deleteFailure(_DeleteFailure value),
     TResult deleteSuccess(_DeleteSuccess value),
-    TResult uploadImageFailure(_UploadImageFailure value),
-    TResult uploadImageSuccess(_UploadImageSuccess value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -930,311 +737,4 @@ class _$_DeleteSuccess implements _DeleteSuccess {
 
 abstract class _DeleteSuccess implements HighlightActorState {
   const factory _DeleteSuccess() = _$_DeleteSuccess;
-}
-
-/// @nodoc
-abstract class _$UploadImageFailureCopyWith<$Res> {
-  factory _$UploadImageFailureCopyWith(
-          _UploadImageFailure value, $Res Function(_UploadImageFailure) then) =
-      __$UploadImageFailureCopyWithImpl<$Res>;
-  $Res call({HighlightFailure failure});
-
-  $HighlightFailureCopyWith<$Res> get failure;
-}
-
-/// @nodoc
-class __$UploadImageFailureCopyWithImpl<$Res>
-    extends _$HighlightActorStateCopyWithImpl<$Res>
-    implements _$UploadImageFailureCopyWith<$Res> {
-  __$UploadImageFailureCopyWithImpl(
-      _UploadImageFailure _value, $Res Function(_UploadImageFailure) _then)
-      : super(_value, (v) => _then(v as _UploadImageFailure));
-
-  @override
-  _UploadImageFailure get _value => super._value as _UploadImageFailure;
-
-  @override
-  $Res call({
-    Object failure = freezed,
-  }) {
-    return _then(_UploadImageFailure(
-      failure == freezed ? _value.failure : failure as HighlightFailure,
-    ));
-  }
-
-  @override
-  $HighlightFailureCopyWith<$Res> get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-    return $HighlightFailureCopyWith<$Res>(_value.failure, (value) {
-      return _then(_value.copyWith(failure: value));
-    });
-  }
-}
-
-/// @nodoc
-class _$_UploadImageFailure implements _UploadImageFailure {
-  const _$_UploadImageFailure(this.failure) : assert(failure != null);
-
-  @override
-  final HighlightFailure failure;
-
-  @override
-  String toString() {
-    return 'HighlightActorState.uploadImageFailure(failure: $failure)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _UploadImageFailure &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
-
-  @JsonKey(ignore: true)
-  @override
-  _$UploadImageFailureCopyWith<_UploadImageFailure> get copyWith =>
-      __$UploadImageFailureCopyWithImpl<_UploadImageFailure>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult actionInProgress(),
-    @required TResult deleteFailure(HighlightFailure failure),
-    @required TResult deleteSuccess(),
-    @required TResult uploadImageFailure(HighlightFailure failure),
-    @required TResult uploadImageSuccess(Image image),
-  }) {
-    assert(initial != null);
-    assert(actionInProgress != null);
-    assert(deleteFailure != null);
-    assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
-    return uploadImageFailure(failure);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult actionInProgress(),
-    TResult deleteFailure(HighlightFailure failure),
-    TResult deleteSuccess(),
-    TResult uploadImageFailure(HighlightFailure failure),
-    TResult uploadImageSuccess(Image image),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (uploadImageFailure != null) {
-      return uploadImageFailure(failure);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult actionInProgress(_ActionInProgress value),
-    @required TResult deleteFailure(_DeleteFailure value),
-    @required TResult deleteSuccess(_DeleteSuccess value),
-    @required TResult uploadImageFailure(_UploadImageFailure value),
-    @required TResult uploadImageSuccess(_UploadImageSuccess value),
-  }) {
-    assert(initial != null);
-    assert(actionInProgress != null);
-    assert(deleteFailure != null);
-    assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
-    return uploadImageFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult actionInProgress(_ActionInProgress value),
-    TResult deleteFailure(_DeleteFailure value),
-    TResult deleteSuccess(_DeleteSuccess value),
-    TResult uploadImageFailure(_UploadImageFailure value),
-    TResult uploadImageSuccess(_UploadImageSuccess value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (uploadImageFailure != null) {
-      return uploadImageFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UploadImageFailure implements HighlightActorState {
-  const factory _UploadImageFailure(HighlightFailure failure) =
-      _$_UploadImageFailure;
-
-  HighlightFailure get failure;
-  @JsonKey(ignore: true)
-  _$UploadImageFailureCopyWith<_UploadImageFailure> get copyWith;
-}
-
-/// @nodoc
-abstract class _$UploadImageSuccessCopyWith<$Res> {
-  factory _$UploadImageSuccessCopyWith(
-          _UploadImageSuccess value, $Res Function(_UploadImageSuccess) then) =
-      __$UploadImageSuccessCopyWithImpl<$Res>;
-  $Res call({Image image});
-
-  $ImageCopyWith<$Res> get image;
-}
-
-/// @nodoc
-class __$UploadImageSuccessCopyWithImpl<$Res>
-    extends _$HighlightActorStateCopyWithImpl<$Res>
-    implements _$UploadImageSuccessCopyWith<$Res> {
-  __$UploadImageSuccessCopyWithImpl(
-      _UploadImageSuccess _value, $Res Function(_UploadImageSuccess) _then)
-      : super(_value, (v) => _then(v as _UploadImageSuccess));
-
-  @override
-  _UploadImageSuccess get _value => super._value as _UploadImageSuccess;
-
-  @override
-  $Res call({
-    Object image = freezed,
-  }) {
-    return _then(_UploadImageSuccess(
-      image == freezed ? _value.image : image as Image,
-    ));
-  }
-
-  @override
-  $ImageCopyWith<$Res> get image {
-    if (_value.image == null) {
-      return null;
-    }
-    return $ImageCopyWith<$Res>(_value.image, (value) {
-      return _then(_value.copyWith(image: value));
-    });
-  }
-}
-
-/// @nodoc
-class _$_UploadImageSuccess implements _UploadImageSuccess {
-  const _$_UploadImageSuccess(this.image) : assert(image != null);
-
-  @override
-  final Image image;
-
-  @override
-  String toString() {
-    return 'HighlightActorState.uploadImageSuccess(image: $image)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _UploadImageSuccess &&
-            (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(image);
-
-  @JsonKey(ignore: true)
-  @override
-  _$UploadImageSuccessCopyWith<_UploadImageSuccess> get copyWith =>
-      __$UploadImageSuccessCopyWithImpl<_UploadImageSuccess>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult actionInProgress(),
-    @required TResult deleteFailure(HighlightFailure failure),
-    @required TResult deleteSuccess(),
-    @required TResult uploadImageFailure(HighlightFailure failure),
-    @required TResult uploadImageSuccess(Image image),
-  }) {
-    assert(initial != null);
-    assert(actionInProgress != null);
-    assert(deleteFailure != null);
-    assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
-    return uploadImageSuccess(image);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult actionInProgress(),
-    TResult deleteFailure(HighlightFailure failure),
-    TResult deleteSuccess(),
-    TResult uploadImageFailure(HighlightFailure failure),
-    TResult uploadImageSuccess(Image image),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (uploadImageSuccess != null) {
-      return uploadImageSuccess(image);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult actionInProgress(_ActionInProgress value),
-    @required TResult deleteFailure(_DeleteFailure value),
-    @required TResult deleteSuccess(_DeleteSuccess value),
-    @required TResult uploadImageFailure(_UploadImageFailure value),
-    @required TResult uploadImageSuccess(_UploadImageSuccess value),
-  }) {
-    assert(initial != null);
-    assert(actionInProgress != null);
-    assert(deleteFailure != null);
-    assert(deleteSuccess != null);
-    assert(uploadImageFailure != null);
-    assert(uploadImageSuccess != null);
-    return uploadImageSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult actionInProgress(_ActionInProgress value),
-    TResult deleteFailure(_DeleteFailure value),
-    TResult deleteSuccess(_DeleteSuccess value),
-    TResult uploadImageFailure(_UploadImageFailure value),
-    TResult uploadImageSuccess(_UploadImageSuccess value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (uploadImageSuccess != null) {
-      return uploadImageSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UploadImageSuccess implements HighlightActorState {
-  const factory _UploadImageSuccess(Image image) = _$_UploadImageSuccess;
-
-  Image get image;
-  @JsonKey(ignore: true)
-  _$UploadImageSuccessCopyWith<_UploadImageSuccess> get copyWith;
 }
