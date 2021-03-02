@@ -42,23 +42,19 @@ class HighlightFormScaffold extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocBuilder<HighlightFormBloc, HighlightFormState>(
-        builder: (context, state) {
-          return Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: const [
-                  ImageUrlField(),
-                  QuoteField(),
-                  ColorField(),
-                  BookTitleField(),
-                  PageNumberField(),
-                ],
-              ),
-            ),
-          );
-        },
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: const [
+              ImageUrlField(),
+              QuoteField(),
+              ColorField(),
+              BookTitleField(),
+              PageNumberField(),
+            ],
+          ),
+        ),
       ),
     );
   }
