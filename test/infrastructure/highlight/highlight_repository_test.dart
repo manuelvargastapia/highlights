@@ -24,7 +24,10 @@ const highlightsPath = 'highlights';
 const usersPath = 'users';
 const mockData = {
   'color': 4294892630,
-  'imageUrl': 'https://test-url.test',
+  'image': {
+    'url': 'https://test-url.test',
+    'path': 'test/path/to/file',
+  },
   'quote': 'Test quote',
   'bookTitle': 'Test title',
   'pageNumber': '666',
@@ -36,9 +39,8 @@ final mockHighlight = Highlight(
   quote: HighlightQuote('Test quote'),
   image: some(
     Image(
-      uploaded: true,
       imageUrl: some(ImageUrl('https://test-url.test')),
-      imageFile: none(),
+      imageFile: some(ImageFile(File('test/path/to/file'))),
     ),
   ),
   bookTitle: BookTitle('Test title'),
@@ -258,7 +260,10 @@ void main() {
           {
             'id': 'new-id',
             'color': 4294892630,
-            'imageUrl': '',
+            'image': {
+              'url': '',
+              'path': '',
+            },
             'quote': '',
             'bookTitle': '',
             'pageNumber': '-1',
@@ -486,7 +491,10 @@ void main() {
           {
             'id': 'new-id',
             'color': 4294892630,
-            'imageUrl': '',
+            'image': {
+              'url': '',
+              'path': '',
+            },
             'quote': 'Test quote 2',
             'bookTitle': 'new book',
             'pageNumber': '666',
@@ -573,9 +581,8 @@ void main() {
       quote: HighlightQuote('New inspirational quote'),
       image: some(
         Image(
-          uploaded: true,
           imageUrl: some(ImageUrl('https://new-test-url.test')),
-          imageFile: some(ImageFile(File('test-file'))),
+          imageFile: some(ImageFile(File('new/path/to/file'))),
         ),
       ),
       bookTitle: BookTitle('Brand new book title'),
@@ -629,7 +636,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4294892630,
-                    "imageUrl": "https://test-url.test",
+                    "image": {
+                      "url": "https://test-url.test",
+                      "path": "test/path/to/file"
+                    },
                     "quote": "Test quote",
                     "bookTitle": "Test title",
                     "pageNumber": "666"
@@ -637,7 +647,10 @@ void main() {
                   "new-uid": {
                     "quote": "New inspirational quote",
                     "color": 4294747063,
-                    "imageUrl": "$fakeDownloadUrl",
+                    "image": {
+                      "url": "https://new-test-url.test",
+                      "path": "new/path/to/file"
+                    },
                     "bookTitle": "Brand new book title",
                     "pageNumber": "999"
                   }
@@ -706,7 +719,6 @@ void main() {
       quote: HighlightQuote('Test quote updated'),
       image: some(
         Image(
-          uploaded: true,
           imageUrl: some(ImageUrl('https://test-url-updated.test')),
           imageFile: some(ImageFile(File('test-file'))),
         ),
@@ -763,7 +775,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4291883200,
-                    "imageUrl": "$fakeDownloadUrl",
+                    "image": {
+                      "url": "https://test-url-updated.test",
+                      "path": "test-file"
+                    },
                     "quote": "Test quote updated",
                     "bookTitle": "Test title updated",
                     "pageNumber": "777"
@@ -823,7 +838,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4294892630,
-                    "imageUrl": "https://test-url.test",
+                    "image": {
+                      "url": "https://test-url.test",
+                      "path": "test/path/to/file"
+                    },
                     "quote": "Test quote",
                     "bookTitle": "Test title",
                     "pageNumber": "666"
@@ -831,7 +849,10 @@ void main() {
                   "non-existent-id": {
                     "quote": "Test quote updated",
                     "color": 4291883200,
-                    "imageUrl": "$fakeDownloadUrl",
+                    "image": {
+                      "url": "https://test-url-updated.test",
+                      "path": "test-file"
+                    },
                     "bookTitle": "Test title updated",
                     "pageNumber": "777"
                   }
@@ -941,7 +962,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4294892630,
-                    "imageUrl": "https://test-url.test",
+                    "image": {
+                      "url": "https://test-url.test",
+                      "path": "test/path/to/file"
+                    },
                     "quote": "Test quote",
                     "bookTitle": "Test title",
                     "pageNumber": "666"
