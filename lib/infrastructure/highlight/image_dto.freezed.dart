@@ -8,9 +8,6 @@ part of 'image_dto.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-ImageDto _$ImageDtoFromJson(Map<String, dynamic> json) {
-  return _ImageDto.fromJson(json);
-}
 
 /// @nodoc
 class _$ImageDtoTearOff {
@@ -23,11 +20,6 @@ class _$ImageDtoTearOff {
       imageFile: imageFile,
     );
   }
-
-// ignore: unused_element
-  ImageDto fromJson(Map<String, Object> json) {
-    return ImageDto.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -39,7 +31,6 @@ mixin _$ImageDto {
   String get imageUrl;
   String get imageFile;
 
-  Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
   $ImageDtoCopyWith<ImageDto> get copyWith;
 }
@@ -100,17 +91,12 @@ class __$ImageDtoCopyWithImpl<$Res> extends _$ImageDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
 class _$_ImageDto extends _ImageDto {
   const _$_ImageDto({@required this.imageUrl, @required this.imageFile})
       : assert(imageUrl != null),
         assert(imageFile != null),
         super._();
-
-  factory _$_ImageDto.fromJson(Map<String, dynamic> json) =>
-      _$_$_ImageDtoFromJson(json);
 
   @override
   final String imageUrl;
@@ -144,19 +130,12 @@ class _$_ImageDto extends _ImageDto {
   @override
   _$ImageDtoCopyWith<_ImageDto> get copyWith =>
       __$ImageDtoCopyWithImpl<_ImageDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_ImageDtoToJson(this);
-  }
 }
 
 abstract class _ImageDto extends ImageDto {
   const _ImageDto._() : super._();
   const factory _ImageDto(
       {@required String imageUrl, @required String imageFile}) = _$_ImageDto;
-
-  factory _ImageDto.fromJson(Map<String, dynamic> json) = _$_ImageDto.fromJson;
 
   @override
   String get imageUrl;

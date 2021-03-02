@@ -1,14 +1,13 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart' hide id;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
-import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
-import 'package:highlights/infrastructure/highlight/server_timestamp_converter.dart';
+import 'package:highlights/infrastructure/highlight/image_dto.dart';
+import 'package:highlights/infrastructure/highlight/json_converters.dart';
 
 part 'highlight_dtos.freezed.dart';
 part 'highlight_dtos.g.dart';
@@ -31,7 +30,7 @@ abstract class HighlightDto implements _$HighlightDto {
     @JsonKey(ignore: true) String id,
     @required String quote,
     @required int color,
-    @required String imageUrl,
+    @required @ImageDtoConverter() ImageDto image,
     @required String bookTitle,
     @required String pageNumber,
     @required @ServerTimestampConverter() FieldValue serverTimestamp,
@@ -42,13 +41,7 @@ abstract class HighlightDto implements _$HighlightDto {
       id: highlight.id.getOrCrash(),
       quote: highlight.quote.getOrCrash(),
       color: highlight.color.getOrCrash().value,
-      imageUrl: highlight.image.fold(
-        () => '',
-        (image) => image.imageUrl.fold(
-          () => '',
-          (imageUrl) => imageUrl.getOrCrash(),
-        ),
-      ),
+      image: ImageDto.fromDomain(highlight.image),
       bookTitle: highlight.bookTitle.getOrCrash(),
       pageNumber: highlight.pageNumber.getOrCrash(),
       serverTimestamp: FieldValue.serverTimestamp(),
@@ -60,14 +53,7 @@ abstract class HighlightDto implements _$HighlightDto {
       id: UniqueId.fromUniqueString(id),
       quote: HighlightQuote(quote),
       color: HighlightColor(Color(color)),
-      image: imageUrl.isEmpty
-          ? none()
-          : some(
-              Image(
-                imageUrl: some(ImageUrl(imageUrl)),
-                imageFile: none(),
-              ),
-            ),
+      image: image.toDomain(),
       bookTitle: BookTitle(bookTitle),
       pageNumber: PageNumber(pageNumber),
     );
