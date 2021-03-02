@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'package:highlights/domain/core/errors.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
@@ -93,7 +94,27 @@ class HighlightRepository implements IHighlightRepository {
   Future<Either<HighlightFailure, Unit>> create(Highlight highlight) async {
     try {
       final userDocument = await _firestore.userDocument(_authFacade);
-      final highlightDto = HighlightDto.fromDomain(highlight);
+      // TODO: refactor
+      Image image;
+      await highlight.image.fold(
+        () {},
+        (prevImage) async {
+          final failureOrString = await _uploadImage(highlight, userDocument);
+          failureOrString.fold(
+            (failure) {
+              return left(failure);
+            },
+            (downloadUrl) {
+              image = prevImage.copyWith(
+                imageUrl: some(ImageUrl(downloadUrl)),
+              );
+            },
+          );
+        },
+      );
+      final highlightDto = HighlightDto.fromDomain(
+        highlight.copyWith(image: optionOf(image)),
+      );
       await userDocument.highlightCollection
           .doc(highlightDto.id)
           .set(highlightDto.toJson());
@@ -113,7 +134,27 @@ class HighlightRepository implements IHighlightRepository {
   Future<Either<HighlightFailure, Unit>> update(Highlight highlight) async {
     try {
       final userDocument = await _firestore.userDocument(_authFacade);
-      final highlightDto = HighlightDto.fromDomain(highlight);
+      // TODO: refactor
+      Image image;
+      await highlight.image.fold(
+        () {},
+        (prevImage) async {
+          final failureOrString = await _uploadImage(highlight, userDocument);
+          failureOrString.fold(
+            (failure) {
+              return left(failure);
+            },
+            (downloadUrl) {
+              image = prevImage.copyWith(
+                imageUrl: some(ImageUrl(downloadUrl)),
+              );
+            },
+          );
+        },
+      );
+      final highlightDto = HighlightDto.fromDomain(
+        highlight.copyWith(image: optionOf(image)),
+      );
       await userDocument.highlightCollection
           .doc(highlightDto.id)
           .update(highlightDto.toJson());
@@ -151,15 +192,26 @@ class HighlightRepository implements IHighlightRepository {
   }
 
   // TODO: test
-  @override
-  Future<Either<HighlightFailure, Image>> uploadImage(Image image) async {
+  // TODO: refactor
+  Future<Either<HighlightFailure, String>> _uploadImage(
+    Highlight highlight,
+    DocumentReference userDocument,
+  ) async {
     try {
-      final file = image.imageFile.getOrCrash();
-      final storageReference = _storage.ref('highlights/${file.path}');
-      final uploadTask = storageReference.putFile(file);
-      await uploadTask;
+      final image = highlight.image.getOrElse(() => throw NotImageProvided());
+      final userId = userDocument.id;
+      final highlightId = highlight.id.getOrCrash();
+      final path = '$userId/$highlightId';
+      final storageReference = _storage.ref().child(path);
+      await storageReference.putFile(
+        image.imageFile
+            .getOrElse(
+              () => throw NotImageProvided(),
+            )
+            .getOrCrash(),
+      );
       final downloadUrl = await storageReference.getDownloadURL();
-      return right(image.copyWith(imageUrl: ImageUrl(downloadUrl)));
+      return right(downloadUrl);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
         return left(const HighlightFailure.insufficientPermission());
