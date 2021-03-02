@@ -188,7 +188,19 @@ class HighlightRepository implements IHighlightRepository {
       final userDocument = await _firestore.userDocument(_authFacade);
       final highlightId = highlight.id.getOrCrash();
       await userDocument.highlightCollection.doc(highlightId).delete();
-      return right(unit);
+      // TODO: test
+      if (highlight.image.isSome()) {
+        final failureOrUnit = await _storage.deleteImage(
+          highlightId,
+          userDocument,
+        );
+        return failureOrUnit.fold(
+          (failure) => left(failure),
+          (_) => right(unit),
+        );
+      } else {
+        return right(unit);
+      }
     } on FirebaseException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
