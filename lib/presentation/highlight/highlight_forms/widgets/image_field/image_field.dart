@@ -1,55 +1,34 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:highlights/domain/core/errors.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/widgets/image_field/image_displayer.dart';
 
-class ImageUrlField extends StatelessWidget {
-  const ImageUrlField({Key key}) : super(key: key);
+class ImageField extends StatelessWidget {
+  const ImageField({Key key}) : super(key: key);
 
-  // TODO: refactor
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HighlightFormBloc, HighlightFormState>(
+      buildWhen: (prev, curr) => prev.highlight != curr.highlight,
       builder: (context, state) {
-        final image = state.highlight.image;
         return Container(
           margin: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: state.highlight.color.getOrCrash(),
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(6.0),
-            boxShadow: const [
-              BoxShadow(color: Colors.blueAccent),
-            ],
           ),
           child: Column(
             children: [
-              Container(
-                padding: const EdgeInsets.only(top: 8),
-                width: 200,
-                height: 200,
-                child: image.fold(
-                  () => const Center(child: Text('NO IMAGE')),
-                  (image) => image.failureOption.fold(
-                    () => image.isUploaded
-                        ? Image.network(
-                            image.imageUrl
-                                .getOrElse(() => throw UnexpectedUIError())
-                                .getOrCrash(),
-                          )
-                        : Image.file(
-                            image.imageFile
-                                .getOrElse(() => throw UnexpectedUIError())
-                                .getOrCrash(),
-                          ),
-                    (failure) => const Center(child: Text('Image error')),
-                  ),
-                ),
+              ImageDisplayer(
+                state.highlight.image,
+                MediaQuery.of(context).size,
               ),
               IconButton(
                 onPressed: () async {
@@ -78,6 +57,7 @@ class ImageUrlField extends StatelessWidget {
                     },
                   );
 
+                  // "file" is null when showDialog() is dismissed
                   if (file != null) {
                     context
                         .read<HighlightFormBloc>()
