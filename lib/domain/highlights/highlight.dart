@@ -43,15 +43,13 @@ abstract class Highlight implements _$Highlight {
 
   Option<ValueFailure<dynamic>> get failureOption {
     return quote.failureOrUnit
-        // TODO: try to refactor
         .andThen(
           image.fold(
-            () => right(unit),
-            (i) => i.failureOption.fold(
               () => right(unit),
-              (f) => left(f),
-            ),
-          ),
+              (i) => i.failureOption.fold(
+                    () => right(unit),
+                    (f) => left(f),
+                  )),
         )
         .andThen(bookTitle.failureOrUnit)
         .andThen(pageNumber.failureOrUnit)
