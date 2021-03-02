@@ -10,6 +10,7 @@ import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 class MockIHighlightRepository extends Mock implements IHighlightRepository {}
 
@@ -143,8 +144,9 @@ void main() {
 
   group('_ImageUrlChanged', () {
     final newImage = Image(
-      imageUrl: ImageUrl('http://newimageurl.test'),
-      imageFile: ImageFile.notAvailable(),
+      uploaded: true,
+      imageUrl: some(ImageUrl('http://newimageurl.test')),
+      imageFile: none(),
     );
 
     blocTest(
@@ -153,13 +155,15 @@ void main() {
       '\nThen emit prev state with changed url and saveFailureOrSuccessOption: none()',
       build: () => HighlightFormBloc(mockIHighlightRepository),
       act: (bloc) {
-        bloc.add(HighlightFormEvent.imageChanged(newImage));
+        bloc.add(HighlightFormEvent.imageChanged(
+          ImagePrimitive.fromDomain(newImage),
+        ));
       },
       seed: initialState,
       expect: [
         initialState.copyWith(
           highlight: initialState.highlight.copyWith(
-            image: newImage,
+            image: some(newImage),
           ),
           saveFailureOrSuccessOption: none(),
         ),
@@ -172,10 +176,11 @@ void main() {
       id: UniqueId(),
       quote: HighlightQuote('This is a valid quote'),
       color: HighlightColor(HighlightColor.predefinedColors[0]),
-      image: Image(
-        imageUrl: ImageUrl('http://validurl.test'),
-        imageFile: ImageFile.notAvailable(),
-      ),
+      image: some(Image(
+        uploaded: true,
+        imageUrl: some(ImageUrl('http://validurl.test')),
+        imageFile: none(),
+      )),
       bookTitle: BookTitle('title'),
       pageNumber: PageNumber('333'),
     );

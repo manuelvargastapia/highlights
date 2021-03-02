@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart' hide id;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:highlights/domain/core/value_objects.dart';
@@ -41,7 +42,13 @@ abstract class HighlightDto implements _$HighlightDto {
       id: highlight.id.getOrCrash(),
       quote: highlight.quote.getOrCrash(),
       color: highlight.color.getOrCrash().value,
-      imageUrl: highlight.image.imageUrl.getOrCrash(),
+      imageUrl: highlight.image.fold(
+        () => '',
+        (image) => image.imageUrl.fold(
+          () => '',
+          (imageUrl) => imageUrl.getOrCrash(),
+        ),
+      ),
       bookTitle: highlight.bookTitle.getOrCrash(),
       pageNumber: highlight.pageNumber.getOrCrash(),
       serverTimestamp: FieldValue.serverTimestamp(),
@@ -53,10 +60,15 @@ abstract class HighlightDto implements _$HighlightDto {
       id: UniqueId.fromUniqueString(id),
       quote: HighlightQuote(quote),
       color: HighlightColor(Color(color)),
-      image: Image(
-        imageFile: ImageFile.notAvailable(),
-        imageUrl: ImageUrl(imageUrl),
-      ),
+      image: imageUrl.isEmpty
+          ? none()
+          : some(
+              Image(
+                uploaded: true,
+                imageUrl: some(ImageUrl(imageUrl)),
+                imageFile: none(),
+              ),
+            ),
       bookTitle: BookTitle(bookTitle),
       pageNumber: PageNumber(pageNumber),
     );

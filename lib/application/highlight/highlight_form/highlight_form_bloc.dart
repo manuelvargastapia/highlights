@@ -4,13 +4,13 @@ import 'dart:ui';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:highlights/domain/highlights/image.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 part 'highlight_form_event.dart';
 part 'highlight_form_state.dart';
@@ -72,7 +72,7 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
       imageChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
-            image: event.image,
+            image: some(event.image.toDomain()),
           ),
           saveFailureOrSuccessOption: none(),
         );

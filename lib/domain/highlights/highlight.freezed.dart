@@ -18,7 +18,7 @@ class _$HighlightTearOff {
       {@required UniqueId id,
       @required HighlightQuote quote,
       @required HighlightColor color,
-      @required Image image,
+      @required Option<Image> image,
       @required BookTitle bookTitle,
       @required PageNumber pageNumber}) {
     return _Highlights(
@@ -41,7 +41,7 @@ mixin _$Highlight {
   UniqueId get id;
   HighlightQuote get quote;
   HighlightColor get color;
-  Image get image;
+  Option<Image> get image;
   BookTitle get bookTitle;
   PageNumber get pageNumber;
 
@@ -57,11 +57,9 @@ abstract class $HighlightCopyWith<$Res> {
       {UniqueId id,
       HighlightQuote quote,
       HighlightColor color,
-      Image image,
+      Option<Image> image,
       BookTitle bookTitle,
       PageNumber pageNumber});
-
-  $ImageCopyWith<$Res> get image;
 }
 
 /// @nodoc
@@ -85,22 +83,12 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
-      image: image == freezed ? _value.image : image as Image,
+      image: image == freezed ? _value.image : image as Option<Image>,
       bookTitle:
           bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
       pageNumber:
           pageNumber == freezed ? _value.pageNumber : pageNumber as PageNumber,
     ));
-  }
-
-  @override
-  $ImageCopyWith<$Res> get image {
-    if (_value.image == null) {
-      return null;
-    }
-    return $ImageCopyWith<$Res>(_value.image, (value) {
-      return _then(_value.copyWith(image: value));
-    });
   }
 }
 
@@ -114,12 +102,9 @@ abstract class _$HighlightsCopyWith<$Res> implements $HighlightCopyWith<$Res> {
       {UniqueId id,
       HighlightQuote quote,
       HighlightColor color,
-      Image image,
+      Option<Image> image,
       BookTitle bookTitle,
       PageNumber pageNumber});
-
-  @override
-  $ImageCopyWith<$Res> get image;
 }
 
 /// @nodoc
@@ -145,7 +130,7 @@ class __$HighlightsCopyWithImpl<$Res> extends _$HighlightCopyWithImpl<$Res>
       id: id == freezed ? _value.id : id as UniqueId,
       quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
-      image: image == freezed ? _value.image : image as Image,
+      image: image == freezed ? _value.image : image as Option<Image>,
       bookTitle:
           bookTitle == freezed ? _value.bookTitle : bookTitle as BookTitle,
       pageNumber:
@@ -178,7 +163,7 @@ class _$_Highlights extends _Highlights {
   @override
   final HighlightColor color;
   @override
-  final Image image;
+  final Option<Image> image;
   @override
   final BookTitle bookTitle;
   @override
@@ -231,7 +216,7 @@ abstract class _Highlights extends Highlight {
       {@required UniqueId id,
       @required HighlightQuote quote,
       @required HighlightColor color,
-      @required Image image,
+      @required Option<Image> image,
       @required BookTitle bookTitle,
       @required PageNumber pageNumber}) = _$_Highlights;
 
@@ -242,7 +227,7 @@ abstract class _Highlights extends Highlight {
   @override
   HighlightColor get color;
   @override
-  Image get image;
+  Option<Image> get image;
   @override
   BookTitle get bookTitle;
   @override

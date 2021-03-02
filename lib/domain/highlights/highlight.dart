@@ -27,7 +27,7 @@ abstract class Highlight implements _$Highlight {
     @required UniqueId id,
     @required HighlightQuote quote,
     @required HighlightColor color,
-    @required Image image,
+    @required Option<Image> image,
     @required BookTitle bookTitle,
     @required PageNumber pageNumber,
   }) = _Highlights;
@@ -36,17 +36,23 @@ abstract class Highlight implements _$Highlight {
         id: UniqueId(),
         quote: HighlightQuote(''),
         color: HighlightColor(HighlightColor.predefinedColors[0]),
-        image: Image.notAvailable(),
+        image: none(),
         bookTitle: BookTitle(''),
         pageNumber: PageNumber(''),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
     return quote.failureOrUnit
-        .andThen(image.failureOption.fold(
-          () => right(unit),
-          (f) => left(f),
-        ))
+        // TODO: try to refactor
+        .andThen(
+          image.fold(
+            () => right(unit),
+            (i) => i.failureOption.fold(
+              () => right(unit),
+              (f) => left(f),
+            ),
+          ),
+        )
         .andThen(bookTitle.failureOrUnit)
         .andThen(pageNumber.failureOrUnit)
         .fold((f) => some(f), (_) => none());

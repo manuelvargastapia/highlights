@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart' hide Image;
 
 import 'package:bloc_test/bloc_test.dart';
@@ -99,10 +100,11 @@ void main() {
                 id: UniqueId.fromUniqueString('1'),
                 quote: HighlightQuote('Quote 1'),
                 color: HighlightColor(HighlightColor.predefinedColors[1]),
-                image: Image(
-                  imageUrl: ImageUrl('https://1.test'),
-                  imageFile: ImageFile.notAvailable(),
-                ),
+                image: some(Image(
+                  uploaded: true,
+                  imageUrl: some(ImageUrl('https://1.test')),
+                  imageFile: none(),
+                )),
                 bookTitle: BookTitle('title 1'),
                 pageNumber: PageNumber('111'),
               ),
@@ -110,10 +112,11 @@ void main() {
                 id: UniqueId.fromUniqueString('2'),
                 quote: HighlightQuote('Quote 2'),
                 color: HighlightColor(HighlightColor.predefinedColors[2]),
-                image: Image(
-                  imageUrl: ImageUrl('https://2.test'),
-                  imageFile: ImageFile.notAvailable(),
-                ),
+                image: some(Image(
+                  uploaded: true,
+                  imageUrl: some(ImageUrl('https://2.test')),
+                  imageFile: none(),
+                )),
                 bookTitle: BookTitle('title 2'),
                 pageNumber: PageNumber('222'),
               ),
@@ -121,10 +124,11 @@ void main() {
                 id: UniqueId.fromUniqueString('3'),
                 quote: HighlightQuote('Quote 3'),
                 color: HighlightColor(HighlightColor.predefinedColors[3]),
-                image: Image(
-                  imageUrl: ImageUrl('https://3.test'),
-                  imageFile: ImageFile.notAvailable(),
-                ),
+                image: some(Image(
+                  uploaded: true,
+                  imageUrl: some(ImageUrl('https://3.test')),
+                  imageFile: none(),
+                )),
                 bookTitle: BookTitle('title 3'),
                 pageNumber: PageNumber('333'),
               ),
@@ -161,9 +165,12 @@ void main() {
                 id: UniqueId.fromUniqueString('1'),
                 quote: HighlightQuote('Quote 1'),
                 color: HighlightColor(HighlightColor.predefinedColors[1]),
-                image: Image(
-                  imageUrl: ImageUrl('https://1.test'),
-                  imageFile: ImageFile.notAvailable(),
+                image: some(
+                  Image(
+                    uploaded: true,
+                    imageUrl: some(ImageUrl('https://1.test')),
+                    imageFile: none(),
+                  ),
                 ),
                 bookTitle: BookTitle('title 1'),
                 pageNumber: PageNumber('111'),
