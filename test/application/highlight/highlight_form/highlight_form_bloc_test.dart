@@ -144,7 +144,6 @@ void main() {
 
   group('_ImageUrlChanged', () {
     final newImage = Image(
-      uploaded: true,
       imageUrl: some(ImageUrl('http://newimageurl.test')),
       imageFile: none(),
     );
@@ -177,7 +176,6 @@ void main() {
       quote: HighlightQuote('This is a valid quote'),
       color: HighlightColor(HighlightColor.predefinedColors[0]),
       image: some(Image(
-        uploaded: true,
         imageUrl: some(ImageUrl('http://validurl.test')),
         imageFile: none(),
       )),
