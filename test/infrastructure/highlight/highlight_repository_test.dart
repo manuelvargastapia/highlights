@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -28,13 +29,17 @@ const mockData = {
   'bookTitle': 'Test title',
   'pageNumber': '666',
 };
+const fakeDownloadUrl = 'https://fake-download-url.fake';
 final mockHighlight = Highlight(
   id: UniqueId.fromUniqueString(mockUid),
   color: HighlightColor(HighlightColor.predefinedColors[2]),
   quote: HighlightQuote('Test quote'),
-  image: Image(
-    imageUrl: ImageUrl('https://test-url.test'),
-    imageFile: ImageFile.notAvailable(),
+  image: some(
+    Image(
+      uploaded: true,
+      imageUrl: some(ImageUrl('https://test-url.test')),
+      imageFile: none(),
+    ),
   ),
   bookTitle: BookTitle('Test title'),
   pageNumber: PageNumber('666'),
@@ -45,9 +50,46 @@ class MockIAuthFacade extends Mock implements IAuthFacade {}
 // ignore: avoid_implementing_value_types
 class MockFirebaseStorage extends Mock implements FirebaseStorage {}
 
+// ignore: avoid_implementing_value_types
+class FakeReference extends Fake implements Reference {
+  @override
+  UploadTask putFile(File file, [SettableMetadata metadata]) {
+    return FakeUploadTask();
+  }
+
+  @override
+  Reference child(String path) {
+    return FakeReference();
+  }
+
+  @override
+  Future<String> getDownloadURL() => Future.value(fakeDownloadUrl);
+}
+
+class FakeUploadTask extends Fake implements UploadTask {
+  @override
+  TaskSnapshot get snapshot {
+    return FakeTaskSnapshot();
+  }
+
+  @override
+  Future<S> then<S>(
+    FutureOr<S> Function(TaskSnapshot) onValue, {
+    Function onError,
+  }) =>
+      Future.value(onValue(snapshot));
+}
+
+// ignore: avoid_implementing_value_types
+class FakeTaskSnapshot extends Fake implements TaskSnapshot {
+  @override
+  TaskState get state => TaskState.success;
+}
+
 void main() {
   MockFirestoreInstance mockFirestore;
   MockFirebaseStorage mockFirebaseStorage;
+  FakeReference fakeReference;
   MockIAuthFacade mockIAuthFacade;
   HighlightRepository highlightRepository;
   StreamSubscription<Either<HighlightFailure, KtList<Highlight>>> subscription;
@@ -61,6 +103,7 @@ void main() {
         .doc(mockUid)
         .set(mockData);
     mockFirebaseStorage = MockFirebaseStorage();
+    fakeReference = FakeReference();
     mockIAuthFacade = MockIAuthFacade();
     highlightRepository = HighlightRepository(
       mockFirestore,
@@ -528,9 +571,12 @@ void main() {
       id: UniqueId.fromUniqueString('new-uid'),
       color: HighlightColor(HighlightColor.predefinedColors[4]),
       quote: HighlightQuote('New inspirational quote'),
-      image: Image(
-        imageUrl: ImageUrl('https://new-test-url.test'),
-        imageFile: ImageFile.notAvailable(),
+      image: some(
+        Image(
+          uploaded: true,
+          imageUrl: some(ImageUrl('https://new-test-url.test')),
+          imageFile: some(ImageFile(File('test-file'))),
+        ),
       ),
       bookTitle: BookTitle('Brand new book title'),
       pageNumber: PageNumber('999'),
@@ -563,6 +609,8 @@ void main() {
           ),
         );
 
+        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
+
         final failureOrUnit = await highlightRepository.create(newHighlight);
 
         expect(failureOrUnit.isRight(), isTrue);
@@ -589,7 +637,7 @@ void main() {
                   "new-uid": {
                     "quote": "New inspirational quote",
                     "color": 4294747063,
-                    "imageUrl": "https://new-test-url.test",
+                    "imageUrl": "$fakeDownloadUrl",
                     "bookTitle": "Brand new book title",
                     "pageNumber": "999"
                   }
@@ -619,6 +667,8 @@ void main() {
             User(id: UniqueId.fromUniqueString(mockUid)),
           ),
         );
+
+        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
 
         await deleteDB();
 
@@ -654,9 +704,12 @@ void main() {
     final updatedHighlight = mockHighlight.copyWith(
       color: HighlightColor(HighlightColor.predefinedColors[3]),
       quote: HighlightQuote('Test quote updated'),
-      image: Image(
-        imageUrl: ImageUrl('https://test-url-updated.test'),
-        imageFile: ImageFile.notAvailable(),
+      image: some(
+        Image(
+          uploaded: true,
+          imageUrl: some(ImageUrl('https://test-url-updated.test')),
+          imageFile: some(ImageFile(File('test-file'))),
+        ),
       ),
       bookTitle: BookTitle('Test title updated'),
       pageNumber: PageNumber('777'),
@@ -689,6 +742,8 @@ void main() {
           ),
         );
 
+        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
+
         final failureOrUnit =
             await highlightRepository.update(updatedHighlight);
 
@@ -708,7 +763,7 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4291883200,
-                    "imageUrl": "https://test-url-updated.test",
+                    "imageUrl": "$fakeDownloadUrl",
                     "quote": "Test quote updated",
                     "bookTitle": "Test title updated",
                     "pageNumber": "777"
@@ -739,6 +794,8 @@ void main() {
             User(id: UniqueId.fromUniqueString(mockUid)),
           ),
         );
+
+        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
 
         final failureOrUnit = await highlightRepository.update(
           updatedHighlight.copyWith(
@@ -774,7 +831,7 @@ void main() {
                   "non-existent-id": {
                     "quote": "Test quote updated",
                     "color": 4291883200,
-                    "imageUrl": "https://test-url-updated.test",
+                    "imageUrl": "$fakeDownloadUrl",
                     "bookTitle": "Test title updated",
                     "pageNumber": "777"
                   }
