@@ -101,7 +101,6 @@ void main() {
                 quote: HighlightQuote('Quote 1'),
                 color: HighlightColor(HighlightColor.predefinedColors[1]),
                 image: some(Image(
-                  uploaded: true,
                   imageUrl: some(ImageUrl('https://1.test')),
                   imageFile: none(),
                 )),
@@ -113,7 +112,6 @@ void main() {
                 quote: HighlightQuote('Quote 2'),
                 color: HighlightColor(HighlightColor.predefinedColors[2]),
                 image: some(Image(
-                  uploaded: true,
                   imageUrl: some(ImageUrl('https://2.test')),
                   imageFile: none(),
                 )),
@@ -125,7 +123,6 @@ void main() {
                 quote: HighlightQuote('Quote 3'),
                 color: HighlightColor(HighlightColor.predefinedColors[3]),
                 image: some(Image(
-                  uploaded: true,
                   imageUrl: some(ImageUrl('https://3.test')),
                   imageFile: none(),
                 )),
@@ -167,7 +164,6 @@ void main() {
                 color: HighlightColor(HighlightColor.predefinedColors[1]),
                 image: some(
                   Image(
-                    uploaded: true,
                     imageUrl: some(ImageUrl('https://1.test')),
                     imageFile: none(),
                   ),
