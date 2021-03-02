@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dartz/dartz.dart';
 
 import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
@@ -25,14 +26,21 @@ abstract class ImagePrimitive with _$ImagePrimitive {
       );
 
   factory ImagePrimitive.fromDomain(Image image) => ImagePrimitive(
-        imageUrl: image.imageUrl.getOrCrash(),
-        imageFile: image.imageFile.getOrCrash(),
+        imageUrl: image.imageUrl.fold(
+          () => '',
+          (imageUrl) => imageUrl.getOrCrash(),
+        ),
+        imageFile: image.imageFile.fold(
+          () => File(''),
+          (imageFile) => imageFile.getOrCrash(),
+        ),
       );
 }
 
 extension ImagePrimitiveX on ImagePrimitive {
   Image toDomain() => Image(
-        imageUrl: ImageUrl(imageUrl),
-        imageFile: ImageFile(imageFile),
+        uploaded: imageUrl.isNotEmpty,
+        imageUrl: imageUrl.isEmpty ? none() : some(ImageUrl(imageUrl)),
+        imageFile: imageFile.path.isEmpty ? none() : some(ImageFile(imageFile)),
       );
 }

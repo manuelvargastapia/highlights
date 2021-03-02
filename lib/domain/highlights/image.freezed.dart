@@ -14,8 +14,12 @@ class _$ImageTearOff {
   const _$ImageTearOff();
 
 // ignore: unused_element
-  _Image call({@required ImageUrl imageUrl, @required ImageFile imageFile}) {
+  _Image call(
+      {@required bool uploaded,
+      @required Option<ImageUrl> imageUrl,
+      @required Option<ImageFile> imageFile}) {
     return _Image(
+      uploaded: uploaded,
       imageUrl: imageUrl,
       imageFile: imageFile,
     );
@@ -28,8 +32,9 @@ const $Image = _$ImageTearOff();
 
 /// @nodoc
 mixin _$Image {
-  ImageUrl get imageUrl;
-  ImageFile get imageFile;
+  bool get uploaded; // TODO: make it private
+  Option<ImageUrl> get imageUrl;
+  Option<ImageFile> get imageFile;
 
   @JsonKey(ignore: true)
   $ImageCopyWith<Image> get copyWith;
@@ -39,7 +44,8 @@ mixin _$Image {
 abstract class $ImageCopyWith<$Res> {
   factory $ImageCopyWith(Image value, $Res Function(Image) then) =
       _$ImageCopyWithImpl<$Res>;
-  $Res call({ImageUrl imageUrl, ImageFile imageFile});
+  $Res call(
+      {bool uploaded, Option<ImageUrl> imageUrl, Option<ImageFile> imageFile});
 }
 
 /// @nodoc
@@ -52,13 +58,17 @@ class _$ImageCopyWithImpl<$Res> implements $ImageCopyWith<$Res> {
 
   @override
   $Res call({
+    Object uploaded = freezed,
     Object imageUrl = freezed,
     Object imageFile = freezed,
   }) {
     return _then(_value.copyWith(
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
-      imageFile:
-          imageFile == freezed ? _value.imageFile : imageFile as ImageFile,
+      uploaded: uploaded == freezed ? _value.uploaded : uploaded as bool,
+      imageUrl:
+          imageUrl == freezed ? _value.imageUrl : imageUrl as Option<ImageUrl>,
+      imageFile: imageFile == freezed
+          ? _value.imageFile
+          : imageFile as Option<ImageFile>,
     ));
   }
 }
@@ -68,7 +78,8 @@ abstract class _$ImageCopyWith<$Res> implements $ImageCopyWith<$Res> {
   factory _$ImageCopyWith(_Image value, $Res Function(_Image) then) =
       __$ImageCopyWithImpl<$Res>;
   @override
-  $Res call({ImageUrl imageUrl, ImageFile imageFile});
+  $Res call(
+      {bool uploaded, Option<ImageUrl> imageUrl, Option<ImageFile> imageFile});
 }
 
 /// @nodoc
@@ -82,38 +93,51 @@ class __$ImageCopyWithImpl<$Res> extends _$ImageCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object uploaded = freezed,
     Object imageUrl = freezed,
     Object imageFile = freezed,
   }) {
     return _then(_Image(
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as ImageUrl,
-      imageFile:
-          imageFile == freezed ? _value.imageFile : imageFile as ImageFile,
+      uploaded: uploaded == freezed ? _value.uploaded : uploaded as bool,
+      imageUrl:
+          imageUrl == freezed ? _value.imageUrl : imageUrl as Option<ImageUrl>,
+      imageFile: imageFile == freezed
+          ? _value.imageFile
+          : imageFile as Option<ImageFile>,
     ));
   }
 }
 
 /// @nodoc
 class _$_Image extends _Image {
-  const _$_Image({@required this.imageUrl, @required this.imageFile})
-      : assert(imageUrl != null),
+  const _$_Image(
+      {@required this.uploaded,
+      @required this.imageUrl,
+      @required this.imageFile})
+      : assert(uploaded != null),
+        assert(imageUrl != null),
         assert(imageFile != null),
         super._();
 
   @override
-  final ImageUrl imageUrl;
+  final bool uploaded;
+  @override // TODO: make it private
+  final Option<ImageUrl> imageUrl;
   @override
-  final ImageFile imageFile;
+  final Option<ImageFile> imageFile;
 
   @override
   String toString() {
-    return 'Image(imageUrl: $imageUrl, imageFile: $imageFile)';
+    return 'Image(uploaded: $uploaded, imageUrl: $imageUrl, imageFile: $imageFile)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Image &&
+            (identical(other.uploaded, uploaded) ||
+                const DeepCollectionEquality()
+                    .equals(other.uploaded, uploaded)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUrl, imageUrl)) &&
@@ -125,6 +149,7 @@ class _$_Image extends _Image {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(uploaded) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(imageFile);
 
@@ -137,12 +162,16 @@ class _$_Image extends _Image {
 abstract class _Image extends Image {
   const _Image._() : super._();
   const factory _Image(
-      {@required ImageUrl imageUrl, @required ImageFile imageFile}) = _$_Image;
+      {@required bool uploaded,
+      @required Option<ImageUrl> imageUrl,
+      @required Option<ImageFile> imageFile}) = _$_Image;
 
   @override
-  ImageUrl get imageUrl;
+  bool get uploaded;
+  @override // TODO: make it private
+  Option<ImageUrl> get imageUrl;
   @override
-  ImageFile get imageFile;
+  Option<ImageFile> get imageFile;
   @override
   @JsonKey(ignore: true)
   _$ImageCopyWith<_Image> get copyWith;

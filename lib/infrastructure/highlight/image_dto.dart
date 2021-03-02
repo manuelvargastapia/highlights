@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:highlights/domain/highlights/image.dart';
@@ -19,17 +20,22 @@ abstract class ImageDto implements _$ImageDto {
 
   factory ImageDto.fromDomain(Image image) {
     return ImageDto(
-      imageUrl: image.imageUrl.getOrCrash(),
-      imageFile: image.imageFile.getOrCrash().path,
+      imageUrl: image.imageUrl.fold(
+        () => '',
+        (imageUrl) => imageUrl.getOrCrash(),
+      ),
+      imageFile: image.imageFile.fold(
+        () => '',
+        (imageFile) => imageFile.getOrCrash().path,
+      ),
     );
   }
 
   Image toDomain() {
     return Image(
-      imageUrl: imageUrl.isEmpty ? ImageUrl.notAvailable() : ImageUrl(imageUrl),
-      imageFile: imageFile.isEmpty
-          ? ImageFile.notAvailable()
-          : ImageFile(File(imageFile)),
+      uploaded: imageUrl.isNotEmpty,
+      imageUrl: imageUrl.isEmpty ? none() : some(ImageUrl(imageUrl)),
+      imageFile: imageFile.isEmpty ? none() : some(ImageFile(File(imageFile))),
     );
   }
 

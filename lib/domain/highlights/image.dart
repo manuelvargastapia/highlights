@@ -11,19 +11,18 @@ abstract class Image implements _$Image {
   const Image._();
 
   const factory Image({
-    @required ImageUrl imageUrl,
-    @required ImageFile imageFile,
+    @required bool uploaded, // TODO: make it private
+    @required Option<ImageUrl> imageUrl,
+    @required Option<ImageFile> imageFile,
   }) = _Image;
 
-  factory Image.notAvailable() => Image(
-        imageUrl: ImageUrl.notAvailable(),
-        imageFile: ImageFile.notAvailable(),
-      );
-
   Option<ValueFailure<dynamic>> get failureOption {
-    return imageUrl.failureOrUnit.fold(
-      (f) => some(f),
-      (_) => none(),
+    return imageUrl.fold(
+      () => none(),
+      (i) => i.failureOrUnit.fold(
+        (f) => some(f),
+        (_) => none(),
+      ),
     );
   }
 }
