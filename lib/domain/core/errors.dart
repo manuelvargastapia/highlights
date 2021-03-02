@@ -18,3 +18,9 @@ class UnexpectedValueError extends Error {
 
 /// Class to define unexpected errors coming from Firebase users checking.
 class NotAuthenticatedError extends Error {}
+
+/// Thrown when trying to upload an image without providing the file
+class NotImageProvided extends Error {}
+
+/// Thrown when an unexpected error ocurrs in UI
+class UnexpectedUIError extends Error {}
