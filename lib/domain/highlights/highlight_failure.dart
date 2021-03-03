@@ -12,4 +12,10 @@ abstract class HighlightFailure with _$HighlightFailure {
 
   /// Firebase couldn't update/delete the document.
   const factory HighlightFailure.unableToUpdate() = _UnableToUpdate;
+
+  /// FirebaseVision couldn't process image
+  const factory HighlightFailure.unableToProcessImage() = _UnableToProcessImage;
+
+  /// FirebaseVision couldn't find text
+  const factory HighlightFailure.noTextDetected() = _NoTextDetected;
 }
