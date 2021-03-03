@@ -76,7 +76,6 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
-      // TODO: update tests
       imageChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
@@ -103,24 +102,33 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           },
         );
       },
-      // TODO: test
       imageDeleted: (event) async* {
-        Either<HighlightFailure, Unit> failureOrUnit;
-        yield state.highlight.image.fold(
+        yield* state.highlight.image.fold(
           // The "none" case will never happen if UI validates properly
-          () => state,
-          (image) {
+          () async* {
+            yield state;
+          },
+          (image) async* {
+            Option<Either<HighlightFailure, Unit>> failureOption = none();
+
             // Delete image from Firebase Storage only if it's actually there
             // (otherwhise, HighlightRepository returns a failure)
             if (image.isUploaded) {
-              _highlightRepository.deleteImage(state.highlight).then(
-                (failureOrUnit) {
-                  failureOrUnit = failureOrUnit;
+              final failureOrUnit = await _highlightRepository.deleteImage(
+                state.highlight,
+              );
+
+              // We need specify none() or some() because we won't to pop
+              // untinl overview page in presentation layer
+              failureOrUnit.fold(
+                (failure) {
+                  failureOption = some(left(failure));
                 },
+                (_) {},
               );
             }
-            final failureOption = optionOf(failureOrUnit);
-            return state.copyWith(
+
+            yield state.copyWith(
               highlight: state.highlight.copyWith(
                 image: failureOption.isSome() ? some(image) : none(),
               ),
