@@ -102,7 +102,6 @@ class FakeTaskSnapshot extends Fake implements TaskSnapshot {
 void main() {
   MockFirestoreInstance mockFirestore;
   FakeFirebaseStorage fakeFirebaseStorage;
-  FakeReference fakeReference;
   MockIAuthFacade mockIAuthFacade;
   HighlightRepository highlightRepository;
   StreamSubscription<Either<HighlightFailure, KtList<Highlight>>> subscription;
@@ -116,7 +115,6 @@ void main() {
         .doc(mockUid)
         .set(mockData);
     fakeFirebaseStorage = FakeFirebaseStorage();
-    fakeReference = FakeReference();
     mockIAuthFacade = MockIAuthFacade();
     highlightRepository = HighlightRepository(
       mockFirestore,
