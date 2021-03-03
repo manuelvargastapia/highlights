@@ -76,7 +76,7 @@ class ImageDisplayer extends StatelessWidget {
       Object error,
       StackTrace stackTrace,
     ) =>
-        const Text('Error loading image.');
+        const Center(child: Text('Error loading image.'));
 
     return domainImage.isUploaded
         ? Image.network(
