@@ -77,6 +77,32 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
+      // TODO: test
+      imageDeleted: (event) async* {
+        Either<HighlightFailure, Unit> failureOrUnit;
+        yield state.highlight.image.fold(
+          // The "none" case will never happen if UI validates properly
+          () => state,
+          (image) {
+            // Delete image from Firebase Storage only if it's actually there
+            // (otherwhise, HighlightRepository returns a failure)
+            if (image.isUploaded) {
+              _highlightRepository.deleteImage(state.highlight).then(
+                (failureOrUnit) {
+                  failureOrUnit = failureOrUnit;
+                },
+              );
+            }
+            final failureOption = optionOf(failureOrUnit);
+            return state.copyWith(
+              highlight: state.highlight.copyWith(
+                image: failureOption.isSome() ? some(image) : none(),
+              ),
+              saveFailureOrSuccessOption: failureOption,
+            );
+          },
+        );
+      },
       saved: (event) async* {
         if (state.highlight.failureOption.isNone()) {
           yield state.copyWith(
