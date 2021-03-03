@@ -12,7 +12,7 @@ import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 
-import '../../../firebase_setup_mock.dart';
+import '../../../setup_firebase_mock.dart';
 
 class MockHighlightActorBloc extends MockBloc<HighlightActorState>
     implements HighlightActorBloc {}
@@ -21,7 +21,7 @@ class MockAuthBloc extends MockBloc<AuthState> implements AuthBloc {}
 
 void main() {
   configureInjection();
-  setupFirestoreMocks();
+  setupFirebaseMock();
 
   setUpAll(() async {
     await Firebase.initializeApp();
