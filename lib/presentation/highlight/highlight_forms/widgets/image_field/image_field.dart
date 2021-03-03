@@ -30,44 +30,61 @@ class ImageField extends StatelessWidget {
                 state.highlight.image,
                 MediaQuery.of(context).size,
               ),
-              IconButton(
-                onPressed: () async {
-                  final file = await showDialog<File>(
-                    context: context,
-                    builder: (context) {
-                      return SimpleDialog(
-                        title: const Text('Load a picture'),
-                        children: [
-                          SimpleDialogOption(
-                            onPressed: () async {
-                              final file = await _getImage(ImageSource.gallery);
-                              Navigator.pop(context, file);
-                            },
-                            child: const Text('Gallery'),
-                          ),
-                          SimpleDialogOption(
-                            onPressed: () async {
-                              final file = await _getImage(ImageSource.camera);
-                              Navigator.pop(context, file);
-                            },
-                            child: const Text('Camera'),
-                          ),
-                        ],
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      final file = await showDialog<File>(
+                        context: context,
+                        builder: (context) {
+                          return SimpleDialog(
+                            title: const Text('Load a picture'),
+                            children: [
+                              SimpleDialogOption(
+                                onPressed: () async {
+                                  final file =
+                                      await _getImage(ImageSource.gallery);
+                                  Navigator.pop(context, file);
+                                },
+                                child: const Text('Gallery'),
+                              ),
+                              SimpleDialogOption(
+                                onPressed: () async {
+                                  final file =
+                                      await _getImage(ImageSource.camera);
+                                  Navigator.pop(context, file);
+                                },
+                                child: const Text('Camera'),
+                              ),
+                            ],
+                          );
+                        },
                       );
-                    },
-                  );
 
-                  // "file" is null when showDialog() is dismissed
-                  if (file != null) {
-                    context
-                        .read<HighlightFormBloc>()
-                        .add(HighlightFormEvent.imageChanged(
-                          ImagePrimitive.fromFile(file),
-                        ));
-                  }
-                },
-                icon: const Icon(Icons.camera_alt),
-              ),
+                      // "file" is null when showDialog() is dismissed
+                      if (file != null) {
+                        context
+                            .read<HighlightFormBloc>()
+                            .add(HighlightFormEvent.imageChanged(
+                              ImagePrimitive.fromFile(file),
+                            ));
+                      }
+                    },
+                    icon: const Icon(Icons.camera_alt),
+                  ),
+                  if (state.highlight.image.isSome())
+                    IconButton(
+                      onPressed: () {
+                        _showDeletionDialog(
+                          context,
+                          context.read<HighlightFormBloc>(),
+                        );
+                      },
+                      icon: const Icon(Icons.delete),
+                    ),
+                ],
+              )
             ],
           ),
         );
@@ -82,5 +99,40 @@ class ImageField extends StatelessWidget {
       // TODO: use or remove: imageQuality: 80, --> Reduce size
     );
     return File(pickedFile.path);
+  }
+
+  void _showDeletionDialog(
+    BuildContext context,
+    HighlightFormBloc bloc,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Delete image'),
+          content: const Text(
+            'Associated quote will NOT be deleted',
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          actions: [
+            FlatButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('CANCEL'),
+            ),
+            FlatButton(
+              onPressed: () {
+                bloc.add(const HighlightFormEvent.imageDeleted());
+
+                Navigator.pop(context);
+              },
+              child: const Text('DELETE'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
