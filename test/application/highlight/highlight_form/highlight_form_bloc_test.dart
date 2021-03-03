@@ -451,4 +451,133 @@ void main() {
       },
     );
   });
+
+  group('_ImageDeleted', () {
+    final image = Image(
+      imageUrl: some(ImageUrl('http://newimageurl.test')),
+      imageFile: some(ImageFile(File('new/path'))),
+    );
+    blocTest(
+      '\nGiven curent image is none()'
+      '\nWhen _ImageChanged ocurrs'
+      '\nThen emit previous state without changes',
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
+      act: (bloc) {
+        bloc.add(const HighlightFormEvent.imageDeleted());
+      },
+      seed: initialState,
+      expect: [], // No changes because state remains the same
+      verify: (_) {
+        verifyNever(mockIHighlightRepository.deleteImage(any));
+      },
+    );
+
+    blocTest(
+      '\nGiven curent image is uploaded'
+      '\nWhen _ImageChanged ocurrs and image is deleted succesfully'
+      '\nThen emit previous state with image: none() and saveFailureOrSuccessOption: none()',
+      build: () {
+        when(mockIHighlightRepository.deleteImage(any)).thenAnswer(
+          (_) async => right(unit),
+        );
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
+      },
+      act: (bloc) {
+        bloc.add(const HighlightFormEvent.imageDeleted());
+      },
+      seed: initialState.copyWith(
+        highlight: initialState.highlight.copyWith(
+          image: some(
+            Image(
+              imageUrl: some(ImageUrl('http://newimageurl.test')),
+              imageFile: some(ImageFile(File('new/path'))),
+            ),
+          ),
+        ),
+      ),
+      expect: [
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(image: none()),
+          saveFailureOrSuccessOption: none(),
+        ),
+      ],
+      verify: (_) {
+        verify(mockIHighlightRepository.deleteImage(any)).called(1);
+      },
+    );
+
+    blocTest(
+      '\nGiven curent image is uploaded'
+      '\nWhen _ImageChanged ocurrs and image failed to be deleted'
+      '\nThen emit previous state with same image and failure',
+      build: () {
+        when(mockIHighlightRepository.deleteImage(any)).thenAnswer(
+          (_) async => left(const HighlightFailure.unableToUpdate()),
+        );
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
+      },
+      act: (bloc) {
+        bloc.add(const HighlightFormEvent.imageDeleted());
+      },
+      seed: initialState.copyWith(
+        highlight: initialState.highlight.copyWith(
+          image: some(image),
+        ),
+      ),
+      expect: [
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(
+            image: some(image),
+          ),
+          saveFailureOrSuccessOption: some(
+            left(const HighlightFailure.unableToUpdate()),
+          ),
+        ),
+      ],
+      verify: (_) {
+        verify(mockIHighlightRepository.deleteImage(any)).called(1);
+      },
+    );
+
+    blocTest(
+      "\nGiven curent image isn't uploaded"
+      '\nWhen _ImageChanged ocurrs'
+      "\nThen don't call deleteImage() and emit previous state with image: none() and saveFailureOrSuccessOption: none()",
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
+      act: (bloc) {
+        bloc.add(const HighlightFormEvent.imageDeleted());
+      },
+      seed: initialState.copyWith(
+        highlight: initialState.highlight.copyWith(
+          image: some(
+            Image(
+              imageUrl: none(), // internally, no URL means non uploaded
+              imageFile: some(ImageFile(File('new/path'))),
+            ),
+          ),
+        ),
+      ),
+      expect: [
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(image: none()),
+          saveFailureOrSuccessOption: none(),
+        ),
+      ],
+      verify: (_) {
+        verifyNever(mockIHighlightRepository.deleteImage(any));
+      },
+    );
+  });
 }
