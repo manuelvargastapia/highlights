@@ -16,6 +16,8 @@ import 'package:highlights/domain/highlights/i_highlight_repository.dart';
 import 'package:highlights/infrastructure/core/firestore_helpers.dart';
 import 'package:highlights/infrastructure/core/storage_helpers.dart';
 
+// TODO: split in two repositories (Firestore (or generic docs DB)
+// and Storage (generic assets DB))
 @LazySingleton(as: IHighlightRepository)
 class HighlightRepository implements IHighlightRepository {
   final FirebaseFirestore _firestore;
@@ -190,20 +192,39 @@ class HighlightRepository implements IHighlightRepository {
       await userDocument.highlightCollection.doc(highlightId).delete();
       // TODO: test
       if (highlight.image.isSome()) {
-        final failureOrUnit = await _storage.deleteImage(
-          highlightId,
-          userDocument,
+        final failureOrUnit = await deleteImage(highlight);
+        failureOrUnit.fold(
+          (failure) {
+            return left(failure);
+          },
+          (_) {},
         );
-        return failureOrUnit.fold(
-          (failure) => left(failure),
-          (_) => right(unit),
-        );
-      } else {
-        return right(unit);
       }
+      return right(unit);
     } on FirebaseException catch (e) {
       if (e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
+        return left(const HighlightFailure.insufficientPermission());
+      } else if (e.code.contains('not-found')) {
+        return left(const HighlightFailure.unableToUpdate());
+      } else {
+        return left(const HighlightFailure.unexpected());
+      }
+    }
+  }
+
+  //TODO: test
+  @override
+  Future<Either<HighlightFailure, Unit>> deleteImage(
+    Highlight highlight,
+  ) async {
+    try {
+      final userDocument = await _firestore.userDocument(_authFacade);
+      final storageReference = _storage.getReference(userDocument, highlight);
+      await storageReference.delete();
+      return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
         return left(const HighlightFailure.insufficientPermission());
       } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
