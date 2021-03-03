@@ -30,22 +30,9 @@ extension StorageX on FirebaseStorage {
     }
   }
 
-  Future<Either<HighlightFailure, Unit>> deleteImage(
-    String highlightId,
+  Reference getReference(
     DocumentReference userDocument,
-  ) async {
-    try {
-      final userId = userDocument.id;
-      final path = '$userId/$highlightId';
-      final storageReference = ref().child(path);
-      await storageReference.delete();
-      return right(unit);
-    } on FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        return left(const HighlightFailure.insufficientPermission());
-      } else {
-        return left(const HighlightFailure.unexpected());
-      }
-    }
-  }
+    Highlight highlight,
+  ) =>
+      ref().child('${userDocument.id}/${highlight.id.getOrCrash()}');
 }
