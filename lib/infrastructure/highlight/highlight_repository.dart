@@ -192,7 +192,7 @@ class HighlightRepository implements IHighlightRepository {
       await userDocument.highlightCollection.doc(highlightId).delete();
       // TODO: test
       if (highlight.image.isSome()) {
-        final failureOrUnit = await deleteImage(highlight);
+        final failureOrUnit = await deleteImage(highlight, userDocument);
         failureOrUnit.fold(
           (failure) {
             return left(failure);
@@ -216,10 +216,12 @@ class HighlightRepository implements IHighlightRepository {
   //TODO: test
   @override
   Future<Either<HighlightFailure, Unit>> deleteImage(
-    Highlight highlight,
-  ) async {
+    Highlight highlight, [
+    DocumentReference document,
+  ]) async {
     try {
-      final userDocument = await _firestore.userDocument(_authFacade);
+      final userDocument =
+          document ?? await _firestore.userDocument(_authFacade);
       final storageReference = _storage.getReference(userDocument, highlight);
       await storageReference.delete();
       return right(unit);
