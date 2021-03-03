@@ -47,6 +47,7 @@ void main() {
           ),
         ],
         child: MaterialApp(
+          home: Container(),
           builder: ExtendedNavigator.builder<Router>(
             router: Router(),
             initialRoute: '/highlight-overview-page',

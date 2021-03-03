@@ -17,6 +17,7 @@ import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
+import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/infrastructure/highlight/highlight_repository.dart';
 
 const mockUid = 'mock-uid';
@@ -36,7 +37,9 @@ const fakeDownloadUrl = 'https://fake-download-url.fake';
 final mockHighlight = Highlight(
   id: UniqueId.fromUniqueString(mockUid),
   color: HighlightColor(HighlightColor.predefinedColors[2]),
-  quote: HighlightQuote('Test quote'),
+  quote: Quote(
+    highlightQuote: HighlightQuote('Test quote'),
+  ),
   image: some(
     Image(
       imageUrl: some(ImageUrl('https://test-url.test')),
@@ -50,7 +53,12 @@ final mockHighlight = Highlight(
 class MockIAuthFacade extends Mock implements IAuthFacade {}
 
 // ignore: avoid_implementing_value_types
-class MockFirebaseStorage extends Mock implements FirebaseStorage {}
+class FakeFirebaseStorage extends Fake implements FirebaseStorage {
+  @override
+  Reference ref([String path]) {
+    return FakeReference();
+  }
+}
 
 // ignore: avoid_implementing_value_types
 class FakeReference extends Fake implements Reference {
@@ -66,6 +74,9 @@ class FakeReference extends Fake implements Reference {
 
   @override
   Future<String> getDownloadURL() => Future.value(fakeDownloadUrl);
+
+  @override
+  Future<void> delete() => Future.value();
 }
 
 class FakeUploadTask extends Fake implements UploadTask {
@@ -90,7 +101,7 @@ class FakeTaskSnapshot extends Fake implements TaskSnapshot {
 
 void main() {
   MockFirestoreInstance mockFirestore;
-  MockFirebaseStorage mockFirebaseStorage;
+  FakeFirebaseStorage fakeFirebaseStorage;
   FakeReference fakeReference;
   MockIAuthFacade mockIAuthFacade;
   HighlightRepository highlightRepository;
@@ -104,12 +115,12 @@ void main() {
         .collection(highlightsPath)
         .doc(mockUid)
         .set(mockData);
-    mockFirebaseStorage = MockFirebaseStorage();
+    fakeFirebaseStorage = FakeFirebaseStorage();
     fakeReference = FakeReference();
     mockIAuthFacade = MockIAuthFacade();
     highlightRepository = HighlightRepository(
       mockFirestore,
-      mockFirebaseStorage,
+      fakeFirebaseStorage,
       mockIAuthFacade,
     );
   });
@@ -578,7 +589,9 @@ void main() {
     final newHighlight = Highlight(
       id: UniqueId.fromUniqueString('new-uid'),
       color: HighlightColor(HighlightColor.predefinedColors[4]),
-      quote: HighlightQuote('New inspirational quote'),
+      quote: Quote(
+        highlightQuote: HighlightQuote('New inspirational quote'),
+      ),
       image: some(
         Image(
           imageUrl: none(),
@@ -615,8 +628,6 @@ void main() {
             User(id: UniqueId.fromUniqueString(mockUid)),
           ),
         );
-
-        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
 
         final failureOrUnit = await highlightRepository.create(newHighlight);
 
@@ -681,8 +692,6 @@ void main() {
           ),
         );
 
-        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
-
         await deleteDB();
 
         final failureOrUnit = await highlightRepository.create(newHighlight);
@@ -717,7 +726,9 @@ void main() {
   group('update', () {
     final updatedHighlight = mockHighlight.copyWith(
       color: HighlightColor(HighlightColor.predefinedColors[3]),
-      quote: HighlightQuote('Test quote updated'),
+      quote: Quote(
+        highlightQuote: HighlightQuote('Test quote updated'),
+      ),
       image: some(
         Image(
           imageUrl: some(ImageUrl('https://test-url-updated.test')),
@@ -754,8 +765,6 @@ void main() {
             User(id: UniqueId.fromUniqueString(mockUid)),
           ),
         );
-
-        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
 
         final failureOrUnit =
             await highlightRepository.update(updatedHighlight);
@@ -810,8 +819,6 @@ void main() {
             User(id: UniqueId.fromUniqueString(mockUid)),
           ),
         );
-
-        when(mockFirebaseStorage.ref(any)).thenReturn(fakeReference);
 
         final failureOrUnit = await highlightRepository.update(
           updatedHighlight.copyWith(

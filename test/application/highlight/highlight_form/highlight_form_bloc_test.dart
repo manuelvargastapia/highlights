@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,19 +9,26 @@ import 'package:highlights/application/highlight/highlight_form/highlight_form_b
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/image.dart';
+import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
+import 'package:highlights/domain/highlights/i__text_recognition_repostitory.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 class MockIHighlightRepository extends Mock implements IHighlightRepository {}
 
+class MockITextRecognitionRepository extends Mock
+    implements ITextRecognitionRepository {}
+
 void main() {
   MockIHighlightRepository mockIHighlightRepository;
+  MockITextRecognitionRepository mockITextRecognitionRepository;
   final initialState = HighlightFormState.initial();
 
   setUp(() {
     mockIHighlightRepository = MockIHighlightRepository();
+    mockITextRecognitionRepository = MockITextRecognitionRepository();
   });
 
   group('_Initialized', () {
@@ -29,7 +38,10 @@ void main() {
       '\nGiven _Initialized ocurrs'
       '\nWhen initial Highlight Option is some()'
       '\nThen emit state with Highlight and isEditing',
-      build: () => HighlightFormBloc(mockIHighlightRepository),
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
       act: (bloc) {
         bloc.add(HighlightFormEvent.initialized(some(emptyHighlight)));
       },
@@ -45,7 +57,10 @@ void main() {
       '\nGiven _Initialized ocurrs'
       '\nWhen initial Highlight Option is none()'
       '\nThen emit initial state',
-      build: () => HighlightFormBloc(mockIHighlightRepository),
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
       seed: initialState,
       act: (bloc) {
         bloc.add(HighlightFormEvent.initialized(none()));
@@ -60,7 +75,10 @@ void main() {
       '\nGiven any state'
       '\nWhen _QuoteChange ocurrs'
       '\nThen emit prev state with changed quote and saveFailureOrSuccessOption: none()',
-      build: () => HighlightFormBloc(mockIHighlightRepository),
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
       act: (bloc) {
         bloc.add(const HighlightFormEvent.quoteChange(newQuote));
       },
@@ -68,7 +86,9 @@ void main() {
       expect: [
         initialState.copyWith(
           highlight: initialState.highlight.copyWith(
-            quote: HighlightQuote(newQuote),
+            quote: Quote(
+              highlightQuote: HighlightQuote(newQuote),
+            ),
           ),
           saveFailureOrSuccessOption: none(),
         ),
@@ -82,7 +102,10 @@ void main() {
       '\nGiven any state'
       '\nWhen _ColorChange ocurrs'
       '\nThen emit prev state with changed color and saveFailureOrSuccessOption: none()',
-      build: () => HighlightFormBloc(mockIHighlightRepository),
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
       act: (bloc) {
         bloc.add(HighlightFormEvent.colorChange(newColor));
       },
@@ -104,7 +127,10 @@ void main() {
       '\nGiven any state'
       '\nWhen _BookTitleChanged ocurrs'
       '\nThen emit prev state with changed bookTitle and saveFailureOrSuccessOption: none()',
-      build: () => HighlightFormBloc(mockIHighlightRepository),
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
       act: (bloc) {
         bloc.add(const HighlightFormEvent.bookTitleChanged(newBookTitle));
       },
@@ -126,7 +152,10 @@ void main() {
       '\nGiven any state'
       '\nWhen _BookTitleChanged ocurrs'
       '\nThen emit prev state with changed pageNumber and saveFailureOrSuccessOption: none()',
-      build: () => HighlightFormBloc(mockIHighlightRepository),
+      build: () => HighlightFormBloc(
+        mockIHighlightRepository,
+        mockITextRecognitionRepository,
+      ),
       act: (bloc) {
         bloc.add(const HighlightFormEvent.pageNumberChanged(newPageNumber));
       },
@@ -142,17 +171,29 @@ void main() {
     );
   });
 
-  group('_ImageUrlChanged', () {
+  group('_ImageChanged', () {
     final newImage = Image(
       imageUrl: some(ImageUrl('http://newimageurl.test')),
-      imageFile: none(),
+      imageFile: some(ImageFile(File('new/path'))),
     );
 
     blocTest(
       '\nGiven any state'
-      '\nWhen _ImageUrlChanged ocurrs'
-      '\nThen emit prev state with changed url and saveFailureOrSuccessOption: none()',
-      build: () => HighlightFormBloc(mockIHighlightRepository),
+      '\nWhen _ImageChanged ocurrs and image is processed succesfully'
+      '\nThen emit state with new image and then emit state with new quote',
+      build: () {
+        when(mockITextRecognitionRepository.processImage(any)).thenAnswer(
+          (_) async => right(
+            Quote(
+              highlightQuote: HighlightQuote('new quote'),
+            ),
+          ),
+        );
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
+      },
       act: (bloc) {
         bloc.add(HighlightFormEvent.imageChanged(
           ImagePrimitive.fromDomain(newImage),
@@ -164,7 +205,57 @@ void main() {
           highlight: initialState.highlight.copyWith(
             image: some(newImage),
           ),
+          isProcessingImage: true,
           saveFailureOrSuccessOption: none(),
+        ),
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(
+            image: some(newImage),
+            quote: Quote(
+              highlightQuote: HighlightQuote('new quote'),
+            ),
+          ),
+          isProcessingImage: false,
+          saveFailureOrSuccessOption: none(),
+        ),
+      ],
+    );
+
+    blocTest(
+      '\nGiven any state'
+      '\nWhen _ImageChanged ocurrs and image is processed with failure'
+      '\nThen emit state with new image and then emit state with failure',
+      build: () {
+        when(mockITextRecognitionRepository.processImage(any)).thenAnswer(
+          (_) async => left(const HighlightFailure.unableToProcessImage()),
+        );
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
+      },
+      act: (bloc) {
+        bloc.add(HighlightFormEvent.imageChanged(
+          ImagePrimitive.fromDomain(newImage),
+        ));
+      },
+      seed: initialState,
+      expect: [
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(
+            image: some(newImage),
+          ),
+          isProcessingImage: true,
+          saveFailureOrSuccessOption: none(),
+        ),
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(
+            image: some(newImage),
+          ),
+          isProcessingImage: false,
+          saveFailureOrSuccessOption: some(
+            left(const HighlightFailure.unableToProcessImage()),
+          ),
         ),
       ],
     );
@@ -173,7 +264,9 @@ void main() {
   group('_Saved', () {
     final validHighlight = Highlight(
       id: UniqueId(),
-      quote: HighlightQuote('This is a valid quote'),
+      quote: Quote(
+        highlightQuote: HighlightQuote('This is a valid quote'),
+      ),
       color: HighlightColor(HighlightColor.predefinedColors[0]),
       image: some(Image(
         imageUrl: some(ImageUrl('http://validurl.test')),
@@ -192,7 +285,10 @@ void main() {
       build: () {
         when(mockIHighlightRepository.create(any))
             .thenAnswer((_) async => right(unit));
-        return HighlightFormBloc(mockIHighlightRepository);
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
       },
       seed: seedState,
       act: (bloc) {
@@ -225,7 +321,10 @@ void main() {
       build: () {
         when(mockIHighlightRepository.update(any))
             .thenAnswer((_) async => right(unit));
-        return HighlightFormBloc(mockIHighlightRepository);
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
       },
       seed: seedState.copyWith(isEditing: true),
       act: (bloc) {
@@ -260,7 +359,10 @@ void main() {
       build: () {
         when(mockIHighlightRepository.create(any))
             .thenAnswer((_) async => left(const HighlightFailure.unexpected()));
-        return HighlightFormBloc(mockIHighlightRepository);
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
       },
       seed: seedState,
       act: (bloc) {
@@ -295,7 +397,10 @@ void main() {
       build: () {
         when(mockIHighlightRepository.update(any))
             .thenAnswer((_) async => left(const HighlightFailure.unexpected()));
-        return HighlightFormBloc(mockIHighlightRepository);
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
       },
       seed: seedState.copyWith(isEditing: true),
       act: (bloc) {
@@ -330,7 +435,10 @@ void main() {
       '\nWhen _Saved ocurrs'
       "\nThen don't emitt any new state",
       build: () {
-        return HighlightFormBloc(mockIHighlightRepository);
+        return HighlightFormBloc(
+          mockIHighlightRepository,
+          mockITextRecognitionRepository,
+        );
       },
       seed: initialState,
       act: (bloc) {
