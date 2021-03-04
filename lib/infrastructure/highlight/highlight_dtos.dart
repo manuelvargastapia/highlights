@@ -5,8 +5,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
+import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
-import 'package:highlights/infrastructure/highlight/server_timestamp_converter.dart';
+import 'package:highlights/infrastructure/highlight/image_dto.dart';
+import 'package:highlights/infrastructure/highlight/json_converters.dart';
 
 part 'highlight_dtos.freezed.dart';
 part 'highlight_dtos.g.dart';
@@ -29,7 +31,7 @@ abstract class HighlightDto implements _$HighlightDto {
     @JsonKey(ignore: true) String id,
     @required String quote,
     @required int color,
-    @required String imageUrl,
+    @required @ImageDtoConverter() ImageDto image,
     @required String bookTitle,
     @required String pageNumber,
     @required @ServerTimestampConverter() FieldValue serverTimestamp,
@@ -38,9 +40,9 @@ abstract class HighlightDto implements _$HighlightDto {
   factory HighlightDto.fromDomain(Highlight highlight) {
     return HighlightDto(
       id: highlight.id.getOrCrash(),
-      quote: highlight.quote.getOrCrash(),
+      quote: highlight.quote.highlightQuote.getOrCrash(),
       color: highlight.color.getOrCrash().value,
-      imageUrl: highlight.imageUrl.getOrCrash(),
+      image: ImageDto.fromDomain(highlight.image),
       bookTitle: highlight.bookTitle.getOrCrash(),
       pageNumber: highlight.pageNumber.getOrCrash(),
       serverTimestamp: FieldValue.serverTimestamp(),
@@ -50,9 +52,9 @@ abstract class HighlightDto implements _$HighlightDto {
   Highlight toDomain() {
     return Highlight(
       id: UniqueId.fromUniqueString(id),
-      quote: HighlightQuote(quote),
+      quote: Quote(highlightQuote: HighlightQuote(quote)),
       color: HighlightColor(Color(color)),
-      imageUrl: imageUrl.isEmpty ? ImageUrl.notAvailable() : ImageUrl(imageUrl),
+      image: image.toDomain(),
       bookTitle: BookTitle(bookTitle),
       pageNumber: PageNumber(pageNumber),
     );

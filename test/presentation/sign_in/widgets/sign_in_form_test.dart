@@ -13,14 +13,14 @@ import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/injection.dart';
 import 'package:highlights/presentation/sign_in/widgets/sign_in_form.dart';
 
-import '../../../firebase_setup_mock.dart';
+import '../../../setup_firebase_mock.dart';
 
 class MockSignInFormBloc extends MockBloc<SignInFormState>
     implements SignInFormBloc {}
 
 void main() {
   configureInjection();
-  setupFirestoreMocks();
+  setupFirebaseMock();
 
   MockSignInFormBloc mockSignInFormBloc;
 

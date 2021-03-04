@@ -21,7 +21,7 @@ class _$HighlightDtoTearOff {
       {@JsonKey(ignore: true) String id,
       @required String quote,
       @required int color,
-      @required String imageUrl,
+      @required @ImageDtoConverter() ImageDto image,
       @required String bookTitle,
       @required String pageNumber,
       @required @ServerTimestampConverter() FieldValue serverTimestamp}) {
@@ -29,7 +29,7 @@ class _$HighlightDtoTearOff {
       id: id,
       quote: quote,
       color: color,
-      imageUrl: imageUrl,
+      image: image,
       bookTitle: bookTitle,
       pageNumber: pageNumber,
       serverTimestamp: serverTimestamp,
@@ -52,7 +52,8 @@ mixin _$HighlightDto {
   String get id;
   String get quote;
   int get color;
-  String get imageUrl;
+  @ImageDtoConverter()
+  ImageDto get image;
   String get bookTitle;
   String get pageNumber;
   @ServerTimestampConverter()
@@ -72,10 +73,12 @@ abstract class $HighlightDtoCopyWith<$Res> {
       {@JsonKey(ignore: true) String id,
       String quote,
       int color,
-      String imageUrl,
+      @ImageDtoConverter() ImageDto image,
       String bookTitle,
       String pageNumber,
       @ServerTimestampConverter() FieldValue serverTimestamp});
+
+  $ImageDtoCopyWith<$Res> get image;
 }
 
 /// @nodoc
@@ -91,7 +94,7 @@ class _$HighlightDtoCopyWithImpl<$Res> implements $HighlightDtoCopyWith<$Res> {
     Object id = freezed,
     Object quote = freezed,
     Object color = freezed,
-    Object imageUrl = freezed,
+    Object image = freezed,
     Object bookTitle = freezed,
     Object pageNumber = freezed,
     Object serverTimestamp = freezed,
@@ -100,7 +103,7 @@ class _$HighlightDtoCopyWithImpl<$Res> implements $HighlightDtoCopyWith<$Res> {
       id: id == freezed ? _value.id : id as String,
       quote: quote == freezed ? _value.quote : quote as String,
       color: color == freezed ? _value.color : color as int,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      image: image == freezed ? _value.image : image as ImageDto,
       bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
       pageNumber:
           pageNumber == freezed ? _value.pageNumber : pageNumber as String,
@@ -108,6 +111,16 @@ class _$HighlightDtoCopyWithImpl<$Res> implements $HighlightDtoCopyWith<$Res> {
           ? _value.serverTimestamp
           : serverTimestamp as FieldValue,
     ));
+  }
+
+  @override
+  $ImageDtoCopyWith<$Res> get image {
+    if (_value.image == null) {
+      return null;
+    }
+    return $ImageDtoCopyWith<$Res>(_value.image, (value) {
+      return _then(_value.copyWith(image: value));
+    });
   }
 }
 
@@ -122,10 +135,13 @@ abstract class _$HighlightDtoCopyWith<$Res>
       {@JsonKey(ignore: true) String id,
       String quote,
       int color,
-      String imageUrl,
+      @ImageDtoConverter() ImageDto image,
       String bookTitle,
       String pageNumber,
       @ServerTimestampConverter() FieldValue serverTimestamp});
+
+  @override
+  $ImageDtoCopyWith<$Res> get image;
 }
 
 /// @nodoc
@@ -143,7 +159,7 @@ class __$HighlightDtoCopyWithImpl<$Res> extends _$HighlightDtoCopyWithImpl<$Res>
     Object id = freezed,
     Object quote = freezed,
     Object color = freezed,
-    Object imageUrl = freezed,
+    Object image = freezed,
     Object bookTitle = freezed,
     Object pageNumber = freezed,
     Object serverTimestamp = freezed,
@@ -152,7 +168,7 @@ class __$HighlightDtoCopyWithImpl<$Res> extends _$HighlightDtoCopyWithImpl<$Res>
       id: id == freezed ? _value.id : id as String,
       quote: quote == freezed ? _value.quote : quote as String,
       color: color == freezed ? _value.color : color as int,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      image: image == freezed ? _value.image : image as ImageDto,
       bookTitle: bookTitle == freezed ? _value.bookTitle : bookTitle as String,
       pageNumber:
           pageNumber == freezed ? _value.pageNumber : pageNumber as String,
@@ -171,13 +187,13 @@ class _$_HighlightDto extends _HighlightDto {
       {@JsonKey(ignore: true) this.id,
       @required this.quote,
       @required this.color,
-      @required this.imageUrl,
+      @required @ImageDtoConverter() this.image,
       @required this.bookTitle,
       @required this.pageNumber,
       @required @ServerTimestampConverter() this.serverTimestamp})
       : assert(quote != null),
         assert(color != null),
-        assert(imageUrl != null),
+        assert(image != null),
         assert(bookTitle != null),
         assert(pageNumber != null),
         assert(serverTimestamp != null),
@@ -194,7 +210,8 @@ class _$_HighlightDto extends _HighlightDto {
   @override
   final int color;
   @override
-  final String imageUrl;
+  @ImageDtoConverter()
+  final ImageDto image;
   @override
   final String bookTitle;
   @override
@@ -205,7 +222,7 @@ class _$_HighlightDto extends _HighlightDto {
 
   @override
   String toString() {
-    return 'HighlightDto(id: $id, quote: $quote, color: $color, imageUrl: $imageUrl, bookTitle: $bookTitle, pageNumber: $pageNumber, serverTimestamp: $serverTimestamp)';
+    return 'HighlightDto(id: $id, quote: $quote, color: $color, image: $image, bookTitle: $bookTitle, pageNumber: $pageNumber, serverTimestamp: $serverTimestamp)';
   }
 
   @override
@@ -218,9 +235,8 @@ class _$_HighlightDto extends _HighlightDto {
                 const DeepCollectionEquality().equals(other.quote, quote)) &&
             (identical(other.color, color) ||
                 const DeepCollectionEquality().equals(other.color, color)) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
             (identical(other.bookTitle, bookTitle) ||
                 const DeepCollectionEquality()
                     .equals(other.bookTitle, bookTitle)) &&
@@ -238,7 +254,7 @@ class _$_HighlightDto extends _HighlightDto {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(quote) ^
       const DeepCollectionEquality().hash(color) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(image) ^
       const DeepCollectionEquality().hash(bookTitle) ^
       const DeepCollectionEquality().hash(pageNumber) ^
       const DeepCollectionEquality().hash(serverTimestamp);
@@ -260,7 +276,7 @@ abstract class _HighlightDto extends HighlightDto {
           {@JsonKey(ignore: true) String id,
           @required String quote,
           @required int color,
-          @required String imageUrl,
+          @required @ImageDtoConverter() ImageDto image,
           @required String bookTitle,
           @required String pageNumber,
           @required @ServerTimestampConverter() FieldValue serverTimestamp}) =
@@ -277,7 +293,8 @@ abstract class _HighlightDto extends HighlightDto {
   @override
   int get color;
   @override
-  String get imageUrl;
+  @ImageDtoConverter()
+  ImageDto get image;
   @override
   String get bookTitle;
   @override

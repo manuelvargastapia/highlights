@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:dartz/dartz.dart';
@@ -27,7 +29,6 @@ class HighlightColor extends ValueObject<Color> {
   @override
   final Either<ValueFailure<Color>, Color> value;
 
-  // TODO: consider a better approach (local BD, for ex)
   static const List<Color> predefinedColors = [
     Color(0xfffafafa), // canvas
     Color(0xfffa8072), // salmon
@@ -93,10 +94,18 @@ class ImageUrl extends ValueObject<String> {
     return ImageUrl._(validateUrl(input));
   }
 
-  /// Allow creating a non-available ImageUrl by using a (valid) empty String.
-  factory ImageUrl.notAvailable() {
-    return ImageUrl._(right(''));
+  const ImageUrl._(this.value);
+}
+
+class ImageFile extends ValueObject<File> {
+  @override
+  final Either<ValueFailure<File>, File> value;
+
+  factory ImageFile(File input) {
+    assert(input != null);
+
+    return ImageFile._(right(input));
   }
 
-  const ImageUrl._(this.value);
+  const ImageFile._(this.value);
 }

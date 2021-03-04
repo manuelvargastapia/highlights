@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui' hide decodeImageFromList;
 
 import 'package:flutter/painting.dart';
@@ -294,21 +295,6 @@ void main() {
     );
 
     test(
-      '\nGiven no URL to provide'
-      '\nWhen ImageUrl is created with notAvailable() constructor'
-      '\nThen return Right with an empty String',
-      () async {
-        final imageUrlValueObject = ImageUrl.notAvailable().value;
-        expect(imageUrlValueObject.isRight(), isTrue);
-        imageUrlValueObject.fold(
-          (_) {},
-          (value) {
-            expect(value, '');
-          },
-        );
-      },
-    );
-    test(
       '\nGiven a list of invalid URLs'
       '\nWhen they are inputed'
       '\nThen return Left with an InvalidUrl',
@@ -332,6 +318,34 @@ void main() {
         }
 
         invalidUrls.forEach(matcher);
+      },
+    );
+  });
+  group('ImageFile', () {
+    test(
+      '\nGiven any File'
+      '\nWhen it is inputed'
+      '\nThen return Right with the same input',
+      () async {
+        final files = [
+          File('path-to-file'),
+          File('path/to/file'),
+          File(''),
+        ];
+
+        void matcher(int index, File file) {
+          final imageFileValueObject = ImageFile(file).value;
+
+          expect(imageFileValueObject.isRight(), isTrue);
+          imageFileValueObject.fold(
+            (_) {},
+            (file) {
+              expect(file, files[index]);
+            },
+          );
+        }
+
+        files.asMap().forEach(matcher);
       },
     );
   });

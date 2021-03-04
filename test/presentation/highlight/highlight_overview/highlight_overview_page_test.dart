@@ -12,7 +12,7 @@ import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 
-import '../../../firebase_setup_mock.dart';
+import '../../../setup_firebase_mock.dart';
 
 class MockHighlightActorBloc extends MockBloc<HighlightActorState>
     implements HighlightActorBloc {}
@@ -21,7 +21,7 @@ class MockAuthBloc extends MockBloc<AuthState> implements AuthBloc {}
 
 void main() {
   configureInjection();
-  setupFirestoreMocks();
+  setupFirebaseMock();
 
   setUpAll(() async {
     await Firebase.initializeApp();
@@ -47,6 +47,7 @@ void main() {
           ),
         ],
         child: MaterialApp(
+          home: Container(),
           builder: ExtendedNavigator.builder<Router>(
             router: Router(),
             initialRoute: '/highlight-overview-page',
@@ -77,7 +78,7 @@ void main() {
           await tester.pump();
 
           final errorMessage = find.text(
-            'Unexpected error occurred while deleting. Please contact support.',
+            'Unexpected error occurred. Please contact support.',
           );
 
           expect(errorMessage, findsOneWidget);
@@ -133,7 +134,7 @@ void main() {
           await tester.pump();
 
           final errorMessage = find.text(
-            'Unexpected error occurred while deleting. Please contact support.',
+            'Unexpected error occurred. Please contact support.',
           );
 
           expect(errorMessage, findsOneWidget);

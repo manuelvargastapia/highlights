@@ -21,8 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
+  animations: ^1.1.2
   auto_route: ^0.6.9
   bloc_test: ^7.1.0
   cloud_firestore: ^0.16.0
@@ -30,12 +29,17 @@ dependencies:
   dartz: ^0.9.2
   firebase_auth: ^0.20.1
   firebase_core: ^0.7.0
+  firebase_ml_vision: ^0.10.0
+  firebase_storage: ^7.0.0
   flushbar: ^1.10.4
+  flutter:
+    sdk: flutter
   flutter_bloc: ^6.1.1
   flutter_hooks: ^0.15.0
   freezed_annotation: ^0.12.0
   get_it: ^5.0.6
   google_sign_in: ^4.5.9
+  image_picker: ^0.6.7+22
   injectable: ^1.1.0
   json_annotation: ^3.1.1
   kt_dart: ^0.8.0
@@ -43,12 +47,12 @@ dependencies:
   uuid: ^2.2.2
 
 dev_dependencies:
+  auto_route_generator: ^0.6.10
+  build_runner: ^1.11.1
   flutter_driver:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  auto_route_generator: ^0.6.10
-  build_runner: ^1.11.1
   freezed: ^0.12.7
   injectable_generator: ^1.1.1
   json_serializable: ^3.5.1

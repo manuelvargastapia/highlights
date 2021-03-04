@@ -10,7 +10,8 @@ _$_HighlightDto _$_$_HighlightDtoFromJson(Map<String, dynamic> json) {
   return _$_HighlightDto(
     quote: json['quote'] as String,
     color: json['color'] as int,
-    imageUrl: json['imageUrl'] as String,
+    image: const ImageDtoConverter()
+        .fromJson(json['image'] as Map<String, dynamic>),
     bookTitle: json['bookTitle'] as String,
     pageNumber: json['pageNumber'] as String,
     serverTimestamp:
@@ -22,7 +23,7 @@ Map<String, dynamic> _$_$_HighlightDtoToJson(_$_HighlightDto instance) =>
     <String, dynamic>{
       'quote': instance.quote,
       'color': instance.color,
-      'imageUrl': instance.imageUrl,
+      'image': const ImageDtoConverter().toJson(instance.image),
       'bookTitle': instance.bookTitle,
       'pageNumber': instance.pageNumber,
       'serverTimestamp':

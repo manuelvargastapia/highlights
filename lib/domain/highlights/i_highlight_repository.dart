@@ -13,4 +13,5 @@ abstract class IHighlightRepository {
   Future<Either<HighlightFailure, Unit>> create(Highlight highlight);
   Future<Either<HighlightFailure, Unit>> update(Highlight highlight);
   Future<Either<HighlightFailure, Unit>> delete(Highlight highlight);
+  Future<Either<HighlightFailure, Unit>> deleteImage(Highlight highlight);
 }

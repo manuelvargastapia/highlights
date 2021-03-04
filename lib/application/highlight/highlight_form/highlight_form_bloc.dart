@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:flutter/widgets.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:highlights/domain/highlights/highlight.dart';
+import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
+import 'package:highlights/domain/highlights/i__text_recognition_repostitory.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 part 'highlight_form_event.dart';
 part 'highlight_form_state.dart';
@@ -20,9 +21,12 @@ part 'highlight_form_bloc.freezed.dart';
 @injectable
 class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
   final IHighlightRepository _highlightRepository;
+  final ITextRecognitionRepository _textRecognitionRepository;
 
-  HighlightFormBloc(this._highlightRepository)
-      : super(HighlightFormState.initial());
+  HighlightFormBloc(
+    this._highlightRepository,
+    this._textRecognitionRepository,
+  ) : super(HighlightFormState.initial());
 
   @override
   Stream<HighlightFormState> mapEventToState(
@@ -41,7 +45,9 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
       quoteChange: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
-            quote: HighlightQuote(event.quote),
+            quote: Quote(
+              highlightQuote: HighlightQuote(event.quote),
+            ),
           ),
           saveFailureOrSuccessOption: none(),
         );
@@ -70,12 +76,65 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
-      imageUrlChanged: (event) async* {
+      imageChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
-            imageUrl: ImageUrl(event.imageUrl),
+            image: some(event.image.toDomain()),
           ),
+          isProcessingImage: true,
           saveFailureOrSuccessOption: none(),
+        );
+        final failureOrQuote = await _textRecognitionRepository
+            .processImage(event.image.toDomain());
+        yield* failureOrQuote.fold(
+          (failure) async* {
+            yield state.copyWith(
+              isProcessingImage: false,
+              saveFailureOrSuccessOption: some(left(failure)),
+            );
+          },
+          (quote) async* {
+            yield state.copyWith(
+              highlight: state.highlight.copyWith(quote: quote),
+              isProcessingImage: false,
+              saveFailureOrSuccessOption: none(),
+            );
+          },
+        );
+      },
+      imageDeleted: (event) async* {
+        yield* state.highlight.image.fold(
+          // The "none" case will never happen if UI validates properly
+          () async* {
+            yield state;
+          },
+          (image) async* {
+            Option<Either<HighlightFailure, Unit>> failureOption = none();
+
+            // Delete image from Firebase Storage only if it's actually there
+            // (otherwhise, HighlightRepository returns a failure)
+            if (image.isUploaded) {
+              final failureOrUnit = await _highlightRepository.deleteImage(
+                state.highlight,
+              );
+
+              // We need specify none() or some() because we won't to pop
+              // untinl overview page in presentation layer
+              failureOrUnit.fold(
+                (failure) {
+                  failureOption = some(left(failure));
+                },
+                (_) {},
+              );
+            }
+
+            yield state.copyWith(
+              highlight: state.highlight.copyWith(
+                image: failureOption.isSome() ? some(image) : none(),
+              ),
+              saveFailureOrSuccessOption: failureOption,
+            );
+          },
         );
       },
       saved: (event) async* {

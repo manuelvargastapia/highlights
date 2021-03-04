@@ -27,6 +27,16 @@ class _$HighlightFailureTearOff {
   _UnableToUpdate unableToUpdate() {
     return const _UnableToUpdate();
   }
+
+// ignore: unused_element
+  _UnableToProcessImage unableToProcessImage() {
+    return const _UnableToProcessImage();
+  }
+
+// ignore: unused_element
+  _NoTextDetected noTextDetected() {
+    return const _NoTextDetected();
+  }
 }
 
 /// @nodoc
@@ -40,12 +50,16 @@ mixin _$HighlightFailure {
     @required TResult unexpected(),
     @required TResult insufficientPermission(),
     @required TResult unableToUpdate(),
+    @required TResult unableToProcessImage(),
+    @required TResult noTextDetected(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult unexpected(),
     TResult insufficientPermission(),
     TResult unableToUpdate(),
+    TResult unableToProcessImage(),
+    TResult noTextDetected(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -53,12 +67,16 @@ mixin _$HighlightFailure {
     @required TResult unexpected(_Unexpected value),
     @required TResult insufficientPermission(_InsufficientPermission value),
     @required TResult unableToUpdate(_UnableToUpdate value),
+    @required TResult unableToProcessImage(_UnableToProcessImage value),
+    @required TResult noTextDetected(_NoTextDetected value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult unexpected(_Unexpected value),
     TResult insufficientPermission(_InsufficientPermission value),
     TResult unableToUpdate(_UnableToUpdate value),
+    TResult unableToProcessImage(_UnableToProcessImage value),
+    TResult noTextDetected(_NoTextDetected value),
     @required TResult orElse(),
   });
 }
@@ -122,10 +140,14 @@ class _$_Unexpected implements _Unexpected {
     @required TResult unexpected(),
     @required TResult insufficientPermission(),
     @required TResult unableToUpdate(),
+    @required TResult unableToProcessImage(),
+    @required TResult noTextDetected(),
   }) {
     assert(unexpected != null);
     assert(insufficientPermission != null);
     assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
     return unexpected();
   }
 
@@ -135,6 +157,8 @@ class _$_Unexpected implements _Unexpected {
     TResult unexpected(),
     TResult insufficientPermission(),
     TResult unableToUpdate(),
+    TResult unableToProcessImage(),
+    TResult noTextDetected(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -150,10 +174,14 @@ class _$_Unexpected implements _Unexpected {
     @required TResult unexpected(_Unexpected value),
     @required TResult insufficientPermission(_InsufficientPermission value),
     @required TResult unableToUpdate(_UnableToUpdate value),
+    @required TResult unableToProcessImage(_UnableToProcessImage value),
+    @required TResult noTextDetected(_NoTextDetected value),
   }) {
     assert(unexpected != null);
     assert(insufficientPermission != null);
     assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
     return unexpected(this);
   }
 
@@ -163,6 +191,8 @@ class _$_Unexpected implements _Unexpected {
     TResult unexpected(_Unexpected value),
     TResult insufficientPermission(_InsufficientPermission value),
     TResult unableToUpdate(_UnableToUpdate value),
+    TResult unableToProcessImage(_UnableToProcessImage value),
+    TResult noTextDetected(_NoTextDetected value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -219,10 +249,14 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     @required TResult unexpected(),
     @required TResult insufficientPermission(),
     @required TResult unableToUpdate(),
+    @required TResult unableToProcessImage(),
+    @required TResult noTextDetected(),
   }) {
     assert(unexpected != null);
     assert(insufficientPermission != null);
     assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
     return insufficientPermission();
   }
 
@@ -232,6 +266,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult unexpected(),
     TResult insufficientPermission(),
     TResult unableToUpdate(),
+    TResult unableToProcessImage(),
+    TResult noTextDetected(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -247,10 +283,14 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     @required TResult unexpected(_Unexpected value),
     @required TResult insufficientPermission(_InsufficientPermission value),
     @required TResult unableToUpdate(_UnableToUpdate value),
+    @required TResult unableToProcessImage(_UnableToProcessImage value),
+    @required TResult noTextDetected(_NoTextDetected value),
   }) {
     assert(unexpected != null);
     assert(insufficientPermission != null);
     assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
     return insufficientPermission(this);
   }
 
@@ -260,6 +300,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult unexpected(_Unexpected value),
     TResult insufficientPermission(_InsufficientPermission value),
     TResult unableToUpdate(_UnableToUpdate value),
+    TResult unableToProcessImage(_UnableToProcessImage value),
+    TResult noTextDetected(_NoTextDetected value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -316,10 +358,14 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     @required TResult unexpected(),
     @required TResult insufficientPermission(),
     @required TResult unableToUpdate(),
+    @required TResult unableToProcessImage(),
+    @required TResult noTextDetected(),
   }) {
     assert(unexpected != null);
     assert(insufficientPermission != null);
     assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
     return unableToUpdate();
   }
 
@@ -329,6 +375,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult unexpected(),
     TResult insufficientPermission(),
     TResult unableToUpdate(),
+    TResult unableToProcessImage(),
+    TResult noTextDetected(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -344,10 +392,14 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     @required TResult unexpected(_Unexpected value),
     @required TResult insufficientPermission(_InsufficientPermission value),
     @required TResult unableToUpdate(_UnableToUpdate value),
+    @required TResult unableToProcessImage(_UnableToProcessImage value),
+    @required TResult noTextDetected(_NoTextDetected value),
   }) {
     assert(unexpected != null);
     assert(insufficientPermission != null);
     assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
     return unableToUpdate(this);
   }
 
@@ -357,6 +409,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult unexpected(_Unexpected value),
     TResult insufficientPermission(_InsufficientPermission value),
     TResult unableToUpdate(_UnableToUpdate value),
+    TResult unableToProcessImage(_UnableToProcessImage value),
+    TResult noTextDetected(_NoTextDetected value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -369,4 +423,222 @@ class _$_UnableToUpdate implements _UnableToUpdate {
 
 abstract class _UnableToUpdate implements HighlightFailure {
   const factory _UnableToUpdate() = _$_UnableToUpdate;
+}
+
+/// @nodoc
+abstract class _$UnableToProcessImageCopyWith<$Res> {
+  factory _$UnableToProcessImageCopyWith(_UnableToProcessImage value,
+          $Res Function(_UnableToProcessImage) then) =
+      __$UnableToProcessImageCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnableToProcessImageCopyWithImpl<$Res>
+    extends _$HighlightFailureCopyWithImpl<$Res>
+    implements _$UnableToProcessImageCopyWith<$Res> {
+  __$UnableToProcessImageCopyWithImpl(
+      _UnableToProcessImage _value, $Res Function(_UnableToProcessImage) _then)
+      : super(_value, (v) => _then(v as _UnableToProcessImage));
+
+  @override
+  _UnableToProcessImage get _value => super._value as _UnableToProcessImage;
+}
+
+/// @nodoc
+class _$_UnableToProcessImage implements _UnableToProcessImage {
+  const _$_UnableToProcessImage();
+
+  @override
+  String toString() {
+    return 'HighlightFailure.unableToProcessImage()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _UnableToProcessImage);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult unexpected(),
+    @required TResult insufficientPermission(),
+    @required TResult unableToUpdate(),
+    @required TResult unableToProcessImage(),
+    @required TResult noTextDetected(),
+  }) {
+    assert(unexpected != null);
+    assert(insufficientPermission != null);
+    assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
+    return unableToProcessImage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpected(),
+    TResult insufficientPermission(),
+    TResult unableToUpdate(),
+    TResult unableToProcessImage(),
+    TResult noTextDetected(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (unableToProcessImage != null) {
+      return unableToProcessImage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult unexpected(_Unexpected value),
+    @required TResult insufficientPermission(_InsufficientPermission value),
+    @required TResult unableToUpdate(_UnableToUpdate value),
+    @required TResult unableToProcessImage(_UnableToProcessImage value),
+    @required TResult noTextDetected(_NoTextDetected value),
+  }) {
+    assert(unexpected != null);
+    assert(insufficientPermission != null);
+    assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
+    return unableToProcessImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpected(_Unexpected value),
+    TResult insufficientPermission(_InsufficientPermission value),
+    TResult unableToUpdate(_UnableToUpdate value),
+    TResult unableToProcessImage(_UnableToProcessImage value),
+    TResult noTextDetected(_NoTextDetected value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (unableToProcessImage != null) {
+      return unableToProcessImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UnableToProcessImage implements HighlightFailure {
+  const factory _UnableToProcessImage() = _$_UnableToProcessImage;
+}
+
+/// @nodoc
+abstract class _$NoTextDetectedCopyWith<$Res> {
+  factory _$NoTextDetectedCopyWith(
+          _NoTextDetected value, $Res Function(_NoTextDetected) then) =
+      __$NoTextDetectedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$NoTextDetectedCopyWithImpl<$Res>
+    extends _$HighlightFailureCopyWithImpl<$Res>
+    implements _$NoTextDetectedCopyWith<$Res> {
+  __$NoTextDetectedCopyWithImpl(
+      _NoTextDetected _value, $Res Function(_NoTextDetected) _then)
+      : super(_value, (v) => _then(v as _NoTextDetected));
+
+  @override
+  _NoTextDetected get _value => super._value as _NoTextDetected;
+}
+
+/// @nodoc
+class _$_NoTextDetected implements _NoTextDetected {
+  const _$_NoTextDetected();
+
+  @override
+  String toString() {
+    return 'HighlightFailure.noTextDetected()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _NoTextDetected);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult unexpected(),
+    @required TResult insufficientPermission(),
+    @required TResult unableToUpdate(),
+    @required TResult unableToProcessImage(),
+    @required TResult noTextDetected(),
+  }) {
+    assert(unexpected != null);
+    assert(insufficientPermission != null);
+    assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
+    return noTextDetected();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult unexpected(),
+    TResult insufficientPermission(),
+    TResult unableToUpdate(),
+    TResult unableToProcessImage(),
+    TResult noTextDetected(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (noTextDetected != null) {
+      return noTextDetected();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult unexpected(_Unexpected value),
+    @required TResult insufficientPermission(_InsufficientPermission value),
+    @required TResult unableToUpdate(_UnableToUpdate value),
+    @required TResult unableToProcessImage(_UnableToProcessImage value),
+    @required TResult noTextDetected(_NoTextDetected value),
+  }) {
+    assert(unexpected != null);
+    assert(insufficientPermission != null);
+    assert(unableToUpdate != null);
+    assert(unableToProcessImage != null);
+    assert(noTextDetected != null);
+    return noTextDetected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult unexpected(_Unexpected value),
+    TResult insufficientPermission(_InsufficientPermission value),
+    TResult unableToUpdate(_UnableToUpdate value),
+    TResult unableToProcessImage(_UnableToProcessImage value),
+    TResult noTextDetected(_NoTextDetected value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (noTextDetected != null) {
+      return noTextDetected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoTextDetected implements HighlightFailure {
+  const factory _NoTextDetected() = _$_NoTextDetected;
 }

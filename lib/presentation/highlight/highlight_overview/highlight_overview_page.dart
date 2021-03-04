@@ -32,13 +32,10 @@ class HighlightOverviewPage extends StatelessWidget {
               deleteFailure: (state) {
                 FlushbarHelper.createError(
                   duration: const Duration(seconds: 5),
-                  message: state.failure.map(
-                    unexpected: (_) =>
-                        'Unexpected error occurred while deleting. Please contact support.',
+                  message: state.failure.maybeMap(
                     insufficientPermission: (_) => 'Insufficient permissions.',
-                    // This error is never going to happen, because this case is only handling deleting, not updating
-                    unableToUpdate: (_) =>
-                        'Unexpected error occurred while deleting. Please contact support.',
+                    orElse: () =>
+                        'Unexpected error occurred. Please contact support.',
                   ),
                 ).show(context);
               },

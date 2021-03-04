@@ -6,11 +6,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:highlights/injection.dart';
 import 'package:highlights/presentation/sign_in/sign_in_page.dart';
 
-import '../../firebase_setup_mock.dart';
+import '../../setup_firebase_mock.dart';
 
 void main() {
   configureInjection();
-  setupFirestoreMocks();
+  setupFirebaseMock();
 
   setUpAll(() async {
     await Firebase.initializeApp();

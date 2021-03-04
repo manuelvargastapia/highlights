@@ -15,10 +15,15 @@ class QuoteField extends HookWidget {
 
     return BlocListener<HighlightFormBloc, HighlightFormState>(
       // Listen only when we're editing the Highlight. Otherwise we would
-      // get an error and the app will crash
-      listenWhen: (prev, curr) => prev.isEditing != curr.isEditing,
+      // get an error and the app will crash. Also, listen quote changes
+      // right after processing an image to update quote based on recognized
+      // text
+      listenWhen: (prev, curr) =>
+          prev.isEditing != curr.isEditing ||
+          prev.isProcessingImage != curr.isProcessingImage,
       listener: (context, state) {
-        textEditingController.text = state.highlight.quote.getOrCrash();
+        textEditingController.text =
+            state.highlight.quote.highlightQuote.getOrCrash();
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -46,6 +51,7 @@ class QuoteField extends HookWidget {
               .state
               .highlight
               .quote
+              .highlightQuote
               .value
               .fold(
                 (failure) => failure.maybeMap(

@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,9 +13,11 @@ import 'package:highlights/domain/core/errors.dart';
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
+import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/infrastructure/highlight/highlight_repository.dart';
 
 const mockUid = 'mock-uid';
@@ -21,24 +25,83 @@ const highlightsPath = 'highlights';
 const usersPath = 'users';
 const mockData = {
   'color': 4294892630,
-  'imageUrl': 'https://test-url.test',
+  'image': {
+    'url': 'https://test-url.test',
+    'path': 'test/path/to/file',
+  },
   'quote': 'Test quote',
   'bookTitle': 'Test title',
   'pageNumber': '666',
 };
+const fakeDownloadUrl = 'https://fake-download-url.fake';
 final mockHighlight = Highlight(
   id: UniqueId.fromUniqueString(mockUid),
   color: HighlightColor(HighlightColor.predefinedColors[2]),
-  quote: HighlightQuote('Test quote'),
-  imageUrl: ImageUrl('https://test-url.test'),
+  quote: Quote(
+    highlightQuote: HighlightQuote('Test quote'),
+  ),
+  image: some(
+    Image(
+      imageUrl: some(ImageUrl('https://test-url.test')),
+      imageFile: some(ImageFile(File('test/path/to/file'))),
+    ),
+  ),
   bookTitle: BookTitle('Test title'),
   pageNumber: PageNumber('666'),
 );
 
 class MockIAuthFacade extends Mock implements IAuthFacade {}
 
+// ignore: avoid_implementing_value_types
+class FakeFirebaseStorage extends Fake implements FirebaseStorage {
+  @override
+  Reference ref([String path]) {
+    return FakeReference();
+  }
+}
+
+// ignore: avoid_implementing_value_types
+class FakeReference extends Fake implements Reference {
+  @override
+  UploadTask putFile(File file, [SettableMetadata metadata]) {
+    return FakeUploadTask();
+  }
+
+  @override
+  Reference child(String path) {
+    return FakeReference();
+  }
+
+  @override
+  Future<String> getDownloadURL() => Future.value(fakeDownloadUrl);
+
+  @override
+  Future<void> delete() => Future.value();
+}
+
+class FakeUploadTask extends Fake implements UploadTask {
+  @override
+  TaskSnapshot get snapshot {
+    return FakeTaskSnapshot();
+  }
+
+  @override
+  Future<S> then<S>(
+    FutureOr<S> Function(TaskSnapshot) onValue, {
+    Function onError,
+  }) =>
+      Future.value(onValue(snapshot));
+}
+
+// ignore: avoid_implementing_value_types
+class FakeTaskSnapshot extends Fake implements TaskSnapshot {
+  @override
+  TaskState get state => TaskState.success;
+}
+
 void main() {
   MockFirestoreInstance mockFirestore;
+  FakeFirebaseStorage fakeFirebaseStorage;
   MockIAuthFacade mockIAuthFacade;
   HighlightRepository highlightRepository;
   StreamSubscription<Either<HighlightFailure, KtList<Highlight>>> subscription;
@@ -51,8 +114,13 @@ void main() {
         .collection(highlightsPath)
         .doc(mockUid)
         .set(mockData);
+    fakeFirebaseStorage = FakeFirebaseStorage();
     mockIAuthFacade = MockIAuthFacade();
-    highlightRepository = HighlightRepository(mockFirestore, mockIAuthFacade);
+    highlightRepository = HighlightRepository(
+      mockFirestore,
+      fakeFirebaseStorage,
+      mockIAuthFacade,
+    );
   });
 
   tearDown(() async {
@@ -164,14 +232,13 @@ void main() {
                     equals(1),
                     reason: 'highlights.size is not 1',
                   );
-                  highlights.map((highlight) {
-                    expect(
-                      highlight,
-                      equals(mockHighlight),
-                      reason:
-                          'exceptec highlight is not equal to mockHighlight',
-                    );
-                  });
+                  // Test Strings because equals() doesn't seems to compare
+                  // value equality with nested objects
+                  expect(
+                    highlights[0].toString(),
+                    equals(mockHighlight.toString()),
+                    reason: 'exceptec highlight is not equal to mockHighlight',
+                  );
                 },
               );
             },
@@ -202,7 +269,10 @@ void main() {
           {
             'id': 'new-id',
             'color': 4294892630,
-            'imageUrl': '',
+            'image': {
+              'url': '',
+              'path': '',
+            },
             'quote': '',
             'bookTitle': '',
             'pageNumber': '-1',
@@ -430,7 +500,10 @@ void main() {
           {
             'id': 'new-id',
             'color': 4294892630,
-            'imageUrl': '',
+            'image': {
+              'url': '',
+              'path': '',
+            },
             'quote': 'Test quote 2',
             'bookTitle': 'new book',
             'pageNumber': '666',
@@ -514,8 +587,15 @@ void main() {
     final newHighlight = Highlight(
       id: UniqueId.fromUniqueString('new-uid'),
       color: HighlightColor(HighlightColor.predefinedColors[4]),
-      quote: HighlightQuote('New inspirational quote'),
-      imageUrl: ImageUrl('https://new-test-url.test'),
+      quote: Quote(
+        highlightQuote: HighlightQuote('New inspirational quote'),
+      ),
+      image: some(
+        Image(
+          imageUrl: none(),
+          imageFile: some(ImageFile(File('new/path/to/file'))),
+        ),
+      ),
       bookTitle: BookTitle('Brand new book title'),
       pageNumber: PageNumber('999'),
     );
@@ -565,7 +645,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4294892630,
-                    "imageUrl": "https://test-url.test",
+                    "image": {
+                      "url": "https://test-url.test",
+                      "path": "test/path/to/file"
+                    },
                     "quote": "Test quote",
                     "bookTitle": "Test title",
                     "pageNumber": "666"
@@ -573,7 +656,10 @@ void main() {
                   "new-uid": {
                     "quote": "New inspirational quote",
                     "color": 4294747063,
-                    "imageUrl": "https://new-test-url.test",
+                    "image": {
+                      "url": "$fakeDownloadUrl",
+                      "path": "new/path/to/file"
+                    },
                     "bookTitle": "Brand new book title",
                     "pageNumber": "999"
                   }
@@ -628,6 +714,7 @@ void main() {
         // current data as Snapshots
         expect(dataMapList.length, 1);
         expect(dataMapList[0]['quote'], 'New inspirational quote');
+        expect(dataMapList[0]['image']['url'], fakeDownloadUrl);
 
         verify(mockIAuthFacade.getSignedInUser()).called(1);
       },
@@ -637,8 +724,15 @@ void main() {
   group('update', () {
     final updatedHighlight = mockHighlight.copyWith(
       color: HighlightColor(HighlightColor.predefinedColors[3]),
-      quote: HighlightQuote('Test quote updated'),
-      imageUrl: ImageUrl('https://test-url-updated.test'),
+      quote: Quote(
+        highlightQuote: HighlightQuote('Test quote updated'),
+      ),
+      image: some(
+        Image(
+          imageUrl: some(ImageUrl('https://test-url-updated.test')),
+          imageFile: some(ImageFile(File('test-file'))),
+        ),
+      ),
       bookTitle: BookTitle('Test title updated'),
       pageNumber: PageNumber('777'),
     );
@@ -689,7 +783,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4291883200,
-                    "imageUrl": "https://test-url-updated.test",
+                    "image": {
+                      "url": "https://test-url-updated.test",
+                      "path": "test-file"
+                    },
                     "quote": "Test quote updated",
                     "bookTitle": "Test title updated",
                     "pageNumber": "777"
@@ -747,7 +844,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4294892630,
-                    "imageUrl": "https://test-url.test",
+                    "image": {
+                      "url": "https://test-url.test",
+                      "path": "test/path/to/file"
+                    },
                     "quote": "Test quote",
                     "bookTitle": "Test title",
                     "pageNumber": "666"
@@ -755,7 +855,10 @@ void main() {
                   "non-existent-id": {
                     "quote": "Test quote updated",
                     "color": 4291883200,
-                    "imageUrl": "https://test-url-updated.test",
+                    "image": {
+                      "url": "https://test-url-updated.test",
+                      "path": "test-file"
+                    },
                     "bookTitle": "Test title updated",
                     "pageNumber": "777"
                   }
@@ -865,7 +968,10 @@ void main() {
                 "highlights": {
                   "$mockUid": {
                     "color": 4294892630,
-                    "imageUrl": "https://test-url.test",
+                    "image": {
+                      "url": "https://test-url.test",
+                      "path": "test/path/to/file"
+                    },
                     "quote": "Test quote",
                     "bookTitle": "Test title",
                     "pageNumber": "666"
