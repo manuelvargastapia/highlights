@@ -13,8 +13,6 @@ analyzer:
     must_be_immutable: error
     missing_return: error
     avoid_unused_constructor_parameters: error
-    sort_unnamed_constructors_first: ignore
-    deprecated_member_use: ignore
   exclude:
     - "**.freezed.dart"
     - "**.config.dart"
