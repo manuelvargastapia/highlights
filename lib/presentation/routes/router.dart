@@ -4,6 +4,7 @@ import 'package:highlights/presentation/sign_in/sign_in_page.dart';
 import 'package:highlights/presentation/splash/splash_page.dart';
 import 'package:highlights/presentation/highlight/highlight_overview/highlight_overview_page.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/highlight_form_page.dart';
+import 'package:highlights/presentation/text_recognition/text_recognition_page.dart';
 
 @MaterialAutoRouter(
   generateNavigationHelperExtension: true,
@@ -12,6 +13,7 @@ import 'package:highlights/presentation/highlight/highlight_forms/highlight_form
     MaterialRoute(page: SignInPage),
     MaterialRoute(page: HighlightOverviewPage),
     MaterialRoute(page: HighlightFormPage, fullscreenDialog: true),
+    MaterialRoute(page: TextRecognitionPage, fullscreenDialog: true),
   ],
 )
 class $Router {}
