@@ -1337,15 +1337,12 @@ class _$HighlightFormStateTearOff {
       @required
           bool isEditing,
       @required
-          bool isProcessingImage,
-      @required
           bool isSaving,
       @required
           Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption}) {
     return _HighlightFormState(
       highlight: highlight,
       isEditing: isEditing,
-      isProcessingImage: isProcessingImage,
       isSaving: isSaving,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption,
     );
@@ -1360,7 +1357,6 @@ const $HighlightFormState = _$HighlightFormStateTearOff();
 mixin _$HighlightFormState {
   Highlight get highlight;
   bool get isEditing;
-  bool get isProcessingImage;
   bool get isSaving;
   Option<Either<HighlightFailure, Unit>> get saveFailureOrSuccessOption;
 
@@ -1376,7 +1372,6 @@ abstract class $HighlightFormStateCopyWith<$Res> {
   $Res call(
       {Highlight highlight,
       bool isEditing,
-      bool isProcessingImage,
       bool isSaving,
       Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption});
 
@@ -1396,7 +1391,6 @@ class _$HighlightFormStateCopyWithImpl<$Res>
   $Res call({
     Object highlight = freezed,
     Object isEditing = freezed,
-    Object isProcessingImage = freezed,
     Object isSaving = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
@@ -1404,9 +1398,6 @@ class _$HighlightFormStateCopyWithImpl<$Res>
       highlight:
           highlight == freezed ? _value.highlight : highlight as Highlight,
       isEditing: isEditing == freezed ? _value.isEditing : isEditing as bool,
-      isProcessingImage: isProcessingImage == freezed
-          ? _value.isProcessingImage
-          : isProcessingImage as bool,
       isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -1436,7 +1427,6 @@ abstract class _$HighlightFormStateCopyWith<$Res>
   $Res call(
       {Highlight highlight,
       bool isEditing,
-      bool isProcessingImage,
       bool isSaving,
       Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption});
 
@@ -1459,7 +1449,6 @@ class __$HighlightFormStateCopyWithImpl<$Res>
   $Res call({
     Object highlight = freezed,
     Object isEditing = freezed,
-    Object isProcessingImage = freezed,
     Object isSaving = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
@@ -1467,9 +1456,6 @@ class __$HighlightFormStateCopyWithImpl<$Res>
       highlight:
           highlight == freezed ? _value.highlight : highlight as Highlight,
       isEditing: isEditing == freezed ? _value.isEditing : isEditing as bool,
-      isProcessingImage: isProcessingImage == freezed
-          ? _value.isProcessingImage
-          : isProcessingImage as bool,
       isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -1484,12 +1470,10 @@ class _$_HighlightFormState implements _HighlightFormState {
   const _$_HighlightFormState(
       {@required this.highlight,
       @required this.isEditing,
-      @required this.isProcessingImage,
       @required this.isSaving,
       @required this.saveFailureOrSuccessOption})
       : assert(highlight != null),
         assert(isEditing != null),
-        assert(isProcessingImage != null),
         assert(isSaving != null),
         assert(saveFailureOrSuccessOption != null);
 
@@ -1498,15 +1482,13 @@ class _$_HighlightFormState implements _HighlightFormState {
   @override
   final bool isEditing;
   @override
-  final bool isProcessingImage;
-  @override
   final bool isSaving;
   @override
   final Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'HighlightFormState(highlight: $highlight, isEditing: $isEditing, isProcessingImage: $isProcessingImage, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'HighlightFormState(highlight: $highlight, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1519,9 +1501,6 @@ class _$_HighlightFormState implements _HighlightFormState {
             (identical(other.isEditing, isEditing) ||
                 const DeepCollectionEquality()
                     .equals(other.isEditing, isEditing)) &&
-            (identical(other.isProcessingImage, isProcessingImage) ||
-                const DeepCollectionEquality()
-                    .equals(other.isProcessingImage, isProcessingImage)) &&
             (identical(other.isSaving, isSaving) ||
                 const DeepCollectionEquality()
                     .equals(other.isSaving, isSaving)) &&
@@ -1537,7 +1516,6 @@ class _$_HighlightFormState implements _HighlightFormState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(highlight) ^
       const DeepCollectionEquality().hash(isEditing) ^
-      const DeepCollectionEquality().hash(isProcessingImage) ^
       const DeepCollectionEquality().hash(isSaving) ^
       const DeepCollectionEquality().hash(saveFailureOrSuccessOption);
 
@@ -1554,8 +1532,6 @@ abstract class _HighlightFormState implements HighlightFormState {
       @required
           bool isEditing,
       @required
-          bool isProcessingImage,
-      @required
           bool isSaving,
       @required
           Option<Either<HighlightFailure, Unit>>
@@ -1565,8 +1541,6 @@ abstract class _HighlightFormState implements HighlightFormState {
   Highlight get highlight;
   @override
   bool get isEditing;
-  @override
-  bool get isProcessingImage;
   @override
   bool get isSaving;
   @override
