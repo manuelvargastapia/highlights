@@ -37,16 +37,12 @@ class HighlightFormPage extends StatelessWidget {
             (failureOrUnit) => failureOrUnit.fold(
               (failure) {
                 FlushbarHelper.createError(
-                  message: failure.map(
-                    unexpected: (_) =>
-                        'Unexpected error 😨 Please, contact support.',
+                  message: failure.maybeMap(
                     insufficientPermission: (_) => 'Insufficient permissions ❌',
                     unableToUpdate: (_) =>
                         "Couldn't update the note. Was it deleted from another device?",
-                    noTextDetected: (_) =>
-                        'No text recognized in image. Take another, please.',
-                    unableToProcessImage: (_) =>
-                        "Coudn't process image 😞 Take another, please.",
+                    orElse: () =>
+                        'Unexpected error 😨 Please, contact support.',
                   ),
                 ).show(context);
               },
