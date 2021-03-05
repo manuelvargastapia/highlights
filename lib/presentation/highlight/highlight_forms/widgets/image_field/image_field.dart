@@ -1,13 +1,16 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
-import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
+import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/image_field/image_displayer.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 class ImageField extends StatelessWidget {
   const ImageField({Key key}) : super(key: key);
@@ -64,11 +67,10 @@ class ImageField extends StatelessWidget {
 
                       // "file" is null when showDialog() is dismissed
                       if (file != null) {
-                        context
-                            .read<HighlightFormBloc>()
-                            .add(HighlightFormEvent.imageChanged(
-                              ImagePrimitive.fromFile(file),
-                            ));
+                        ExtendedNavigator.of(context).pushTextRecognitionPage(
+                          image: ImagePrimitive.fromFile(file),
+                          formBloc: context.read<HighlightFormBloc>(),
+                        );
                       }
                     },
                     icon: const Icon(Icons.camera_alt),
@@ -98,6 +100,11 @@ class ImageField extends StatelessWidget {
       source: source,
       // TODO: use or remove: imageQuality: 80, --> Reduce size
     );
+    // "pickedFile" is null when user comes back from imnage selection
+    // screen using hardware back button (Android)
+    if (pickedFile == null) {
+      return null;
+    }
     return File(pickedFile.path);
   }
 
