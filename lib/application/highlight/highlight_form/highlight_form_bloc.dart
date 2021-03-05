@@ -11,7 +11,6 @@ import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
-import 'package:highlights/domain/highlights/i__text_recognition_repostitory.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 part 'highlight_form_event.dart';
@@ -21,12 +20,9 @@ part 'highlight_form_bloc.freezed.dart';
 @injectable
 class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
   final IHighlightRepository _highlightRepository;
-  final ITextRecognitionRepository _textRecognitionRepository;
 
-  HighlightFormBloc(
-    this._highlightRepository,
-    this._textRecognitionRepository,
-  ) : super(HighlightFormState.initial());
+  HighlightFormBloc(this._highlightRepository)
+      : super(HighlightFormState.initial());
 
   @override
   Stream<HighlightFormState> mapEventToState(
@@ -76,30 +72,13 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
+      // TODO: update tests
       imageChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
             image: some(event.image.toDomain()),
           ),
-          isProcessingImage: true,
           saveFailureOrSuccessOption: none(),
-        );
-        final failureOrQuote = await _textRecognitionRepository
-            .processImage(event.image.toDomain());
-        yield* failureOrQuote.fold(
-          (failure) async* {
-            yield state.copyWith(
-              isProcessingImage: false,
-              saveFailureOrSuccessOption: some(left(failure)),
-            );
-          },
-          (quote) async* {
-            yield state.copyWith(
-              highlight: state.highlight.copyWith(quote: quote),
-              isProcessingImage: false,
-              saveFailureOrSuccessOption: none(),
-            );
-          },
         );
       },
       imageDeleted: (event) async* {
