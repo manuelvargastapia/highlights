@@ -9,13 +9,13 @@ part 'text_recognition_result.freezed.dart';
 
 @freezed
 abstract class TextRecognitionResult with _$TextRecognitionResult {
-  const TextRecognitionResult._();
-
   const factory TextRecognitionResult({
     @required RecognizedText recognizedText,
     @required ImmutableList<RecognizedTextElement> recognizedElements,
     @required Option<ImageSize> imageSize,
   }) = _TextRecognitionResult;
+
+  const TextRecognitionResult._();
 
   factory TextRecognitionResult.empty() => TextRecognitionResult(
         recognizedText: RecognizedText(''),

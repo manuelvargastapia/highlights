@@ -21,8 +21,6 @@ part 'highlight.freezed.dart';
 /// using the Value Objects validations.
 @freezed
 abstract class Highlight implements _$Highlight {
-  const Highlight._();
-
   const factory Highlight({
     @required UniqueId id,
     @required HighlightQuote quote,
@@ -31,6 +29,8 @@ abstract class Highlight implements _$Highlight {
     @required BookTitle bookTitle,
     @required PageNumber pageNumber,
   }) = _Highlights;
+
+  const Highlight._();
 
   factory Highlight.empty() => Highlight(
         id: UniqueId(),

@@ -70,13 +70,13 @@ class HighlightCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           actions: [
-            FlatButton(
+            TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text('CANCEL'),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 actorBloc.add(HighlightActorEvent.deleted(highlight));
                 Navigator.pop(context);

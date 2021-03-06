@@ -8,12 +8,12 @@ part 'image.freezed.dart';
 
 @freezed
 abstract class Image implements _$Image {
-  const Image._();
-
   const factory Image({
     @required Option<ImageUrl> imageUrl,
     @required Option<ImageFile> imageFile,
   }) = _Image;
+
+  const Image._();
 
   Option<ValueFailure<dynamic>> get failureOption {
     return imageUrl.fold(

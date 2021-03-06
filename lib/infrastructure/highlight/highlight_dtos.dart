@@ -24,8 +24,6 @@ part 'highlight_dtos.g.dart';
 /// with the actual time of that server.
 @freezed
 abstract class HighlightDto implements _$HighlightDto {
-  const HighlightDto._();
-
   const factory HighlightDto({
     @JsonKey(ignore: true) String id,
     @required String quote,
@@ -35,6 +33,8 @@ abstract class HighlightDto implements _$HighlightDto {
     @required String pageNumber,
     @required @ServerTimestampConverter() FieldValue serverTimestamp,
   }) = _HighlightDto;
+
+  const HighlightDto._();
 
   factory HighlightDto.fromDomain(Highlight highlight) {
     return HighlightDto(

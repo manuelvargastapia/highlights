@@ -129,7 +129,7 @@ class SignInForm extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: FlatButton(
+                    child: TextButton(
                       key: const Key('sign_in_button'),
                       onPressed: () {
                         // Trigger validation to display possible error messages
@@ -142,7 +142,7 @@ class SignInForm extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: FlatButton(
+                    child: TextButton(
                       key: const Key('register_button'),
                       onPressed: () {
                         _formKey.currentState.validate();
@@ -154,13 +154,12 @@ class SignInForm extends StatelessWidget {
                   ),
                 ],
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   context
                       .read<SignInFormBloc>()
                       .add(const SignInFormEvent.sigInWithGooglePessed());
                 },
-                color: Colors.lightBlue,
                 child: const Text(
                   'SIGN IN WITH GOOGLE',
                   style: TextStyle(

@@ -152,13 +152,13 @@ class ImageField extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           actions: [
-            FlatButton(
+            TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text('CANCEL'),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 bloc.add(const HighlightFormEvent.imageDeleted());
 

@@ -36,7 +36,7 @@ class CriticalFailureDisplay extends HookWidget {
             style: const TextStyle(fontSize: 24),
           ),
           if (!emailSended.value)
-            FlatButton(
+            TextButton(
               onPressed: () async {
                 final Email email = Email(
                   body: 'Technical details:\n\n ${failure.toString()}',
