@@ -78,6 +78,30 @@ void main() {
     );
   });
 
+  group('_QuoteChangeByTextRecognition', () {
+    const newQuote = 'new quote';
+    blocTest(
+      '\nGiven any state'
+      '\nWhen _QuoteChangeByTextRecognition ocurrs'
+      '\nThen emit prev state with changed quote, quoteExtractedFromImage: true and saveFailureOrSuccessOption: none()',
+      build: () => HighlightFormBloc(mockIHighlightRepository),
+      act: (bloc) {
+        bloc.add(
+            const HighlightFormEvent.quoteChangeByTextRecognition(newQuote));
+      },
+      seed: initialState,
+      expect: [
+        initialState.copyWith(
+          highlight: initialState.highlight.copyWith(
+            quote: HighlightQuote(newQuote),
+          ),
+          quoteExtractedFromImage: true,
+          saveFailureOrSuccessOption: none(),
+        ),
+      ],
+    );
+  });
+
   group('_ColorChange', () {
     final newColor = HighlightColor.predefinedColors[3];
     blocTest(

@@ -213,7 +213,6 @@ class HighlightRepository implements IHighlightRepository {
     }
   }
 
-  //TODO: test
   @override
   Future<Either<HighlightFailure, Unit>> deleteImage(
     Highlight highlight, [
