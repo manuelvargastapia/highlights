@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flushbar/flushbar_helper.dart';
 
 import 'package:highlights/domain/core/errors.dart';
-import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
 import 'package:highlights/application/text_recognition/image_processer_bloc.dart';
+import 'package:highlights/domain/text_recognition/value_objects.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 import 'package:highlights/presentation/text_recognition/widgets/recognized_text_painter.dart';
 
@@ -56,14 +55,6 @@ class TextRecognitionPage extends HookWidget {
       body: BlocConsumer<ImageProcesserBloc, ImageProcesserState>(
         listener: (context, state) {
           state.maybeMap(
-            processingFailure: (state) {
-              FlushbarHelper.createError(
-                message: state.failure.map(
-                  unableToProcessImage: (_) => 'Unable to process image 😞',
-                  noTextDetected: (_) => 'No text found in image 🤔',
-                ),
-              ).show(context);
-            },
             processingSuccess: (state) {
               textEditingController.text =
                   state.textRecognitionResult.recognizedText.getOrCrash();
@@ -111,7 +102,7 @@ class TextRecognitionPage extends HookWidget {
                           decoration: const InputDecoration(
                             counterText: '',
                           ),
-                          maxLength: HighlightQuote.maxLength,
+                          maxLength: RecognizedText.maxLength,
                           maxLines: 5,
                           minLines: 5,
                           onChanged: (value) {
@@ -139,8 +130,13 @@ class TextRecognitionPage extends HookWidget {
               ],
             ),
             // TODO: create specific error screen widget
-            processingFailure: (_) => const Center(
-              child: Text('ERROR'),
+            processingFailure: (state) => Center(
+              child: Text(
+                state.failure.map(
+                  unableToProcessImage: (_) => 'Unable to process image 😞',
+                  noTextDetected: (_) => 'No text detected in image 🤔',
+                ),
+              ),
             ),
           );
         },
