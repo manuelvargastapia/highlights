@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flushbar/flushbar_helper.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:highlights/application/authentication/auth_bloc.dart';
@@ -12,7 +12,10 @@ class SignInForm extends StatelessWidget {
   /// This property must be `static` to avoid build loop
   ///
   /// See https://github.com/flutter/flutter/issues/20042
-  static final _formKey = GlobalKey<FormState>();
+  ///
+  // ignore: prefer_final_fields
+  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // Quitar el "final" parece prevenir un error al cerrar sesión y volver al sign in, pero no está claro cómo o por qué
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,8 @@ class SignInForm extends StatelessWidget {
             (failure) {
               FlushbarHelper.createError(
                 message: failure.map(
+                  networkConnectionFailed: (_) =>
+                      'Network connection failed. Check you internet status',
                   cancelledByUser: (_) => 'Cancelled',
                   serverError: (_) => 'Server Error',
                   invalidEmailAndPasswordCombination: (_) =>
@@ -35,7 +40,7 @@ class SignInForm extends StatelessWidget {
                   emailAlreadyInUse: (_) => 'Email already in use',
 
                   // TODO: remove this handler and treat it as 'server error'
-                  operationNotAllowed: (_) => 'User blocked',
+                  operationNotAllowed: (_) => 'User blocked 🚫 Contact support',
                 ),
               ).show(context);
             },

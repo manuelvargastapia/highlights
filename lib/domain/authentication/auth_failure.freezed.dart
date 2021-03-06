@@ -37,6 +37,11 @@ class _$AuthFailureTearOff {
   OperationNotAllowed operationNotAllowed() {
     return const OperationNotAllowed();
   }
+
+// ignore: unused_element
+  NetworkConnectionFailed networkConnectionFailed() {
+    return const NetworkConnectionFailed();
+  }
 }
 
 /// @nodoc
@@ -52,6 +57,7 @@ mixin _$AuthFailure {
     @required TResult invalidEmailAndPasswordCombination(),
     @required TResult emailAlreadyInUse(),
     @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -60,6 +66,7 @@ mixin _$AuthFailure {
     TResult invalidEmailAndPasswordCombination(),
     TResult emailAlreadyInUse(),
     TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -71,6 +78,7 @@ mixin _$AuthFailure {
             InvalidEmailAndPasswordCombination value),
     @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
     @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -80,6 +88,7 @@ mixin _$AuthFailure {
         InvalidEmailAndPasswordCombination value),
     TResult emailAlreadyInUse(EmailAlreadyInUse value),
     TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult orElse(),
   });
 }
@@ -144,12 +153,14 @@ class _$CancelledByUser implements CancelledByUser {
     @required TResult invalidEmailAndPasswordCombination(),
     @required TResult emailAlreadyInUse(),
     @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return cancelledByUser();
   }
 
@@ -161,6 +172,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult invalidEmailAndPasswordCombination(),
     TResult emailAlreadyInUse(),
     TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -180,12 +192,14 @@ class _$CancelledByUser implements CancelledByUser {
             InvalidEmailAndPasswordCombination value),
     @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
     @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return cancelledByUser(this);
   }
 
@@ -198,6 +212,7 @@ class _$CancelledByUser implements CancelledByUser {
         InvalidEmailAndPasswordCombination value),
     TResult emailAlreadyInUse(EmailAlreadyInUse value),
     TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -255,12 +270,14 @@ class _$ServerError implements ServerError {
     @required TResult invalidEmailAndPasswordCombination(),
     @required TResult emailAlreadyInUse(),
     @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return serverError();
   }
 
@@ -272,6 +289,7 @@ class _$ServerError implements ServerError {
     TResult invalidEmailAndPasswordCombination(),
     TResult emailAlreadyInUse(),
     TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -291,12 +309,14 @@ class _$ServerError implements ServerError {
             InvalidEmailAndPasswordCombination value),
     @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
     @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return serverError(this);
   }
 
@@ -309,6 +329,7 @@ class _$ServerError implements ServerError {
         InvalidEmailAndPasswordCombination value),
     TResult emailAlreadyInUse(EmailAlreadyInUse value),
     TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -372,12 +393,14 @@ class _$InvalidEmailAndPasswordCombination
     @required TResult invalidEmailAndPasswordCombination(),
     @required TResult emailAlreadyInUse(),
     @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return invalidEmailAndPasswordCombination();
   }
 
@@ -389,6 +412,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult invalidEmailAndPasswordCombination(),
     TResult emailAlreadyInUse(),
     TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -408,12 +432,14 @@ class _$InvalidEmailAndPasswordCombination
             InvalidEmailAndPasswordCombination value),
     @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
     @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return invalidEmailAndPasswordCombination(this);
   }
 
@@ -426,6 +452,7 @@ class _$InvalidEmailAndPasswordCombination
         InvalidEmailAndPasswordCombination value),
     TResult emailAlreadyInUse(EmailAlreadyInUse value),
     TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -485,12 +512,14 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     @required TResult invalidEmailAndPasswordCombination(),
     @required TResult emailAlreadyInUse(),
     @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return emailAlreadyInUse();
   }
 
@@ -502,6 +531,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult invalidEmailAndPasswordCombination(),
     TResult emailAlreadyInUse(),
     TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -521,12 +551,14 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
             InvalidEmailAndPasswordCombination value),
     @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
     @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return emailAlreadyInUse(this);
   }
 
@@ -539,6 +571,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
         InvalidEmailAndPasswordCombination value),
     TResult emailAlreadyInUse(EmailAlreadyInUse value),
     TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -597,12 +630,14 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     @required TResult invalidEmailAndPasswordCombination(),
     @required TResult emailAlreadyInUse(),
     @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return operationNotAllowed();
   }
 
@@ -614,6 +649,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     TResult invalidEmailAndPasswordCombination(),
     TResult emailAlreadyInUse(),
     TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -633,12 +669,14 @@ class _$OperationNotAllowed implements OperationNotAllowed {
             InvalidEmailAndPasswordCombination value),
     @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
     @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
     assert(invalidEmailAndPasswordCombination != null);
     assert(emailAlreadyInUse != null);
     assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
     return operationNotAllowed(this);
   }
 
@@ -651,6 +689,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
         InvalidEmailAndPasswordCombination value),
     TResult emailAlreadyInUse(EmailAlreadyInUse value),
     TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -663,4 +702,122 @@ class _$OperationNotAllowed implements OperationNotAllowed {
 
 abstract class OperationNotAllowed implements AuthFailure {
   const factory OperationNotAllowed() = _$OperationNotAllowed;
+}
+
+/// @nodoc
+abstract class $NetworkConnectionFailedCopyWith<$Res> {
+  factory $NetworkConnectionFailedCopyWith(NetworkConnectionFailed value,
+          $Res Function(NetworkConnectionFailed) then) =
+      _$NetworkConnectionFailedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NetworkConnectionFailedCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
+    implements $NetworkConnectionFailedCopyWith<$Res> {
+  _$NetworkConnectionFailedCopyWithImpl(NetworkConnectionFailed _value,
+      $Res Function(NetworkConnectionFailed) _then)
+      : super(_value, (v) => _then(v as NetworkConnectionFailed));
+
+  @override
+  NetworkConnectionFailed get _value => super._value as NetworkConnectionFailed;
+}
+
+/// @nodoc
+class _$NetworkConnectionFailed implements NetworkConnectionFailed {
+  const _$NetworkConnectionFailed();
+
+  @override
+  String toString() {
+    return 'AuthFailure.networkConnectionFailed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is NetworkConnectionFailed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult cancelledByUser(),
+    @required TResult serverError(),
+    @required TResult invalidEmailAndPasswordCombination(),
+    @required TResult emailAlreadyInUse(),
+    @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
+  }) {
+    assert(cancelledByUser != null);
+    assert(serverError != null);
+    assert(invalidEmailAndPasswordCombination != null);
+    assert(emailAlreadyInUse != null);
+    assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
+    return networkConnectionFailed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult cancelledByUser(),
+    TResult serverError(),
+    TResult invalidEmailAndPasswordCombination(),
+    TResult emailAlreadyInUse(),
+    TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (networkConnectionFailed != null) {
+      return networkConnectionFailed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult cancelledByUser(CancelledByUser value),
+    @required TResult serverError(ServerError value),
+    @required
+        TResult invalidEmailAndPasswordCombination(
+            InvalidEmailAndPasswordCombination value),
+    @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
+    @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
+  }) {
+    assert(cancelledByUser != null);
+    assert(serverError != null);
+    assert(invalidEmailAndPasswordCombination != null);
+    assert(emailAlreadyInUse != null);
+    assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
+    return networkConnectionFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult cancelledByUser(CancelledByUser value),
+    TResult serverError(ServerError value),
+    TResult invalidEmailAndPasswordCombination(
+        InvalidEmailAndPasswordCombination value),
+    TResult emailAlreadyInUse(EmailAlreadyInUse value),
+    TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (networkConnectionFailed != null) {
+      return networkConnectionFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NetworkConnectionFailed implements AuthFailure {
+  const factory NetworkConnectionFailed() = _$NetworkConnectionFailed;
 }

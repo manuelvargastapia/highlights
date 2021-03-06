@@ -31,4 +31,6 @@ abstract class AuthFailure with _$AuthFailure {
   /// accounts are not enabled. Enable email/password accounts in the
   /// Firebase Console, under the Auth tab
   const factory AuthFailure.operationNotAllowed() = OperationNotAllowed;
+
+  const factory AuthFailure.networkConnectionFailed() = NetworkConnectionFailed;
 }
