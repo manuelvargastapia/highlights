@@ -90,8 +90,7 @@ class HighlightCard extends StatelessWidget {
   }
 }
 
-// TODO: consider putting some metadata (ex: color) into entities
-// IDEA: use Chips as tags to filter or cathegorize highlights
+// TODO / IDEA: use Chips as tags to filter or cathegorize highlights
 class _InfoDisplay extends StatelessWidget {
   final BookTitle bookTitle;
   final PageNumber pageNumber;
