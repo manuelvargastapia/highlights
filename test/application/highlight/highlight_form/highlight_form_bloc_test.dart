@@ -27,7 +27,7 @@ void main() {
   group('_Initialized', () {
     final emptyHighlight = Highlight.empty();
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven _Initialized ocurrs'
       '\nWhen initial Highlight Option is some()'
       '\nThen emit state with Highlight and isEditing',
@@ -43,7 +43,7 @@ void main() {
       ],
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven _Initialized ocurrs'
       '\nWhen initial Highlight Option is none()'
       '\nThen emit initial state',
@@ -58,7 +58,7 @@ void main() {
 
   group('_QuoteChange', () {
     const newQuote = 'new quote';
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven any state'
       '\nWhen _QuoteChange ocurrs'
       '\nThen emit prev state with changed quote and saveFailureOrSuccessOption: none()',
@@ -80,7 +80,7 @@ void main() {
 
   group('_QuoteChangeByTextRecognition', () {
     const newQuote = 'new quote';
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven any state'
       '\nWhen _QuoteChangeByTextRecognition ocurrs'
       '\nThen emit prev state with changed quote, quoteExtractedFromImage: true and saveFailureOrSuccessOption: none()',
@@ -104,7 +104,7 @@ void main() {
 
   group('_ColorChange', () {
     final newColor = HighlightColor.predefinedColors[3];
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven any state'
       '\nWhen _ColorChange ocurrs'
       '\nThen emit prev state with changed color and saveFailureOrSuccessOption: none()',
@@ -126,7 +126,7 @@ void main() {
 
   group('_BookTitleChanged', () {
     const newBookTitle = 'title';
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven any state'
       '\nWhen _BookTitleChanged ocurrs'
       '\nThen emit prev state with changed bookTitle and saveFailureOrSuccessOption: none()',
@@ -148,7 +148,7 @@ void main() {
 
   group('_PageNumberChanged', () {
     const newPageNumber = '666';
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven any state'
       '\nWhen _BookTitleChanged ocurrs'
       '\nThen emit prev state with changed pageNumber and saveFailureOrSuccessOption: none()',
@@ -174,7 +174,7 @@ void main() {
       imageFile: some(ImageFile(File('new/path'))),
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven any state'
       '\nWhen _ImageChanged ocurrs'
       '\nThen emit state with new image',
@@ -211,7 +211,7 @@ void main() {
 
     final seedState = initialState.copyWith(highlight: validHighlight);
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven current Highlight without errors'
       '\nWhen create succesfully'
       '\nThen emitt same state with saveFailureOrSuccessOption: some(unit)',
@@ -244,7 +244,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven current Highlight without errors'
       '\nWhen update succesfully'
       '\nThen emitt same state with saveFailureOrSuccessOption: some(unit)',
@@ -279,7 +279,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven current Highlight without errors'
       '\nWhen create failed'
       '\nThen emitt same state with saveFailureOrSuccessOption: some(HighlightFailure)',
@@ -314,7 +314,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven current Highlight without errors'
       '\nWhen update failed'
       '\nThen emitt same state with saveFailureOrSuccessOption: left(HighlightFailure)',
@@ -351,7 +351,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven current Highlight with errors'
       '\nWhen _Saved ocurrs'
       "\nThen don't emitt any new state",
@@ -375,7 +375,7 @@ void main() {
       imageUrl: some(ImageUrl('http://newimageurl.test')),
       imageFile: some(ImageFile(File('new/path'))),
     );
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven curent image is none()'
       '\nWhen _ImageChanged ocurrs'
       '\nThen emit previous state without changes',
@@ -390,7 +390,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven curent image is uploaded'
       '\nWhen _ImageChanged ocurrs and image is deleted succesfully'
       '\nThen emit previous state with image: none() and saveFailureOrSuccessOption: none()',
@@ -424,7 +424,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven curent image is uploaded'
       '\nWhen _ImageChanged ocurrs and image failed to be deleted'
       '\nThen emit previous state with same image and failure',
@@ -457,7 +457,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightFormBloc, HighlightFormState>(
       "\nGiven curent image isn't uploaded"
       '\nWhen _ImageChanged ocurrs'
       "\nThen don't call deleteImage() and emit previous state with image: none() and saveFailureOrSuccessOption: none()",

@@ -6,7 +6,7 @@ import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 
 void main() {
   group('_ShowOnlyIfHasImageToggled', () {
-    blocTest(
+    blocTest<HighlightFiltererBloc, HighlightFiltererState>(
       '\nGiven event triggered'
       '\nWhen showOnlyIfHasImage is false'
       '\nThen emmit copied state with showOnlyIfHasImage true',
@@ -22,7 +22,7 @@ void main() {
       ],
     );
 
-    blocTest(
+    blocTest<HighlightFiltererBloc, HighlightFiltererState>(
       '\nGiven event triggered'
       '\nWhen showOnlyIfHasImage is true'
       '\nThen emmit copied state with showOnlyIfHasImage false',

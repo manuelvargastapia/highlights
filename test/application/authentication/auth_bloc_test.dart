@@ -21,7 +21,7 @@ void main() {
   });
 
   group('AuthCheckRequested', () {
-    blocTest(
+    blocTest<AuthBloc, AuthState>(
       '\nGiven user authenticated'
       '\nWhen AuthCheckRequested ocurrs'
       '\nThen Authenticated is emitted',
@@ -36,7 +36,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<AuthBloc, AuthState>(
       '\nGiven user unauthenticated'
       '\nWhen AuthCheckRequested ocurrs'
       '\nThen Unauthenticated is emitted',
@@ -52,7 +52,7 @@ void main() {
     );
   });
   group('SignedOut', () {
-    blocTest(
+    blocTest<AuthBloc, AuthState>(
       '\nGiven user authenticated'
       '\nWhen SignedOut ocurrs'
       '\nThen Unauthenticated is emitted',

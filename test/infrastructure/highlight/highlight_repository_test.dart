@@ -754,6 +754,7 @@ void main() {
         // current data as Snapshots
         expect(dataMapList.length, 1);
         expect(dataMapList[0]['quote'], 'New inspirational quote');
+        // ignore: avoid_dynamic_calls
         expect(dataMapList[0]['image']['url'], fakeDownloadUrl);
 
         verify(mockIAuthFacade.getSignedInUser()).called(1);
