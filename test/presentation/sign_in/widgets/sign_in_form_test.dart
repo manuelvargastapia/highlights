@@ -277,7 +277,7 @@ void main() {
           await tester.pumpWidget(renderWidget());
           await tester.pump();
 
-          final errorMessage = find.text('User blocked');
+          final errorMessage = find.text('User blocked 🚫 Contact support');
 
           expect(errorMessage, findsOneWidget);
         });

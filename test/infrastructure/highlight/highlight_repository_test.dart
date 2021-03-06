@@ -372,7 +372,13 @@ void main() {
               );
               failureOrHighlights.fold(
                 (failure) {
-                  expect(failure, equals(const HighlightFailure.unexpected()));
+                  expect(
+                    failure,
+                    HighlightFailure.unexpected(
+                      details:
+                          'Error while calling HighlightRepository.watchAll() in ${mockFirestore.collection(usersPath).doc(mockUid)}',
+                    ),
+                  );
                 },
                 (_) {},
               );
@@ -599,7 +605,13 @@ void main() {
               );
               failureOrHighlights.fold(
                 (failure) {
-                  expect(failure, equals(const HighlightFailure.unexpected()));
+                  expect(
+                    failure,
+                    equals(HighlightFailure.unexpected(
+                      details:
+                          'Error while calling HighlightRepository.watchFiltered() in ${mockFirestore.collection(usersPath).doc(mockUid)}/${mockFirestore.collection(usersPath).doc(mockUid).collection(highlightsPath)} with ${HighlightSearchFilter.initial()}',
+                    )),
+                  );
                 },
                 (_) {},
               );
