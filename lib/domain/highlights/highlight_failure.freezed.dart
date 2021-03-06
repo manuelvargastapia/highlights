@@ -14,13 +14,17 @@ class _$HighlightFailureTearOff {
   const _$HighlightFailureTearOff();
 
 // ignore: unused_element
-  _Unexpected unexpected() {
-    return const _Unexpected();
+  _Unexpected unexpected({String details}) {
+    return _Unexpected(
+      details: details,
+    );
   }
 
 // ignore: unused_element
-  _InsufficientPermission insufficientPermission() {
-    return const _InsufficientPermission();
+  _InsufficientPermission insufficientPermission({String details}) {
+    return _InsufficientPermission(
+      details: details,
+    );
   }
 
 // ignore: unused_element
@@ -47,16 +51,16 @@ const $HighlightFailure = _$HighlightFailureTearOff();
 mixin _$HighlightFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult insufficientPermission(),
+    @required TResult unexpected(String details),
+    @required TResult insufficientPermission(String details),
     @required TResult unableToUpdate(),
     @required TResult unableToProcessImage(),
     @required TResult noTextDetected(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult insufficientPermission(),
+    TResult unexpected(String details),
+    TResult insufficientPermission(String details),
     TResult unableToUpdate(),
     TResult unableToProcessImage(),
     TResult noTextDetected(),
@@ -103,6 +107,7 @@ abstract class _$UnexpectedCopyWith<$Res> {
   factory _$UnexpectedCopyWith(
           _Unexpected value, $Res Function(_Unexpected) then) =
       __$UnexpectedCopyWithImpl<$Res>;
+  $Res call({String details});
 }
 
 /// @nodoc
@@ -115,30 +120,51 @@ class __$UnexpectedCopyWithImpl<$Res>
 
   @override
   _Unexpected get _value => super._value as _Unexpected;
+
+  @override
+  $Res call({
+    Object details = freezed,
+  }) {
+    return _then(_Unexpected(
+      details: details == freezed ? _value.details : details as String,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_Unexpected implements _Unexpected {
-  const _$_Unexpected();
+  const _$_Unexpected({this.details});
+
+  @override
+  final String details;
 
   @override
   String toString() {
-    return 'HighlightFailure.unexpected()';
+    return 'HighlightFailure.unexpected(details: $details)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Unexpected);
+    return identical(this, other) ||
+        (other is _Unexpected &&
+            (identical(other.details, details) ||
+                const DeepCollectionEquality().equals(other.details, details)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(details);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UnexpectedCopyWith<_Unexpected> get copyWith =>
+      __$UnexpectedCopyWithImpl<_Unexpected>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult insufficientPermission(),
+    @required TResult unexpected(String details),
+    @required TResult insufficientPermission(String details),
     @required TResult unableToUpdate(),
     @required TResult unableToProcessImage(),
     @required TResult noTextDetected(),
@@ -148,14 +174,14 @@ class _$_Unexpected implements _Unexpected {
     assert(unableToUpdate != null);
     assert(unableToProcessImage != null);
     assert(noTextDetected != null);
-    return unexpected();
+    return unexpected(details);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult insufficientPermission(),
+    TResult unexpected(String details),
+    TResult insufficientPermission(String details),
     TResult unableToUpdate(),
     TResult unableToProcessImage(),
     TResult noTextDetected(),
@@ -163,7 +189,7 @@ class _$_Unexpected implements _Unexpected {
   }) {
     assert(orElse != null);
     if (unexpected != null) {
-      return unexpected();
+      return unexpected(details);
     }
     return orElse();
   }
@@ -204,7 +230,11 @@ class _$_Unexpected implements _Unexpected {
 }
 
 abstract class _Unexpected implements HighlightFailure {
-  const factory _Unexpected() = _$_Unexpected;
+  const factory _Unexpected({String details}) = _$_Unexpected;
+
+  String get details;
+  @JsonKey(ignore: true)
+  _$UnexpectedCopyWith<_Unexpected> get copyWith;
 }
 
 /// @nodoc
@@ -212,6 +242,7 @@ abstract class _$InsufficientPermissionCopyWith<$Res> {
   factory _$InsufficientPermissionCopyWith(_InsufficientPermission value,
           $Res Function(_InsufficientPermission) then) =
       __$InsufficientPermissionCopyWithImpl<$Res>;
+  $Res call({String details});
 }
 
 /// @nodoc
@@ -224,30 +255,52 @@ class __$InsufficientPermissionCopyWithImpl<$Res>
 
   @override
   _InsufficientPermission get _value => super._value as _InsufficientPermission;
+
+  @override
+  $Res call({
+    Object details = freezed,
+  }) {
+    return _then(_InsufficientPermission(
+      details: details == freezed ? _value.details : details as String,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_InsufficientPermission implements _InsufficientPermission {
-  const _$_InsufficientPermission();
+  const _$_InsufficientPermission({this.details});
+
+  @override
+  final String details;
 
   @override
   String toString() {
-    return 'HighlightFailure.insufficientPermission()';
+    return 'HighlightFailure.insufficientPermission(details: $details)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _InsufficientPermission);
+    return identical(this, other) ||
+        (other is _InsufficientPermission &&
+            (identical(other.details, details) ||
+                const DeepCollectionEquality().equals(other.details, details)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(details);
+
+  @JsonKey(ignore: true)
+  @override
+  _$InsufficientPermissionCopyWith<_InsufficientPermission> get copyWith =>
+      __$InsufficientPermissionCopyWithImpl<_InsufficientPermission>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult insufficientPermission(),
+    @required TResult unexpected(String details),
+    @required TResult insufficientPermission(String details),
     @required TResult unableToUpdate(),
     @required TResult unableToProcessImage(),
     @required TResult noTextDetected(),
@@ -257,14 +310,14 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     assert(unableToUpdate != null);
     assert(unableToProcessImage != null);
     assert(noTextDetected != null);
-    return insufficientPermission();
+    return insufficientPermission(details);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult insufficientPermission(),
+    TResult unexpected(String details),
+    TResult insufficientPermission(String details),
     TResult unableToUpdate(),
     TResult unableToProcessImage(),
     TResult noTextDetected(),
@@ -272,7 +325,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   }) {
     assert(orElse != null);
     if (insufficientPermission != null) {
-      return insufficientPermission();
+      return insufficientPermission(details);
     }
     return orElse();
   }
@@ -313,7 +366,12 @@ class _$_InsufficientPermission implements _InsufficientPermission {
 }
 
 abstract class _InsufficientPermission implements HighlightFailure {
-  const factory _InsufficientPermission() = _$_InsufficientPermission;
+  const factory _InsufficientPermission({String details}) =
+      _$_InsufficientPermission;
+
+  String get details;
+  @JsonKey(ignore: true)
+  _$InsufficientPermissionCopyWith<_InsufficientPermission> get copyWith;
 }
 
 /// @nodoc
@@ -355,8 +413,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult insufficientPermission(),
+    @required TResult unexpected(String details),
+    @required TResult insufficientPermission(String details),
     @required TResult unableToUpdate(),
     @required TResult unableToProcessImage(),
     @required TResult noTextDetected(),
@@ -372,8 +430,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult insufficientPermission(),
+    TResult unexpected(String details),
+    TResult insufficientPermission(String details),
     TResult unableToUpdate(),
     TResult unableToProcessImage(),
     TResult noTextDetected(),
@@ -464,8 +522,8 @@ class _$_UnableToProcessImage implements _UnableToProcessImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult insufficientPermission(),
+    @required TResult unexpected(String details),
+    @required TResult insufficientPermission(String details),
     @required TResult unableToUpdate(),
     @required TResult unableToProcessImage(),
     @required TResult noTextDetected(),
@@ -481,8 +539,8 @@ class _$_UnableToProcessImage implements _UnableToProcessImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult insufficientPermission(),
+    TResult unexpected(String details),
+    TResult insufficientPermission(String details),
     TResult unableToUpdate(),
     TResult unableToProcessImage(),
     TResult noTextDetected(),
@@ -573,8 +631,8 @@ class _$_NoTextDetected implements _NoTextDetected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult unexpected(),
-    @required TResult insufficientPermission(),
+    @required TResult unexpected(String details),
+    @required TResult insufficientPermission(String details),
     @required TResult unableToUpdate(),
     @required TResult unableToProcessImage(),
     @required TResult noTextDetected(),
@@ -590,8 +648,8 @@ class _$_NoTextDetected implements _NoTextDetected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult unexpected(),
-    TResult insufficientPermission(),
+    TResult unexpected(String details),
+    TResult insufficientPermission(String details),
     TResult unableToUpdate(),
     TResult unableToProcessImage(),
     TResult noTextDetected(),
