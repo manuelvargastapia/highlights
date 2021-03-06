@@ -43,7 +43,9 @@ class TextRecognitionPage extends HookWidget {
             onPressed: () {
               formBloc.add(HighlightFormEvent.imageChanged(originalImage));
               formBloc.add(
-                HighlightFormEvent.quoteChange(textEditingController.text),
+                HighlightFormEvent.quoteChangeByTextRecognition(
+                  textEditingController.text,
+                ),
               );
 
               ExtendedNavigator.of(context).pop();
@@ -105,11 +107,6 @@ class TextRecognitionPage extends HookWidget {
                           maxLength: RecognizedText.maxLength,
                           maxLines: 5,
                           minLines: 5,
-                          onChanged: (value) {
-                            formBloc.add(
-                              HighlightFormEvent.quoteChange(value),
-                            );
-                          },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (_) => state
                               .textRecognitionResult.recognizedText.value
