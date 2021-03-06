@@ -16,23 +16,13 @@ class QuoteField extends HookWidget {
     return BlocListener<HighlightFormBloc, HighlightFormState>(
       // To avoid getting an unrecoverable error on runtiem, listen to
       // state changes only when editing the Highlight or when the quote
-      // changes
+      // changes due to text recognition
       listenWhen: (prev, curr) =>
           prev.isEditing != curr.isEditing ||
-          prev.highlight.quote.highlightQuote !=
-              curr.highlight.quote.highlightQuote,
+          prev.quoteExtractedFromImage != curr.quoteExtractedFromImage,
 
-      // Update text property with current quote in state only if it doesn't
-      // carry a failure. Also, update the cursos position to put it at the end
-      // of the text
       listener: (context, state) {
-        if (state.highlight.quote.failureOption.isNone()) {
-          final quote = state.highlight.quote.highlightQuote.getOrCrash();
-          textEditingController.text = quote;
-          textEditingController.selection = TextSelection.fromPosition(
-            TextPosition(offset: quote.length),
-          );
-        }
+        textEditingController.text = state.highlight.quote.getOrCrash();
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -60,7 +50,6 @@ class QuoteField extends HookWidget {
               .state
               .highlight
               .quote
-              .highlightQuote
               .value
               .fold(
                 (failure) => failure.maybeMap(
