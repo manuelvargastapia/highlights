@@ -33,6 +33,7 @@ class HighlightRepository implements IHighlightRepository {
   @override
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchAll() async* {
     final userDocument = await _firestore.userDocument(_authFacade);
+
     yield* userDocument.highlightCollection
         .orderBy('serverTimestamp', descending: true)
         .snapshots()
@@ -52,7 +53,10 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.insufficientPermission());
       } else {
         // TODO: log e
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(
+          details:
+              'Error while calling HighlightRepository.watchAll() in ${userDocument.toString()}',
+        ));
       }
     });
   }
@@ -87,7 +91,10 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.insufficientPermission());
       } else {
         // TODO: log e
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(
+          details:
+              'Error while calling HighlightRepository.watchFiltered() in ${userDocument.toString()}/$collecitonRef with ${filter.toString()}',
+        ));
       }
     });
   }
@@ -132,7 +139,10 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.insufficientPermission());
       } else {
         // TODO: test
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(
+          details:
+              'Error while calling HighlightRepository.create() with ${highlight.toString()}: ${e.toString()}',
+        ));
       }
     }
   }
@@ -179,7 +189,10 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.unableToUpdate());
       } else {
         // TODO: test
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(
+          details:
+              'Error while calling HighlightRepository.update() with ${highlight.toString()}: ${e.toString()}',
+        ));
       }
     }
   }
@@ -208,7 +221,10 @@ class HighlightRepository implements IHighlightRepository {
       } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
       } else {
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(
+          details:
+              'Error while calling HighlightRepository.delete() with ${highlight.toString()}: ${e.toString()}',
+        ));
       }
     }
   }
@@ -230,7 +246,10 @@ class HighlightRepository implements IHighlightRepository {
       } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
       } else {
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(
+          details:
+              'Error while calling HighlightRepository.deleteImage() ${highlight.toString()}: ${e.toString()}',
+        ));
       }
     }
   }

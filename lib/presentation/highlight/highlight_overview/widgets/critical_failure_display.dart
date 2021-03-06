@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 
 class CriticalFailureDisplay extends StatelessWidget {
@@ -29,17 +32,24 @@ class CriticalFailureDisplay extends StatelessWidget {
             style: const TextStyle(fontSize: 24),
           ),
           FlatButton(
-              onPressed: () {
-                // TODO: implement or remove
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Icon(Icons.mail),
-                  SizedBox(width: 4),
-                  Text('I NEED HELP'),
-                ],
-              )),
+            onPressed: () async {
+              final Email email = Email(
+                body: 'Technical details: ${failure.toString()}',
+                subject: 'Highlights: Critical error report',
+                recipients: ['code@manuelvargas.dev'],
+              );
+
+              await FlutterEmailSender.send(email);
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.mail),
+                SizedBox(width: 4),
+                Text('REPORT ERROR'),
+              ],
+            ),
+          ),
         ],
       ),
     );
