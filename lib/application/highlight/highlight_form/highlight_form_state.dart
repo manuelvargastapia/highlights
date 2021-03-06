@@ -8,6 +8,7 @@ abstract class HighlightFormState with _$HighlightFormState {
   const factory HighlightFormState({
     @required Highlight highlight,
     @required bool isEditing,
+    @required bool quoteExtractedFromImage,
     @required bool isSaving,
     @required Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption,
   }) = _HighlightFormState;
@@ -16,6 +17,7 @@ abstract class HighlightFormState with _$HighlightFormState {
         highlight: Highlight.empty(),
         isEditing: false,
         isSaving: false,
+        quoteExtractedFromImage: false,
         saveFailureOrSuccessOption: none(),
       );
 }

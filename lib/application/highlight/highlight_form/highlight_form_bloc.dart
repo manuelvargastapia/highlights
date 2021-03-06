@@ -45,6 +45,15 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
+      quoteChangeByTextRecognition: (event) async* {
+        yield state.copyWith(
+          highlight: state.highlight.copyWith(
+            quote: HighlightQuote(event.quote),
+          ),
+          quoteExtractedFromImage: true,
+          saveFailureOrSuccessOption: none(),
+        );
+      },
       colorChange: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(

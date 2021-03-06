@@ -28,6 +28,13 @@ class _$HighlightFormEventTearOff {
   }
 
 // ignore: unused_element
+  _QuoteChangeByTextRecognition quoteChangeByTextRecognition(String quote) {
+    return _QuoteChangeByTextRecognition(
+      quote,
+    );
+  }
+
+// ignore: unused_element
   _ColorChange colorChange(Color color) {
     return _ColorChange(
       color,
@@ -76,6 +83,7 @@ mixin _$HighlightFormEvent {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -87,6 +95,7 @@ mixin _$HighlightFormEvent {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -99,6 +108,9 @@ mixin _$HighlightFormEvent {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -110,6 +122,7 @@ mixin _$HighlightFormEvent {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -205,6 +218,7 @@ class _$_Initialized implements _Initialized {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -214,6 +228,7 @@ class _$_Initialized implements _Initialized {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -228,6 +243,7 @@ class _$_Initialized implements _Initialized {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -248,6 +264,9 @@ class _$_Initialized implements _Initialized {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -257,6 +276,7 @@ class _$_Initialized implements _Initialized {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -271,6 +291,7 @@ class _$_Initialized implements _Initialized {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -359,6 +380,7 @@ class _$_QuoteChange implements _QuoteChange {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -368,6 +390,7 @@ class _$_QuoteChange implements _QuoteChange {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -382,6 +405,7 @@ class _$_QuoteChange implements _QuoteChange {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -402,6 +426,9 @@ class _$_QuoteChange implements _QuoteChange {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -411,6 +438,7 @@ class _$_QuoteChange implements _QuoteChange {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -425,6 +453,7 @@ class _$_QuoteChange implements _QuoteChange {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -447,6 +476,173 @@ abstract class _QuoteChange implements HighlightFormEvent {
   String get quote;
   @JsonKey(ignore: true)
   _$QuoteChangeCopyWith<_QuoteChange> get copyWith;
+}
+
+/// @nodoc
+abstract class _$QuoteChangeByTextRecognitionCopyWith<$Res> {
+  factory _$QuoteChangeByTextRecognitionCopyWith(
+          _QuoteChangeByTextRecognition value,
+          $Res Function(_QuoteChangeByTextRecognition) then) =
+      __$QuoteChangeByTextRecognitionCopyWithImpl<$Res>;
+  $Res call({String quote});
+}
+
+/// @nodoc
+class __$QuoteChangeByTextRecognitionCopyWithImpl<$Res>
+    extends _$HighlightFormEventCopyWithImpl<$Res>
+    implements _$QuoteChangeByTextRecognitionCopyWith<$Res> {
+  __$QuoteChangeByTextRecognitionCopyWithImpl(
+      _QuoteChangeByTextRecognition _value,
+      $Res Function(_QuoteChangeByTextRecognition) _then)
+      : super(_value, (v) => _then(v as _QuoteChangeByTextRecognition));
+
+  @override
+  _QuoteChangeByTextRecognition get _value =>
+      super._value as _QuoteChangeByTextRecognition;
+
+  @override
+  $Res call({
+    Object quote = freezed,
+  }) {
+    return _then(_QuoteChangeByTextRecognition(
+      quote == freezed ? _value.quote : quote as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_QuoteChangeByTextRecognition implements _QuoteChangeByTextRecognition {
+  const _$_QuoteChangeByTextRecognition(this.quote) : assert(quote != null);
+
+  @override
+  final String quote;
+
+  @override
+  String toString() {
+    return 'HighlightFormEvent.quoteChangeByTextRecognition(quote: $quote)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _QuoteChangeByTextRecognition &&
+            (identical(other.quote, quote) ||
+                const DeepCollectionEquality().equals(other.quote, quote)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(quote);
+
+  @JsonKey(ignore: true)
+  @override
+  _$QuoteChangeByTextRecognitionCopyWith<_QuoteChangeByTextRecognition>
+      get copyWith => __$QuoteChangeByTextRecognitionCopyWithImpl<
+          _QuoteChangeByTextRecognition>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initialized(Option<Highlight> initialHighlighOption),
+    @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
+    @required TResult colorChange(Color color),
+    @required TResult bookTitleChanged(String bookTitle),
+    @required TResult pageNumberChanged(String pageNumber),
+    @required TResult imageChanged(ImagePrimitive image),
+    @required TResult imageDeleted(),
+    @required TResult saved(),
+  }) {
+    assert(initialized != null);
+    assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
+    assert(colorChange != null);
+    assert(bookTitleChanged != null);
+    assert(pageNumberChanged != null);
+    assert(imageChanged != null);
+    assert(imageDeleted != null);
+    assert(saved != null);
+    return quoteChangeByTextRecognition(quote);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialized(Option<Highlight> initialHighlighOption),
+    TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
+    TResult colorChange(Color color),
+    TResult bookTitleChanged(String bookTitle),
+    TResult pageNumberChanged(String pageNumber),
+    TResult imageChanged(ImagePrimitive image),
+    TResult imageDeleted(),
+    TResult saved(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (quoteChangeByTextRecognition != null) {
+      return quoteChangeByTextRecognition(quote);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initialized(_Initialized value),
+    @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
+    @required TResult colorChange(_ColorChange value),
+    @required TResult bookTitleChanged(_BookTitleChanged value),
+    @required TResult pageNumberChanged(_PageNumberChanged value),
+    @required TResult imageChanged(_ImageChanged value),
+    @required TResult imageDeleted(_ImageDeleted value),
+    @required TResult saved(_Saved value),
+  }) {
+    assert(initialized != null);
+    assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
+    assert(colorChange != null);
+    assert(bookTitleChanged != null);
+    assert(pageNumberChanged != null);
+    assert(imageChanged != null);
+    assert(imageDeleted != null);
+    assert(saved != null);
+    return quoteChangeByTextRecognition(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initialized(_Initialized value),
+    TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
+    TResult colorChange(_ColorChange value),
+    TResult bookTitleChanged(_BookTitleChanged value),
+    TResult pageNumberChanged(_PageNumberChanged value),
+    TResult imageChanged(_ImageChanged value),
+    TResult imageDeleted(_ImageDeleted value),
+    TResult saved(_Saved value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (quoteChangeByTextRecognition != null) {
+      return quoteChangeByTextRecognition(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _QuoteChangeByTextRecognition implements HighlightFormEvent {
+  const factory _QuoteChangeByTextRecognition(String quote) =
+      _$_QuoteChangeByTextRecognition;
+
+  String get quote;
+  @JsonKey(ignore: true)
+  _$QuoteChangeByTextRecognitionCopyWith<_QuoteChangeByTextRecognition>
+      get copyWith;
 }
 
 /// @nodoc
@@ -512,6 +708,7 @@ class _$_ColorChange implements _ColorChange {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -521,6 +718,7 @@ class _$_ColorChange implements _ColorChange {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -535,6 +733,7 @@ class _$_ColorChange implements _ColorChange {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -555,6 +754,9 @@ class _$_ColorChange implements _ColorChange {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -564,6 +766,7 @@ class _$_ColorChange implements _ColorChange {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -578,6 +781,7 @@ class _$_ColorChange implements _ColorChange {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -666,6 +870,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -675,6 +880,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -689,6 +895,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -709,6 +916,9 @@ class _$_BookTitleChanged implements _BookTitleChanged {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -718,6 +928,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -732,6 +943,7 @@ class _$_BookTitleChanged implements _BookTitleChanged {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -820,6 +1032,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -829,6 +1042,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -843,6 +1057,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -863,6 +1078,9 @@ class _$_PageNumberChanged implements _PageNumberChanged {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -872,6 +1090,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -886,6 +1105,7 @@ class _$_PageNumberChanged implements _PageNumberChanged {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -985,6 +1205,7 @@ class _$_ImageChanged implements _ImageChanged {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -994,6 +1215,7 @@ class _$_ImageChanged implements _ImageChanged {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -1008,6 +1230,7 @@ class _$_ImageChanged implements _ImageChanged {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -1028,6 +1251,9 @@ class _$_ImageChanged implements _ImageChanged {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -1037,6 +1263,7 @@ class _$_ImageChanged implements _ImageChanged {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -1051,6 +1278,7 @@ class _$_ImageChanged implements _ImageChanged {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -1116,6 +1344,7 @@ class _$_ImageDeleted implements _ImageDeleted {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -1125,6 +1354,7 @@ class _$_ImageDeleted implements _ImageDeleted {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -1139,6 +1369,7 @@ class _$_ImageDeleted implements _ImageDeleted {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -1159,6 +1390,9 @@ class _$_ImageDeleted implements _ImageDeleted {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -1168,6 +1402,7 @@ class _$_ImageDeleted implements _ImageDeleted {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -1182,6 +1417,7 @@ class _$_ImageDeleted implements _ImageDeleted {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -1240,6 +1476,7 @@ class _$_Saved implements _Saved {
   TResult when<TResult extends Object>({
     @required TResult initialized(Option<Highlight> initialHighlighOption),
     @required TResult quoteChange(String quote),
+    @required TResult quoteChangeByTextRecognition(String quote),
     @required TResult colorChange(Color color),
     @required TResult bookTitleChanged(String bookTitle),
     @required TResult pageNumberChanged(String pageNumber),
@@ -1249,6 +1486,7 @@ class _$_Saved implements _Saved {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -1263,6 +1501,7 @@ class _$_Saved implements _Saved {
   TResult maybeWhen<TResult extends Object>({
     TResult initialized(Option<Highlight> initialHighlighOption),
     TResult quoteChange(String quote),
+    TResult quoteChangeByTextRecognition(String quote),
     TResult colorChange(Color color),
     TResult bookTitleChanged(String bookTitle),
     TResult pageNumberChanged(String pageNumber),
@@ -1283,6 +1522,9 @@ class _$_Saved implements _Saved {
   TResult map<TResult extends Object>({
     @required TResult initialized(_Initialized value),
     @required TResult quoteChange(_QuoteChange value),
+    @required
+        TResult quoteChangeByTextRecognition(
+            _QuoteChangeByTextRecognition value),
     @required TResult colorChange(_ColorChange value),
     @required TResult bookTitleChanged(_BookTitleChanged value),
     @required TResult pageNumberChanged(_PageNumberChanged value),
@@ -1292,6 +1534,7 @@ class _$_Saved implements _Saved {
   }) {
     assert(initialized != null);
     assert(quoteChange != null);
+    assert(quoteChangeByTextRecognition != null);
     assert(colorChange != null);
     assert(bookTitleChanged != null);
     assert(pageNumberChanged != null);
@@ -1306,6 +1549,7 @@ class _$_Saved implements _Saved {
   TResult maybeMap<TResult extends Object>({
     TResult initialized(_Initialized value),
     TResult quoteChange(_QuoteChange value),
+    TResult quoteChangeByTextRecognition(_QuoteChangeByTextRecognition value),
     TResult colorChange(_ColorChange value),
     TResult bookTitleChanged(_BookTitleChanged value),
     TResult pageNumberChanged(_PageNumberChanged value),
@@ -1337,12 +1581,15 @@ class _$HighlightFormStateTearOff {
       @required
           bool isEditing,
       @required
+          bool quoteExtractedFromImage,
+      @required
           bool isSaving,
       @required
           Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption}) {
     return _HighlightFormState(
       highlight: highlight,
       isEditing: isEditing,
+      quoteExtractedFromImage: quoteExtractedFromImage,
       isSaving: isSaving,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption,
     );
@@ -1357,6 +1604,7 @@ const $HighlightFormState = _$HighlightFormStateTearOff();
 mixin _$HighlightFormState {
   Highlight get highlight;
   bool get isEditing;
+  bool get quoteExtractedFromImage;
   bool get isSaving;
   Option<Either<HighlightFailure, Unit>> get saveFailureOrSuccessOption;
 
@@ -1372,6 +1620,7 @@ abstract class $HighlightFormStateCopyWith<$Res> {
   $Res call(
       {Highlight highlight,
       bool isEditing,
+      bool quoteExtractedFromImage,
       bool isSaving,
       Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption});
 
@@ -1391,6 +1640,7 @@ class _$HighlightFormStateCopyWithImpl<$Res>
   $Res call({
     Object highlight = freezed,
     Object isEditing = freezed,
+    Object quoteExtractedFromImage = freezed,
     Object isSaving = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
@@ -1398,6 +1648,9 @@ class _$HighlightFormStateCopyWithImpl<$Res>
       highlight:
           highlight == freezed ? _value.highlight : highlight as Highlight,
       isEditing: isEditing == freezed ? _value.isEditing : isEditing as bool,
+      quoteExtractedFromImage: quoteExtractedFromImage == freezed
+          ? _value.quoteExtractedFromImage
+          : quoteExtractedFromImage as bool,
       isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -1427,6 +1680,7 @@ abstract class _$HighlightFormStateCopyWith<$Res>
   $Res call(
       {Highlight highlight,
       bool isEditing,
+      bool quoteExtractedFromImage,
       bool isSaving,
       Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption});
 
@@ -1449,6 +1703,7 @@ class __$HighlightFormStateCopyWithImpl<$Res>
   $Res call({
     Object highlight = freezed,
     Object isEditing = freezed,
+    Object quoteExtractedFromImage = freezed,
     Object isSaving = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
@@ -1456,6 +1711,9 @@ class __$HighlightFormStateCopyWithImpl<$Res>
       highlight:
           highlight == freezed ? _value.highlight : highlight as Highlight,
       isEditing: isEditing == freezed ? _value.isEditing : isEditing as bool,
+      quoteExtractedFromImage: quoteExtractedFromImage == freezed
+          ? _value.quoteExtractedFromImage
+          : quoteExtractedFromImage as bool,
       isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -1470,10 +1728,12 @@ class _$_HighlightFormState implements _HighlightFormState {
   const _$_HighlightFormState(
       {@required this.highlight,
       @required this.isEditing,
+      @required this.quoteExtractedFromImage,
       @required this.isSaving,
       @required this.saveFailureOrSuccessOption})
       : assert(highlight != null),
         assert(isEditing != null),
+        assert(quoteExtractedFromImage != null),
         assert(isSaving != null),
         assert(saveFailureOrSuccessOption != null);
 
@@ -1482,13 +1742,15 @@ class _$_HighlightFormState implements _HighlightFormState {
   @override
   final bool isEditing;
   @override
+  final bool quoteExtractedFromImage;
+  @override
   final bool isSaving;
   @override
   final Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'HighlightFormState(highlight: $highlight, isEditing: $isEditing, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'HighlightFormState(highlight: $highlight, isEditing: $isEditing, quoteExtractedFromImage: $quoteExtractedFromImage, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1501,6 +1763,10 @@ class _$_HighlightFormState implements _HighlightFormState {
             (identical(other.isEditing, isEditing) ||
                 const DeepCollectionEquality()
                     .equals(other.isEditing, isEditing)) &&
+            (identical(
+                    other.quoteExtractedFromImage, quoteExtractedFromImage) ||
+                const DeepCollectionEquality().equals(
+                    other.quoteExtractedFromImage, quoteExtractedFromImage)) &&
             (identical(other.isSaving, isSaving) ||
                 const DeepCollectionEquality()
                     .equals(other.isSaving, isSaving)) &&
@@ -1516,6 +1782,7 @@ class _$_HighlightFormState implements _HighlightFormState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(highlight) ^
       const DeepCollectionEquality().hash(isEditing) ^
+      const DeepCollectionEquality().hash(quoteExtractedFromImage) ^
       const DeepCollectionEquality().hash(isSaving) ^
       const DeepCollectionEquality().hash(saveFailureOrSuccessOption);
 
@@ -1532,6 +1799,8 @@ abstract class _HighlightFormState implements HighlightFormState {
       @required
           bool isEditing,
       @required
+          bool quoteExtractedFromImage,
+      @required
           bool isSaving,
       @required
           Option<Either<HighlightFailure, Unit>>
@@ -1541,6 +1810,8 @@ abstract class _HighlightFormState implements HighlightFormState {
   Highlight get highlight;
   @override
   bool get isEditing;
+  @override
+  bool get quoteExtractedFromImage;
   @override
   bool get isSaving;
   @override
