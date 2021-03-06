@@ -17,7 +17,6 @@ import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
-import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/infrastructure/highlight/highlight_repository.dart';
 
 const mockUid = 'mock-uid';
@@ -37,9 +36,7 @@ const fakeDownloadUrl = 'https://fake-download-url.fake';
 final mockHighlight = Highlight(
   id: UniqueId.fromUniqueString(mockUid),
   color: HighlightColor(HighlightColor.predefinedColors[2]),
-  quote: Quote(
-    highlightQuote: HighlightQuote('Test quote'),
-  ),
+  quote: HighlightQuote('Test quote'),
   image: some(
     Image(
       imageUrl: some(ImageUrl('https://test-url.test')),
@@ -587,9 +584,7 @@ void main() {
     final newHighlight = Highlight(
       id: UniqueId.fromUniqueString('new-uid'),
       color: HighlightColor(HighlightColor.predefinedColors[4]),
-      quote: Quote(
-        highlightQuote: HighlightQuote('New inspirational quote'),
-      ),
+      quote: HighlightQuote('New inspirational quote'),
       image: some(
         Image(
           imageUrl: none(),
@@ -724,9 +719,7 @@ void main() {
   group('update', () {
     final updatedHighlight = mockHighlight.copyWith(
       color: HighlightColor(HighlightColor.predefinedColors[3]),
-      quote: Quote(
-        highlightQuote: HighlightQuote('Test quote updated'),
-      ),
+      quote: HighlightQuote('Test quote updated'),
       image: some(
         Image(
           imageUrl: some(ImageUrl('https://test-url-updated.test')),

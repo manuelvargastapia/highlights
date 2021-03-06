@@ -12,7 +12,6 @@ import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/image.dart';
-import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
 import 'package:highlights/presentation/highlight/highlight_overview/widgets/critical_failure_display.dart';
 import 'package:highlights/presentation/highlight/highlight_overview/widgets/error_highlight_card.dart';
@@ -100,9 +99,7 @@ void main() {
             KtList.from([
               Highlight(
                 id: UniqueId.fromUniqueString('1'),
-                quote: Quote(
-                  highlightQuote: HighlightQuote('Quote 1'),
-                ),
+                quote: HighlightQuote('Quote 1'),
                 color: HighlightColor(HighlightColor.predefinedColors[1]),
                 image: some(Image(
                   imageUrl: some(ImageUrl('https://1.test')),
@@ -113,9 +110,7 @@ void main() {
               ),
               Highlight(
                 id: UniqueId.fromUniqueString('2'),
-                quote: Quote(
-                  highlightQuote: HighlightQuote('Quote 2'),
-                ),
+                quote: HighlightQuote('Quote 2'),
                 color: HighlightColor(HighlightColor.predefinedColors[2]),
                 image: some(Image(
                   imageUrl: some(ImageUrl('https://2.test')),
@@ -126,9 +121,7 @@ void main() {
               ),
               Highlight(
                 id: UniqueId.fromUniqueString('3'),
-                quote: Quote(
-                  highlightQuote: HighlightQuote('Quote 3'),
-                ),
+                quote: HighlightQuote('Quote 3'),
                 color: HighlightColor(HighlightColor.predefinedColors[3]),
                 image: some(Image(
                   imageUrl: some(ImageUrl('https://3.test')),
@@ -168,9 +161,7 @@ void main() {
               Highlight.empty(),
               Highlight(
                 id: UniqueId.fromUniqueString('1'),
-                quote: Quote(
-                  highlightQuote: HighlightQuote('Quote 1'),
-                ),
+                quote: HighlightQuote('Quote 1'),
                 color: HighlightColor(HighlightColor.predefinedColors[1]),
                 image: some(
                   Image(

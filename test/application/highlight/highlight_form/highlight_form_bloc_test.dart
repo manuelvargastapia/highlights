@@ -9,7 +9,6 @@ import 'package:highlights/application/highlight/highlight_form/highlight_form_b
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/image.dart';
-import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
@@ -71,9 +70,7 @@ void main() {
       expect: [
         initialState.copyWith(
           highlight: initialState.highlight.copyWith(
-            quote: Quote(
-              highlightQuote: HighlightQuote(newQuote),
-            ),
+            quote: HighlightQuote(newQuote),
           ),
           saveFailureOrSuccessOption: none(),
         ),
@@ -178,9 +175,7 @@ void main() {
   group('_Saved', () {
     final validHighlight = Highlight(
       id: UniqueId(),
-      quote: Quote(
-        highlightQuote: HighlightQuote('This is a valid quote'),
-      ),
+      quote: HighlightQuote('This is a valid quote'),
       color: HighlightColor(HighlightColor.predefinedColors[0]),
       image: some(Image(
         imageUrl: some(ImageUrl('http://validurl.test')),
