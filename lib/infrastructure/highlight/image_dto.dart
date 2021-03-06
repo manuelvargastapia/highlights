@@ -14,6 +14,7 @@ abstract class ImageDto implements _$ImageDto {
 
   const factory ImageDto({
     @required String imageUrl,
+    // TODO: remove as isn't being used after storing it in DB
     @required String imageFile,
   }) = _ImageDto;
 
