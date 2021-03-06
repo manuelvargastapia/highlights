@@ -48,15 +48,16 @@ class HighlightRepository implements IHighlightRepository {
       // Extension method from RxDart library to handle errors in Streams
       // TODO: consider replacing it with native error handling to remove rxdart
       // as is being used only here
+      final details =
+          'Error while calling HighlightRepository.watchAll() in ${userDocument.toString()}';
       if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
-        return left(const HighlightFailure.insufficientPermission());
+        return left(HighlightFailure.insufficientPermission(
+          details: details,
+        ));
       } else {
         // TODO: log e
-        return left(HighlightFailure.unexpected(
-          details:
-              'Error while calling HighlightRepository.watchAll() in ${userDocument.toString()}',
-        ));
+        return left(HighlightFailure.unexpected(details: details));
       }
     });
   }
@@ -86,15 +87,14 @@ class HighlightRepository implements IHighlightRepository {
           ),
         )
         .onErrorReturnWith((e) {
+      final details =
+          'Error while calling HighlightRepository.watchFiltered() in ${userDocument.toString()}/$collecitonRef with ${filter.toString()}';
       if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
-        return left(const HighlightFailure.insufficientPermission());
+        return left(HighlightFailure.insufficientPermission(details: details));
       } else {
         // TODO: log e
-        return left(HighlightFailure.unexpected(
-          details:
-              'Error while calling HighlightRepository.watchFiltered() in ${userDocument.toString()}/$collecitonRef with ${filter.toString()}',
-        ));
+        return left(HighlightFailure.unexpected(details: details));
       }
     });
   }
@@ -139,10 +139,7 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.insufficientPermission());
       } else {
         // TODO: test
-        return left(HighlightFailure.unexpected(
-          details:
-              'Error while calling HighlightRepository.create() with ${highlight.toString()}: ${e.toString()}',
-        ));
+        return left(const HighlightFailure.unexpected());
       }
     }
   }
@@ -189,10 +186,7 @@ class HighlightRepository implements IHighlightRepository {
         return left(const HighlightFailure.unableToUpdate());
       } else {
         // TODO: test
-        return left(HighlightFailure.unexpected(
-          details:
-              'Error while calling HighlightRepository.update() with ${highlight.toString()}: ${e.toString()}',
-        ));
+        return left(const HighlightFailure.unexpected());
       }
     }
   }
@@ -221,10 +215,7 @@ class HighlightRepository implements IHighlightRepository {
       } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
       } else {
-        return left(HighlightFailure.unexpected(
-          details:
-              'Error while calling HighlightRepository.delete() with ${highlight.toString()}: ${e.toString()}',
-        ));
+        return left(const HighlightFailure.unexpected());
       }
     }
   }
@@ -246,10 +237,7 @@ class HighlightRepository implements IHighlightRepository {
       } else if (e.code.contains('not-found')) {
         return left(const HighlightFailure.unableToUpdate());
       } else {
-        return left(HighlightFailure.unexpected(
-          details:
-              'Error while calling HighlightRepository.deleteImage() ${highlight.toString()}: ${e.toString()}',
-        ));
+        return left(const HighlightFailure.unexpected());
       }
     }
   }
