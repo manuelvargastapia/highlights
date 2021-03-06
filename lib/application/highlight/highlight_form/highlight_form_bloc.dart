@@ -7,7 +7,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:highlights/domain/highlights/highlight.dart';
-import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/domain/highlights/i_highlight_repository.dart';
@@ -41,9 +40,7 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
       quoteChange: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(
-            quote: Quote(
-              highlightQuote: HighlightQuote(event.quote),
-            ),
+            quote: HighlightQuote(event.quote),
           ),
           saveFailureOrSuccessOption: none(),
         );
@@ -72,7 +69,6 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           saveFailureOrSuccessOption: none(),
         );
       },
-      // TODO: update tests
       imageChanged: (event) async* {
         yield state.copyWith(
           highlight: state.highlight.copyWith(

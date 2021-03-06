@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
-import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/infrastructure/highlight/image_dto.dart';
 import 'package:highlights/infrastructure/highlight/json_converters.dart';
@@ -40,7 +39,7 @@ abstract class HighlightDto implements _$HighlightDto {
   factory HighlightDto.fromDomain(Highlight highlight) {
     return HighlightDto(
       id: highlight.id.getOrCrash(),
-      quote: highlight.quote.highlightQuote.getOrCrash(),
+      quote: highlight.quote.getOrCrash(),
       color: highlight.color.getOrCrash().value,
       image: ImageDto.fromDomain(highlight.image),
       bookTitle: highlight.bookTitle.getOrCrash(),
@@ -52,7 +51,7 @@ abstract class HighlightDto implements _$HighlightDto {
   Highlight toDomain() {
     return Highlight(
       id: UniqueId.fromUniqueString(id),
-      quote: Quote(highlightQuote: HighlightQuote(quote)),
+      quote: HighlightQuote(quote),
       color: HighlightColor(Color(color)),
       image: image.toDomain(),
       bookTitle: BookTitle(bookTitle),

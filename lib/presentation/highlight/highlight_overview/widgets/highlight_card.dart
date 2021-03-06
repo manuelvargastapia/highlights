@@ -39,7 +39,7 @@ class HighlightCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                highlight.quote.highlightQuote.getOrCrash(),
+                highlight.quote.getOrCrash(),
                 textAlign: TextAlign.justify,
                 style: const TextStyle(fontSize: 18),
               ),
@@ -65,7 +65,7 @@ class HighlightCard extends StatelessWidget {
         return AlertDialog(
           title: const Text('Selected highlight: '),
           content: Text(
-            highlight.quote.highlightQuote.getOrCrash(),
+            highlight.quote.getOrCrash(),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),

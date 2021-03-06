@@ -16,7 +16,7 @@ class _$HighlightTearOff {
 // ignore: unused_element
   _Highlights call(
       {@required UniqueId id,
-      @required Quote quote,
+      @required HighlightQuote quote,
       @required HighlightColor color,
       @required Option<Image> image,
       @required BookTitle bookTitle,
@@ -39,7 +39,7 @@ const $Highlight = _$HighlightTearOff();
 /// @nodoc
 mixin _$Highlight {
   UniqueId get id;
-  Quote get quote;
+  HighlightQuote get quote;
   HighlightColor get color;
   Option<Image> get image;
   BookTitle get bookTitle;
@@ -55,13 +55,11 @@ abstract class $HighlightCopyWith<$Res> {
       _$HighlightCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
-      Quote quote,
+      HighlightQuote quote,
       HighlightColor color,
       Option<Image> image,
       BookTitle bookTitle,
       PageNumber pageNumber});
-
-  $QuoteCopyWith<$Res> get quote;
 }
 
 /// @nodoc
@@ -83,7 +81,7 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
-      quote: quote == freezed ? _value.quote : quote as Quote,
+      quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
       image: image == freezed ? _value.image : image as Option<Image>,
       bookTitle:
@@ -91,16 +89,6 @@ class _$HighlightCopyWithImpl<$Res> implements $HighlightCopyWith<$Res> {
       pageNumber:
           pageNumber == freezed ? _value.pageNumber : pageNumber as PageNumber,
     ));
-  }
-
-  @override
-  $QuoteCopyWith<$Res> get quote {
-    if (_value.quote == null) {
-      return null;
-    }
-    return $QuoteCopyWith<$Res>(_value.quote, (value) {
-      return _then(_value.copyWith(quote: value));
-    });
   }
 }
 
@@ -112,14 +100,11 @@ abstract class _$HighlightsCopyWith<$Res> implements $HighlightCopyWith<$Res> {
   @override
   $Res call(
       {UniqueId id,
-      Quote quote,
+      HighlightQuote quote,
       HighlightColor color,
       Option<Image> image,
       BookTitle bookTitle,
       PageNumber pageNumber});
-
-  @override
-  $QuoteCopyWith<$Res> get quote;
 }
 
 /// @nodoc
@@ -143,7 +128,7 @@ class __$HighlightsCopyWithImpl<$Res> extends _$HighlightCopyWithImpl<$Res>
   }) {
     return _then(_Highlights(
       id: id == freezed ? _value.id : id as UniqueId,
-      quote: quote == freezed ? _value.quote : quote as Quote,
+      quote: quote == freezed ? _value.quote : quote as HighlightQuote,
       color: color == freezed ? _value.color : color as HighlightColor,
       image: image == freezed ? _value.image : image as Option<Image>,
       bookTitle:
@@ -174,7 +159,7 @@ class _$_Highlights extends _Highlights {
   @override
   final UniqueId id;
   @override
-  final Quote quote;
+  final HighlightQuote quote;
   @override
   final HighlightColor color;
   @override
@@ -229,7 +214,7 @@ abstract class _Highlights extends Highlight {
   const _Highlights._() : super._();
   const factory _Highlights(
       {@required UniqueId id,
-      @required Quote quote,
+      @required HighlightQuote quote,
       @required HighlightColor color,
       @required Option<Image> image,
       @required BookTitle bookTitle,
@@ -238,7 +223,7 @@ abstract class _Highlights extends Highlight {
   @override
   UniqueId get id;
   @override
-  Quote get quote;
+  HighlightQuote get quote;
   @override
   HighlightColor get color;
   @override
