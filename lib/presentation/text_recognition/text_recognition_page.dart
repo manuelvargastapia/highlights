@@ -15,10 +15,15 @@ import 'package:highlights/presentation/highlight/highlight_forms/core/image_pre
 import 'package:highlights/presentation/text_recognition/widgets/recognized_text_painter.dart';
 
 class TextRecognitionPage extends HookWidget {
-  final ImagePrimitive _image;
-  final HighlightFormBloc _formBloc;
+  final ImagePrimitive originalImage;
+  final ImagePrimitive croppedImage;
+  final HighlightFormBloc formBloc;
 
-  const TextRecognitionPage(this._image, this._formBloc);
+  const TextRecognitionPage({
+    @required this.originalImage,
+    @required this.croppedImage,
+    @required this.formBloc,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class TextRecognitionPage extends HookWidget {
     useEffect(() {
       context
           .read<ImageProcesserBloc>()
-          .add(ImageProcesserEvent.processImageStarted(_image));
+          .add(ImageProcesserEvent.processImageStarted(croppedImage));
     }, const []);
 
     return Scaffold(
@@ -37,8 +42,8 @@ class TextRecognitionPage extends HookWidget {
         actions: [
           IconButton(
             onPressed: () {
-              _formBloc.add(HighlightFormEvent.imageChanged(_image));
-              _formBloc.add(
+              formBloc.add(HighlightFormEvent.imageChanged(originalImage));
+              formBloc.add(
                 HighlightFormEvent.quoteChange(textEditingController.text),
               );
 
@@ -87,7 +92,7 @@ class TextRecognitionPage extends HookWidget {
                             .getOrElse(() => throw UnexpectedUIError())
                             .getOrCrash()
                             .aspectRatio,
-                        child: Image.file(_image.imageFile),
+                        child: Image.file(croppedImage.imageFile),
                       ),
                     ),
                   ),
@@ -110,7 +115,7 @@ class TextRecognitionPage extends HookWidget {
                           maxLines: 5,
                           minLines: 5,
                           onChanged: (value) {
-                            _formBloc.add(
+                            formBloc.add(
                               HighlightFormEvent.quoteChange(value),
                             );
                           },

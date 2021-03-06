@@ -81,8 +81,9 @@ class Router extends RouterBase {
       final args = data.getArgs<TextRecognitionPageArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
         builder: (context) => TextRecognitionPage(
-          args.image,
-          args.formBloc,
+          originalImage: args.originalImage,
+          croppedImage: args.croppedImage,
+          formBloc: args.formBloc,
         ),
         settings: data,
         fullscreenDialog: true,
@@ -114,13 +115,16 @@ extension RouterExtendedNavigatorStateX on ExtendedNavigatorState {
       );
 
   Future<dynamic> pushTextRecognitionPage({
-    @required ImagePrimitive image,
+    @required ImagePrimitive originalImage,
+    @required ImagePrimitive croppedImage,
     @required HighlightFormBloc formBloc,
   }) =>
       push<dynamic>(
         Routes.textRecognitionPage,
-        arguments:
-            TextRecognitionPageArguments(image: image, formBloc: formBloc),
+        arguments: TextRecognitionPageArguments(
+            originalImage: originalImage,
+            croppedImage: croppedImage,
+            formBloc: formBloc),
       );
 }
 
@@ -137,7 +141,11 @@ class HighlightFormPageArguments {
 
 /// TextRecognitionPage arguments holder class
 class TextRecognitionPageArguments {
-  final ImagePrimitive image;
+  final ImagePrimitive originalImage;
+  final ImagePrimitive croppedImage;
   final HighlightFormBloc formBloc;
-  TextRecognitionPageArguments({@required this.image, @required this.formBloc});
+  TextRecognitionPageArguments(
+      {@required this.originalImage,
+      @required this.croppedImage,
+      @required this.formBloc});
 }
