@@ -28,7 +28,8 @@ const $ImageDto = _$ImageDtoTearOff();
 
 /// @nodoc
 mixin _$ImageDto {
-  String get imageUrl;
+  String
+      get imageUrl; // TODO: remove as isn't being used after storing it in DB
   String get imageFile;
 
   @JsonKey(ignore: true)
@@ -100,7 +101,7 @@ class _$_ImageDto extends _ImageDto {
 
   @override
   final String imageUrl;
-  @override
+  @override // TODO: remove as isn't being used after storing it in DB
   final String imageFile;
 
   @override
@@ -139,7 +140,7 @@ abstract class _ImageDto extends ImageDto {
 
   @override
   String get imageUrl;
-  @override
+  @override // TODO: remove as isn't being used after storing it in DB
   String get imageFile;
   @override
   @JsonKey(ignore: true)

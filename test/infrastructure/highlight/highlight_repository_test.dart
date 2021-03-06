@@ -17,7 +17,6 @@ import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
 import 'package:highlights/domain/highlights/highlight_failure.dart';
-import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/infrastructure/highlight/highlight_repository.dart';
 
 const mockUid = 'mock-uid';
@@ -37,9 +36,7 @@ const fakeDownloadUrl = 'https://fake-download-url.fake';
 final mockHighlight = Highlight(
   id: UniqueId.fromUniqueString(mockUid),
   color: HighlightColor(HighlightColor.predefinedColors[2]),
-  quote: Quote(
-    highlightQuote: HighlightQuote('Test quote'),
-  ),
+  quote: HighlightQuote('Test quote'),
   image: some(
     Image(
       imageUrl: some(ImageUrl('https://test-url.test')),
@@ -61,6 +58,14 @@ class FakeFirebaseStorage extends Fake implements FirebaseStorage {
 }
 
 // ignore: avoid_implementing_value_types
+class FakeFailedFirebaseStorage extends Fake implements FirebaseStorage {
+  @override
+  Reference ref([String path]) {
+    return FakeFailedReference();
+  }
+}
+
+// ignore: avoid_implementing_value_types
 class FakeReference extends Fake implements Reference {
   @override
   UploadTask putFile(File file, [SettableMetadata metadata]) {
@@ -77,6 +82,29 @@ class FakeReference extends Fake implements Reference {
 
   @override
   Future<void> delete() => Future.value();
+}
+
+// ignore: avoid_implementing_value_types
+class FakeFailedReference extends Fake implements Reference {
+  @override
+  UploadTask putFile(File file, [SettableMetadata metadata]) {
+    return FakeUploadTask();
+  }
+
+  @override
+  Reference child(String path) {
+    return FakeFailedReference();
+  }
+
+  @override
+  Future<String> getDownloadURL() => Future.value(fakeDownloadUrl);
+
+  @override
+  Future<void> delete() => throw FirebaseException(
+        plugin: 'any',
+        code: 'not-found',
+        message: 'any',
+      );
 }
 
 class FakeUploadTask extends Fake implements UploadTask {
@@ -102,6 +130,7 @@ class FakeTaskSnapshot extends Fake implements TaskSnapshot {
 void main() {
   MockFirestoreInstance mockFirestore;
   FakeFirebaseStorage fakeFirebaseStorage;
+  FakeFailedFirebaseStorage fakeFailedFirebaseStorage;
   MockIAuthFacade mockIAuthFacade;
   HighlightRepository highlightRepository;
   StreamSubscription<Either<HighlightFailure, KtList<Highlight>>> subscription;
@@ -115,6 +144,7 @@ void main() {
         .doc(mockUid)
         .set(mockData);
     fakeFirebaseStorage = FakeFirebaseStorage();
+    fakeFailedFirebaseStorage = FakeFailedFirebaseStorage();
     mockIAuthFacade = MockIAuthFacade();
     highlightRepository = HighlightRepository(
       mockFirestore,
@@ -342,7 +372,13 @@ void main() {
               );
               failureOrHighlights.fold(
                 (failure) {
-                  expect(failure, equals(const HighlightFailure.unexpected()));
+                  expect(
+                    failure,
+                    HighlightFailure.unexpected(
+                      details:
+                          'Error while calling HighlightRepository.watchAll() in ${mockFirestore.collection(usersPath).doc(mockUid)}',
+                    ),
+                  );
                 },
                 (_) {},
               );
@@ -569,7 +605,13 @@ void main() {
               );
               failureOrHighlights.fold(
                 (failure) {
-                  expect(failure, equals(const HighlightFailure.unexpected()));
+                  expect(
+                    failure,
+                    equals(HighlightFailure.unexpected(
+                      details:
+                          'Error while calling HighlightRepository.watchFiltered() in ${mockFirestore.collection(usersPath).doc(mockUid)}/${mockFirestore.collection(usersPath).doc(mockUid).collection(highlightsPath)} with ${HighlightSearchFilter.initial()}',
+                    )),
+                  );
                 },
                 (_) {},
               );
@@ -587,9 +629,7 @@ void main() {
     final newHighlight = Highlight(
       id: UniqueId.fromUniqueString('new-uid'),
       color: HighlightColor(HighlightColor.predefinedColors[4]),
-      quote: Quote(
-        highlightQuote: HighlightQuote('New inspirational quote'),
-      ),
+      quote: HighlightQuote('New inspirational quote'),
       image: some(
         Image(
           imageUrl: none(),
@@ -714,6 +754,7 @@ void main() {
         // current data as Snapshots
         expect(dataMapList.length, 1);
         expect(dataMapList[0]['quote'], 'New inspirational quote');
+        // ignore: avoid_dynamic_calls
         expect(dataMapList[0]['image']['url'], fakeDownloadUrl);
 
         verify(mockIAuthFacade.getSignedInUser()).called(1);
@@ -724,9 +765,7 @@ void main() {
   group('update', () {
     final updatedHighlight = mockHighlight.copyWith(
       color: HighlightColor(HighlightColor.predefinedColors[3]),
-      quote: Quote(
-        highlightQuote: HighlightQuote('Test quote updated'),
-      ),
+      quote: HighlightQuote('Test quote updated'),
       image: some(
         Image(
           imageUrl: some(ImageUrl('https://test-url-updated.test')),
@@ -994,5 +1033,99 @@ void main() {
 
     // TODO: deleting a non-existent document seems succeed (!)
     // I have no way to test a failed case
+
+    // TODO: test against fake data stored in storage
+    group('deleteImage', () {
+      final highlight = Highlight(
+        id: UniqueId.fromUniqueString('new-uid'),
+        color: HighlightColor(HighlightColor.predefinedColors[4]),
+        quote: HighlightQuote('New inspirational quote'),
+        image: some(
+          Image(
+            imageUrl: some(ImageUrl('https://test-url.test')),
+            imageFile: some(ImageFile(File('new/path/to/file'))),
+          ),
+        ),
+        bookTitle: BookTitle('Brand new book title'),
+        pageNumber: PageNumber('999'),
+      );
+
+      test(
+        '\nGiven unauthenticated user'
+        '\nWhen deleteImage() is called'
+        '\nThen throw NotAuthenticatedError',
+        () async {
+          when(mockIAuthFacade.getSignedInUser()).thenReturn(none());
+
+          expect(
+            highlightRepository.deleteImage(highlight),
+            throwsA(isInstanceOf<NotAuthenticatedError>()),
+          );
+
+          verify(mockIAuthFacade.getSignedInUser()).called(1);
+        },
+      );
+
+      test(
+        '\nGiven image in Storage'
+        "\nWhen it's deleted succesfully"
+        '\nThen return right() with Unit',
+        () async {
+          when(mockIAuthFacade.getSignedInUser()).thenReturn(
+            some(
+              User(id: UniqueId.fromUniqueString(mockUid)),
+            ),
+          );
+
+          final failureOrUnit =
+              await highlightRepository.deleteImage(highlight);
+
+          expect(failureOrUnit.isRight(), isTrue);
+
+          failureOrUnit.fold(
+            (_) => {},
+            (u) => expect(u, unit),
+          );
+
+          verify(mockIAuthFacade.getSignedInUser()).called(1);
+        },
+      );
+
+      // TODO: find a way to test all the failed cases without usinf Fake,
+      // because it's unmaintanible
+      test(
+        '\nGiven no reference to image in Storage'
+        '\nWhen try to delete it'
+        '\nThen left with _UnableToUpdate failure',
+        () async {
+          when(mockIAuthFacade.getSignedInUser()).thenReturn(
+            some(
+              User(id: UniqueId.fromUniqueString(mockUid)),
+            ),
+          );
+
+          final failedHighlightRepository = HighlightRepository(
+            mockFirestore,
+            fakeFailedFirebaseStorage,
+            mockIAuthFacade,
+          );
+
+          final failureOrUnit =
+              await failedHighlightRepository.deleteImage(highlight);
+
+          expect(failureOrUnit.isLeft(), isTrue);
+
+          failureOrUnit.fold(
+            (failure) => expect(
+              failure,
+              const HighlightFailure.unableToUpdate(),
+            ),
+            (_) => {},
+          );
+
+          verify(mockIAuthFacade.getSignedInUser()).called(1);
+        },
+      );
+    });
   });
 }

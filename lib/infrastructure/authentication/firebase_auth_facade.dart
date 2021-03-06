@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -110,6 +111,13 @@ class FirebaseAuthFacade implements IAuthFacade {
           .signInWithCredential(authCredential)
           .then((_) => right(unit));
     } on FirebaseAuthException catch (_) {
+      return left(const AuthFailure.serverError());
+    } on PlatformException catch (e) {
+      // Only this method trows an specific exception related to network
+      // connection. Sign in and Register only show a generic internal error
+      if (e.code.contains('network_error')) {
+        return left(const AuthFailure.networkConnectionFailed());
+      }
       return left(const AuthFailure.serverError());
     }
   }

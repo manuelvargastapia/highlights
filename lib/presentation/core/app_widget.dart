@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:highlights/injection.dart';
+import 'package:highlights/application/text_recognition/image_processer_bloc.dart';
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
@@ -22,10 +23,16 @@ class AppWidget extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<HighlightActorBloc>(),
         ),
+        BlocProvider(
+          create: (context) => getIt<ImageProcesserBloc>(),
+        )
       ],
       child: MaterialApp(
         title: 'Highlights',
-        builder: ExtendedNavigator.builder<Router>(router: Router()),
+        // This is a temporary solution for auto_route issue
+        // https://github.com/Milad-Akarie/auto_route_library/issues/257
+        // TODO: wait for auto_route 1.0
+        builder: ExtendedNavigator(router: Router()),
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
             primaryColor: Colors.cyan[800],

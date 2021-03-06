@@ -108,7 +108,7 @@ void main() {
         await tester.pumpWidget(renderWidget());
         expect(find.text('Invalid Email'), findsNothing);
         expect(find.text('Short Password'), findsNothing);
-        final signInButton = find.widgetWithText(FlatButton, 'SIGN IN');
+        final signInButton = find.widgetWithText(TextButton, 'SIGN IN');
         await tester.tap(signInButton);
         await tester.pump();
         expect(find.text('Invalid Email'), findsOneWidget);
@@ -130,7 +130,7 @@ void main() {
         await tester.pumpWidget(renderWidget());
         expect(find.text('Invalid Email'), findsNothing);
         expect(find.text('Short Password'), findsNothing);
-        final registerButton = find.widgetWithText(FlatButton, 'REGISTER');
+        final registerButton = find.widgetWithText(TextButton, 'REGISTER');
         await tester.tap(registerButton);
         await tester.pump();
         expect(find.text('Invalid Email'), findsOneWidget);
@@ -277,7 +277,7 @@ void main() {
           await tester.pumpWidget(renderWidget());
           await tester.pump();
 
-          final errorMessage = find.text('User blocked');
+          final errorMessage = find.text('User blocked 🚫 Contact support');
 
           expect(errorMessage, findsOneWidget);
         });
@@ -335,7 +335,7 @@ void main() {
     //     );
     //     await tester.pumpWidget(renderWidget());
     //     final signInWithGoogleButton = find.widgetWithText(
-    //       RaisedButton,
+    //       ElevatedButton,
     //       'SIGN IN WITH GOOGLE',
     //     );
     //     await tester.tap(signInWithGoogleButton);

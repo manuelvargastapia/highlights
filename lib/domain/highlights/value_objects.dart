@@ -13,7 +13,7 @@ class HighlightQuote extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  static const maxLength = 1000;
+  static const maxLength = 2000;
 
   factory HighlightQuote(String input) {
     assert(input != null);
@@ -51,7 +51,7 @@ class BookTitle extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  static const maxLength = 50;
+  static const maxLength = 200;
 
   factory BookTitle(String input) {
     assert(input != null);

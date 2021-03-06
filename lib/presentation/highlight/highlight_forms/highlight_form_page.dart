@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flushbar/flushbar_helper.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
@@ -37,16 +37,12 @@ class HighlightFormPage extends StatelessWidget {
             (failureOrUnit) => failureOrUnit.fold(
               (failure) {
                 FlushbarHelper.createError(
-                  message: failure.map(
-                    unexpected: (_) =>
-                        'Unexpected error 😨 Please, contact support.',
+                  message: failure.maybeMap(
                     insufficientPermission: (_) => 'Insufficient permissions ❌',
                     unableToUpdate: (_) =>
                         "Couldn't update the note. Was it deleted from another device?",
-                    noTextDetected: (_) =>
-                        'No text recognized in image. Take another, please.',
-                    unableToProcessImage: (_) =>
-                        "Coudn't process image 😞 Take another, please.",
+                    orElse: () =>
+                        'Unexpected error 😨 Please, contact support.',
                   ),
                 ).show(context);
               },

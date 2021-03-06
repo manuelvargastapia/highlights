@@ -33,6 +33,7 @@ class HighlightRepository implements IHighlightRepository {
   @override
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchAll() async* {
     final userDocument = await _firestore.userDocument(_authFacade);
+
     yield* userDocument.highlightCollection
         .orderBy('serverTimestamp', descending: true)
         .snapshots()
@@ -47,12 +48,16 @@ class HighlightRepository implements IHighlightRepository {
       // Extension method from RxDart library to handle errors in Streams
       // TODO: consider replacing it with native error handling to remove rxdart
       // as is being used only here
+      final details =
+          'Error while calling HighlightRepository.watchAll() in ${userDocument.toString()}';
       if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
-        return left(const HighlightFailure.insufficientPermission());
+        return left(HighlightFailure.insufficientPermission(
+          details: details,
+        ));
       } else {
         // TODO: log e
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(details: details));
       }
     });
   }
@@ -82,12 +87,14 @@ class HighlightRepository implements IHighlightRepository {
           ),
         )
         .onErrorReturnWith((e) {
+      final details =
+          'Error while calling HighlightRepository.watchFiltered() in ${userDocument.toString()}/$collecitonRef with ${filter.toString()}';
       if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
-        return left(const HighlightFailure.insufficientPermission());
+        return left(HighlightFailure.insufficientPermission(details: details));
       } else {
         // TODO: log e
-        return left(const HighlightFailure.unexpected());
+        return left(HighlightFailure.unexpected(details: details));
       }
     });
   }
@@ -213,7 +220,6 @@ class HighlightRepository implements IHighlightRepository {
     }
   }
 
-  //TODO: test
   @override
   Future<Either<HighlightFailure, Unit>> deleteImage(
     Highlight highlight, [

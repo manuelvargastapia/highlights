@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:highlights/domain/core/failures.dart';
 import 'package:highlights/domain/core/value_objects.dart';
 import 'package:highlights/domain/highlights/image.dart';
-import 'package:highlights/domain/highlights/quote.dart';
 import 'package:highlights/domain/highlights/value_objects.dart';
 
 part 'highlight.freezed.dart';
@@ -22,20 +21,20 @@ part 'highlight.freezed.dart';
 /// using the Value Objects validations.
 @freezed
 abstract class Highlight implements _$Highlight {
-  const Highlight._();
-
   const factory Highlight({
     @required UniqueId id,
-    @required Quote quote,
+    @required HighlightQuote quote,
     @required HighlightColor color,
     @required Option<Image> image,
     @required BookTitle bookTitle,
     @required PageNumber pageNumber,
   }) = _Highlights;
 
+  const Highlight._();
+
   factory Highlight.empty() => Highlight(
         id: UniqueId(),
-        quote: Quote.empty(),
+        quote: HighlightQuote(''),
         color: HighlightColor(HighlightColor.predefinedColors[0]),
         image: none(),
         bookTitle: BookTitle(''),
@@ -45,10 +44,7 @@ abstract class Highlight implements _$Highlight {
   Option<ValueFailure<dynamic>> get failureOption {
     return bookTitle.failureOrUnit
         .andThen(pageNumber.failureOrUnit)
-        .andThen(quote.failureOption.fold(
-          () => right(unit),
-          (f) => left(f),
-        ))
+        .andThen(quote.failureOrUnit)
         .andThen(image.fold(
           () => right(unit),
           (i) => i.failureOption.fold(

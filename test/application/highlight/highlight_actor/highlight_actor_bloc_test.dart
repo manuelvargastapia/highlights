@@ -18,7 +18,7 @@ void main() {
   });
 
   group('_Deleted', () {
-    blocTest(
+    blocTest<HighlightActorBloc, HighlightActorState>(
       '\nGiven existent Highlight'
       '\nWhen _Deleted ocurrs'
       '\nThen _DeleteSuccess is emitted',
@@ -39,7 +39,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightActorBloc, HighlightActorState>(
       '\nGiven existent Highlight'
       '\nWhen _Deleted ocurrs'
       '\nThen _DeleteFailure is emitted',

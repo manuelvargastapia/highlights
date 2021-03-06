@@ -14,16 +14,15 @@ class QuoteField extends HookWidget {
     final textEditingController = useTextEditingController();
 
     return BlocListener<HighlightFormBloc, HighlightFormState>(
-      // Listen only when we're editing the Highlight. Otherwise we would
-      // get an error and the app will crash. Also, listen quote changes
-      // right after processing an image to update quote based on recognized
-      // text
+      // To avoid getting an unrecoverable error on runtiem, listen to
+      // state changes only when editing the Highlight or when the quote
+      // changes due to text recognition
       listenWhen: (prev, curr) =>
           prev.isEditing != curr.isEditing ||
-          prev.isProcessingImage != curr.isProcessingImage,
+          prev.quoteExtractedFromImage != curr.quoteExtractedFromImage,
+
       listener: (context, state) {
-        textEditingController.text =
-            state.highlight.quote.highlightQuote.getOrCrash();
+        textEditingController.text = state.highlight.quote.getOrCrash();
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -51,7 +50,6 @@ class QuoteField extends HookWidget {
               .state
               .highlight
               .quote
-              .highlightQuote
               .value
               .fold(
                 (failure) => failure.maybeMap(

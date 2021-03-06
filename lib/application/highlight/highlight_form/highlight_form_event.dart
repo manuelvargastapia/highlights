@@ -6,6 +6,8 @@ abstract class HighlightFormEvent with _$HighlightFormEvent {
     Option<Highlight> initialHighlighOption,
   ) = _Initialized;
   const factory HighlightFormEvent.quoteChange(String quote) = _QuoteChange;
+  const factory HighlightFormEvent.quoteChangeByTextRecognition(String quote) =
+      _QuoteChangeByTextRecognition;
   const factory HighlightFormEvent.colorChange(Color color) = _ColorChange;
   const factory HighlightFormEvent.bookTitleChanged(
     String bookTitle,

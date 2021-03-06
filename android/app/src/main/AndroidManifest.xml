@@ -42,6 +42,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- add activity for image_cropper -->
+        <activity
+              android:name="com.yalantis.ucrop.UCropActivity"
+              android:screenOrientation="portrait"
+              android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <!-- Required by firebase_ml_vision to download on-device "ocr" model
              after the app is installed from the Play Store -->
         <meta-data

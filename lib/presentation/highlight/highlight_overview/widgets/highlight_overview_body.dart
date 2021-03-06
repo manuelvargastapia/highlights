@@ -18,7 +18,6 @@ class HighlightOverviewBody extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           loadSuccess: (state) {
-            // TODO: test
             if (state.highlights.isEmpty()) {
               return const Center(child: Text('NO HIGHLIGHTS'));
             }

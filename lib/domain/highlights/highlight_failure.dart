@@ -4,10 +4,10 @@ part 'highlight_failure.freezed.dart';
 
 @freezed
 abstract class HighlightFailure with _$HighlightFailure {
-  const factory HighlightFailure.unexpected() = _Unexpected;
+  const factory HighlightFailure.unexpected({String details}) = _Unexpected;
 
   /// Firebase secutiry rules doesn't allow user access a particular document.
-  const factory HighlightFailure.insufficientPermission() =
+  const factory HighlightFailure.insufficientPermission({String details}) =
       _InsufficientPermission;
 
   /// Firebase couldn't update/delete the document.

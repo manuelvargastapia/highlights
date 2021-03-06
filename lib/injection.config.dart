@@ -12,23 +12,24 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i8;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/authentication/auth_bloc.dart' as _i17;
-import 'application/authentication/sign_in_form/sign_in_form_bloc.dart' as _i16;
+import 'application/authentication/auth_bloc.dart' as _i18;
+import 'application/authentication/sign_in_form/sign_in_form_bloc.dart' as _i17;
 import 'application/highlight/highlight_actor/highlight_actor_bloc.dart'
-    as _i18;
+    as _i19;
 import 'application/highlight/highlight_filterer/highlight_filterer_bloc.dart'
     as _i9;
-import 'application/highlight/highlight_form/highlight_form_bloc.dart' as _i19;
+import 'application/highlight/highlight_form/highlight_form_bloc.dart' as _i20;
 import 'application/highlight/highlight_watcher/highlight_watcher_bloc.dart'
-    as _i20;
+    as _i21;
+import 'application/text_recognition/image_processer_bloc.dart' as _i16;
 import 'domain/authentication/i_auth_facade.dart' as _i10;
-import 'domain/highlights/i__text_recognition_repostitory.dart' as _i14;
 import 'domain/highlights/i_highlight_repository.dart' as _i12;
+import 'domain/text_recognition/i_text_recognition_repository.dart' as _i14;
 import 'infrastructure/authentication/auth_provider_manager.dart' as _i3;
 import 'infrastructure/authentication/firebase_auth_facade.dart' as _i11;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i21;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i22;
 import 'infrastructure/highlight/highlight_repository.dart' as _i13;
-import 'infrastructure/highlight/text_recognition_repository.dart'
+import 'infrastructure/text_recognition/text_recognition_repository.dart'
     as _i15; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -57,17 +58,18 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i10.IAuthFacade>()));
   gh.lazySingleton<_i14.ITextRecognitionRepository>(
       () => _i15.TextRecognitionRepository(get<_i7.FirebaseVision>()));
-  gh.factory<_i16.SignInFormBloc>(
-      () => _i16.SignInFormBloc(get<_i10.IAuthFacade>()));
-  gh.factory<_i17.AuthBloc>(() => _i17.AuthBloc(get<_i10.IAuthFacade>()));
-  gh.factory<_i18.HighlightActorBloc>(
-      () => _i18.HighlightActorBloc(get<_i12.IHighlightRepository>()));
-  gh.factory<_i19.HighlightFormBloc>(() => _i19.HighlightFormBloc(
-      get<_i12.IHighlightRepository>(),
-      get<_i14.ITextRecognitionRepository>()));
-  gh.factory<_i20.HighlightWatcherBloc>(
-      () => _i20.HighlightWatcherBloc(get<_i12.IHighlightRepository>()));
+  gh.factory<_i16.ImageProcesserBloc>(
+      () => _i16.ImageProcesserBloc(get<_i14.ITextRecognitionRepository>()));
+  gh.factory<_i17.SignInFormBloc>(
+      () => _i17.SignInFormBloc(get<_i10.IAuthFacade>()));
+  gh.factory<_i18.AuthBloc>(() => _i18.AuthBloc(get<_i10.IAuthFacade>()));
+  gh.factory<_i19.HighlightActorBloc>(
+      () => _i19.HighlightActorBloc(get<_i12.IHighlightRepository>()));
+  gh.factory<_i20.HighlightFormBloc>(
+      () => _i20.HighlightFormBloc(get<_i12.IHighlightRepository>()));
+  gh.factory<_i21.HighlightWatcherBloc>(
+      () => _i21.HighlightWatcherBloc(get<_i12.IHighlightRepository>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i21.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i22.FirebaseInjectableModule {}

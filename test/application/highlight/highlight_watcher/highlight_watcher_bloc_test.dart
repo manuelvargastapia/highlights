@@ -22,7 +22,7 @@ void main() {
 
   group('_WatchAllStarted', () {
     final highlight = Highlight.empty();
-    blocTest(
+    blocTest<HighlightWatcherBloc, HighlightWatcherState>(
       '\nGiven successful Highlight watching'
       '\nWhen _WatchAllStarted ocurrs'
       '\nThen _LoadSuccess is emitted',
@@ -50,7 +50,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightWatcherBloc, HighlightWatcherState>(
       '\nGiven failed Highlight watching'
       '\nWhen _WatchAllStarted ocurrs'
       '\nThen _LoadFailure is emitted',
@@ -81,7 +81,7 @@ void main() {
 
   group('_WatchFilteredStarted', () {
     final filter = HighlightSearchFilter.initial();
-    blocTest(
+    blocTest<HighlightWatcherBloc, HighlightWatcherState>(
       '\nGiven successful filtered Highlight watching'
       '\nWhen _WatchFilteredStarted ocurrs'
       '\nThen _LoadSuccess is emitted',
@@ -109,7 +109,7 @@ void main() {
       },
     );
 
-    blocTest(
+    blocTest<HighlightWatcherBloc, HighlightWatcherState>(
       '\nGiven failed filtered Highlight watching'
       '\nWhen _WatchAllStarted ocurrs'
       '\nThen _LoadFailure is emitted',
@@ -140,7 +140,7 @@ void main() {
 
   group('_HighlighReceived', () {});
 
-  blocTest(
+  blocTest<HighlightWatcherBloc, HighlightWatcherState>(
     '\nGiven successful Highlight received'
     '\nWhen _HighlighReceived ocurrs'
     '\nThen _LoadSuccess is emitted',
@@ -157,7 +157,7 @@ void main() {
     ],
   );
 
-  blocTest(
+  blocTest<HighlightWatcherBloc, HighlightWatcherState>(
     '\nGiven failed Highlight received'
     '\nWhen _HighlighReceived ocurrs'
     '\nThen _LoadFailure is emitted',

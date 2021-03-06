@@ -39,7 +39,7 @@ class HighlightCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                highlight.quote.highlightQuote.getOrCrash(),
+                highlight.quote.getOrCrash(),
                 textAlign: TextAlign.justify,
                 style: const TextStyle(fontSize: 18),
               ),
@@ -65,18 +65,18 @@ class HighlightCard extends StatelessWidget {
         return AlertDialog(
           title: const Text('Selected highlight: '),
           content: Text(
-            highlight.quote.highlightQuote.getOrCrash(),
+            highlight.quote.getOrCrash(),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
           actions: [
-            FlatButton(
+            TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text('CANCEL'),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 actorBloc.add(HighlightActorEvent.deleted(highlight));
                 Navigator.pop(context);
@@ -90,8 +90,7 @@ class HighlightCard extends StatelessWidget {
   }
 }
 
-// TODO: consider putting some metadata (ex: color) into entities
-// IDEA: use Chips as tags to filter or cathegorize highlights
+// TODO / IDEA: use Chips as tags to filter or cathegorize highlights
 class _InfoDisplay extends StatelessWidget {
   final BookTitle bookTitle;
   final PageNumber pageNumber;

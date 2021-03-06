@@ -1,13 +1,18 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kt_dart/collection.dart';
 
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
-import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
+import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/image_field/image_displayer.dart';
+import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 class ImageField extends StatelessWidget {
   const ImageField({Key key}) : super(key: key);
@@ -35,7 +40,7 @@ class ImageField extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () async {
-                      final file = await showDialog<File>(
+                      final filesPair = await showDialog<KtPair<File, File>>(
                         context: context,
                         builder: (context) {
                           return SimpleDialog(
@@ -43,17 +48,21 @@ class ImageField extends StatelessWidget {
                             children: [
                               SimpleDialogOption(
                                 onPressed: () async {
-                                  final file =
-                                      await _getImage(ImageSource.gallery);
-                                  Navigator.pop(context, file);
+                                  final filesPair = await _getFilesPair(
+                                    context,
+                                    ImageSource.gallery,
+                                  );
+                                  Navigator.pop(context, filesPair);
                                 },
                                 child: const Text('Gallery'),
                               ),
                               SimpleDialogOption(
                                 onPressed: () async {
-                                  final file =
-                                      await _getImage(ImageSource.camera);
-                                  Navigator.pop(context, file);
+                                  final filesPair = await _getFilesPair(
+                                    context,
+                                    ImageSource.camera,
+                                  );
+                                  Navigator.pop(context, filesPair);
                                 },
                                 child: const Text('Camera'),
                               ),
@@ -63,12 +72,16 @@ class ImageField extends StatelessWidget {
                       );
 
                       // "file" is null when showDialog() is dismissed
-                      if (file != null) {
-                        context
-                            .read<HighlightFormBloc>()
-                            .add(HighlightFormEvent.imageChanged(
-                              ImagePrimitive.fromFile(file),
-                            ));
+                      if (filesPair != null) {
+                        ExtendedNavigator.of(context).pushTextRecognitionPage(
+                          originalImage: ImagePrimitive.fromFile(
+                            filesPair.first,
+                          ),
+                          croppedImage: ImagePrimitive.fromFile(
+                            filesPair.second,
+                          ),
+                          formBloc: context.read<HighlightFormBloc>(),
+                        );
                       }
                     },
                     icon: const Icon(Icons.camera_alt),
@@ -92,13 +105,36 @@ class ImageField extends StatelessWidget {
     );
   }
 
-  Future<File> _getImage(ImageSource source) async {
+  Future<KtPair<File, File>> _getFilesPair(
+    BuildContext context,
+    ImageSource source,
+  ) async {
     final picker = ImagePicker();
     final pickedFile = await picker.getImage(
       source: source,
-      // TODO: use or remove: imageQuality: 80, --> Reduce size
+      imageQuality: 50,
     );
-    return File(pickedFile.path);
+    // "pickedFile" is null when user comes back from imnage selection
+    // screen using hardware back button (Android)
+    if (pickedFile == null) {
+      return null;
+    }
+
+    final croppedFile = await ImageCropper.cropImage(
+      sourcePath: pickedFile.path,
+      compressQuality: 50,
+      androidUiSettings: AndroidUiSettings(
+        toolbarTitle: 'Edit image',
+        toolbarColor: Theme.of(context).primaryColor,
+        toolbarWidgetColor: Colors.white,
+        activeControlsWidgetColor: Theme.of(context).accentColor,
+        initAspectRatio: CropAspectRatioPreset.original,
+        hideBottomControls: true,
+        lockAspectRatio: false,
+      ),
+    );
+
+    return KtPair(File(pickedFile.path), croppedFile);
   }
 
   void _showDeletionDialog(
@@ -116,13 +152,13 @@ class ImageField extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           actions: [
-            FlatButton(
+            TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text('CANCEL'),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 bloc.add(const HighlightFormEvent.imageDeleted());
 

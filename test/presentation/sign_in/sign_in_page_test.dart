@@ -34,10 +34,10 @@ void main() {
         final logo = find.byIcon(Icons.format_quote);
         final emailField = find.widgetWithText(TextFormField, 'Email');
         final passwordField = find.widgetWithText(TextFormField, 'Password');
-        final signInButton = find.widgetWithText(FlatButton, 'SIGN IN');
-        final registerButton = find.widgetWithText(FlatButton, 'REGISTER');
+        final signInButton = find.widgetWithText(TextButton, 'SIGN IN');
+        final registerButton = find.widgetWithText(TextButton, 'REGISTER');
         final signInWithGoogleButton = find.widgetWithText(
-          RaisedButton,
+          ElevatedButton,
           'SIGN IN WITH GOOGLE',
         );
         expect(title, findsOneWidget);
