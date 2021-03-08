@@ -19,6 +19,11 @@ class _$AuthEventTearOff {
   }
 
 // ignore: unused_element
+  EmailVerificationRequested emailVerificationRequested() {
+    return const EmailVerificationRequested();
+  }
+
+// ignore: unused_element
   SignedOut signedOut() {
     return const SignedOut();
   }
@@ -33,22 +38,27 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult authCheckRequested(),
+    @required TResult emailVerificationRequested(),
     @required TResult signedOut(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult authCheckRequested(),
+    TResult emailVerificationRequested(),
     TResult signedOut(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult authCheckRequested(AuthCheckRequested value),
+    @required
+        TResult emailVerificationRequested(EmailVerificationRequested value),
     @required TResult signedOut(SignedOut value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult authCheckRequested(AuthCheckRequested value),
+    TResult emailVerificationRequested(EmailVerificationRequested value),
     TResult signedOut(SignedOut value),
     @required TResult orElse(),
   });
@@ -109,9 +119,11 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult authCheckRequested(),
+    @required TResult emailVerificationRequested(),
     @required TResult signedOut(),
   }) {
     assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
     assert(signedOut != null);
     return authCheckRequested();
   }
@@ -120,6 +132,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult authCheckRequested(),
+    TResult emailVerificationRequested(),
     TResult signedOut(),
     @required TResult orElse(),
   }) {
@@ -134,9 +147,12 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult authCheckRequested(AuthCheckRequested value),
+    @required
+        TResult emailVerificationRequested(EmailVerificationRequested value),
     @required TResult signedOut(SignedOut value),
   }) {
     assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
     assert(signedOut != null);
     return authCheckRequested(this);
   }
@@ -145,6 +161,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult authCheckRequested(AuthCheckRequested value),
+    TResult emailVerificationRequested(EmailVerificationRequested value),
     TResult signedOut(SignedOut value),
     @required TResult orElse(),
   }) {
@@ -158,6 +175,105 @@ class _$AuthCheckRequested implements AuthCheckRequested {
 
 abstract class AuthCheckRequested implements AuthEvent {
   const factory AuthCheckRequested() = _$AuthCheckRequested;
+}
+
+/// @nodoc
+abstract class $EmailVerificationRequestedCopyWith<$Res> {
+  factory $EmailVerificationRequestedCopyWith(EmailVerificationRequested value,
+          $Res Function(EmailVerificationRequested) then) =
+      _$EmailVerificationRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmailVerificationRequestedCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements $EmailVerificationRequestedCopyWith<$Res> {
+  _$EmailVerificationRequestedCopyWithImpl(EmailVerificationRequested _value,
+      $Res Function(EmailVerificationRequested) _then)
+      : super(_value, (v) => _then(v as EmailVerificationRequested));
+
+  @override
+  EmailVerificationRequested get _value =>
+      super._value as EmailVerificationRequested;
+}
+
+/// @nodoc
+class _$EmailVerificationRequested implements EmailVerificationRequested {
+  const _$EmailVerificationRequested();
+
+  @override
+  String toString() {
+    return 'AuthEvent.emailVerificationRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is EmailVerificationRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult authCheckRequested(),
+    @required TResult emailVerificationRequested(),
+    @required TResult signedOut(),
+  }) {
+    assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
+    assert(signedOut != null);
+    return emailVerificationRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult authCheckRequested(),
+    TResult emailVerificationRequested(),
+    TResult signedOut(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerificationRequested != null) {
+      return emailVerificationRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult authCheckRequested(AuthCheckRequested value),
+    @required
+        TResult emailVerificationRequested(EmailVerificationRequested value),
+    @required TResult signedOut(SignedOut value),
+  }) {
+    assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
+    assert(signedOut != null);
+    return emailVerificationRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult authCheckRequested(AuthCheckRequested value),
+    TResult emailVerificationRequested(EmailVerificationRequested value),
+    TResult signedOut(SignedOut value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerificationRequested != null) {
+      return emailVerificationRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailVerificationRequested implements AuthEvent {
+  const factory EmailVerificationRequested() = _$EmailVerificationRequested;
 }
 
 /// @nodoc
@@ -197,9 +313,11 @@ class _$SignedOut implements SignedOut {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult authCheckRequested(),
+    @required TResult emailVerificationRequested(),
     @required TResult signedOut(),
   }) {
     assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
     assert(signedOut != null);
     return signedOut();
   }
@@ -208,6 +326,7 @@ class _$SignedOut implements SignedOut {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult authCheckRequested(),
+    TResult emailVerificationRequested(),
     TResult signedOut(),
     @required TResult orElse(),
   }) {
@@ -222,9 +341,12 @@ class _$SignedOut implements SignedOut {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult authCheckRequested(AuthCheckRequested value),
+    @required
+        TResult emailVerificationRequested(EmailVerificationRequested value),
     @required TResult signedOut(SignedOut value),
   }) {
     assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
     assert(signedOut != null);
     return signedOut(this);
   }
@@ -233,6 +355,7 @@ class _$SignedOut implements SignedOut {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult authCheckRequested(AuthCheckRequested value),
+    TResult emailVerificationRequested(EmailVerificationRequested value),
     TResult signedOut(SignedOut value),
     @required TResult orElse(),
   }) {
@@ -266,6 +389,28 @@ class _$AuthStateTearOff {
   _Unauthenticated unauthenticated() {
     return const _Unauthenticated();
   }
+
+// ignore: unused_element
+  _EmailVerificationSent emailVerificationSent() {
+    return const _EmailVerificationSent();
+  }
+
+// ignore: unused_element
+  _SendingEmailVerification sendingEmailVerification() {
+    return const _SendingEmailVerification();
+  }
+
+// ignore: unused_element
+  _EmailVerified emailVerified() {
+    return const _EmailVerified();
+  }
+
+// ignore: unused_element
+  _EmailVerificationFailed emailVerificationFailed(AuthFailure failure) {
+    return _EmailVerificationFailed(
+      failure,
+    );
+  }
 }
 
 /// @nodoc
@@ -279,12 +424,20 @@ mixin _$AuthState {
     @required TResult initial(),
     @required TResult authenticated(),
     @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult authenticated(),
     TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -292,12 +445,20 @@ mixin _$AuthState {
     @required TResult initial(_Initial value),
     @required TResult authenticated(_Authenticated value),
     @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult authenticated(_Authenticated value),
     TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
     @required TResult orElse(),
   });
 }
@@ -356,10 +517,18 @@ class _$_Initial implements _Initial {
     @required TResult initial(),
     @required TResult authenticated(),
     @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
     return initial();
   }
 
@@ -369,6 +538,10 @@ class _$_Initial implements _Initial {
     TResult initial(),
     TResult authenticated(),
     TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -384,10 +557,18 @@ class _$_Initial implements _Initial {
     @required TResult initial(_Initial value),
     @required TResult authenticated(_Authenticated value),
     @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
     return initial(this);
   }
 
@@ -397,6 +578,10 @@ class _$_Initial implements _Initial {
     TResult initial(_Initial value),
     TResult authenticated(_Authenticated value),
     TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -452,10 +637,18 @@ class _$_Authenticated implements _Authenticated {
     @required TResult initial(),
     @required TResult authenticated(),
     @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
     return authenticated();
   }
 
@@ -465,6 +658,10 @@ class _$_Authenticated implements _Authenticated {
     TResult initial(),
     TResult authenticated(),
     TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -480,10 +677,18 @@ class _$_Authenticated implements _Authenticated {
     @required TResult initial(_Initial value),
     @required TResult authenticated(_Authenticated value),
     @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
     return authenticated(this);
   }
 
@@ -493,6 +698,10 @@ class _$_Authenticated implements _Authenticated {
     TResult initial(_Initial value),
     TResult authenticated(_Authenticated value),
     TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -548,10 +757,18 @@ class _$_Unauthenticated implements _Unauthenticated {
     @required TResult initial(),
     @required TResult authenticated(),
     @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
     return unauthenticated();
   }
 
@@ -561,6 +778,10 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult initial(),
     TResult authenticated(),
     TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -576,10 +797,18 @@ class _$_Unauthenticated implements _Unauthenticated {
     @required TResult initial(_Initial value),
     @required TResult authenticated(_Authenticated value),
     @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
     return unauthenticated(this);
   }
 
@@ -589,6 +818,10 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult initial(_Initial value),
     TResult authenticated(_Authenticated value),
     TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -601,4 +834,529 @@ class _$_Unauthenticated implements _Unauthenticated {
 
 abstract class _Unauthenticated implements AuthState {
   const factory _Unauthenticated() = _$_Unauthenticated;
+}
+
+/// @nodoc
+abstract class _$EmailVerificationSentCopyWith<$Res> {
+  factory _$EmailVerificationSentCopyWith(_EmailVerificationSent value,
+          $Res Function(_EmailVerificationSent) then) =
+      __$EmailVerificationSentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$EmailVerificationSentCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$EmailVerificationSentCopyWith<$Res> {
+  __$EmailVerificationSentCopyWithImpl(_EmailVerificationSent _value,
+      $Res Function(_EmailVerificationSent) _then)
+      : super(_value, (v) => _then(v as _EmailVerificationSent));
+
+  @override
+  _EmailVerificationSent get _value => super._value as _EmailVerificationSent;
+}
+
+/// @nodoc
+class _$_EmailVerificationSent implements _EmailVerificationSent {
+  const _$_EmailVerificationSent();
+
+  @override
+  String toString() {
+    return 'AuthState.emailVerificationSent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _EmailVerificationSent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(),
+    @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return emailVerificationSent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(),
+    TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerificationSent != null) {
+      return emailVerificationSent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return emailVerificationSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult authenticated(_Authenticated value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerificationSent != null) {
+      return emailVerificationSent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmailVerificationSent implements AuthState {
+  const factory _EmailVerificationSent() = _$_EmailVerificationSent;
+}
+
+/// @nodoc
+abstract class _$SendingEmailVerificationCopyWith<$Res> {
+  factory _$SendingEmailVerificationCopyWith(_SendingEmailVerification value,
+          $Res Function(_SendingEmailVerification) then) =
+      __$SendingEmailVerificationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SendingEmailVerificationCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$SendingEmailVerificationCopyWith<$Res> {
+  __$SendingEmailVerificationCopyWithImpl(_SendingEmailVerification _value,
+      $Res Function(_SendingEmailVerification) _then)
+      : super(_value, (v) => _then(v as _SendingEmailVerification));
+
+  @override
+  _SendingEmailVerification get _value =>
+      super._value as _SendingEmailVerification;
+}
+
+/// @nodoc
+class _$_SendingEmailVerification implements _SendingEmailVerification {
+  const _$_SendingEmailVerification();
+
+  @override
+  String toString() {
+    return 'AuthState.sendingEmailVerification()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SendingEmailVerification);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(),
+    @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return sendingEmailVerification();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(),
+    TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendingEmailVerification != null) {
+      return sendingEmailVerification();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return sendingEmailVerification(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult authenticated(_Authenticated value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendingEmailVerification != null) {
+      return sendingEmailVerification(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SendingEmailVerification implements AuthState {
+  const factory _SendingEmailVerification() = _$_SendingEmailVerification;
+}
+
+/// @nodoc
+abstract class _$EmailVerifiedCopyWith<$Res> {
+  factory _$EmailVerifiedCopyWith(
+          _EmailVerified value, $Res Function(_EmailVerified) then) =
+      __$EmailVerifiedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$EmailVerifiedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$EmailVerifiedCopyWith<$Res> {
+  __$EmailVerifiedCopyWithImpl(
+      _EmailVerified _value, $Res Function(_EmailVerified) _then)
+      : super(_value, (v) => _then(v as _EmailVerified));
+
+  @override
+  _EmailVerified get _value => super._value as _EmailVerified;
+}
+
+/// @nodoc
+class _$_EmailVerified implements _EmailVerified {
+  const _$_EmailVerified();
+
+  @override
+  String toString() {
+    return 'AuthState.emailVerified()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _EmailVerified);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(),
+    @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return emailVerified();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(),
+    TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerified != null) {
+      return emailVerified();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return emailVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult authenticated(_Authenticated value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerified != null) {
+      return emailVerified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmailVerified implements AuthState {
+  const factory _EmailVerified() = _$_EmailVerified;
+}
+
+/// @nodoc
+abstract class _$EmailVerificationFailedCopyWith<$Res> {
+  factory _$EmailVerificationFailedCopyWith(_EmailVerificationFailed value,
+          $Res Function(_EmailVerificationFailed) then) =
+      __$EmailVerificationFailedCopyWithImpl<$Res>;
+  $Res call({AuthFailure failure});
+
+  $AuthFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class __$EmailVerificationFailedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$EmailVerificationFailedCopyWith<$Res> {
+  __$EmailVerificationFailedCopyWithImpl(_EmailVerificationFailed _value,
+      $Res Function(_EmailVerificationFailed) _then)
+      : super(_value, (v) => _then(v as _EmailVerificationFailed));
+
+  @override
+  _EmailVerificationFailed get _value =>
+      super._value as _EmailVerificationFailed;
+
+  @override
+  $Res call({
+    Object failure = freezed,
+  }) {
+    return _then(_EmailVerificationFailed(
+      failure == freezed ? _value.failure : failure as AuthFailure,
+    ));
+  }
+
+  @override
+  $AuthFailureCopyWith<$Res> get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+    return $AuthFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$_EmailVerificationFailed implements _EmailVerificationFailed {
+  const _$_EmailVerificationFailed(this.failure) : assert(failure != null);
+
+  @override
+  final AuthFailure failure;
+
+  @override
+  String toString() {
+    return 'AuthState.emailVerificationFailed(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _EmailVerificationFailed &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$EmailVerificationFailedCopyWith<_EmailVerificationFailed> get copyWith =>
+      __$EmailVerificationFailedCopyWithImpl<_EmailVerificationFailed>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(),
+    @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return emailVerificationFailed(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(),
+    TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerificationFailed != null) {
+      return emailVerificationFailed(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    return emailVerificationFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult authenticated(_Authenticated value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (emailVerificationFailed != null) {
+      return emailVerificationFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmailVerificationFailed implements AuthState {
+  const factory _EmailVerificationFailed(AuthFailure failure) =
+      _$_EmailVerificationFailed;
+
+  AuthFailure get failure;
+  @JsonKey(ignore: true)
+  _$EmailVerificationFailedCopyWith<_EmailVerificationFailed> get copyWith;
 }
