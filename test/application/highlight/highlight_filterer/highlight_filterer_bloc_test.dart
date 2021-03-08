@@ -5,19 +5,20 @@ import 'package:highlights/application/highlight/highlight_filterer/highlight_fi
 import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 
 void main() {
+  final initialState = HighlightFiltererState.initial();
   group('_ShowOnlyIfHasImageToggled', () {
     blocTest<HighlightFiltererBloc, HighlightFiltererState>(
       '\nGiven event triggered'
       '\nWhen showOnlyIfHasImage is false'
       '\nThen emmit copied state with showOnlyIfHasImage true',
       build: () => HighlightFiltererBloc(),
-      seed: HighlightFiltererState.initial(),
+      seed: initialState,
       act: (bloc) {
         bloc.add(const HighlightFiltererEvent.showOnlyIfHasImageToggled());
       },
       expect: [
         HighlightFiltererState.initial().copyWith(
-          filters: const HighlightSearchFilter(showOnlyIfHasImage: true),
+          filters: initialState.filters.copyWith(showOnlyIfHasImage: true),
         ),
       ],
     );
@@ -27,15 +28,15 @@ void main() {
       '\nWhen showOnlyIfHasImage is true'
       '\nThen emmit copied state with showOnlyIfHasImage false',
       build: () => HighlightFiltererBloc(),
-      seed: const HighlightFiltererState(
-        filters: HighlightSearchFilter(showOnlyIfHasImage: true),
+      seed: initialState.copyWith(
+        filters: initialState.filters.copyWith(showOnlyIfHasImage: true),
       ),
       act: (bloc) {
         bloc.add(const HighlightFiltererEvent.showOnlyIfHasImageToggled());
       },
       expect: [
         HighlightFiltererState.initial().copyWith(
-          filters: const HighlightSearchFilter(showOnlyIfHasImage: false),
+          filters: initialState.filters.copyWith(showOnlyIfHasImage: false),
         ),
       ],
     );
