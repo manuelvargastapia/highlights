@@ -11,6 +11,7 @@ extension FirebaseUserUserDomainX on f.User {
   User toDomainUser() {
     return User(
       id: UniqueId.fromUniqueString(uid),
+      emailVerified: emailVerified,
     );
   }
 }
