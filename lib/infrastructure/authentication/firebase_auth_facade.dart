@@ -122,6 +122,20 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
   }
 
+  // TODO: test
+  @override
+  Future<Either<AuthFailure, Unit>> sendEmailVerification() async {
+    try {
+      await _firebaseAuth.currentUser.sendEmailVerification();
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      if (e.code.contains('too-many-requests')) {
+        return left(const AuthFailure.tooManyRequests());
+      }
+      return left(const AuthFailure.serverError());
+    }
+  }
+
   @override
   Future<void> signOut() => Future.wait([
         _googleSignIn.signOut(),
