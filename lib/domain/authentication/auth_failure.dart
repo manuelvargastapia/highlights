@@ -33,4 +33,8 @@ abstract class AuthFailure with _$AuthFailure {
   const factory AuthFailure.operationNotAllowed() = OperationNotAllowed;
 
   const factory AuthFailure.networkConnectionFailed() = NetworkConnectionFailed;
+
+  /// Occasional FirebaseAuth exception trhown when excesive request are sent
+  /// during a period of time.
+  const factory AuthFailure.tooManyRequests() = TooManyRequests;
 }
