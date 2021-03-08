@@ -12,11 +12,7 @@ class HasImageChip extends StatelessWidget {
     return BlocBuilder<HighlightFiltererBloc, HighlightFiltererState>(
       builder: (context, state) {
         return FilterChip(
-          selected: context
-              .read<HighlightFiltererBloc>()
-              .state
-              .filters
-              .showOnlyIfHasImage,
+          selected: state.filters.showOnlyIfHasImage,
           label: const Text('Only with Image'),
           labelStyle: const TextStyle(color: Colors.white),
           backgroundColor: Colors.black54,
