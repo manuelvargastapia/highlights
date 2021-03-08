@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:highlights/application/highlight/highlight_filterer/highlight_filterer_bloc.dart';
 import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/color_match_dropdown.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/descending_order_chip.dart';
 import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/has_image_chip.dart';
+import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/order_by_dropdown.dart';
 
 class FiltersBar extends StatelessWidget {
   @override
@@ -17,8 +20,12 @@ class FiltersBar extends StatelessWidget {
       },
       builder: (context, state) {
         return Wrap(
+          spacing: 16,
           children: const [
             HasImageChip(),
+            ColorMatchDropdown(),
+            OrderByDropdown(),
+            DescendingOrderChip(),
           ],
         );
       },
