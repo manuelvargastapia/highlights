@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:highlights/application/authentication/sign_in_form/sign_in_form_bloc.dart';
@@ -18,22 +19,33 @@ import '../../../setup_firebase_mock.dart';
 class MockSignInFormBloc extends MockBloc<SignInFormState>
     implements SignInFormBloc {}
 
+class MockAuthBloc extends MockBloc<AuthState> implements AuthBloc {}
+
 void main() {
   configureInjection();
   setupFirebaseMock();
 
   MockSignInFormBloc mockSignInFormBloc;
+  MockAuthBloc mockAuthBloc;
 
   setUpAll(() async {
     await Firebase.initializeApp();
     mockSignInFormBloc = MockSignInFormBloc();
+    mockAuthBloc = MockAuthBloc();
   });
 
   group('SignInForm', () {
     Widget renderWidget() => MaterialApp(
           home: Scaffold(
-            body: BlocProvider<SignInFormBloc>.value(
-              value: mockSignInFormBloc,
+            body: MultiBlocProvider(
+              providers: [
+                BlocProvider<AuthBloc>(
+                  create: (context) => mockAuthBloc,
+                ),
+                BlocProvider<SignInFormBloc>(
+                  create: (context) => mockSignInFormBloc,
+                ),
+              ],
               child: SignInForm(),
             ),
           ),

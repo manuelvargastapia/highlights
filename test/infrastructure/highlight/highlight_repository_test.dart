@@ -175,6 +175,11 @@ void main() {
         .delete();
   }
 
+  final mockUser = User(
+    id: UniqueId.fromUniqueString(mockUid),
+    emailVerified: false,
+  );
+
   group('watchAll', () {
     test(
       '\nGiven no highlights in DB'
@@ -182,9 +187,7 @@ void main() {
       '\nThen emitt a Stream with Right with an empty KtList',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         await deleteDB();
@@ -241,9 +244,7 @@ void main() {
       '\nThen emitt a Stream with Right with a KtList holding the Highlight',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         subscription = highlightRepository.watchAll().listen(
@@ -286,9 +287,7 @@ void main() {
       '\nThen emitt a Stream with Right with a KtList holding the failed Highlight with its failure',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         mockFirestore
@@ -351,9 +350,7 @@ void main() {
       '\nThen emitt a Stream with Left holding HighlightFailure.unexpected()',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         mockFirestore
@@ -399,9 +396,7 @@ void main() {
       '\nThen emitt a Stream with Right with an empty KtList',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         await deleteDB();
@@ -463,7 +458,7 @@ void main() {
     //   () async {
     //     when(mockIAuthFacade.getSignedInUser()).thenReturn(
     //       some(
-    //         User(id: UniqueId.fromUniqueString(mockUid)),
+    //         mockUser
     //       ),
     //     );
 
@@ -523,9 +518,7 @@ void main() {
       '\nThen emitt a Stream with Right with a KtList holding all the items',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         mockFirestore
@@ -582,9 +575,7 @@ void main() {
       '\nThen emitt a Stream with Left holding HighlightFailure.unexpected()',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         mockFirestore
@@ -662,9 +653,7 @@ void main() {
       '\nThen return right() with Unit and update DB',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         final failureOrUnit = await highlightRepository.create(newHighlight);
@@ -725,9 +714,7 @@ void main() {
       '\nThen return right() with Unit and update DB',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         await deleteDB();
@@ -798,9 +785,7 @@ void main() {
       '\nThen return right() with Unit and update DB',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         final failureOrUnit =
@@ -852,9 +837,7 @@ void main() {
       '\nThen return right() with unit and create new Highlight in DB',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         final failureOrUnit = await highlightRepository.update(
@@ -944,9 +927,7 @@ void main() {
       '\nThen return right() with Unit and update DB',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         final failureOrUnit = await highlightRepository.delete(mockHighlight);
@@ -976,9 +957,7 @@ void main() {
       '\nThen return right() with unit and DB stays the same',
       () async {
         when(mockIAuthFacade.getSignedInUser()).thenReturn(
-          some(
-            User(id: UniqueId.fromUniqueString(mockUid)),
-          ),
+          some(mockUser),
         );
 
         final failureOrUnit = await highlightRepository.delete(
@@ -1072,9 +1051,7 @@ void main() {
         '\nThen return right() with Unit',
         () async {
           when(mockIAuthFacade.getSignedInUser()).thenReturn(
-            some(
-              User(id: UniqueId.fromUniqueString(mockUid)),
-            ),
+            some(mockUser),
           );
 
           final failureOrUnit =
@@ -1099,9 +1076,7 @@ void main() {
         '\nThen left with _UnableToUpdate failure',
         () async {
           when(mockIAuthFacade.getSignedInUser()).thenReturn(
-            some(
-              User(id: UniqueId.fromUniqueString(mockUid)),
-            ),
+            some(mockUser),
           );
 
           final failedHighlightRepository = HighlightRepository(

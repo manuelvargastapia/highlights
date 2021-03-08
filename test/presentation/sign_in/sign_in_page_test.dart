@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:highlights/injection.dart';
+import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/presentation/sign_in/sign_in_page.dart';
 
 import '../../setup_firebase_mock.dart';
+
+class MockAuthBloc extends MockBloc<AuthState> implements AuthBloc {}
 
 void main() {
   configureInjection();
   setupFirebaseMock();
 
+  MockAuthBloc mockAuthBloc;
+
   setUpAll(() async {
     await Firebase.initializeApp();
+    mockAuthBloc = MockAuthBloc();
   });
 
   group('SignInPage', () {
@@ -25,7 +33,10 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: SignInPage(),
+              body: BlocProvider<AuthBloc>.value(
+                value: mockAuthBloc,
+                child: SignInPage(),
+              ),
             ),
           ),
         );

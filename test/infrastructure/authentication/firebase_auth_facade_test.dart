@@ -23,6 +23,11 @@ class MockUser extends Mock implements f.User {
   String get uid {
     return 'mock-uid';
   }
+
+  @override
+  bool get emailVerified {
+    return true;
+  }
 }
 
 // ignore: avoid_implementing_value_types
@@ -479,6 +484,7 @@ void main() {
             user,
             User(
               id: UniqueId.fromUniqueString('mock-uid'),
+              emailVerified: true,
             ),
           ),
         );
