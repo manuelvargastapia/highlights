@@ -4,16 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:highlights/application/highlight/highlight_filterer/highlight_filterer_bloc.dart';
 
-class HasImageChip extends StatelessWidget {
-  const HasImageChip();
+class DescendingOrderChip extends StatelessWidget {
+  const DescendingOrderChip();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HighlightFiltererBloc, HighlightFiltererState>(
       builder: (context, state) {
         return FilterChip(
-          selected: state.filters.showOnlyIfHasImage,
-          label: const Text('Only with Image'),
+          selected: state.filters.descendingOrder,
+          label: const Text('Desc. Order'),
           labelStyle: const TextStyle(color: Colors.white),
           backgroundColor: Colors.black54,
           selectedColor: Theme.of(context).accentColor,
@@ -21,7 +21,7 @@ class HasImageChip extends StatelessWidget {
           onSelected: (_) {
             context
                 .read<HighlightFiltererBloc>()
-                .add(const HighlightFiltererEvent.showOnlyIfHasImageToggled());
+                .add(const HighlightFiltererEvent.descendingOrderToggled());
           },
         );
       },
