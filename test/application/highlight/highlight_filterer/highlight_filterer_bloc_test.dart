@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:highlights/application/highlight/highlight_filterer/highlight_filterer_bloc.dart';
-import 'package:highlights/domain/highlights/highlight_search_filter.dart';
 
 void main() {
   final initialState = HighlightFiltererState.initial();
