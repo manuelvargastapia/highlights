@@ -63,32 +63,55 @@ class HighlightRepository implements IHighlightRepository {
   }
 
   // TODO: implement Algolia or Elasticsearch for better UX
+  // TODO: update tests
+  /// Watch a stream of data and filtered based on values of [HighlightSearchFilter].
+  ///
+  /// There is no problem in fetching data any time a filter is updated
+  /// because the data is automatically cached (unless changed in remote DB
+  /// however, only one call will be online while the subsequents will be from
+  /// cache again).
   @override
   Stream<Either<HighlightFailure, KtList<Highlight>>> watchFiltered(
     HighlightSearchFilter filter,
   ) async* {
     final userDocument = await _firestore.userDocument(_authFacade);
 
-    final collecitonRef = userDocument.highlightCollection;
-
-    Query query = collecitonRef.orderBy('serverTimestamp', descending: true);
-
-    if (filter.showOnlyIfHasImage) {
-      query = collecitonRef.where('image.url', isNotEqualTo: '');
-    }
-
-    yield* query
+    yield* userDocument.highlightCollection
+        // Set ordering creteria
+        .orderBy(
+          filter.orderByOption.when(
+            orderByBookTitle: () => 'bookTitle',
+            orderByDate: () => 'serverTimestamp',
+          ),
+          descending: filter.descendingOrder,
+        )
+        // Take current snapshots and convert the data to domain entities
         .snapshots()
         .map(
-          (snapshot) => right<HighlightFailure, KtList<Highlight>>(
-            snapshot.docs
-                .map((doc) => HighlightDto.fromFirestore(doc).toDomain())
-                .toImmutableList(),
+          (snapshot) => snapshot.docs.map(
+            (doc) => HighlightDto.fromFirestore(doc).toDomain(),
           ),
         )
-        .onErrorReturnWith((e) {
+        // Map again to filter "client-side" according to "filter" param
+        .map(
+      (highlights) {
+        Iterable<Highlight> list = highlights;
+        if (filter.showOnlyIfHasImage) {
+          list = highlights.where((highlight) => highlight.image.isSome());
+        }
+        filter.colorMatchOption.fold(
+          () {},
+          (color) {
+            list = list.where((highlight) => highlight.color == color);
+          },
+        );
+        return right<HighlightFailure, KtList<Highlight>>(
+          list.toImmutableList(),
+        );
+      },
+    ).onErrorReturnWith((e) {
       final details =
-          'Error while calling HighlightRepository.watchFiltered() in ${userDocument.toString()}/$collecitonRef with ${filter.toString()}';
+          'Error while calling HighlightRepository.watchFiltered() in ${userDocument.toString()}/${userDocument.highlightCollection} with ${filter.toString()}';
       if (e is FirebaseException && e.message.contains('PERMISSION_DENIED')) {
         // TODO: test
         return left(HighlightFailure.insufficientPermission(details: details));
