@@ -5,7 +5,6 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
-import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 
 class HighlightCard extends StatelessWidget {
