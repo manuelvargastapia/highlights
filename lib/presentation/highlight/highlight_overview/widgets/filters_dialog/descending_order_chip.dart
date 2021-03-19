@@ -14,8 +14,11 @@ class DescendingOrderChip extends StatelessWidget {
         return FilterChip(
           selected: state.filters.descendingOrder,
           label: const Text('Desc. Order'),
-          labelStyle: const TextStyle(color: Colors.white),
-          backgroundColor: Colors.black54,
+          labelStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          backgroundColor: Theme.of(context).backgroundColor,
           selectedColor: Theme.of(context).accentColor,
           checkmarkColor: Colors.white,
           onSelected: (_) {
