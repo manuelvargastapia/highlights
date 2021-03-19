@@ -130,6 +130,8 @@ class TextRecognitionPage extends HookWidget {
             processingFailure: (state) => Center(
               child: Text(
                 state.failure.map(
+                  // TODO: improve error handling UI feddback + fix bug ("cannot
+                  // be empty" after selecting an image that couldn't be processed)
                   unableToProcessImage: (_) => 'Unable to process image 😞',
                   noTextDetected: (_) => 'No text detected in image 🤔',
                 ),
