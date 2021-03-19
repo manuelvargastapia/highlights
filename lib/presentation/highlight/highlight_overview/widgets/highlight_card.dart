@@ -19,7 +19,7 @@ class HighlightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: highlight.color.getOrCrash(),
+      margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
       child: InkWell(
         onTap: () {
           ExtendedNavigator.of(context).pushHighlightFormPage(
@@ -34,20 +34,70 @@ class HighlightCard extends StatelessWidget {
           _showDeletionDialog(context, actorBloc);
         },
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                highlight.quote.getOrCrash(),
-                textAlign: TextAlign.justify,
-                style: const TextStyle(fontSize: 18),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      highlight.bookTitle.getOrCrash(),
+                      style: const TextStyle(fontSize: 18),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'p. ${highlight.pageNumber.getOrCrash()}',
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8),
-              _InfoDisplay(
-                bookTitle: highlight.bookTitle,
-                pageNumber: highlight.pageNumber,
-              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Material(
+                        color: highlight.color.getOrCrash(),
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Theme.of(context).backgroundColor,
+                          ),
+                        ),
+                        child: const SizedBox(
+                          width: 24,
+                          height: 24,
+                        ),
+                      ),
+                      if (highlight.image.isSome())
+                        Column(
+                          children: [
+                            const SizedBox(height: 8),
+                            Icon(
+                              Icons.image,
+                              size: 26,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      highlight.quote.getOrCrash(),
+                      style: const TextStyle(fontSize: 14),
+                      textAlign: TextAlign.justify,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -86,62 +136,6 @@ class HighlightCard extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-}
-
-// TODO / IDEA: use Chips as tags to filter or cathegorize highlights
-class _InfoDisplay extends StatelessWidget {
-  final BookTitle bookTitle;
-  final PageNumber pageNumber;
-
-  const _InfoDisplay({
-    Key key,
-    @required this.bookTitle,
-    @required this.pageNumber,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 16,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Book title:',
-              style: TextStyle(fontSize: 14),
-            ),
-            const SizedBox(width: 4),
-            Chip(
-              label: Text(
-                bookTitle.getOrCrash(),
-                style: const TextStyle(fontSize: 14),
-              ),
-              backgroundColor: Colors.yellow,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Page:',
-              style: TextStyle(fontSize: 14),
-            ),
-            const SizedBox(width: 4),
-            Chip(
-              label: Text(
-                pageNumber.getOrCrash(),
-                style: const TextStyle(fontSize: 14),
-              ),
-              backgroundColor: Colors.lightGreen,
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
