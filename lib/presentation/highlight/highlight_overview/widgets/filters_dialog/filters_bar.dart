@@ -18,15 +18,23 @@ class FiltersBar extends StatelessWidget {
             .read<HighlightWatcherBloc>()
             .add(HighlightWatcherEvent.watchFilteredStarted(state.filters));
       },
-      builder: (context, state) {
-        return Wrap(
-          spacing: 16,
-          children: const [
-            HasImageChip(),
-            ColorMatchDropdown(),
-            OrderByDropdown(),
-            DescendingOrderChip(),
-          ],
+      builder: (_, __) {
+        return SizedBox(
+          height: 50,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            children: const [
+              OrderByDropdown(),
+              SizedBox(width: 16),
+              DescendingOrderChip(),
+              SizedBox(width: 8),
+              ColorMatchDropdown(),
+              SizedBox(width: 8),
+              HasImageChip(),
+            ],
+          ),
         );
       },
     );
