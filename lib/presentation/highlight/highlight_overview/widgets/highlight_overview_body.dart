@@ -19,9 +19,21 @@ class HighlightOverviewBody extends StatelessWidget {
           ),
           loadSuccess: (state) {
             if (state.highlights.isEmpty()) {
-              return const Center(child: Text('NO HIGHLIGHTS'));
+              return Padding(
+                padding: const EdgeInsets.only(top: 48),
+                child: Column(
+                  children: const [
+                    Image(image: AssetImage('assets/empty_overview.png')),
+                    Text(
+                      'Add your highlights here',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+              );
             }
             return ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: state.highlights.size,
               itemBuilder: (context, index) {
                 final highlight = state.highlights[index];
