@@ -27,13 +27,15 @@ class HighlightOverviewScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Highlights'),
-        leading: IconButton(
-          onPressed: () {
-            context.read<AuthBloc>().add(const AuthEvent.signedOut());
-          },
-          icon: const Icon(Icons.exit_to_app),
-        ),
-        actions: [SearchBar()],
+        actions: [
+          SearchBar(),
+          IconButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(const AuthEvent.signedOut());
+            },
+            icon: const Icon(Icons.exit_to_app),
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -48,7 +50,7 @@ class HighlightOverviewScaffold extends StatelessWidget {
         onPressed: () {
           ExtendedNavigator.of(context).pushHighlightFormPage();
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, size: 36),
       ),
     );
   }
