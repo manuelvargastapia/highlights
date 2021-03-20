@@ -48,8 +48,8 @@ class ColorMatchDropdown extends StatelessWidget {
                         ),
                       ),
                       child: const SizedBox(
-                        width: 36,
-                        height: 36,
+                        width: 32,
+                        height: 32,
                       ),
                     ),
                   ),
@@ -64,13 +64,15 @@ class ColorMatchDropdown extends StatelessWidget {
           iconColor: Theme.of(context).backgroundColor,
           isHorizontal: true,
           child: state.filters.colorMatchOption.fold(
-            () => SizedBox(
-              width: 32,
-              height: 32,
-              child: Icon(
-                Icons.block_flipped,
-                size: 36,
-                color: Theme.of(context).backgroundColor,
+            () => Center(
+              child: SizedBox(
+                width: 30,
+                height: 30,
+                child: Icon(
+                  Icons.block_flipped,
+                  size: 32,
+                  color: Theme.of(context).backgroundColor,
+                ),
               ),
             ),
             (highlightColor) => Material(
@@ -81,8 +83,8 @@ class ColorMatchDropdown extends StatelessWidget {
                 ),
               ),
               child: const SizedBox(
-                width: 32,
-                height: 32,
+                width: 30,
+                height: 30,
               ),
             ),
           ),
