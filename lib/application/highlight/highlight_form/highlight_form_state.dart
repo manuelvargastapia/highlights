@@ -9,6 +9,7 @@ abstract class HighlightFormState with _$HighlightFormState {
     @required Highlight highlight,
     @required bool isEditing,
     @required bool quoteExtractedFromImage,
+    @required bool deleteImageFromStorage,
     @required bool isSaving,
     @required Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption,
   }) = _HighlightFormState;
@@ -18,6 +19,7 @@ abstract class HighlightFormState with _$HighlightFormState {
         isEditing: false,
         isSaving: false,
         quoteExtractedFromImage: false,
+        deleteImageFromStorage: false,
         saveFailureOrSuccessOption: none(),
       );
 }

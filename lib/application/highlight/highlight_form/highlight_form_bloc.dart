@@ -92,51 +92,60 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
           () async* {
             yield state;
           },
+          // yield a new state without image and set deleteImageFromStorage
+          // according to current upload state (i. e., delete it from storage
+          // only if it's already uploaded)
           (image) async* {
-            Option<Either<HighlightFailure, Unit>> failureOption = none();
-
-            // Delete image from Firebase Storage only if it's actually there
-            // (otherwhise, HighlightRepository returns a failure)
-            if (image.isUploaded) {
-              final failureOrUnit = await _highlightRepository.deleteImage(
-                state.highlight,
-              );
-
-              // We need specify none() or some() because we won't to pop
-              // untinl overview page in presentation layer
-              failureOrUnit.fold(
-                (failure) {
-                  failureOption = some(left(failure));
-                },
-                (_) {},
-              );
-            }
-
             yield state.copyWith(
               highlight: state.highlight.copyWith(
-                image: failureOption.isSome() ? some(image) : none(),
+                image: none(),
               ),
-              saveFailureOrSuccessOption: failureOption,
+              saveFailureOrSuccessOption: none(),
+              deleteImageFromStorage: image.isUploaded,
             );
           },
         );
       },
       saved: (event) async* {
+        Either<HighlightFailure, Unit> failureOrSuccess;
+
+        yield state.copyWith(
+          isSaving: true,
+          saveFailureOrSuccessOption: none(),
+        );
+
+        // Update/create highlight only if there is no failures. Then,
+        // delete image from storage if requested and catch the possible
+        // failure. Only if there is no failure after trying to delete the
+        // image, call to update/create. If there is no need for deleting
+        // image, simply call update/create.
         if (state.highlight.failureOption.isNone()) {
-          yield state.copyWith(
-            isSaving: true,
-            saveFailureOrSuccessOption: none(),
-          );
+          if (state.deleteImageFromStorage) {
+            final failureOrUnit = await _highlightRepository.deleteImage(
+              state.highlight,
+            );
 
-          final failureOrSuccess = state.isEditing
-              ? await _highlightRepository.update(state.highlight)
-              : await _highlightRepository.create(state.highlight);
-
-          yield state.copyWith(
-            isSaving: false,
-            saveFailureOrSuccessOption: optionOf(failureOrSuccess),
-          );
+            failureOrUnit.fold(
+              (failure) {
+                failureOrSuccess = left(failure);
+              },
+              (_) async {
+                failureOrSuccess ??= state.isEditing
+                    ? await _highlightRepository.update(state.highlight)
+                    : await _highlightRepository.create(state.highlight);
+              },
+            );
+          } else {
+            failureOrSuccess ??= state.isEditing
+                ? await _highlightRepository.update(state.highlight)
+                : await _highlightRepository.create(state.highlight);
+          }
         }
+
+        yield state.copyWith(
+          isSaving: false,
+          saveFailureOrSuccessOption: optionOf(failureOrSuccess),
+        );
       },
     );
   }
