@@ -83,7 +83,7 @@ void main() {
         await tester.pumpWidget(renderWidget());
         expect(find.byType(ListView), findsNothing);
         expect(find.byType(HighlightCard), findsNothing);
-        expect(find.text('NO HIGHLIGHTS'), findsOneWidget);
+        expect(find.text('Add your highlights here'), findsOneWidget);
       },
     );
 
@@ -142,9 +142,9 @@ void main() {
         expect(find.text('title 1'), findsOneWidget);
         expect(find.text('title 2'), findsOneWidget);
         expect(find.text('title 3'), findsOneWidget);
-        expect(find.text('111'), findsOneWidget);
-        expect(find.text('222'), findsOneWidget);
-        expect(find.text('333'), findsOneWidget);
+        expect(find.text('p. 111'), findsOneWidget);
+        expect(find.text('p. 222'), findsOneWidget);
+        expect(find.text('p. 333'), findsOneWidget);
       },
     );
 
@@ -180,7 +180,7 @@ void main() {
         expect(find.byType(HighlightCard), findsNWidgets(1));
         expect(find.text('Quote 1'), findsOneWidget);
         expect(find.text('title 1'), findsOneWidget);
-        expect(find.text('111'), findsOneWidget);
+        expect(find.text('p. 111'), findsOneWidget);
         expect(find.byType(ErrorHighlightCard), findsOneWidget);
       },
     );
