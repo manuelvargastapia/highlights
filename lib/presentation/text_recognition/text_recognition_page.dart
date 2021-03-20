@@ -72,43 +72,45 @@ class TextRecognitionPage extends HookWidget {
             processingImage: (_) => const Center(
               child: CircularProgressIndicator(),
             ),
-            processingSuccess: (state) => Stack(
-              children: [
-                Center(
-                  child: Container(
-                    width: double.maxFinite,
-                    color: Colors.black,
-                    child: CustomPaint(
-                      foregroundPainter: RecognizedTextPainter(
-                        state.textRecognitionResult,
-                      ),
-                      child: AspectRatio(
-                        aspectRatio: state.textRecognitionResult.imageSize
-                            .getOrElse(() => throw UnexpectedUIError())
-                            .getOrCrash()
-                            .aspectRatio,
-                        child: Image.file(croppedImage.imageFile),
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Card(
-                    elevation: 8,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: TextFormField(
+            processingSuccess: (state) {
+              return Padding(
+                padding: const EdgeInsets.all(20),
+                child: ListView(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Text(
+                            'Quote',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                        ),
+                        TextFormField(
                           controller: textEditingController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             counterText: '',
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).backgroundColor,
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.all(16),
                           ),
                           maxLength: RecognizedText.maxLength,
-                          maxLines: 5,
-                          minLines: 5,
+                          maxLines: 10,
+                          minLines: 10,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (_) => state
                               .textRecognitionResult.recognizedText.value
@@ -121,13 +123,29 @@ class TextRecognitionPage extends HookWidget {
                             ),
                             (_) => null,
                           ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    CustomPaint(
+                      foregroundPainter: RecognizedTextPainter(
+                        state.textRecognitionResult,
+                      ),
+                      child: AspectRatio(
+                        aspectRatio: state.textRecognitionResult.imageSize
+                            .getOrElse(() => throw UnexpectedUIError())
+                            .getOrCrash()
+                            .aspectRatio,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.file(croppedImage.imageFile),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
             // TODO: create specific error screen widget
             processingFailure: (state) => Center(
               child: Text(
