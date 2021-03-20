@@ -31,7 +31,6 @@ class HighlightFormScaffold extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            centerTitle: true,
             title: Text(
               state.isEditing ? 'Edit Highlight' : 'Create Highlight',
             ),
@@ -142,10 +141,12 @@ class HighlightFormScaffold extends StatelessWidget {
       sourcePath: pickedFile.path,
       compressQuality: 50,
       androidUiSettings: AndroidUiSettings(
-        toolbarTitle: 'Edit image',
+        toolbarTitle: 'Crop Image',
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        cropFrameColor: Theme.of(context).accentColor,
+        cropGridColor: Theme.of(context).accentColor,
         toolbarColor: Theme.of(context).primaryColor,
         toolbarWidgetColor: Colors.white,
-        activeControlsWidgetColor: Theme.of(context).accentColor,
         initAspectRatio: CropAspectRatioPreset.original,
         hideBottomControls: true,
         lockAspectRatio: false,
