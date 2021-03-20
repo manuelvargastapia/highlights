@@ -25,7 +25,7 @@ class QuoteField extends HookWidget {
         textEditingController.text = state.highlight.quote.getOrCrash();
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
