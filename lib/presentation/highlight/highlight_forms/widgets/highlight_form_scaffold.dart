@@ -54,8 +54,8 @@ class HighlightFormScaffold extends StatelessWidget {
                 children: [
                   Row(
                     children: const [
-                      Expanded(flex: 2, child: BookTitleField()),
-                      Expanded(child: PageNumberField()),
+                      Expanded(flex: 3, child: BookTitleField()),
+                      Expanded(flex: 2, child: PageNumberField()),
                     ],
                   ),
                   const ColorField(),

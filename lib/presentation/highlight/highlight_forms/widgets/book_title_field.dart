@@ -24,6 +24,7 @@ class BookTitleField extends HookWidget {
           controller: textEditingController,
           decoration: InputDecoration(
             labelText: 'Book Title',
+            prefixIcon: const Icon(Icons.book),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32),

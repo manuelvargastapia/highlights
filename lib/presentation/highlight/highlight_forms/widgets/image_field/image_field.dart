@@ -21,12 +21,21 @@ class ImageField extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Image',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Theme.of(context).backgroundColor,
-                ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.image,
+                    color: Theme.of(context).backgroundColor,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Image',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).backgroundColor,
+                    ),
+                  ),
+                ],
               ),
               IconButton(
                 onPressed: () {
@@ -61,11 +70,14 @@ class ImageField extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Delete image'),
+          title: const Text('Delete Image'),
           content: const Text(
             'Associated quote will NOT be deleted',
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
           actions: [
             TextButton(

@@ -27,6 +27,7 @@ class PageNumberField extends HookWidget {
           controller: textEditingController,
           decoration: InputDecoration(
             labelText: 'Page',
+            prefixIcon: const Icon(Icons.tag),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32),

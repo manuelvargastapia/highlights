@@ -31,12 +31,21 @@ class QuoteField extends HookWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: Text(
-                'Quote',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Theme.of(context).backgroundColor,
-                ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.format_quote,
+                    color: Theme.of(context).backgroundColor,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Quote',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).backgroundColor,
+                    ),
+                  ),
+                ],
               ),
             ),
             TextFormField(
