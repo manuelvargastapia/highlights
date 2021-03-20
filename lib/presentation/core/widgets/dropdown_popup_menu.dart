@@ -243,10 +243,10 @@ class _PopupMenuRoute<T> extends PopupRoute<T> {
           return Stack(
             children: [
               Positioned(
-                top: top.value,
-                left: isHorizontal ? 16 : position.left,
+                top: isHorizontal ? top.value - 8 : top.value,
+                left: isHorizontal ? 32 : position.left,
                 width: isHorizontal
-                    ? MediaQuery.of(context).size.width - 32
+                    ? MediaQuery.of(context).size.width - 64
                     : position.width,
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
