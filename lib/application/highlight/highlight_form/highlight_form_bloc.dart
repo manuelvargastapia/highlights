@@ -125,18 +125,25 @@ class HighlightFormBloc extends Bloc<HighlightFormEvent, HighlightFormState> {
               state.highlight,
             );
 
-            failureOrUnit.fold(
-              (failure) {
-                failureOrSuccess = left(failure);
+            yield* failureOrUnit.fold(
+              (failure) async* {
+                yield state.copyWith(
+                  isSaving: false,
+                  saveFailureOrSuccessOption: some(left(failure)),
+                );
               },
-              (_) async {
-                failureOrSuccess ??= state.isEditing
+              (_) async* {
+                failureOrSuccess = state.isEditing
                     ? await _highlightRepository.update(state.highlight)
                     : await _highlightRepository.create(state.highlight);
+                yield state.copyWith(
+                  isSaving: false,
+                  saveFailureOrSuccessOption: some(failureOrSuccess),
+                );
               },
             );
           } else {
-            failureOrSuccess ??= state.isEditing
+            failureOrSuccess = state.isEditing
                 ? await _highlightRepository.update(state.highlight)
                 : await _highlightRepository.create(state.highlight);
           }
