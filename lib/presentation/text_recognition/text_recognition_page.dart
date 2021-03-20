@@ -42,11 +42,13 @@ class TextRecognitionPage extends HookWidget {
           IconButton(
             onPressed: () {
               formBloc.add(HighlightFormEvent.imageChanged(originalImage));
-              formBloc.add(
-                HighlightFormEvent.quoteChangeByTextRecognition(
-                  textEditingController.text,
-                ),
-              );
+              if (textEditingController.text.isNotEmpty) {
+                formBloc.add(
+                  HighlightFormEvent.quoteChangeByTextRecognition(
+                    textEditingController.text,
+                  ),
+                );
+              }
 
               ExtendedNavigator.of(context).pop();
             },
@@ -112,7 +114,7 @@ class TextRecognitionPage extends HookWidget {
                               .textRecognitionResult.recognizedText.value
                               .fold(
                             (failure) => failure.maybeMap(
-                              empty: (_) => 'Cannot be empty',
+                              empty: (_) => 'Required',
                               exceedingLength: (f) =>
                                   'Exceeding length. Max: ${f.max}',
                               orElse: () => null,
