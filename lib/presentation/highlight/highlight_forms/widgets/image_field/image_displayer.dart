@@ -22,6 +22,7 @@ class ImageDisplayer extends StatelessWidget {
         closedShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
+        openColor: Theme.of(context).scaffoldBackgroundColor,
         transitionType: ContainerTransitionType.fadeThrough,
         transitionDuration: const Duration(milliseconds: 600),
         closedBuilder: (context, _) => _loadedImageContainer(loadedImage),
