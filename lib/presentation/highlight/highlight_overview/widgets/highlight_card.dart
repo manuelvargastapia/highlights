@@ -112,11 +112,14 @@ class HighlightCard extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Selected highlight: '),
+          title: const Text('Selected Highlight'),
           content: Text(
             highlight.quote.getOrCrash(),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
           actions: [
             TextButton(
