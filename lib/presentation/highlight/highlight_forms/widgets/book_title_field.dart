@@ -19,12 +19,24 @@ class BookTitleField extends HookWidget {
         textEditingController.text = state.highlight.bookTitle.getOrCrash();
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(top: 16, left: 16, bottom: 16, right: 8),
         child: TextFormField(
           controller: textEditingController,
-          decoration: const InputDecoration(
-            labelText: 'Book title',
-            counterText: '', // Don't show counter text
+          decoration: InputDecoration(
+            labelText: 'Book Title',
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32),
+              borderSide: BorderSide(
+                color: Theme.of(context).backgroundColor,
+              ),
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           ),
           maxLength: BookTitle.maxLength,
           onChanged: (value) {
@@ -45,7 +57,7 @@ class BookTitleField extends HookWidget {
               .value
               .fold(
                 (failure) => failure.maybeMap(
-                  empty: (_) => 'Cannot be empty',
+                  empty: (_) => 'Required',
                   // We don't want to forget this case, but it won't happen
                   // if we set maxLength: HighlightQuote.maxLength
                   exceedingLength: (f) => 'Exceeding length. Max: ${f.max}',
