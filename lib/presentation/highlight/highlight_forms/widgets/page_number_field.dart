@@ -20,14 +20,26 @@ class PageNumberField extends HookWidget {
         textEditingController.text = state.highlight.pageNumber.getOrCrash();
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(top: 16, left: 8, bottom: 16, right: 16),
         child: TextFormField(
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           controller: textEditingController,
-          decoration: const InputDecoration(
-            labelText: 'Page number',
-            counterText: '', // Don't show counter text
+          decoration: InputDecoration(
+            labelText: 'Page',
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32),
+              borderSide: BorderSide(
+                color: Theme.of(context).backgroundColor,
+              ),
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           ),
           maxLength: PageNumber.maxLength,
           onChanged: (value) {
@@ -49,7 +61,7 @@ class PageNumberField extends HookWidget {
               .fold(
                 (failure) => failure.maybeMap(
                   notAnInt: (_) => 'Must be a number',
-                  empty: (_) => 'Cannot be empty',
+                  empty: (_) => 'Required',
                   // We don't want to forget this case, but it won't happen
                   // if we set maxLength: HighlightQuote.maxLength
                   exceedingLength: (f) => 'Exceeding length. Max: ${f.max}',
