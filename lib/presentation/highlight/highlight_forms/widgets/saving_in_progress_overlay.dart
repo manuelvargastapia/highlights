@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 class SavingInProgressOverlay extends StatelessWidget {
   final bool isSaving;
 
@@ -21,7 +23,9 @@ class SavingInProgressOverlay extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const CircularProgressIndicator(),
+                SpinKitDoubleBounce(
+                  color: Theme.of(context).accentColor,
+                ),
                 const SizedBox(height: 8),
                 Text(
                   'Saving...',
