@@ -146,6 +146,8 @@ class HighlightFormScaffold extends StatelessWidget {
         cropFrameColor: Theme.of(context).accentColor,
         cropGridColor: Theme.of(context).accentColor,
         toolbarColor: Theme.of(context).primaryColor,
+        cropFrameStrokeWidth: 4,
+        cropGridStrokeWidth: 4,
         toolbarWidgetColor: Colors.white,
         initAspectRatio: CropAspectRatioPreset.original,
         hideBottomControls: true,
