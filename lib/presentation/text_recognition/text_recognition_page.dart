@@ -81,9 +81,9 @@ class TextRecognitionPage extends HookWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
+                          padding: const EdgeInsets.only(bottom: 8),
                           child: Text(
-                            'Quote',
+                            'Scanned Text',
                             style: TextStyle(
                               fontSize: 20,
                               color: Theme.of(context).backgroundColor,
@@ -126,7 +126,7 @@ class TextRecognitionPage extends HookWidget {
                         )
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 32),
                     CustomPaint(
                       foregroundPainter: RecognizedTextPainter(
                         state.textRecognitionResult,
