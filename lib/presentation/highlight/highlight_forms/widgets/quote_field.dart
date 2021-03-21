@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:another_flushbar/flushbar_helper.dart';
 
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
+import 'package:highlights/presentation/core/widgets/flush_bar_helper.dart';
 
 class QuoteField extends HookWidget {
   const QuoteField({Key key}) : super(key: key);
@@ -62,8 +62,9 @@ class QuoteField extends HookWidget {
                           ClipboardData(text: textEditingController.text),
                         );
                         FlushbarHelper.createInformation(
+                          context: context,
                           message: 'Quote text copied to clipboard',
-                        ).show(context);
+                        );
                       },
                     ),
                     IconButton(
@@ -99,6 +100,7 @@ class QuoteField extends HookWidget {
                 fillColor: Colors.white,
                 contentPadding: const EdgeInsets.all(16),
               ),
+              textAlign: TextAlign.justify,
               maxLength: HighlightQuote.maxLength,
               maxLines: 10,
               minLines: 10,
