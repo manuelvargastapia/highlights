@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Image;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:animations/animations.dart';
 
 import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
@@ -46,7 +47,7 @@ class ImageField extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.delete,
-                  color: Colors.red.withOpacity(0.8),
+                  color: Theme.of(context).errorColor,
                 ),
               ),
             ],
@@ -66,8 +67,12 @@ class ImageField extends StatelessWidget {
     BuildContext context,
     HighlightFormBloc bloc,
   ) {
-    showDialog(
+    showModal(
       context: context,
+      configuration: const FadeScaleTransitionConfiguration(
+        transitionDuration: Duration(milliseconds: 300),
+        reverseTransitionDuration: Duration(milliseconds: 300),
+      ),
       builder: (context) {
         return AlertDialog(
           title: const Text('Delete Image'),
