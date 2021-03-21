@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
@@ -29,24 +31,56 @@ class QuoteField extends HookWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.format_quote,
-                    color: Theme.of(context).backgroundColor,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Quote',
-                    style: TextStyle(
-                      fontSize: 20,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.format_quote,
                       color: Theme.of(context).backgroundColor,
                     ),
-                  ),
-                ],
-              ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Scanned Text',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).backgroundColor,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.copy,
+                        color: Theme.of(context).backgroundColor,
+                      ),
+                      onPressed: () async {
+                        await Clipboard.setData(
+                          ClipboardData(text: textEditingController.text),
+                        );
+                        FlushbarHelper.createInformation(
+                          message: 'Quote text copied to clipboard',
+                        ).show(context);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.clear,
+                        color: Theme.of(context).backgroundColor,
+                      ),
+                      onPressed: () {
+                        textEditingController.clear();
+                        context
+                            .read<HighlightFormBloc>()
+                            .add(const HighlightFormEvent.quoteChange(''));
+                      },
+                    )
+                  ],
+                ),
+              ],
             ),
             TextFormField(
               controller: textEditingController,
