@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:animations/animations.dart';
 
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 import 'package:highlights/domain/highlights/highlight.dart';
@@ -108,8 +109,12 @@ class HighlightCard extends StatelessWidget {
     BuildContext context,
     HighlightActorBloc actorBloc,
   ) {
-    showDialog(
+    showModal(
       context: context,
+      configuration: const FadeScaleTransitionConfiguration(
+        transitionDuration: Duration(milliseconds: 300),
+        reverseTransitionDuration: Duration(milliseconds: 300),
+      ),
       builder: (context) {
         return AlertDialog(
           title: const Text('Selected Highlight'),
