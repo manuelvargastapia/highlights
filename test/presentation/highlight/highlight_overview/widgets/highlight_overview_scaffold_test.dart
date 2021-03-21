@@ -47,13 +47,11 @@ void main() {
 
         final titleText = find.widgetWithText(AppBar, 'Highlights');
         final exitIcon = find.widgetWithIcon(AppBar, Icons.exit_to_app);
-        final searchIcon = find.widgetWithIcon(AppBar, Icons.search);
         final filtersBar = find.byType(FiltersBar);
         final addFAB = find.widgetWithIcon(FloatingActionButton, Icons.add);
 
         expect(titleText, findsOneWidget);
         expect(exitIcon, findsOneWidget);
-        expect(searchIcon, findsOneWidget);
         expect(filtersBar, findsOneWidget);
         expect(addFAB, findsOneWidget);
       },
