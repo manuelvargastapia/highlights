@@ -8,7 +8,7 @@ class FABAnimatedMenu extends StatefulWidget {
   const FABAnimatedMenu({
     Key key,
     @required this.buttons,
-    this.baseButtonColor = Colors.blue,
+    @required this.baseButtonColor,
   }) : super(key: key);
 
   @override
@@ -96,9 +96,9 @@ class _FABAnimatedMenuState extends State<FABAnimatedMenu>
                   size: 32,
                 ),
               ),
-              const AnimatedIconItem(
-                backgroundColor: Colors.red,
-                icon: Icon(
+              AnimatedIconItem(
+                backgroundColor: Theme.of(context).errorColor,
+                icon: const Icon(
                   Icons.close,
                   color: Colors.white,
                   size: 32,
