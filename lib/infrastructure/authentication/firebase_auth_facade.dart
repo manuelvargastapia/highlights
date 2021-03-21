@@ -136,6 +136,22 @@ class FirebaseAuthFacade implements IAuthFacade {
     }
   }
 
+  // TODO: test
+  @override
+  Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
+    @required EmailAddress emailAddress,
+  }) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(
+        email: emailAddress.getOrCrash(),
+      );
+      return right(unit);
+    } on FirebaseAuthException catch (_) {
+      // TODO: check for specific errors if exist
+      return left(const AuthFailure.serverError());
+    }
+  }
+
   @override
   Future<void> signOut() => Future.wait([
         _googleSignIn.signOut(),
