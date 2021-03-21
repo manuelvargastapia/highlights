@@ -108,6 +108,7 @@ class TextRecognitionPage extends HookWidget {
                             fillColor: Colors.white,
                             contentPadding: const EdgeInsets.all(16),
                           ),
+                          textAlign: TextAlign.justify,
                           maxLength: RecognizedText.maxLength,
                           maxLines: 10,
                           minLines: 10,
