@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:animations/animations.dart';
 
+import 'package:highlights/injection.dart';
+import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/application/authentication/sign_in_form/sign_in_form_bloc.dart';
+import 'package:highlights/presentation/core/widgets/flush_bar_helper.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 
 class SignInForm extends StatelessWidget {
@@ -29,8 +32,15 @@ class SignInForm extends StatelessWidget {
             state.maybeWhen(
               emailVerificationSent: () {
                 FlushbarHelper.createInformation(
+                  context: context,
                   message: 'Check your inbox to verify your account',
-                ).show(context);
+                );
+              },
+              passwordResetEmailSent: () {
+                FlushbarHelper.createInformation(
+                  context: context,
+                  message: 'Check your inbox to recover your password',
+                );
               },
               emailVerified: () {
                 ExtendedNavigator.of(context)
@@ -42,15 +52,28 @@ class SignInForm extends StatelessWidget {
               },
               emailVerificationFailed: (failure) {
                 failure.maybeWhen(
-                  tooManyRequests: () {
-                    FlushbarHelper.createError(
-                      message: 'Wait a few seconds before submitting again',
-                    ).show(context);
-                  },
                   serverError: () {
                     FlushbarHelper.createError(
-                      message: 'Server Error',
-                    ).show(context);
+                      context: context,
+                      message: 'Internal server error',
+                    );
+                  },
+                  tooManyRequests: () {
+                    FlushbarHelper.createInformation(
+                      context: context,
+                      message: 'Plase, check your inbox to validate your email',
+                    );
+                  },
+                  orElse: () {},
+                );
+              },
+              passwordResetFailed: (failure) {
+                failure.maybeWhen(
+                  serverError: () {
+                    FlushbarHelper.createError(
+                      context: context,
+                      message: 'Internal server error',
+                    );
                   },
                   orElse: () {},
                 );
@@ -69,23 +92,30 @@ class SignInForm extends StatelessWidget {
               () {},
               (failureOrUnit) => failureOrUnit.fold(
                 (failure) {
-                  FlushbarHelper.createError(
-                    message: failure.map(
-                      networkConnectionFailed: (_) =>
+                  failure.maybeWhen(
+                    // Don't show a notification for cancelledByUser and tooManyRequests
+                    cancelledByUser: () {},
+                    tooManyRequests: () {},
+                    networkConnectionFailed: () => FlushbarHelper.createError(
+                      context: context,
+                      message:
                           'Network connection failed. Check you internet status',
-                      cancelledByUser: (_) => 'Cancelled',
-                      serverError: (_) => 'Server Error',
-                      invalidEmailAndPasswordCombination: (_) =>
-                          'Invalid email and password combination',
-                      emailAlreadyInUse: (_) => 'Email already in use',
-                      tooManyRequests: (_) =>
-                          'Wait a few seconds before submitting again',
-
-                      // TODO: remove this handler and treat it as 'server error'
-                      operationNotAllowed: (_) =>
-                          'User blocked 🚫 Contact support',
                     ),
-                  ).show(context);
+                    emailAlreadyInUse: () => FlushbarHelper.createError(
+                      context: context,
+                      message: 'Email already in use',
+                    ),
+                    invalidEmailAndPasswordCombination: () =>
+                        FlushbarHelper.createError(
+                      context: context,
+                      message: 'Invalid email and password combination',
+                    ),
+                    // operationNotAllowed is considered an internal server error
+                    orElse: () => FlushbarHelper.createError(
+                      context: context,
+                      message: 'Internal server error',
+                    ),
+                  );
                 },
                 (_) {
                   context
@@ -216,7 +246,91 @@ class SignInForm extends StatelessWidget {
                 if (state.isSubmitting) ...[
                   const SizedBox(height: 8),
                   const LinearProgressIndicator(),
-                ]
+                ],
+                const SizedBox(height: 64),
+                TextButton(
+                  onPressed: () async {
+                    final emailAddress = await showModal<EmailAddress>(
+                      context: context,
+                      configuration: const FadeScaleTransitionConfiguration(
+                        transitionDuration: Duration(milliseconds: 300),
+                        reverseTransitionDuration: Duration(milliseconds: 300),
+                      ),
+                      builder: (context) {
+                        final passwordResetFormKey = GlobalKey<FormState>();
+
+                        return BlocProvider(
+                          create: (context) => getIt<SignInFormBloc>(),
+                          child: BlocBuilder<SignInFormBloc, SignInFormState>(
+                            builder: (context, state) {
+                              return AlertDialog(
+                                title: const Text('Input your email'),
+                                content: Form(
+                                  key: passwordResetFormKey,
+                                  child: TextFormField(
+                                    autocorrect: false,
+                                    onChanged: (value) {
+                                      context.read<SignInFormBloc>().add(
+                                          SignInFormEvent.emailChanged(value));
+                                    },
+                                    validator: (_) => context
+                                        .read<SignInFormBloc>()
+                                        .state
+                                        .emailAddress
+                                        .value
+                                        .fold(
+                                          (failure) => failure.maybeMap(
+                                            invalidEmail: (_) =>
+                                                'Invalid Email',
+                                            orElse: () => null,
+                                          ),
+                                          // If validator returns null, then any feedback is
+                                          // provided to user because everithing is right
+                                          (_) => null,
+                                        ),
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                  ),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('CANCEL'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      passwordResetFormKey.currentState
+                                          .validate();
+
+                                      if (state.emailAddress.isValid()) {
+                                        Navigator.pop(
+                                          context,
+                                          state.emailAddress,
+                                        );
+                                      }
+                                    },
+                                    child: const Text('SEND EMAIL'),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+
+                    if (emailAddress != null) {
+                      BlocProvider.of<AuthBloc>(context)
+                          .add(AuthEvent.passwordResetRequested(emailAddress));
+                    }
+                  },
+                  child: const Text('Forot password?'),
+                ),
               ],
             ),
           );
