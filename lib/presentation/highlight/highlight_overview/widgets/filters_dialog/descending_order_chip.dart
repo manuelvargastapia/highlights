@@ -25,7 +25,7 @@ class _DescendingOrderChipState extends State<DescendingOrderChip>
       duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
-    _rotation = Tween<double>(begin: 0, end: -180).animate(
+    _rotation = Tween<double>(begin: 0, end: 180).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.elasticOut,
