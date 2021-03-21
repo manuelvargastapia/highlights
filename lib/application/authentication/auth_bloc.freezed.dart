@@ -24,6 +24,13 @@ class _$AuthEventTearOff {
   }
 
 // ignore: unused_element
+  PasswordResetRequested passwordResetRequested(EmailAddress email) {
+    return PasswordResetRequested(
+      email,
+    );
+  }
+
+// ignore: unused_element
   SignedOut signedOut() {
     return const SignedOut();
   }
@@ -39,12 +46,14 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object>({
     @required TResult authCheckRequested(),
     @required TResult emailVerificationRequested(),
+    @required TResult passwordResetRequested(EmailAddress email),
     @required TResult signedOut(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult authCheckRequested(),
     TResult emailVerificationRequested(),
+    TResult passwordResetRequested(EmailAddress email),
     TResult signedOut(),
     @required TResult orElse(),
   });
@@ -53,12 +62,14 @@ mixin _$AuthEvent {
     @required TResult authCheckRequested(AuthCheckRequested value),
     @required
         TResult emailVerificationRequested(EmailVerificationRequested value),
+    @required TResult passwordResetRequested(PasswordResetRequested value),
     @required TResult signedOut(SignedOut value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult authCheckRequested(AuthCheckRequested value),
     TResult emailVerificationRequested(EmailVerificationRequested value),
+    TResult passwordResetRequested(PasswordResetRequested value),
     TResult signedOut(SignedOut value),
     @required TResult orElse(),
   });
@@ -120,10 +131,12 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult when<TResult extends Object>({
     @required TResult authCheckRequested(),
     @required TResult emailVerificationRequested(),
+    @required TResult passwordResetRequested(EmailAddress email),
     @required TResult signedOut(),
   }) {
     assert(authCheckRequested != null);
     assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
     assert(signedOut != null);
     return authCheckRequested();
   }
@@ -133,6 +146,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult maybeWhen<TResult extends Object>({
     TResult authCheckRequested(),
     TResult emailVerificationRequested(),
+    TResult passwordResetRequested(EmailAddress email),
     TResult signedOut(),
     @required TResult orElse(),
   }) {
@@ -149,10 +163,12 @@ class _$AuthCheckRequested implements AuthCheckRequested {
     @required TResult authCheckRequested(AuthCheckRequested value),
     @required
         TResult emailVerificationRequested(EmailVerificationRequested value),
+    @required TResult passwordResetRequested(PasswordResetRequested value),
     @required TResult signedOut(SignedOut value),
   }) {
     assert(authCheckRequested != null);
     assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
     assert(signedOut != null);
     return authCheckRequested(this);
   }
@@ -162,6 +178,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult maybeMap<TResult extends Object>({
     TResult authCheckRequested(AuthCheckRequested value),
     TResult emailVerificationRequested(EmailVerificationRequested value),
+    TResult passwordResetRequested(PasswordResetRequested value),
     TResult signedOut(SignedOut value),
     @required TResult orElse(),
   }) {
@@ -219,10 +236,12 @@ class _$EmailVerificationRequested implements EmailVerificationRequested {
   TResult when<TResult extends Object>({
     @required TResult authCheckRequested(),
     @required TResult emailVerificationRequested(),
+    @required TResult passwordResetRequested(EmailAddress email),
     @required TResult signedOut(),
   }) {
     assert(authCheckRequested != null);
     assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
     assert(signedOut != null);
     return emailVerificationRequested();
   }
@@ -232,6 +251,7 @@ class _$EmailVerificationRequested implements EmailVerificationRequested {
   TResult maybeWhen<TResult extends Object>({
     TResult authCheckRequested(),
     TResult emailVerificationRequested(),
+    TResult passwordResetRequested(EmailAddress email),
     TResult signedOut(),
     @required TResult orElse(),
   }) {
@@ -248,10 +268,12 @@ class _$EmailVerificationRequested implements EmailVerificationRequested {
     @required TResult authCheckRequested(AuthCheckRequested value),
     @required
         TResult emailVerificationRequested(EmailVerificationRequested value),
+    @required TResult passwordResetRequested(PasswordResetRequested value),
     @required TResult signedOut(SignedOut value),
   }) {
     assert(authCheckRequested != null);
     assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
     assert(signedOut != null);
     return emailVerificationRequested(this);
   }
@@ -261,6 +283,7 @@ class _$EmailVerificationRequested implements EmailVerificationRequested {
   TResult maybeMap<TResult extends Object>({
     TResult authCheckRequested(AuthCheckRequested value),
     TResult emailVerificationRequested(EmailVerificationRequested value),
+    TResult passwordResetRequested(PasswordResetRequested value),
     TResult signedOut(SignedOut value),
     @required TResult orElse(),
   }) {
@@ -274,6 +297,138 @@ class _$EmailVerificationRequested implements EmailVerificationRequested {
 
 abstract class EmailVerificationRequested implements AuthEvent {
   const factory EmailVerificationRequested() = _$EmailVerificationRequested;
+}
+
+/// @nodoc
+abstract class $PasswordResetRequestedCopyWith<$Res> {
+  factory $PasswordResetRequestedCopyWith(PasswordResetRequested value,
+          $Res Function(PasswordResetRequested) then) =
+      _$PasswordResetRequestedCopyWithImpl<$Res>;
+  $Res call({EmailAddress email});
+}
+
+/// @nodoc
+class _$PasswordResetRequestedCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res>
+    implements $PasswordResetRequestedCopyWith<$Res> {
+  _$PasswordResetRequestedCopyWithImpl(PasswordResetRequested _value,
+      $Res Function(PasswordResetRequested) _then)
+      : super(_value, (v) => _then(v as PasswordResetRequested));
+
+  @override
+  PasswordResetRequested get _value => super._value as PasswordResetRequested;
+
+  @override
+  $Res call({
+    Object email = freezed,
+  }) {
+    return _then(PasswordResetRequested(
+      email == freezed ? _value.email : email as EmailAddress,
+    ));
+  }
+}
+
+/// @nodoc
+class _$PasswordResetRequested implements PasswordResetRequested {
+  const _$PasswordResetRequested(this.email) : assert(email != null);
+
+  @override
+  final EmailAddress email;
+
+  @override
+  String toString() {
+    return 'AuthEvent.passwordResetRequested(email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PasswordResetRequested &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(email);
+
+  @JsonKey(ignore: true)
+  @override
+  $PasswordResetRequestedCopyWith<PasswordResetRequested> get copyWith =>
+      _$PasswordResetRequestedCopyWithImpl<PasswordResetRequested>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult authCheckRequested(),
+    @required TResult emailVerificationRequested(),
+    @required TResult passwordResetRequested(EmailAddress email),
+    @required TResult signedOut(),
+  }) {
+    assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
+    assert(signedOut != null);
+    return passwordResetRequested(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult authCheckRequested(),
+    TResult emailVerificationRequested(),
+    TResult passwordResetRequested(EmailAddress email),
+    TResult signedOut(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordResetRequested != null) {
+      return passwordResetRequested(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult authCheckRequested(AuthCheckRequested value),
+    @required
+        TResult emailVerificationRequested(EmailVerificationRequested value),
+    @required TResult passwordResetRequested(PasswordResetRequested value),
+    @required TResult signedOut(SignedOut value),
+  }) {
+    assert(authCheckRequested != null);
+    assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
+    assert(signedOut != null);
+    return passwordResetRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult authCheckRequested(AuthCheckRequested value),
+    TResult emailVerificationRequested(EmailVerificationRequested value),
+    TResult passwordResetRequested(PasswordResetRequested value),
+    TResult signedOut(SignedOut value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordResetRequested != null) {
+      return passwordResetRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PasswordResetRequested implements AuthEvent {
+  const factory PasswordResetRequested(EmailAddress email) =
+      _$PasswordResetRequested;
+
+  EmailAddress get email;
+  @JsonKey(ignore: true)
+  $PasswordResetRequestedCopyWith<PasswordResetRequested> get copyWith;
 }
 
 /// @nodoc
@@ -314,10 +469,12 @@ class _$SignedOut implements SignedOut {
   TResult when<TResult extends Object>({
     @required TResult authCheckRequested(),
     @required TResult emailVerificationRequested(),
+    @required TResult passwordResetRequested(EmailAddress email),
     @required TResult signedOut(),
   }) {
     assert(authCheckRequested != null);
     assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
     assert(signedOut != null);
     return signedOut();
   }
@@ -327,6 +484,7 @@ class _$SignedOut implements SignedOut {
   TResult maybeWhen<TResult extends Object>({
     TResult authCheckRequested(),
     TResult emailVerificationRequested(),
+    TResult passwordResetRequested(EmailAddress email),
     TResult signedOut(),
     @required TResult orElse(),
   }) {
@@ -343,10 +501,12 @@ class _$SignedOut implements SignedOut {
     @required TResult authCheckRequested(AuthCheckRequested value),
     @required
         TResult emailVerificationRequested(EmailVerificationRequested value),
+    @required TResult passwordResetRequested(PasswordResetRequested value),
     @required TResult signedOut(SignedOut value),
   }) {
     assert(authCheckRequested != null);
     assert(emailVerificationRequested != null);
+    assert(passwordResetRequested != null);
     assert(signedOut != null);
     return signedOut(this);
   }
@@ -356,6 +516,7 @@ class _$SignedOut implements SignedOut {
   TResult maybeMap<TResult extends Object>({
     TResult authCheckRequested(AuthCheckRequested value),
     TResult emailVerificationRequested(EmailVerificationRequested value),
+    TResult passwordResetRequested(PasswordResetRequested value),
     TResult signedOut(SignedOut value),
     @required TResult orElse(),
   }) {
@@ -411,6 +572,23 @@ class _$AuthStateTearOff {
       failure,
     );
   }
+
+// ignore: unused_element
+  _PasswordResetEmailSent passwordResetEmailSent() {
+    return const _PasswordResetEmailSent();
+  }
+
+// ignore: unused_element
+  _SendingPasswordResetEmail sendingPasswordResetEmail() {
+    return const _SendingPasswordResetEmail();
+  }
+
+// ignore: unused_element
+  _PasswordResetFailed passwordResetFailed(AuthFailure failure) {
+    return _PasswordResetFailed(
+      failure,
+    );
+  }
 }
 
 /// @nodoc
@@ -428,6 +606,9 @@ mixin _$AuthState {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -438,6 +619,9 @@ mixin _$AuthState {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -449,6 +633,10 @@ mixin _$AuthState {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -459,6 +647,9 @@ mixin _$AuthState {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   });
 }
@@ -521,6 +712,9 @@ class _$_Initial implements _Initial {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -529,6 +723,9 @@ class _$_Initial implements _Initial {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return initial();
   }
 
@@ -542,6 +739,9 @@ class _$_Initial implements _Initial {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -561,6 +761,10 @@ class _$_Initial implements _Initial {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -569,6 +773,9 @@ class _$_Initial implements _Initial {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return initial(this);
   }
 
@@ -582,6 +789,9 @@ class _$_Initial implements _Initial {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -641,6 +851,9 @@ class _$_Authenticated implements _Authenticated {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -649,6 +862,9 @@ class _$_Authenticated implements _Authenticated {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return authenticated();
   }
 
@@ -662,6 +878,9 @@ class _$_Authenticated implements _Authenticated {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -681,6 +900,10 @@ class _$_Authenticated implements _Authenticated {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -689,6 +912,9 @@ class _$_Authenticated implements _Authenticated {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return authenticated(this);
   }
 
@@ -702,6 +928,9 @@ class _$_Authenticated implements _Authenticated {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -761,6 +990,9 @@ class _$_Unauthenticated implements _Unauthenticated {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -769,6 +1001,9 @@ class _$_Unauthenticated implements _Unauthenticated {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return unauthenticated();
   }
 
@@ -782,6 +1017,9 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -801,6 +1039,10 @@ class _$_Unauthenticated implements _Unauthenticated {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -809,6 +1051,9 @@ class _$_Unauthenticated implements _Unauthenticated {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return unauthenticated(this);
   }
 
@@ -822,6 +1067,9 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -882,6 +1130,9 @@ class _$_EmailVerificationSent implements _EmailVerificationSent {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -890,6 +1141,9 @@ class _$_EmailVerificationSent implements _EmailVerificationSent {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return emailVerificationSent();
   }
 
@@ -903,6 +1157,9 @@ class _$_EmailVerificationSent implements _EmailVerificationSent {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -922,6 +1179,10 @@ class _$_EmailVerificationSent implements _EmailVerificationSent {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -930,6 +1191,9 @@ class _$_EmailVerificationSent implements _EmailVerificationSent {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return emailVerificationSent(this);
   }
 
@@ -943,6 +1207,9 @@ class _$_EmailVerificationSent implements _EmailVerificationSent {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1004,6 +1271,9 @@ class _$_SendingEmailVerification implements _SendingEmailVerification {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1012,6 +1282,9 @@ class _$_SendingEmailVerification implements _SendingEmailVerification {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return sendingEmailVerification();
   }
 
@@ -1025,6 +1298,9 @@ class _$_SendingEmailVerification implements _SendingEmailVerification {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1044,6 +1320,10 @@ class _$_SendingEmailVerification implements _SendingEmailVerification {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1052,6 +1332,9 @@ class _$_SendingEmailVerification implements _SendingEmailVerification {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return sendingEmailVerification(this);
   }
 
@@ -1065,6 +1348,9 @@ class _$_SendingEmailVerification implements _SendingEmailVerification {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1124,6 +1410,9 @@ class _$_EmailVerified implements _EmailVerified {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1132,6 +1421,9 @@ class _$_EmailVerified implements _EmailVerified {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return emailVerified();
   }
 
@@ -1145,6 +1437,9 @@ class _$_EmailVerified implements _EmailVerified {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1164,6 +1459,10 @@ class _$_EmailVerified implements _EmailVerified {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1172,6 +1471,9 @@ class _$_EmailVerified implements _EmailVerified {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return emailVerified(this);
   }
 
@@ -1185,6 +1487,9 @@ class _$_EmailVerified implements _EmailVerified {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1281,6 +1586,9 @@ class _$_EmailVerificationFailed implements _EmailVerificationFailed {
     @required TResult sendingEmailVerification(),
     @required TResult emailVerified(),
     @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1289,6 +1597,9 @@ class _$_EmailVerificationFailed implements _EmailVerificationFailed {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return emailVerificationFailed(failure);
   }
 
@@ -1302,6 +1613,9 @@ class _$_EmailVerificationFailed implements _EmailVerificationFailed {
     TResult sendingEmailVerification(),
     TResult emailVerified(),
     TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1321,6 +1635,10 @@ class _$_EmailVerificationFailed implements _EmailVerificationFailed {
     @required TResult sendingEmailVerification(_SendingEmailVerification value),
     @required TResult emailVerified(_EmailVerified value),
     @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
   }) {
     assert(initial != null);
     assert(authenticated != null);
@@ -1329,6 +1647,9 @@ class _$_EmailVerificationFailed implements _EmailVerificationFailed {
     assert(sendingEmailVerification != null);
     assert(emailVerified != null);
     assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
     return emailVerificationFailed(this);
   }
 
@@ -1342,6 +1663,9 @@ class _$_EmailVerificationFailed implements _EmailVerificationFailed {
     TResult sendingEmailVerification(_SendingEmailVerification value),
     TResult emailVerified(_EmailVerified value),
     TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1359,4 +1683,465 @@ abstract class _EmailVerificationFailed implements AuthState {
   AuthFailure get failure;
   @JsonKey(ignore: true)
   _$EmailVerificationFailedCopyWith<_EmailVerificationFailed> get copyWith;
+}
+
+/// @nodoc
+abstract class _$PasswordResetEmailSentCopyWith<$Res> {
+  factory _$PasswordResetEmailSentCopyWith(_PasswordResetEmailSent value,
+          $Res Function(_PasswordResetEmailSent) then) =
+      __$PasswordResetEmailSentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$PasswordResetEmailSentCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$PasswordResetEmailSentCopyWith<$Res> {
+  __$PasswordResetEmailSentCopyWithImpl(_PasswordResetEmailSent _value,
+      $Res Function(_PasswordResetEmailSent) _then)
+      : super(_value, (v) => _then(v as _PasswordResetEmailSent));
+
+  @override
+  _PasswordResetEmailSent get _value => super._value as _PasswordResetEmailSent;
+}
+
+/// @nodoc
+class _$_PasswordResetEmailSent implements _PasswordResetEmailSent {
+  const _$_PasswordResetEmailSent();
+
+  @override
+  String toString() {
+    return 'AuthState.passwordResetEmailSent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _PasswordResetEmailSent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(),
+    @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
+    return passwordResetEmailSent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(),
+    TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordResetEmailSent != null) {
+      return passwordResetEmailSent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
+    return passwordResetEmailSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult authenticated(_Authenticated value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordResetEmailSent != null) {
+      return passwordResetEmailSent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PasswordResetEmailSent implements AuthState {
+  const factory _PasswordResetEmailSent() = _$_PasswordResetEmailSent;
+}
+
+/// @nodoc
+abstract class _$SendingPasswordResetEmailCopyWith<$Res> {
+  factory _$SendingPasswordResetEmailCopyWith(_SendingPasswordResetEmail value,
+          $Res Function(_SendingPasswordResetEmail) then) =
+      __$SendingPasswordResetEmailCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SendingPasswordResetEmailCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$SendingPasswordResetEmailCopyWith<$Res> {
+  __$SendingPasswordResetEmailCopyWithImpl(_SendingPasswordResetEmail _value,
+      $Res Function(_SendingPasswordResetEmail) _then)
+      : super(_value, (v) => _then(v as _SendingPasswordResetEmail));
+
+  @override
+  _SendingPasswordResetEmail get _value =>
+      super._value as _SendingPasswordResetEmail;
+}
+
+/// @nodoc
+class _$_SendingPasswordResetEmail implements _SendingPasswordResetEmail {
+  const _$_SendingPasswordResetEmail();
+
+  @override
+  String toString() {
+    return 'AuthState.sendingPasswordResetEmail()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SendingPasswordResetEmail);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(),
+    @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
+    return sendingPasswordResetEmail();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(),
+    TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendingPasswordResetEmail != null) {
+      return sendingPasswordResetEmail();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
+    return sendingPasswordResetEmail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult authenticated(_Authenticated value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendingPasswordResetEmail != null) {
+      return sendingPasswordResetEmail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SendingPasswordResetEmail implements AuthState {
+  const factory _SendingPasswordResetEmail() = _$_SendingPasswordResetEmail;
+}
+
+/// @nodoc
+abstract class _$PasswordResetFailedCopyWith<$Res> {
+  factory _$PasswordResetFailedCopyWith(_PasswordResetFailed value,
+          $Res Function(_PasswordResetFailed) then) =
+      __$PasswordResetFailedCopyWithImpl<$Res>;
+  $Res call({AuthFailure failure});
+
+  $AuthFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class __$PasswordResetFailedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
+    implements _$PasswordResetFailedCopyWith<$Res> {
+  __$PasswordResetFailedCopyWithImpl(
+      _PasswordResetFailed _value, $Res Function(_PasswordResetFailed) _then)
+      : super(_value, (v) => _then(v as _PasswordResetFailed));
+
+  @override
+  _PasswordResetFailed get _value => super._value as _PasswordResetFailed;
+
+  @override
+  $Res call({
+    Object failure = freezed,
+  }) {
+    return _then(_PasswordResetFailed(
+      failure == freezed ? _value.failure : failure as AuthFailure,
+    ));
+  }
+
+  @override
+  $AuthFailureCopyWith<$Res> get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+    return $AuthFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$_PasswordResetFailed implements _PasswordResetFailed {
+  const _$_PasswordResetFailed(this.failure) : assert(failure != null);
+
+  @override
+  final AuthFailure failure;
+
+  @override
+  String toString() {
+    return 'AuthState.passwordResetFailed(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _PasswordResetFailed &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$PasswordResetFailedCopyWith<_PasswordResetFailed> get copyWith =>
+      __$PasswordResetFailedCopyWithImpl<_PasswordResetFailed>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult authenticated(),
+    @required TResult unauthenticated(),
+    @required TResult emailVerificationSent(),
+    @required TResult sendingEmailVerification(),
+    @required TResult emailVerified(),
+    @required TResult emailVerificationFailed(AuthFailure failure),
+    @required TResult passwordResetEmailSent(),
+    @required TResult sendingPasswordResetEmail(),
+    @required TResult passwordResetFailed(AuthFailure failure),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
+    return passwordResetFailed(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult authenticated(),
+    TResult unauthenticated(),
+    TResult emailVerificationSent(),
+    TResult sendingEmailVerification(),
+    TResult emailVerified(),
+    TResult emailVerificationFailed(AuthFailure failure),
+    TResult passwordResetEmailSent(),
+    TResult sendingPasswordResetEmail(),
+    TResult passwordResetFailed(AuthFailure failure),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordResetFailed != null) {
+      return passwordResetFailed(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult authenticated(_Authenticated value),
+    @required TResult unauthenticated(_Unauthenticated value),
+    @required TResult emailVerificationSent(_EmailVerificationSent value),
+    @required TResult sendingEmailVerification(_SendingEmailVerification value),
+    @required TResult emailVerified(_EmailVerified value),
+    @required TResult emailVerificationFailed(_EmailVerificationFailed value),
+    @required TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    @required
+        TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    @required TResult passwordResetFailed(_PasswordResetFailed value),
+  }) {
+    assert(initial != null);
+    assert(authenticated != null);
+    assert(unauthenticated != null);
+    assert(emailVerificationSent != null);
+    assert(sendingEmailVerification != null);
+    assert(emailVerified != null);
+    assert(emailVerificationFailed != null);
+    assert(passwordResetEmailSent != null);
+    assert(sendingPasswordResetEmail != null);
+    assert(passwordResetFailed != null);
+    return passwordResetFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult authenticated(_Authenticated value),
+    TResult unauthenticated(_Unauthenticated value),
+    TResult emailVerificationSent(_EmailVerificationSent value),
+    TResult sendingEmailVerification(_SendingEmailVerification value),
+    TResult emailVerified(_EmailVerified value),
+    TResult emailVerificationFailed(_EmailVerificationFailed value),
+    TResult passwordResetEmailSent(_PasswordResetEmailSent value),
+    TResult sendingPasswordResetEmail(_SendingPasswordResetEmail value),
+    TResult passwordResetFailed(_PasswordResetFailed value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordResetFailed != null) {
+      return passwordResetFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PasswordResetFailed implements AuthState {
+  const factory _PasswordResetFailed(AuthFailure failure) =
+      _$_PasswordResetFailed;
+
+  AuthFailure get failure;
+  @JsonKey(ignore: true)
+  _$PasswordResetFailedCopyWith<_PasswordResetFailed> get copyWith;
 }

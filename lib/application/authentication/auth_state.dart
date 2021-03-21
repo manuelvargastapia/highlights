@@ -12,4 +12,10 @@ abstract class AuthState with _$AuthState {
   const factory AuthState.emailVerificationFailed(
     AuthFailure failure,
   ) = _EmailVerificationFailed;
+  const factory AuthState.passwordResetEmailSent() = _PasswordResetEmailSent;
+  const factory AuthState.sendingPasswordResetEmail() =
+      _SendingPasswordResetEmail;
+  const factory AuthState.passwordResetFailed(
+    AuthFailure failure,
+  ) = _PasswordResetFailed;
 }
