@@ -42,7 +42,7 @@ class QuoteField extends HookWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      'Scanned Text',
+                      'Quote',
                       style: TextStyle(
                         fontSize: 20,
                         color: Theme.of(context).backgroundColor,
