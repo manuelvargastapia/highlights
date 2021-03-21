@@ -54,6 +54,7 @@ class AppWidget extends StatelessWidget {
             backgroundColor: Color(0xff80bee0),
           ),
           backgroundColor: const Color(0xff909090),
+          errorColor: Colors.red.withOpacity(0.8),
         ),
       ),
     );
