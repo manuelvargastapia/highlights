@@ -448,11 +448,6 @@ void main() {
   });
 
   group('_ImageDeleted', () {
-    final image = Image(
-      imageUrl: some(ImageUrl('http://newimageurl.test')),
-      imageFile: some(ImageFile(File('new/path'))),
-    );
-
     blocTest<HighlightFormBloc, HighlightFormState>(
       '\nGiven curent image is none()'
       '\nWhen _ImageChanged ocurrs'
