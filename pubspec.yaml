@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  animated_icon_button: ^1.0.0
   animations: ^1.1.2
   another_flushbar: ^1.10.11
   auto_route: ^0.6.9
