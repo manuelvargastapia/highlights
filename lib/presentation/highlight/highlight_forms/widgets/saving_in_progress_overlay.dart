@@ -16,7 +16,7 @@ class SavingInProgressOverlay extends StatelessWidget {
       ignoring: !isSaving,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        color: isSaving ? Colors.black.withOpacity(0.8) : Colors.transparent,
+        color: isSaving ? Colors.black.withOpacity(0.7) : Colors.transparent,
         child: Center(
           child: Visibility(
             visible: isSaving,
