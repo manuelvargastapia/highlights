@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart' hide Image;
 
@@ -15,6 +16,7 @@ import 'package:highlights/presentation/highlight/highlight_forms/widgets/color_
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/image_field/image_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/page_number_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/quote_field.dart';
+import 'package:highlights/presentation/core/widgets/fab_animated_menu/fab_animated_menu.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 
 class HighlightFormScaffold extends StatelessWidget {
@@ -69,53 +71,49 @@ class HighlightFormScaffold extends StatelessWidget {
               ),
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              final filesPair = await showDialog<KtPair<File, File>>(
-                context: context,
-                builder: (context) {
-                  return SimpleDialog(
-                    title: const Text('Load a picture'),
-                    children: [
-                      SimpleDialogOption(
-                        onPressed: () async {
-                          final filesPair = await _getFilesPair(
-                            context,
-                            ImageSource.gallery,
-                          );
-                          Navigator.pop(context, filesPair);
-                        },
-                        child: const Text('Gallery'),
-                      ),
-                      SimpleDialogOption(
-                        onPressed: () async {
-                          final filesPair = await _getFilesPair(
-                            context,
-                            ImageSource.camera,
-                          );
-                          Navigator.pop(context, filesPair);
-                        },
-                        child: const Text('Camera'),
-                      ),
-                    ],
+          floatingActionButton: FABAnimatedMenu(
+            baseButtonColor:
+                Theme.of(context).floatingActionButtonTheme.backgroundColor,
+            buttons: [
+              FloatingActionButton(
+                elevation: 0,
+                heroTag: '1',
+                onPressed: () async {
+                  final filesPair = await _getFilesPair(
+                    context,
+                    ImageSource.gallery,
                   );
+                  if (filesPair != null) {
+                    _navigateToTextRecognitionPage(context, filesPair);
+                  }
                 },
-              );
-
-              // "file" is null when showDialog() is dismissed
-              if (filesPair != null) {
-                ExtendedNavigator.of(context).pushTextRecognitionPage(
-                  originalImage: ImagePrimitive.fromFile(
-                    filesPair.first,
+                child: const Icon(
+                  Icons.add_photo_alternate,
+                  size: 26,
+                ),
+              ),
+              FloatingActionButton(
+                heroTag: '2',
+                elevation: 0,
+                onPressed: () async {
+                  final filesPair = await _getFilesPair(
+                    context,
+                    ImageSource.camera,
+                  );
+                  if (filesPair != null) {
+                    _navigateToTextRecognitionPage(context, filesPair);
+                  }
+                },
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY(math.pi),
+                  child: const Icon(
+                    Icons.add_a_photo,
+                    size: 26,
                   ),
-                  croppedImage: ImagePrimitive.fromFile(
-                    filesPair.second,
-                  ),
-                  formBloc: context.read<HighlightFormBloc>(),
-                );
-              }
-            },
-            child: const Icon(Icons.camera_alt, size: 36),
+                ),
+              ),
+            ],
           ),
         );
       },
@@ -131,7 +129,7 @@ class HighlightFormScaffold extends StatelessWidget {
       source: source,
       imageQuality: 50,
     );
-    // "pickedFile" is null when user comes back from imnage selection
+    // "pickedFile" is null when user comes back from image selection
     // screen using hardware back button (Android)
     if (pickedFile == null) {
       return null;
@@ -156,5 +154,20 @@ class HighlightFormScaffold extends StatelessWidget {
     );
 
     return KtPair(File(pickedFile.path), croppedFile);
+  }
+
+  void _navigateToTextRecognitionPage(
+    BuildContext context,
+    KtPair<File, File> filesPair,
+  ) {
+    ExtendedNavigator.of(context).pushTextRecognitionPage(
+      originalImage: ImagePrimitive.fromFile(
+        filesPair.first,
+      ),
+      croppedImage: ImagePrimitive.fromFile(
+        filesPair.second,
+      ),
+      formBloc: context.read<HighlightFormBloc>(),
+    );
   }
 }
