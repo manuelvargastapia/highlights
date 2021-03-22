@@ -23,7 +23,7 @@ class HighlightFormScaffold extends StatelessWidget {
   /// This property must be `static` to avoid build loop
   ///
   /// See https://github.com/flutter/flutter/issues/20042
-  static final _formKey = GlobalKey<FormState>();
+  static final _formKey = GlobalKey<FormState>(); // TODO: may not be necessary
 
   const HighlightFormScaffold({Key key}) : super(key: key);
 
