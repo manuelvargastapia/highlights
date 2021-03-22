@@ -8,6 +8,7 @@ import 'package:highlights/injection.dart';
 import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/application/authentication/sign_in_form/sign_in_form_bloc.dart';
+import 'package:highlights/presentation/core/widgets/core_text_form_field.dart';
 import 'package:highlights/presentation/core/widgets/flush_bar_helper.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 
@@ -139,12 +140,10 @@ class SignInForm extends StatelessWidget {
                   size: 130,
                 ),
                 const SizedBox(height: 8),
-                TextFormField(
+                CoreTextFormField(
                   key: const Key('email_field'),
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.email),
-                    labelText: 'Email',
-                  ),
+                  labelText: 'Email',
+                  prefixIcon: const Icon(Icons.email),
                   autocorrect: false,
                   onChanged: (value) {
                     context
@@ -169,16 +168,12 @@ class SignInForm extends StatelessWidget {
                         // provided to user because everithing is right
                         (_) => null,
                       ),
-
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 const SizedBox(height: 8),
-                TextFormField(
+                CoreTextFormField(
                   key: const Key('password_field'),
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.lock),
-                    labelText: 'Password',
-                  ),
+                  labelText: 'Password',
+                  prefixIcon: const Icon(Icons.lock),
                   autocorrect: false,
                   obscureText: true,
                   onChanged: (value) {
@@ -196,7 +191,6 @@ class SignInForm extends StatelessWidget {
                               shortPassword: (_) => 'Short Password',
                               orElse: () => null),
                           (_) => null),
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 const SizedBox(height: 8),
                 Row(
@@ -267,7 +261,7 @@ class SignInForm extends StatelessWidget {
                                 title: const Text('Input your email'),
                                 content: Form(
                                   key: passwordResetFormKey,
-                                  child: TextFormField(
+                                  child: CoreTextFormField(
                                     autocorrect: false,
                                     onChanged: (value) {
                                       context.read<SignInFormBloc>().add(
@@ -288,8 +282,6 @@ class SignInForm extends StatelessWidget {
                                           // provided to user because everithing is right
                                           (_) => null,
                                         ),
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
                                   ),
                                 ),
                                 shape: RoundedRectangleBorder(

@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:highlights/domain/highlights/value_objects.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
+import 'package:highlights/presentation/core/widgets/core_text_form_field.dart';
 import 'package:highlights/presentation/core/widgets/flush_bar_helper.dart';
 
 class QuoteField extends HookWidget {
@@ -83,24 +84,10 @@ class QuoteField extends HookWidget {
                 ),
               ],
             ),
-            TextFormField(
+            CoreTextFormField(
               controller: textEditingController,
-              decoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.never,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).backgroundColor,
-                  ),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: const EdgeInsets.all(16),
-              ),
-              textAlign: TextAlign.justify,
+              borderRadius: 16,
+              contentPadding: const EdgeInsets.all(16),
               maxLength: HighlightQuote.maxLength,
               maxLines: 10,
               minLines: 10,
@@ -109,7 +96,6 @@ class QuoteField extends HookWidget {
                     .read<HighlightFormBloc>()
                     .add(HighlightFormEvent.quoteChange(value));
               },
-              autovalidateMode: AutovalidateMode.onUserInteraction,
 
               // Use state directly from bloc because latter is delayed
               // (it'll validate the previous state instead of the current

@@ -10,6 +10,7 @@ import 'package:highlights/domain/core/errors.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
 import 'package:highlights/application/text_recognition/image_processer_bloc.dart';
 import 'package:highlights/domain/text_recognition/value_objects.dart';
+import 'package:highlights/presentation/core/widgets/core_text_form_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 import 'package:highlights/presentation/text_recognition/widgets/recognized_text_painter.dart';
 
@@ -90,29 +91,14 @@ class TextRecognitionPage extends HookWidget {
                             ),
                           ),
                         ),
-                        TextFormField(
+                        CoreTextFormField(
                           controller: textEditingController,
-                          decoration: InputDecoration(
-                            counterText: '',
-                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(
-                                color: Theme.of(context).backgroundColor,
-                              ),
-                            ),
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding: const EdgeInsets.all(16),
-                          ),
-                          textAlign: TextAlign.justify,
+                          counterText: '',
+                          borderRadius: 16,
+                          contentPadding: const EdgeInsets.all(16),
                           maxLength: RecognizedText.maxLength,
                           maxLines: 10,
                           minLines: 10,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: (_) => state
                               .textRecognitionResult.recognizedText.value
                               .fold(
