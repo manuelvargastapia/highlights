@@ -151,34 +151,6 @@ void main() {
     );
 
     testWidgets(
-      '\nGiven sign in with Google dialog open'
-      '\nWhen _CancelledByUser error ocurrs'
-      '\nThen show corresponding message',
-      (tester) async {
-        await tester.runAsync(() async {
-          whenListen(
-            mockSignInFormBloc,
-            Stream.fromIterable([
-              SignInFormState.initial().copyWith(
-                isSubmitting: false,
-                authFailureOrSuccessOption: some(
-                  const Left(AuthFailure.cancelledByUser()),
-                ),
-              ),
-            ]),
-          );
-
-          await tester.pumpWidget(renderWidget());
-          await tester.pump();
-
-          final errorMessage = find.text('Cancelled');
-
-          expect(errorMessage, findsOneWidget);
-        });
-      },
-    );
-
-    testWidgets(
       '\nGiven any auth method is in progress'
       '\nWhen _ServerError error ocurrs'
       '\nThen show corresponding message',
@@ -200,7 +172,7 @@ void main() {
           await tester.pumpWidget(renderWidget());
           await tester.pump();
 
-          final errorMessage = find.text('Server Error');
+          final errorMessage = find.text('Internal server error');
 
           expect(errorMessage, findsOneWidget);
         });
@@ -289,7 +261,7 @@ void main() {
           await tester.pumpWidget(renderWidget());
           await tester.pump();
 
-          final errorMessage = find.text('User blocked 🚫 Contact support');
+          final errorMessage = find.text('Internal server error');
 
           expect(errorMessage, findsOneWidget);
         });

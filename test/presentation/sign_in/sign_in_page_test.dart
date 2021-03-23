@@ -42,7 +42,8 @@ void main() {
         );
 
         final title = find.widgetWithText(AppBar, 'Sign In');
-        final logo = find.byIcon(Icons.format_quote);
+        final logoTop = find.byKey(const Key('sign_in_top'));
+        final logoBottom = find.byKey(const Key('sign_in_bottom'));
         final emailField = find.widgetWithText(TextFormField, 'Email');
         final passwordField = find.widgetWithText(TextFormField, 'Password');
         final signInButton = find.widgetWithText(TextButton, 'SIGN IN');
@@ -51,8 +52,9 @@ void main() {
           ElevatedButton,
           'SIGN IN WITH GOOGLE',
         );
-        expect(title, findsOneWidget);
-        expect(logo, findsOneWidget);
+        expect(title, findsNothing);
+        expect(logoTop, findsOneWidget);
+        expect(logoBottom, findsOneWidget);
         expect(emailField, findsOneWidget);
         expect(passwordField, findsOneWidget);
         expect(signInButton, findsOneWidget);

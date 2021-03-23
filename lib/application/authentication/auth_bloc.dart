@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import 'package:highlights/domain/authentication/value_objects.dart';
 import 'package:highlights/domain/authentication/auth_failure.dart';
 import 'package:highlights/domain/authentication/i_auth_facade.dart';
 
@@ -24,7 +25,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final userOption = _authFacade.getSignedInUser();
         yield userOption.fold(
           () => const AuthState.unauthenticated(),
-          (_) => const AuthState.authenticated(),
+          (user) => user.emailVerified
+              ? const AuthState.authenticated()
+              : const AuthState.unauthenticated(),
         );
       },
       emailVerificationRequested: (event) async* {
@@ -50,6 +53,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               );
             }
           },
+        );
+      },
+      // TODO: test
+      passwordResetRequested: (event) async* {
+        yield const AuthState.sendingPasswordResetEmail();
+        final failureOrUnit = await _authFacade.sendPasswordResetEmail(
+          emailAddress: event.email,
+        );
+        yield failureOrUnit.fold(
+          (failure) => AuthState.passwordResetFailed(failure),
+          (_) => const AuthState.passwordResetEmailSent(),
         );
       },
       signedOut: (event) async* {

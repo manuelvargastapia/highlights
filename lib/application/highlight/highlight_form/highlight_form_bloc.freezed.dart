@@ -1583,6 +1583,8 @@ class _$HighlightFormStateTearOff {
       @required
           bool quoteExtractedFromImage,
       @required
+          bool deleteImageFromStorage,
+      @required
           bool isSaving,
       @required
           Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption}) {
@@ -1590,6 +1592,7 @@ class _$HighlightFormStateTearOff {
       highlight: highlight,
       isEditing: isEditing,
       quoteExtractedFromImage: quoteExtractedFromImage,
+      deleteImageFromStorage: deleteImageFromStorage,
       isSaving: isSaving,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption,
     );
@@ -1605,6 +1608,7 @@ mixin _$HighlightFormState {
   Highlight get highlight;
   bool get isEditing;
   bool get quoteExtractedFromImage;
+  bool get deleteImageFromStorage;
   bool get isSaving;
   Option<Either<HighlightFailure, Unit>> get saveFailureOrSuccessOption;
 
@@ -1621,6 +1625,7 @@ abstract class $HighlightFormStateCopyWith<$Res> {
       {Highlight highlight,
       bool isEditing,
       bool quoteExtractedFromImage,
+      bool deleteImageFromStorage,
       bool isSaving,
       Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption});
 
@@ -1641,6 +1646,7 @@ class _$HighlightFormStateCopyWithImpl<$Res>
     Object highlight = freezed,
     Object isEditing = freezed,
     Object quoteExtractedFromImage = freezed,
+    Object deleteImageFromStorage = freezed,
     Object isSaving = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
@@ -1651,6 +1657,9 @@ class _$HighlightFormStateCopyWithImpl<$Res>
       quoteExtractedFromImage: quoteExtractedFromImage == freezed
           ? _value.quoteExtractedFromImage
           : quoteExtractedFromImage as bool,
+      deleteImageFromStorage: deleteImageFromStorage == freezed
+          ? _value.deleteImageFromStorage
+          : deleteImageFromStorage as bool,
       isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -1681,6 +1690,7 @@ abstract class _$HighlightFormStateCopyWith<$Res>
       {Highlight highlight,
       bool isEditing,
       bool quoteExtractedFromImage,
+      bool deleteImageFromStorage,
       bool isSaving,
       Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption});
 
@@ -1704,6 +1714,7 @@ class __$HighlightFormStateCopyWithImpl<$Res>
     Object highlight = freezed,
     Object isEditing = freezed,
     Object quoteExtractedFromImage = freezed,
+    Object deleteImageFromStorage = freezed,
     Object isSaving = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
@@ -1714,6 +1725,9 @@ class __$HighlightFormStateCopyWithImpl<$Res>
       quoteExtractedFromImage: quoteExtractedFromImage == freezed
           ? _value.quoteExtractedFromImage
           : quoteExtractedFromImage as bool,
+      deleteImageFromStorage: deleteImageFromStorage == freezed
+          ? _value.deleteImageFromStorage
+          : deleteImageFromStorage as bool,
       isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -1729,11 +1743,13 @@ class _$_HighlightFormState implements _HighlightFormState {
       {@required this.highlight,
       @required this.isEditing,
       @required this.quoteExtractedFromImage,
+      @required this.deleteImageFromStorage,
       @required this.isSaving,
       @required this.saveFailureOrSuccessOption})
       : assert(highlight != null),
         assert(isEditing != null),
         assert(quoteExtractedFromImage != null),
+        assert(deleteImageFromStorage != null),
         assert(isSaving != null),
         assert(saveFailureOrSuccessOption != null);
 
@@ -1744,13 +1760,15 @@ class _$_HighlightFormState implements _HighlightFormState {
   @override
   final bool quoteExtractedFromImage;
   @override
+  final bool deleteImageFromStorage;
+  @override
   final bool isSaving;
   @override
   final Option<Either<HighlightFailure, Unit>> saveFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'HighlightFormState(highlight: $highlight, isEditing: $isEditing, quoteExtractedFromImage: $quoteExtractedFromImage, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'HighlightFormState(highlight: $highlight, isEditing: $isEditing, quoteExtractedFromImage: $quoteExtractedFromImage, deleteImageFromStorage: $deleteImageFromStorage, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1767,6 +1785,9 @@ class _$_HighlightFormState implements _HighlightFormState {
                     other.quoteExtractedFromImage, quoteExtractedFromImage) ||
                 const DeepCollectionEquality().equals(
                     other.quoteExtractedFromImage, quoteExtractedFromImage)) &&
+            (identical(other.deleteImageFromStorage, deleteImageFromStorage) ||
+                const DeepCollectionEquality().equals(
+                    other.deleteImageFromStorage, deleteImageFromStorage)) &&
             (identical(other.isSaving, isSaving) ||
                 const DeepCollectionEquality()
                     .equals(other.isSaving, isSaving)) &&
@@ -1783,6 +1804,7 @@ class _$_HighlightFormState implements _HighlightFormState {
       const DeepCollectionEquality().hash(highlight) ^
       const DeepCollectionEquality().hash(isEditing) ^
       const DeepCollectionEquality().hash(quoteExtractedFromImage) ^
+      const DeepCollectionEquality().hash(deleteImageFromStorage) ^
       const DeepCollectionEquality().hash(isSaving) ^
       const DeepCollectionEquality().hash(saveFailureOrSuccessOption);
 
@@ -1801,6 +1823,8 @@ abstract class _HighlightFormState implements HighlightFormState {
       @required
           bool quoteExtractedFromImage,
       @required
+          bool deleteImageFromStorage,
+      @required
           bool isSaving,
       @required
           Option<Either<HighlightFailure, Unit>>
@@ -1812,6 +1836,8 @@ abstract class _HighlightFormState implements HighlightFormState {
   bool get isEditing;
   @override
   bool get quoteExtractedFromImage;
+  @override
+  bool get deleteImageFromStorage;
   @override
   bool get isSaving;
   @override

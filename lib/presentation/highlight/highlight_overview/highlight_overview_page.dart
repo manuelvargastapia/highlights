@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:another_flushbar/flushbar_helper.dart';
 
 import 'package:highlights/injection.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
 import 'package:highlights/application/highlight/highlight_actor/highlight_actor_bloc.dart';
 import 'package:highlights/application/highlight/highlight_watcher/highlight_watcher_bloc.dart';
+import 'package:highlights/presentation/core/widgets/flush_bar_helper.dart';
 import 'package:highlights/presentation/highlight/highlight_overview/widgets/highlight_overview_scaffold.dart';
 import 'package:highlights/presentation/routes/router.gr.dart';
 
@@ -31,13 +31,14 @@ class HighlightOverviewPage extends StatelessWidget {
             state.maybeMap(
               deleteFailure: (state) {
                 FlushbarHelper.createError(
+                  context: context,
                   duration: const Duration(seconds: 5),
                   message: state.failure.maybeMap(
                     insufficientPermission: (_) => 'Insufficient permissions.',
                     orElse: () =>
                         'Unexpected error occurred. Please contact support.',
                   ),
-                ).show(context);
+                );
               },
               orElse: () {},
             );

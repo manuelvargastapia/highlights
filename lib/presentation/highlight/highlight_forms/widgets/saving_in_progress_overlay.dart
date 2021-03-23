@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 class SavingInProgressOverlay extends StatelessWidget {
   final bool isSaving;
 
@@ -14,14 +16,16 @@ class SavingInProgressOverlay extends StatelessWidget {
       ignoring: !isSaving,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        color: isSaving ? Colors.black.withOpacity(0.8) : Colors.transparent,
+        color: isSaving ? Colors.black.withOpacity(0.7) : Colors.transparent,
         child: Center(
           child: Visibility(
             visible: isSaving,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const CircularProgressIndicator(),
+                SpinKitDoubleBounce(
+                  color: Theme.of(context).accentColor,
+                ),
                 const SizedBox(height: 8),
                 Text(
                   'Saving...',

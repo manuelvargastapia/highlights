@@ -14,6 +14,7 @@ import '../../domain/highlights/highlight.dart';
 import '../highlight/highlight_forms/core/image_presentation_class.dart';
 import '../highlight/highlight_forms/highlight_form_page.dart';
 import '../highlight/highlight_overview/highlight_overview_page.dart';
+import '../sign_in/forgot_password_page.dart';
 import '../sign_in/sign_in_page.dart';
 import '../splash/splash_page.dart';
 import '../text_recognition/text_recognition_page.dart';
@@ -21,12 +22,14 @@ import '../text_recognition/text_recognition_page.dart';
 class Routes {
   static const String splashPage = '/';
   static const String signInPage = '/sign-in-page';
+  static const String forgotPasswordPage = '/forgot-password-page';
   static const String highlightOverviewPage = '/highlight-overview-page';
   static const String highlightFormPage = '/highlight-form-page';
   static const String textRecognitionPage = '/text-recognition-page';
   static const all = <String>{
     splashPage,
     signInPage,
+    forgotPasswordPage,
     highlightOverviewPage,
     highlightFormPage,
     textRecognitionPage,
@@ -39,6 +42,7 @@ class Router extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.splashPage, page: SplashPage),
     RouteDef(Routes.signInPage, page: SignInPage),
+    RouteDef(Routes.forgotPasswordPage, page: ForgotPasswordPage),
     RouteDef(Routes.highlightOverviewPage, page: HighlightOverviewPage),
     RouteDef(Routes.highlightFormPage, page: HighlightFormPage),
     RouteDef(Routes.textRecognitionPage, page: TextRecognitionPage),
@@ -55,6 +59,12 @@ class Router extends RouterBase {
     SignInPage: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => SignInPage(),
+        settings: data,
+      );
+    },
+    ForgotPasswordPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ForgotPasswordPage(),
         settings: data,
       );
     },
@@ -100,6 +110,9 @@ extension RouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushSplashPage() => push<dynamic>(Routes.splashPage);
 
   Future<dynamic> pushSignInPage() => push<dynamic>(Routes.signInPage);
+
+  Future<dynamic> pushForgotPasswordPage() =>
+      push<dynamic>(Routes.forgotPasswordPage);
 
   Future<dynamic> pushHighlightOverviewPage() =>
       push<dynamic>(Routes.highlightOverviewPage);

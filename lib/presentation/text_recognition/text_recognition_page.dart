@@ -10,6 +10,7 @@ import 'package:highlights/domain/core/errors.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
 import 'package:highlights/application/text_recognition/image_processer_bloc.dart';
 import 'package:highlights/domain/text_recognition/value_objects.dart';
+import 'package:highlights/presentation/core/widgets/core_text_form_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 import 'package:highlights/presentation/text_recognition/widgets/recognized_text_painter.dart';
 
@@ -42,11 +43,13 @@ class TextRecognitionPage extends HookWidget {
           IconButton(
             onPressed: () {
               formBloc.add(HighlightFormEvent.imageChanged(originalImage));
-              formBloc.add(
-                HighlightFormEvent.quoteChangeByTextRecognition(
-                  textEditingController.text,
-                ),
-              );
+              if (textEditingController.text.isNotEmpty) {
+                formBloc.add(
+                  HighlightFormEvent.quoteChangeByTextRecognition(
+                    textEditingController.text,
+                  ),
+                );
+              }
 
               ExtendedNavigator.of(context).pop();
             },
@@ -70,13 +73,48 @@ class TextRecognitionPage extends HookWidget {
             processingImage: (_) => const Center(
               child: CircularProgressIndicator(),
             ),
-            processingSuccess: (state) => Stack(
-              children: [
-                Center(
-                  child: Container(
-                    width: double.maxFinite,
-                    color: Colors.black,
-                    child: CustomPaint(
+            processingSuccess: (state) {
+              return Padding(
+                padding: const EdgeInsets.all(20),
+                child: ListView(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Text(
+                            'Scanned Text',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                        ),
+                        CoreTextFormField(
+                          controller: textEditingController,
+                          counterText: '',
+                          borderRadius: 16,
+                          contentPadding: const EdgeInsets.all(16),
+                          maxLength: RecognizedText.maxLength,
+                          maxLines: 10,
+                          minLines: 10,
+                          validator: (_) => state
+                              .textRecognitionResult.recognizedText.value
+                              .fold(
+                            (failure) => failure.maybeMap(
+                              empty: (_) => 'Required',
+                              exceedingLength: (f) =>
+                                  'Exceeding length. Max: ${f.max}',
+                              orElse: () => null,
+                            ),
+                            (_) => null,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 32),
+                    CustomPaint(
                       foregroundPainter: RecognizedTextPainter(
                         state.textRecognitionResult,
                       ),
@@ -85,51 +123,22 @@ class TextRecognitionPage extends HookWidget {
                             .getOrElse(() => throw UnexpectedUIError())
                             .getOrCrash()
                             .aspectRatio,
-                        child: Image.file(croppedImage.imageFile),
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Card(
-                    elevation: 8,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: TextFormField(
-                          controller: textEditingController,
-                          decoration: const InputDecoration(
-                            counterText: '',
-                          ),
-                          maxLength: RecognizedText.maxLength,
-                          maxLines: 5,
-                          minLines: 5,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: (_) => state
-                              .textRecognitionResult.recognizedText.value
-                              .fold(
-                            (failure) => failure.maybeMap(
-                              empty: (_) => 'Cannot be empty',
-                              exceedingLength: (f) =>
-                                  'Exceeding length. Max: ${f.max}',
-                              orElse: () => null,
-                            ),
-                            (_) => null,
-                          ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.file(croppedImage.imageFile),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
             // TODO: create specific error screen widget
             processingFailure: (state) => Center(
               child: Text(
                 state.failure.map(
+                  // TODO: improve error handling UI feddback + fix bug ("cannot
+                  // be empty" after selecting an image that couldn't be processed)
                   unableToProcessImage: (_) => 'Unable to process image 😞',
                   noTextDetected: (_) => 'No text detected in image 🤔',
                 ),

@@ -35,16 +35,27 @@ class AppWidget extends StatelessWidget {
         builder: ExtendedNavigator(router: Router()),
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
-            primaryColor: Colors.cyan[800],
-            accentColor: Colors.pinkAccent,
-            inputDecorationTheme: InputDecorationTheme(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
+          primaryColor: const Color(0xff80bee0),
+          accentColor: const Color(0xffd5baf8),
+          scaffoldBackgroundColor: const Color(0xffeeeeee),
+          appBarTheme: const AppBarTheme(elevation: 0),
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
             ),
-            floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Colors.blue[900],
-            )),
+          ),
+          cardTheme: CardTheme(
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+          ),
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: Color(0xff80bee0),
+          ),
+          backgroundColor: const Color(0xff909090),
+          errorColor: Colors.red.withOpacity(0.8),
+        ),
       ),
     );
   }

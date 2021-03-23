@@ -9,7 +9,6 @@ import 'package:highlights/application/highlight/highlight_filterer/highlight_fi
 import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/presentation/highlight/highlight_overview/widgets/highlight_overview_body.dart';
 import 'package:highlights/presentation/highlight/highlight_overview/widgets/filters_dialog/filters_bar.dart';
-import 'package:highlights/presentation/highlight/highlight_overview/widgets/search_bar.dart';
 
 /// This Scaffold has been isolated as a Widget to allow proper UI testing.
 ///
@@ -27,13 +26,14 @@ class HighlightOverviewScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Highlights'),
-        leading: IconButton(
-          onPressed: () {
-            context.read<AuthBloc>().add(const AuthEvent.signedOut());
-          },
-          icon: const Icon(Icons.exit_to_app),
-        ),
-        actions: [SearchBar()],
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(const AuthEvent.signedOut());
+            },
+            icon: const Icon(Icons.exit_to_app),
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -48,7 +48,7 @@ class HighlightOverviewScaffold extends StatelessWidget {
         onPressed: () {
           ExtendedNavigator.of(context).pushHighlightFormPage();
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, size: 36),
       ),
     );
   }

@@ -14,14 +14,14 @@ class ColorField extends StatelessWidget {
       buildWhen: (prev, curr) => prev.highlight.color != curr.highlight.color,
       builder: (context, state) {
         return SizedBox(
-          height: 80,
+          height: 60,
           child: ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 32),
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             itemCount: HighlightColor.predefinedColors.length,
             separatorBuilder: (context, index) {
-              return const SizedBox(width: 12);
+              return const SizedBox(width: 16);
             },
             itemBuilder: (context, index) {
               final itemColor = HighlightColor.predefinedColors[index];
@@ -41,13 +41,16 @@ class ColorField extends StatelessWidget {
                       // but we can handle them here in case is needed
                       (_) => BorderSide.none,
                       (color) => color == itemColor
-                          ? const BorderSide(width: 1.5)
+                          ? BorderSide(
+                              width: 1.5,
+                              color: Theme.of(context).backgroundColor,
+                            )
                           : BorderSide.none,
                     ),
                   ),
                   child: const SizedBox(
-                    width: 50,
-                    height: 50,
+                    width: 42,
+                    height: 42,
                   ),
                 ),
               );

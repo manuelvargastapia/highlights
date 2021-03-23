@@ -22,15 +22,34 @@ void main() {
 
   group('AuthCheckRequested', () {
     blocTest<AuthBloc, AuthState>(
-      '\nGiven user authenticated'
+      '\nGiven user authenticated with verified email'
       '\nWhen AuthCheckRequested ocurrs'
       '\nThen Authenticated is emitted',
       build: () {
         when(mockAuthFacade.getSignedInUser()).thenReturn(Some(mockUser));
+        when(mockUser.emailVerified).thenReturn(true);
+
         return AuthBloc(mockAuthFacade);
       },
       act: (bloc) => bloc.add(const AuthEvent.authCheckRequested()),
       expect: [const AuthState.authenticated()],
+      verify: (_) {
+        verify(mockAuthFacade.getSignedInUser()).called(1);
+      },
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      '\nGiven user authenticated with unverified email'
+      '\nWhen AuthCheckRequested ocurrs'
+      '\nThen Unauthenticated is emitted',
+      build: () {
+        when(mockAuthFacade.getSignedInUser()).thenReturn(Some(mockUser));
+        when(mockUser.emailVerified).thenReturn(false);
+
+        return AuthBloc(mockAuthFacade);
+      },
+      act: (bloc) => bloc.add(const AuthEvent.authCheckRequested()),
+      expect: [const AuthState.unauthenticated()],
       verify: (_) {
         verify(mockAuthFacade.getSignedInUser()).called(1);
       },

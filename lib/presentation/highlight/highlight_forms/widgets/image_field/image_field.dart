@@ -1,155 +1,88 @@
-import 'dart:async';
-import 'dart:io';
+import 'package:flutter/material.dart' hide Image;
 
-import 'package:flutter/material.dart';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:kt_dart/collection.dart';
+import 'package:animations/animations.dart';
 
+import 'package:highlights/domain/highlights/image.dart';
 import 'package:highlights/application/highlight/highlight_form/highlight_form_bloc.dart';
-import 'package:highlights/presentation/routes/router.gr.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/widgets/image_field/image_displayer.dart';
-import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 
 class ImageField extends StatelessWidget {
-  const ImageField({Key key}) : super(key: key);
+  final Image _image;
+
+  const ImageField(this._image, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HighlightFormBloc, HighlightFormState>(
-      buildWhen: (prev, curr) => prev.highlight != curr.highlight,
-      builder: (context, state) {
-        return Container(
-          margin: const EdgeInsets.symmetric(vertical: 16),
-          decoration: BoxDecoration(
-            color: state.highlight.color.getOrCrash(),
-            border: Border.all(color: Colors.grey),
-            borderRadius: BorderRadius.circular(6.0),
-          ),
-          child: Column(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16, right: 20, left: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ImageDisplayer(
-                state.highlight.image,
-                MediaQuery.of(context).size,
-              ),
               Row(
-                mainAxisSize: MainAxisSize.min,
                 children: [
-                  IconButton(
-                    onPressed: () async {
-                      final filesPair = await showDialog<KtPair<File, File>>(
-                        context: context,
-                        builder: (context) {
-                          return SimpleDialog(
-                            title: const Text('Load a picture'),
-                            children: [
-                              SimpleDialogOption(
-                                onPressed: () async {
-                                  final filesPair = await _getFilesPair(
-                                    context,
-                                    ImageSource.gallery,
-                                  );
-                                  Navigator.pop(context, filesPair);
-                                },
-                                child: const Text('Gallery'),
-                              ),
-                              SimpleDialogOption(
-                                onPressed: () async {
-                                  final filesPair = await _getFilesPair(
-                                    context,
-                                    ImageSource.camera,
-                                  );
-                                  Navigator.pop(context, filesPair);
-                                },
-                                child: const Text('Camera'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-
-                      // "file" is null when showDialog() is dismissed
-                      if (filesPair != null) {
-                        ExtendedNavigator.of(context).pushTextRecognitionPage(
-                          originalImage: ImagePrimitive.fromFile(
-                            filesPair.first,
-                          ),
-                          croppedImage: ImagePrimitive.fromFile(
-                            filesPair.second,
-                          ),
-                          formBloc: context.read<HighlightFormBloc>(),
-                        );
-                      }
-                    },
-                    icon: const Icon(Icons.camera_alt),
+                  Icon(
+                    Icons.image,
+                    color: Theme.of(context).backgroundColor,
                   ),
-                  if (state.highlight.image.isSome())
-                    IconButton(
-                      onPressed: () {
-                        _showDeletionDialog(
-                          context,
-                          context.read<HighlightFormBloc>(),
-                        );
-                      },
-                      icon: const Icon(Icons.delete),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Image',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).backgroundColor,
                     ),
+                  ),
                 ],
-              )
+              ),
+              IconButton(
+                onPressed: () {
+                  _showDeletionDialog(
+                    context,
+                    context.read<HighlightFormBloc>(),
+                  );
+                },
+                icon: Icon(
+                  Icons.delete,
+                  color: Theme.of(context).errorColor,
+                ),
+              ),
             ],
           ),
-        );
-      },
-    );
-  }
-
-  Future<KtPair<File, File>> _getFilesPair(
-    BuildContext context,
-    ImageSource source,
-  ) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.getImage(
-      source: source,
-      imageQuality: 50,
-    );
-    // "pickedFile" is null when user comes back from imnage selection
-    // screen using hardware back button (Android)
-    if (pickedFile == null) {
-      return null;
-    }
-
-    final croppedFile = await ImageCropper.cropImage(
-      sourcePath: pickedFile.path,
-      compressQuality: 50,
-      androidUiSettings: AndroidUiSettings(
-        toolbarTitle: 'Edit image',
-        toolbarColor: Theme.of(context).primaryColor,
-        toolbarWidgetColor: Colors.white,
-        activeControlsWidgetColor: Theme.of(context).accentColor,
-        initAspectRatio: CropAspectRatioPreset.original,
-        hideBottomControls: true,
-        lockAspectRatio: false,
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: ImageDisplayer(_image),
+          ),
+        ],
       ),
     );
-
-    return KtPair(File(pickedFile.path), croppedFile);
   }
 
   void _showDeletionDialog(
     BuildContext context,
     HighlightFormBloc bloc,
   ) {
-    showDialog(
+    showModal(
       context: context,
+      configuration: const FadeScaleTransitionConfiguration(
+        transitionDuration: Duration(milliseconds: 300),
+        reverseTransitionDuration: Duration(milliseconds: 300),
+      ),
       builder: (context) {
         return AlertDialog(
-          title: const Text('Delete image'),
+          title: const Text('Delete Image'),
           content: const Text(
             'Associated quote will NOT be deleted',
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
           actions: [
             TextButton(

@@ -37,4 +37,8 @@ abstract class AuthFailure with _$AuthFailure {
   /// Occasional FirebaseAuth exception trhown when excesive request are sent
   /// during a period of time.
   const factory AuthFailure.tooManyRequests() = TooManyRequests;
+
+  /// Represents the [FirebaseAuthException] thrown when trying to reset
+  /// a password for an email whose user doesn't exists.
+  const factory AuthFailure.userNotFound() = UserNotFound;
 }

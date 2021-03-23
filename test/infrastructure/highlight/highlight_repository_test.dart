@@ -23,7 +23,7 @@ const mockUid = 'mock-uid';
 const highlightsPath = 'highlights';
 const usersPath = 'users';
 const mockData = {
-  'color': 4294892630,
+  'color': 4294747063,
   'image': {
     'url': 'https://test-url.test',
     'path': 'test/path/to/file',
@@ -673,7 +673,7 @@ void main() {
               "$mockUid": {
                 "highlights": {
                   "$mockUid": {
-                    "color": 4294892630,
+                    "color": 4294747063,
                     "image": {
                       "url": "https://test-url.test",
                       "path": "test/path/to/file"
@@ -684,7 +684,7 @@ void main() {
                   },
                   "new-uid": {
                     "quote": "New inspirational quote",
-                    "color": 4294747063,
+                    "color": 4292197112,
                     "image": {
                       "url": "$fakeDownloadUrl",
                       "path": "new/path/to/file"
@@ -865,7 +865,7 @@ void main() {
               "$mockUid": {
                 "highlights": {
                   "$mockUid": {
-                    "color": 4294892630,
+                    "color": 4294747063,
                     "image": {
                       "url": "https://test-url.test",
                       "path": "test/path/to/file"
@@ -985,7 +985,7 @@ void main() {
               "$mockUid": {
                 "highlights": {
                   "$mockUid": {
-                    "color": 4294892630,
+                    "color": 4294747063,
                     "image": {
                       "url": "https://test-url.test",
                       "path": "test/path/to/file"
