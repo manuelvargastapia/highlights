@@ -146,7 +146,10 @@ class FirebaseAuthFacade implements IAuthFacade {
         email: emailAddress.getOrCrash(),
       );
       return right(unit);
-    } on FirebaseAuthException catch (_) {
+    } on FirebaseAuthException catch (e) {
+      if (e.code.contains('user-not-found')) {
+        return left(const AuthFailure.userNotFound());
+      }
       // TODO: check for specific errors if exist
       return left(const AuthFailure.serverError());
     }

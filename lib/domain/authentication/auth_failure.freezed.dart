@@ -47,6 +47,11 @@ class _$AuthFailureTearOff {
   TooManyRequests tooManyRequests() {
     return const TooManyRequests();
   }
+
+// ignore: unused_element
+  UserNotFound userNotFound() {
+    return const UserNotFound();
+  }
 }
 
 /// @nodoc
@@ -64,6 +69,7 @@ mixin _$AuthFailure {
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -74,6 +80,7 @@ mixin _$AuthFailure {
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -87,6 +94,7 @@ mixin _$AuthFailure {
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -98,6 +106,7 @@ mixin _$AuthFailure {
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   });
 }
@@ -164,6 +173,7 @@ class _$CancelledByUser implements CancelledByUser {
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -172,6 +182,7 @@ class _$CancelledByUser implements CancelledByUser {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return cancelledByUser();
   }
 
@@ -185,6 +196,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -206,6 +218,7 @@ class _$CancelledByUser implements CancelledByUser {
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -214,6 +227,7 @@ class _$CancelledByUser implements CancelledByUser {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return cancelledByUser(this);
   }
 
@@ -228,6 +242,7 @@ class _$CancelledByUser implements CancelledByUser {
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -287,6 +302,7 @@ class _$ServerError implements ServerError {
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -295,6 +311,7 @@ class _$ServerError implements ServerError {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return serverError();
   }
 
@@ -308,6 +325,7 @@ class _$ServerError implements ServerError {
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -329,6 +347,7 @@ class _$ServerError implements ServerError {
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -337,6 +356,7 @@ class _$ServerError implements ServerError {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return serverError(this);
   }
 
@@ -351,6 +371,7 @@ class _$ServerError implements ServerError {
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -416,6 +437,7 @@ class _$InvalidEmailAndPasswordCombination
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -424,6 +446,7 @@ class _$InvalidEmailAndPasswordCombination
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return invalidEmailAndPasswordCombination();
   }
 
@@ -437,6 +460,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -458,6 +482,7 @@ class _$InvalidEmailAndPasswordCombination
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -466,6 +491,7 @@ class _$InvalidEmailAndPasswordCombination
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return invalidEmailAndPasswordCombination(this);
   }
 
@@ -480,6 +506,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -541,6 +568,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -549,6 +577,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return emailAlreadyInUse();
   }
 
@@ -562,6 +591,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -583,6 +613,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -591,6 +622,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return emailAlreadyInUse(this);
   }
 
@@ -605,6 +637,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -665,6 +698,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -673,6 +707,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return operationNotAllowed();
   }
 
@@ -686,6 +721,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -707,6 +743,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -715,6 +752,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return operationNotAllowed(this);
   }
 
@@ -729,6 +767,7 @@ class _$OperationNotAllowed implements OperationNotAllowed {
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -789,6 +828,7 @@ class _$NetworkConnectionFailed implements NetworkConnectionFailed {
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -797,6 +837,7 @@ class _$NetworkConnectionFailed implements NetworkConnectionFailed {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return networkConnectionFailed();
   }
 
@@ -810,6 +851,7 @@ class _$NetworkConnectionFailed implements NetworkConnectionFailed {
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -831,6 +873,7 @@ class _$NetworkConnectionFailed implements NetworkConnectionFailed {
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -839,6 +882,7 @@ class _$NetworkConnectionFailed implements NetworkConnectionFailed {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return networkConnectionFailed(this);
   }
 
@@ -853,6 +897,7 @@ class _$NetworkConnectionFailed implements NetworkConnectionFailed {
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -913,6 +958,7 @@ class _$TooManyRequests implements TooManyRequests {
     @required TResult operationNotAllowed(),
     @required TResult networkConnectionFailed(),
     @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -921,6 +967,7 @@ class _$TooManyRequests implements TooManyRequests {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return tooManyRequests();
   }
 
@@ -934,6 +981,7 @@ class _$TooManyRequests implements TooManyRequests {
     TResult operationNotAllowed(),
     TResult networkConnectionFailed(),
     TResult tooManyRequests(),
+    TResult userNotFound(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -955,6 +1003,7 @@ class _$TooManyRequests implements TooManyRequests {
     @required TResult operationNotAllowed(OperationNotAllowed value),
     @required TResult networkConnectionFailed(NetworkConnectionFailed value),
     @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
   }) {
     assert(cancelledByUser != null);
     assert(serverError != null);
@@ -963,6 +1012,7 @@ class _$TooManyRequests implements TooManyRequests {
     assert(operationNotAllowed != null);
     assert(networkConnectionFailed != null);
     assert(tooManyRequests != null);
+    assert(userNotFound != null);
     return tooManyRequests(this);
   }
 
@@ -977,6 +1027,7 @@ class _$TooManyRequests implements TooManyRequests {
     TResult operationNotAllowed(OperationNotAllowed value),
     TResult networkConnectionFailed(NetworkConnectionFailed value),
     TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -989,4 +1040,133 @@ class _$TooManyRequests implements TooManyRequests {
 
 abstract class TooManyRequests implements AuthFailure {
   const factory TooManyRequests() = _$TooManyRequests;
+}
+
+/// @nodoc
+abstract class $UserNotFoundCopyWith<$Res> {
+  factory $UserNotFoundCopyWith(
+          UserNotFound value, $Res Function(UserNotFound) then) =
+      _$UserNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UserNotFoundCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements $UserNotFoundCopyWith<$Res> {
+  _$UserNotFoundCopyWithImpl(
+      UserNotFound _value, $Res Function(UserNotFound) _then)
+      : super(_value, (v) => _then(v as UserNotFound));
+
+  @override
+  UserNotFound get _value => super._value as UserNotFound;
+}
+
+/// @nodoc
+class _$UserNotFound implements UserNotFound {
+  const _$UserNotFound();
+
+  @override
+  String toString() {
+    return 'AuthFailure.userNotFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UserNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult cancelledByUser(),
+    @required TResult serverError(),
+    @required TResult invalidEmailAndPasswordCombination(),
+    @required TResult emailAlreadyInUse(),
+    @required TResult operationNotAllowed(),
+    @required TResult networkConnectionFailed(),
+    @required TResult tooManyRequests(),
+    @required TResult userNotFound(),
+  }) {
+    assert(cancelledByUser != null);
+    assert(serverError != null);
+    assert(invalidEmailAndPasswordCombination != null);
+    assert(emailAlreadyInUse != null);
+    assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
+    assert(tooManyRequests != null);
+    assert(userNotFound != null);
+    return userNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult cancelledByUser(),
+    TResult serverError(),
+    TResult invalidEmailAndPasswordCombination(),
+    TResult emailAlreadyInUse(),
+    TResult operationNotAllowed(),
+    TResult networkConnectionFailed(),
+    TResult tooManyRequests(),
+    TResult userNotFound(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (userNotFound != null) {
+      return userNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult cancelledByUser(CancelledByUser value),
+    @required TResult serverError(ServerError value),
+    @required
+        TResult invalidEmailAndPasswordCombination(
+            InvalidEmailAndPasswordCombination value),
+    @required TResult emailAlreadyInUse(EmailAlreadyInUse value),
+    @required TResult operationNotAllowed(OperationNotAllowed value),
+    @required TResult networkConnectionFailed(NetworkConnectionFailed value),
+    @required TResult tooManyRequests(TooManyRequests value),
+    @required TResult userNotFound(UserNotFound value),
+  }) {
+    assert(cancelledByUser != null);
+    assert(serverError != null);
+    assert(invalidEmailAndPasswordCombination != null);
+    assert(emailAlreadyInUse != null);
+    assert(operationNotAllowed != null);
+    assert(networkConnectionFailed != null);
+    assert(tooManyRequests != null);
+    assert(userNotFound != null);
+    return userNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult cancelledByUser(CancelledByUser value),
+    TResult serverError(ServerError value),
+    TResult invalidEmailAndPasswordCombination(
+        InvalidEmailAndPasswordCombination value),
+    TResult emailAlreadyInUse(EmailAlreadyInUse value),
+    TResult operationNotAllowed(OperationNotAllowed value),
+    TResult networkConnectionFailed(NetworkConnectionFailed value),
+    TResult tooManyRequests(TooManyRequests value),
+    TResult userNotFound(UserNotFound value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (userNotFound != null) {
+      return userNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserNotFound implements AuthFailure {
+  const factory UserNotFound() = _$UserNotFound;
 }
