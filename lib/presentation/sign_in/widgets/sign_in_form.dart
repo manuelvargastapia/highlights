@@ -46,6 +46,7 @@ class SignInForm extends StatelessWidget {
                     top: 40,
                     left: 20,
                     child: Image(
+                      key: const Key('sign_in_top'),
                       image: const AssetImage('assets/sign_in_top.png'),
                       width: screenSize.width * 0.6,
                     ),
@@ -54,6 +55,7 @@ class SignInForm extends StatelessWidget {
                     bottom: 16,
                     right: 20,
                     child: Image(
+                      key: const Key('sign_in_bottom'),
                       image: const AssetImage('assets/sign_in_bottom.png'),
                       width: screenSize.width * 0.6,
                     ),
