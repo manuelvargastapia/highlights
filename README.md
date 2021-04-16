@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+📌 [Link to the design in Figma](https://www.figma.com/file/CoEv8Wk2QkMWrh8JmmhHto/Highlights?node-id=244%3A254) made by ✨[Miyuki Shiro](https://github.com/miyuki-shiro)✨
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
