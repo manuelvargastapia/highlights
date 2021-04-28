@@ -80,6 +80,8 @@ flutter:
     - assets/forgot_password.png
     - assets/email_sent.png
     - assets/error_loading_file.png
+    - assets/critical_failure.png
+    - assets/thank_you_report.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
