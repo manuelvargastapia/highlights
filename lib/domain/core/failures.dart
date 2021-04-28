@@ -15,6 +15,7 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.shortPassword({
     @required T failedValue,
   }) = ShortPassword<T>;
+  // TODO: consider removing this failure as is not being used
   const factory ValueFailure.invalidUrl({
     @required T failedValue,
   }) = InvalidUrl<T>;
