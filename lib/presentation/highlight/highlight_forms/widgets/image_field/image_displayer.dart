@@ -76,10 +76,13 @@ class ImageDisplayer extends StatelessWidget {
       Object error,
       StackTrace stackTrace,
     ) =>
-        // TODO: show funny image
         const SizedBox(
           height: 200,
-          child: Center(child: Text('Error loading image.')),
+          child: Center(
+            child: Image(
+              image: AssetImage('assets/error_loading_file.png'),
+            ),
+          ),
         );
 
     return domainImage.isUploaded
