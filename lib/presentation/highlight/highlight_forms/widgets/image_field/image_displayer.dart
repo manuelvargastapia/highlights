@@ -33,18 +33,11 @@ class ImageDisplayer extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        child: SizedBox(
+        child: const SizedBox(
           height: 200,
           child: Center(
-            child: Text(
-              failure.maybeMap(
-                invalidUrl: (_) =>
-                    'Error loading image. Try again later, please.',
-                orElse: () => 'Unexpect error. Try again later, please.',
-              ),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
+            child: Image(
+              image: AssetImage('assets/error_loading_file.png'),
             ),
           ),
         ),
