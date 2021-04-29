@@ -35,9 +35,12 @@ class ImageDisplayer extends StatelessWidget {
         ),
         child: const SizedBox(
           height: 200,
-          child: Center(
-            child: Image(
-              image: AssetImage('assets/error_loading_file.png'),
+          child: Padding(
+            padding: EdgeInsets.all(8),
+            child: Center(
+              child: Image(
+                image: AssetImage('assets/error_loading_file.png'),
+              ),
             ),
           ),
         ),
