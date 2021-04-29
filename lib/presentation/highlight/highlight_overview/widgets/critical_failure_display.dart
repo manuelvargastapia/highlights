@@ -19,20 +19,26 @@ class CriticalFailureDisplay extends HookWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(top: emailSended.value ? 48 : 0),
+        padding: EdgeInsets.only(top: emailSended.value ? 48 : 26),
         child: Column(
           children: [
-            if (emailSended.value)
+            if (emailSended.value) ...[
               const Image(image: AssetImage('assets/thank_you_report.png')),
+              const Text(
+                'We will check the problem ASAP 🤗',
+                style: TextStyle(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+            ],
             if (!emailSended.value) ...[
               const Image(image: AssetImage('assets/critical_failure.png')),
               const Text(
-                'An error has ocurred! Please, consider sending a report.',
+                'Please, consider sending a report.',
                 style: TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
-              TextButton(
+              ElevatedButton(
                 onPressed: () async {
                   final Email email = Email(
                     body: 'Technical details:\n\n ${failure.toString()}',
@@ -42,12 +48,32 @@ class CriticalFailureDisplay extends HookWidget {
                   await FlutterEmailSender.send(email);
                   emailSended.value = true;
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).primaryColor,
+                  ),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  elevation: MaterialStateProperty.all(4),
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.symmetric(horizontal: 20),
+                  ),
+                ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: const [
                     Icon(Icons.mail),
-                    SizedBox(width: 4),
-                    Text('REPORT ERROR'),
+                    SizedBox(width: 16),
+                    Text(
+                      'REPORT',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    )
                   ],
                 ),
               ),
