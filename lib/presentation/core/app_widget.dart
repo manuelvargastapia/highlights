@@ -53,6 +53,13 @@ class AppWidget extends StatelessWidget {
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
             backgroundColor: Color(0xff80bee0),
           ),
+          textButtonTheme: TextButtonThemeData(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all(
+                const Color(0xff80bee0),
+              ),
+            ),
+          ),
           backgroundColor: const Color(0xff909090),
           errorColor: Colors.red.withOpacity(0.8),
         ),

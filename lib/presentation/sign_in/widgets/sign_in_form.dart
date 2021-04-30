@@ -231,11 +231,6 @@ class SignInForm extends StatelessWidget {
                   .read<SignInFormBloc>()
                   .add(const SignInFormEvent.sigInWithEmailAndPasswordPessed());
             },
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(
-                Theme.of(context).primaryColor,
-              ),
-            ),
             child: const Text(
               'SIGN IN',
               style: TextStyle(fontSize: 16),
@@ -248,13 +243,9 @@ class SignInForm extends StatelessWidget {
             onPressed: () {
               _formKey.currentState.validate();
               context.read<SignInFormBloc>().add(
-                  const SignInFormEvent.registerWithEmailAndPasswordPessed());
+                    const SignInFormEvent.registerWithEmailAndPasswordPessed(),
+                  );
             },
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all(
-                Theme.of(context).primaryColor,
-              ),
-            ),
             child: const Text(
               'REGISTER',
               style: TextStyle(fontSize: 16),

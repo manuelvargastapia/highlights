@@ -158,11 +158,6 @@ class ForgotPasswordForm extends StatelessWidget {
           onPressed: () {
             ExtendedNavigator.of(context).pop(context);
           },
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(
-              Theme.of(context).primaryColor,
-            ),
-          ),
           child: const Text(
             'CANCEL',
             style: TextStyle(fontSize: 16),
