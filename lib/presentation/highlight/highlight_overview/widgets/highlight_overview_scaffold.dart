@@ -87,13 +87,14 @@ class HighlightOverviewScaffold extends StatelessWidget {
               ImageIcon(
                 const AssetImage('assets/app_icon.png'),
                 color: Theme.of(context).primaryColor,
+                size: 50,
               ),
             ],
           ),
           content: const Text('''
 Highlights let you easily save your favorites book quotes. Just take a picture and scan the text!
 \nThis is a FLOSS (Free/Libre Open Source Software) project powered by Flutter 💙 and Firebase 🔥
-\nFeel free to collaborate
+\nFeel free to collaborate 🤝
 '''),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -107,6 +108,7 @@ Highlights let you easily save your favorites book quotes. Just take a picture a
                   applicationIcon: ImageIcon(
                     const AssetImage('assets/app_icon.png'),
                     color: Theme.of(context).primaryColor,
+                    size: 50,
                   ),
                   applicationVersion: packageInfo.version,
                 );
