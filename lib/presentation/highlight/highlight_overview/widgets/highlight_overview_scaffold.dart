@@ -101,7 +101,15 @@ Highlights let you easily save your favorites book quotes. Just take a picture a
           actions: [
             TextButton(
               onPressed: () {
-                showLicensePage(context: context);
+                showLicensePage(
+                  context: context,
+                  applicationName: 'Highlights',
+                  applicationIcon: ImageIcon(
+                    const AssetImage('assets/app_icon.png'),
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  applicationVersion: packageInfo.version,
+                );
               },
               child: const Text('LICENSES'),
             ),
