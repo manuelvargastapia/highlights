@@ -13,6 +13,7 @@ import 'package:highlights/domain/text_recognition/value_objects.dart';
 import 'package:highlights/presentation/core/widgets/core_text_form_field.dart';
 import 'package:highlights/presentation/highlight/highlight_forms/core/image_presentation_class.dart';
 import 'package:highlights/presentation/text_recognition/widgets/recognized_text_painter.dart';
+import 'package:highlights/presentation/text_recognition/widgets/text_recognition_failure_display.dart';
 
 class TextRecognitionPage extends HookWidget {
   final ImagePrimitive originalImage;
@@ -133,17 +134,8 @@ class TextRecognitionPage extends HookWidget {
                 ),
               );
             },
-            // TODO: create specific error screen widget
-            processingFailure: (state) => Center(
-              child: Text(
-                state.failure.map(
-                  // TODO: improve error handling UI feddback + fix bug ("cannot
-                  // be empty" after selecting an image that couldn't be processed)
-                  unableToProcessImage: (_) => 'Unable to process image 😞',
-                  noTextDetected: (_) => 'No text detected in image 🤔',
-                ),
-              ),
-            ),
+            processingFailure: (state) =>
+                TextRecognitionFailureDisplay(failure: state.failure),
           );
         },
       ),

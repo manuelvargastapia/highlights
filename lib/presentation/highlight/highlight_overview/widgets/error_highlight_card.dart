@@ -13,6 +13,7 @@ class ErrorHighlightCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Theme.of(context).errorColor,
+      margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
