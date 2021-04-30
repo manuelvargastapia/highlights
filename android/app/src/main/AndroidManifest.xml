@@ -8,10 +8,14 @@
 
     <!-- android:requestLegacyExternalStorage="true" is required in
          Android 29+ to work with image_picker -->
+     
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="highlights"
+        android:label="Highlights"
         android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"
