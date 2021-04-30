@@ -48,6 +48,7 @@ dependencies:
   injectable: ^1.1.0
   json_annotation: ^3.1.1
   kt_dart: ^0.8.0
+  package_info: ^2.0.0
   rxdart: ^0.25.0
   uuid: ^2.2.2
 
@@ -84,6 +85,7 @@ flutter:
     - assets/thank_you_report.png
     - assets/unable_to_process_image.png
     - assets/no_text_detected.png
+    - assets/app_icon.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

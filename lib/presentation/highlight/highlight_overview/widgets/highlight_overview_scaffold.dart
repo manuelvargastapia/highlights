@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:animations/animations.dart';
+import 'package:package_info/package_info.dart';
 
 import 'package:highlights/injection.dart';
 import 'package:highlights/application/authentication/auth_bloc.dart';
@@ -29,10 +31,16 @@ class HighlightOverviewScaffold extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
+              _showAboutDialog(context);
+            },
+            icon: const Icon(Icons.info_outline_rounded),
+          ),
+          IconButton(
+            onPressed: () {
               context.read<AuthBloc>().add(const AuthEvent.signedOut());
             },
             icon: const Icon(Icons.exit_to_app),
-          )
+          ),
         ],
       ),
       body: Column(
@@ -50,6 +58,62 @@ class HighlightOverviewScaffold extends StatelessWidget {
         },
         child: const Icon(Icons.add, size: 36),
       ),
+    );
+  }
+
+  Future _showAboutDialog(BuildContext context) async {
+    final packageInfo = await PackageInfo.fromPlatform();
+
+    return showModal(
+      context: context,
+      configuration: const FadeScaleTransitionConfiguration(
+        transitionDuration: Duration(milliseconds: 300),
+        reverseTransitionDuration: Duration(milliseconds: 300),
+      ),
+      builder: (context) {
+        return AlertDialog(
+          title: Column(
+            children: [
+              const Text('Highlights'),
+              const SizedBox(height: 8),
+              Text(
+                'version ${packageInfo.version}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ImageIcon(
+                const AssetImage('assets/app_icon.png'),
+                color: Theme.of(context).primaryColor,
+              ),
+            ],
+          ),
+          content: const Text('''
+Highlights let you easily save your favorites book quotes. Just take a picture and scan the text!
+\nThis is a FLOSS (Free/Libre Open Source Software) project powered by Flutter 💙 and Firebase 🔥
+\nFeel free to collaborate
+'''),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                showLicensePage(context: context);
+              },
+              child: const Text('LICENSES'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('CLOSE'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
