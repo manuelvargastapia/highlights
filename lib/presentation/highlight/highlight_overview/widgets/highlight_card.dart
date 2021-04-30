@@ -21,6 +21,7 @@ class HighlightCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
       child: InkWell(
+        borderRadius: BorderRadius.circular(15.0),
         onTap: () {
           ExtendedNavigator.of(context).pushHighlightFormPage(
             editedHighlight: highlight,
