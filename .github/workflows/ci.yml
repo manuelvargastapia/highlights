@@ -4,6 +4,10 @@ on:
     branches:
       - development
       - main
+  push:
+    branches:
+      - development
+      - main
 
 jobs:
   flutter_test:
