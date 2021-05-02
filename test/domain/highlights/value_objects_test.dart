@@ -47,11 +47,11 @@ void main() {
       },
     );
     test(
-      '\nGiven a quote larger than 2000 characters'
+      '\nGiven a quote larger than 3000 characters'
       '\nWhen it is inputed'
       '\nThen return Left with ExceedingLength failure holding the same input',
       () async {
-        final largeQuote = 'a' * 2001;
+        final largeQuote = 'a' * 3001;
         final quoteValueObject = HighlightQuote(largeQuote).value;
 
         expect(quoteValueObject.isLeft(), isTrue);

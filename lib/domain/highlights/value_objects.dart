@@ -13,7 +13,7 @@ class HighlightQuote extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  static const maxLength = 2000;
+  static const maxLength = 3000;
 
   factory HighlightQuote(String input) {
     assert(input != null);
